@@ -11,11 +11,14 @@ punti_nemico = 60
 salute_massima = 4
 
 [node name="ColorRect" parent="." index="0"]
-color = Color(0.351325, 0.481728, 1, 1)
+color = Color(0.318886, 0.444919, 0.999996, 1)
 
 [node name="SpawnTimer" type="Timer" parent="." index="3"]
 wait_time = 2.0
 autostart = true
+ignore_time_scale = true
+
+[node name="HitFlashTimer" parent="." index="4"]
 ignore_time_scale = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]

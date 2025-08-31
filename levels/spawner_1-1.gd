@@ -8,8 +8,9 @@ extends Node
 var enemies_remains = 0
 var wave_in_live = false
 
-const LEVEL_ENEMIES = [
+const LEVEL_ENEMY_WAVES = [
 	[
+		{"type": "enemy_spitfire", "number": 3, "wait": 2.0},
 		{"type": "base", "number": 5, "wait": 1.5}
 	],
 	[
@@ -20,6 +21,13 @@ const LEVEL_ENEMIES = [
 		{"type": "enemy_spitfire", "number": 2, "wait": 2.0},
 		{"type": "base", "number": 2, "wait": 1.5},
 		{"type": "enemy_strafer", "number": 1, "wait": 1.0}
+	],
+	[
+		{"type": "enemy_spitfire", "number": 1, "wait": 1.5},
+		{"type": "base", "number": 2, "wait": 0.5},
+		{"type": "enemy_spitfire", "number": 1, "wait": 1.5},
+		{"type": "base", "number": 2, "wait": 0.5},
+		{"type": "enemy_strafer", "number": 3, "wait": 1.5}
 	]
 ]
 
@@ -28,12 +36,12 @@ func _ready():
 	start_next_wave()
 
 func start_next_wave():
-	if GameManager.current_wave >= LEVEL_ENEMIES.size():
+	if GameManager.current_wave >= LEVEL_ENEMY_WAVES.size():
 		print("LEVEL COMPLETE!")
 		return # Abbiamo finito le ondate
 
 	wave_in_live = true
-	var wave_data = LEVEL_ENEMIES[GameManager.current_wave]
+	var wave_data = LEVEL_ENEMY_WAVES[GameManager.current_wave]
 	
 	# Get totale of enemies
 	for enemy_data in wave_data:

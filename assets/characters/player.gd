@@ -11,6 +11,7 @@ extends Area2D
 @onready var suono_morte = $SuonoMorte
 @onready var suono_colpo = $SuonoColpo
 @onready var collision_shape = $CollisionShape2D
+@onready var grafica_giocatore = $ColorRect.color
 
 var joystick_node = null
 
@@ -32,6 +33,16 @@ func _physics_process(delta):
 		# --- CONTROLLO TASTIERA (FALLBACK) ---
 		# Altrimenti, usiamo la tastiera come prima
 		direzione_input = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+
+	# --- NUOVA LOGICA PER L'AUTOFIRE ---
+	# Controlliamo se il giocatore si sta muovendo (se il vettore di input non è zero)
+	if direzione_input != Vector2.ZERO:
+		# Se il giocatore si sta muovendo e il timer è fermo, fallo partire.
+		if $AutofireTimer.is_stopped():
+			$AutofireTimer.start()
+	else:
+		# Se il giocatore è fermo, ferma il timer.
+		$AutofireTimer.stop()
 
 	position += direzione_input * velocita * delta
 
@@ -56,6 +67,9 @@ func energy_down(number):
 
 	if current_energy <= 0:
 		morire() # Chiamiamo la funzione di morte solo quando la salute è finita
+	else:
+		$ColorRect.color = Color("5dff56") 
+		$HitFlashTimer.start()
 
 func _ready():
 	# Questa funzione viene eseguita all'avvio della scena
@@ -92,3 +106,9 @@ func _on_area_entered(area: Area2D) -> void:
 		energy_down(area.punti_arma)
 		# Il proiettile viene distrutto
 		area.queue_free()
+
+func _on_hit_flash_timer_timeout() -> void:
+	$ColorRect.color = grafica_giocatore
+
+func _on_autofire_timer_timeout() -> void:
+	sparare() # Replace with function body.

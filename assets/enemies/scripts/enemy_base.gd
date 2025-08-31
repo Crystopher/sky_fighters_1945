@@ -4,12 +4,17 @@ var velocita = 150.0
 @export var punti_nemico = 50
 @export var punti_impatto = 1
 @export var salute_massima = 1
+@onready var grafica_nemico = $ColorRect.color
 var salute_attuale
 
 signal enemy_destroyed
 
 func subire_danno(quantita):
 	salute_attuale -= quantita
+	if salute_attuale > 0:
+		$ColorRect.color = Color("b5c9ff88")
+		$HitFlashTimer.start()
+
 	if salute_attuale <= 0:
 		explode() # Il nemico muore solo quando la salute è finita
 
@@ -46,3 +51,7 @@ func destroying():
 	# The enemy is destroyed here
 	enemy_destroyed.emit() # Annuncia al mondo che stiamo per morire
 	queue_free()
+
+
+func _on_hit_flash_timer_timeout() -> void:
+	$ColorRect.color = grafica_nemico
