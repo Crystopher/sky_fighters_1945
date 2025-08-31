@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch2g7xbfx36fk"]
+
+[ext_resource type="Script" uid="uid://bd8svnqk4bb3f" path="res://assets/powerups/railgun.gd" id="1_jdd78"]
+[ext_resource type="AudioStream" uid="uid://cc0vm327m7bwm" path="res://assets/powerups/audio/railgun.ogg" id="2_0j7qk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwo73"]
+size = Vector2(10, 20)
+
+[node name="RailGun" type="Area2D" groups=["proiettili_giocatore"]]
+position = Vector2(253, 144)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_jdd78")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -5.0
+offset_top = -10.0
+offset_right = 5.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vwo73")
+
+[node name="Sparo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0j7qk")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

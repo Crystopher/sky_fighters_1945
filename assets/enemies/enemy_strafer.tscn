@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b71kntjj50abx"]
+
+[ext_resource type="PackedScene" uid="uid://cve3mrdrtc0r" path="res://assets/enemies/enemy_base.tscn" id="1_n08xd"]
+[ext_resource type="Script" uid="uid://cknqw4rrxq5a2" path="res://assets/enemies/enemy_strafer.gd" id="2_vlro5"]
+[ext_resource type="PackedScene" uid="uid://cmm4onbmecos2" path="res://assets/enemies/weapons/three_globular.tscn" id="3_qdycw"]
+
+[node name="Enemy_Strafer" instance=ExtResource("1_n08xd")]
+script = ExtResource("2_vlro5")
+weapon_scene = ExtResource("3_qdycw")
+
+[node name="SpawnTimer" type="Timer" parent="." index="3"]
+autostart = true
+ignore_time_scale = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
