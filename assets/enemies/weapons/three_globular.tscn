@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmm4onbmecos2"]
+[gd_scene load_steps=4 format=3 uid="uid://cmm4onbmecos2"]
 
-[ext_resource type="Script" uid="uid://bmdpuru0o8qvu" path="res://assets/enemies/weapons/three_globular.gd" id="1_mh6b5"]
+[ext_resource type="Script" uid="uid://bmdpuru0o8qvu" path="res://assets/enemies/weapons/scripts/three_globular.gd" id="1_mh6b5"]
+[ext_resource type="AudioStream" uid="uid://btom1oaa6l8yb" path="res://assets/enemies/weapons/audio/globular_fire.wav" id="2_gxi6m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mh6b5"]
 radius = 12.0
@@ -18,5 +19,8 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(10, 10)
 shape = SubResource("CircleShape2D_mh6b5")
+
+[node name="SuonoSparo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gxi6m")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

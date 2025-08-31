@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://rcxd2yl0s8qt"]
+[gd_scene load_steps=6 format=3 uid="uid://rcxd2yl0s8qt"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/player.gd" id="1_3rtcq"]
 [ext_resource type="PackedScene" uid="uid://ch2g7xbfx36fk" path="res://assets/powerups/railgun.tscn" id="2_owjqt"]
 [ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="4_33bko"]
+[ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_gmphs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rua17"]
 size = Vector2(52, 53)
@@ -27,5 +28,9 @@ shape = SubResource("RectangleShape2D_rua17")
 [node name="SuonoMorte" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_33bko")
 volume_db = 3.748
+
+[node name="SuonoColpo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gmphs")
+volume_db = 5.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

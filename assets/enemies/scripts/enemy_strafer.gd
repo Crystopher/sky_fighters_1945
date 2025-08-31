@@ -1,4 +1,4 @@
-extends "res://assets/enemies/enemy_base.gd"
+extends "res://assets/enemies/scripts/enemy_base.gd"
 
 # Definiamo i possibili "stati mentali" del nostro nemico
 enum State { SCENDE, DESTRA_SINISTRA }
@@ -16,6 +16,7 @@ func _ready():
 	# Vogliamo che sia nella parte alta dello schermo
 	var screen_height = get_viewport_rect().size.y
 	y_bersaglio_strafe = randf_range(screen_height * 0.15, screen_height * 0.4)
+	super()
 
 # Carichiamo la scena del proiettile che questo nemico userà
 @export var weapon_scene: PackedScene

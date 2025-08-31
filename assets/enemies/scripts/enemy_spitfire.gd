@@ -1,4 +1,4 @@
-extends "res://assets/enemies/enemy_base.gd"
+extends "res://assets/enemies/scripts/enemy_base.gd"
 
 # Carichiamo la scena del proiettile che questo nemico userà
 @export var weapon_scene: PackedScene

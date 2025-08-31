@@ -8,39 +8,58 @@ extends Node
 var enemies_remains = 0
 var wave_in_live = false
 
+const LEVEL_ENEMIES = [
+	[
+		{"type": "base", "number": 5, "wait": 1.5}
+	],
+	[
+		{"type": "base", "number": 3, "wait": 1.5},
+		{"type": "enemy_spitfire", "number": 3, "wait": 2.0}
+	],
+	[
+		{"type": "enemy_spitfire", "number": 2, "wait": 2.0},
+		{"type": "base", "number": 2, "wait": 1.5},
+		{"type": "enemy_strafer", "number": 1, "wait": 1.0}
+	]
+]
+
 func _ready():
 	# Inizia la prima ondata all'avvio
 	start_next_wave()
 
 func start_next_wave():
-	if GameManager.current_wave >= GameManager.LEVEL_1_1.size():
+	if GameManager.current_wave >= LEVEL_ENEMIES.size():
 		print("LEVEL COMPLETE!")
 		return # Abbiamo finito le ondate
 
 	wave_in_live = true
-	var wave_data = GameManager.LEVEL_1_1[GameManager.current_wave]
+	var wave_data = LEVEL_ENEMIES[GameManager.current_wave]
+	
+	# Get totale of enemies
+	for enemy_data in wave_data:
+		enemies_remains += enemy_data["number"]
+	
+	for enemy_data in wave_data:	
+		var enemies_number = enemy_data["number"]
+		var enemy_type = enemy_data["type"]
+		var enemy_wait = enemy_data["wait"]
 
-	enemies_remains = wave_data["number"]
+		var scene_to_spawn
+		if enemy_type == "base":
+			scene_to_spawn = base_enemy_scene
+		elif enemy_type == "enemy_spitfire":
+			scene_to_spawn = spitfire_enemy_scene
+		elif enemy_type == "enemy_strafer":
+			scene_to_spawn = strafer_enemy_scene
 
-	var enemy_type = wave_data["type"]
-	var enemy_wait = wave_data["wait"]
-
-	var scene_to_spawn
-	if enemy_type == "base":
-		scene_to_spawn = base_enemy_scene
-	elif enemy_type == "enemy_spitfire":
-		scene_to_spawn = spitfire_enemy_scene
-	elif enemy_type == "enemy_strafer":
-		scene_to_spawn = strafer_enemy_scene
-
-	# Usiamo un timer per spawnare i nemici in sequenza
-	var spawn_timer = get_tree().create_timer(enemy_wait)
-	var counter = 0
-	while counter < enemies_remains:
-		await spawn_timer.timeout
-		enemy_spawn(scene_to_spawn)
-		counter += 1
-		spawn_timer = get_tree().create_timer(enemy_wait)
+		# Usiamo un timer per spawnare i nemici in sequenza
+		var spawn_timer = get_tree().create_timer(enemy_wait)
+		var counter = 0
+		while counter < enemies_number:
+			await spawn_timer.timeout
+			enemy_spawn(scene_to_spawn)
+			counter += 1
+			spawn_timer = get_tree().create_timer(enemy_wait)
 
 func enemy_spawn(scene_to_spawn):
 	if not scene_to_spawn: return

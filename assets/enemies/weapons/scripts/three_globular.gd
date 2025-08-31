@@ -1,7 +1,10 @@
-extends Area2D
+extends "res://assets/enemies/weapons/scripts/weapon_base.gd"
 
-var velocita = 400.0
 var direzione = Vector2.DOWN
+@onready var suono_colpo = $SuonoSparo
+
+func _ready() -> void:
+	suono_colpo.play()
 
 func _process(delta):
 	# Muoviamo il proiettile usando il vettore direzione.

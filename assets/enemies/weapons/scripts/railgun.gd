@@ -1,6 +1,10 @@
-extends Area2D
-var velocita = 400.0
+extends "res://assets/enemies/weapons/scripts/weapon_base.gd"
 
+@onready var suono_colpo = $SuonoSparo
+
+func _ready() -> void:
+	suono_colpo.play()
+	
 func _process(delta):
 	# Muovi il proiettile verso il basso (Y positivo)
 	position.y += velocita * delta

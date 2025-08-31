@@ -9,6 +9,7 @@ extends Area2D
 
 # Aggiungiamo i suoni come nodi pronti all'uso
 @onready var suono_morte = $SuonoMorte
+@onready var suono_colpo = $SuonoColpo
 @onready var collision_shape = $CollisionShape2D
 
 var joystick_node = null
@@ -46,11 +47,12 @@ func _physics_process(delta):
 
 # Aggiungi questa nuova funzione in giocatore.gd
 func energy_down(number):
-	print("Salute PRIMA del colpo: ", current_energy) # Messaggio di debug
 	current_energy -= number
 
 	# Emettiamo il segnale per aggiornare la UI
 	energy_updated.emit(current_energy, energy_max)
+
+	suono_colpo.play()
 
 	if current_energy <= 0:
 		morire() # Chiamiamo la funzione di morte solo quando la salute è finita
@@ -82,11 +84,11 @@ func morire():
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("nemici"):
-		# Se un nemico ci tocca, subiamo un danno maggiore
-		energy_down(2)
+		# Se un nemico ci tocca, subiamo il danno definito in punti_impatto
+		energy_down(area.punti_impatto)
 		# Il nemico viene comunque distrutto per evitare danni multipli
 	elif area.is_in_group("enemy_weapons"):
-		# Se un proiettile nemico ci tocca, subiamo danno
-		energy_down(1)
+		# Se un proiettile nemico ci tocca, subiamo danno secondo il valore di punti_arma
+		energy_down(area.punti_arma)
 		# Il proiettile viene distrutto
 		area.queue_free()

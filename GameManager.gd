@@ -7,12 +7,6 @@ signal giocatore_morto # Nuovo segnale!
 var current_level = 1
 var current_wave = 0
 
-const LEVEL_1_1 = [
-	{"type": "base", "number": 5, "wait": 1.5},
-	{"type": "enemy_spitfire", "number": 3, "wait": 2.0},
-	{"type": "enemy_strafer", "number": 3, "wait": 1.0},
-]
-
 func reset_level():
 	punteggio_attuale = 0
 	current_wave = 0 # Resettiamo anche l'ondata

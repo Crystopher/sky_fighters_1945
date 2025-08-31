@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cve3mrdrtc0r"]
 
-[ext_resource type="Script" uid="uid://rr320ojnnhcd" path="res://assets/enemies/enemy_base.gd" id="1_v3sg5"]
+[ext_resource type="Script" uid="uid://rr320ojnnhcd" path="res://assets/enemies/scripts/enemy_base.gd" id="1_v3sg5"]
 [ext_resource type="AudioStream" uid="uid://4qy42i6ppmfp" path="res://assets/enemies/audio/nemico01_explosion.wav" id="2_1n2ni"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1n2ni"]
