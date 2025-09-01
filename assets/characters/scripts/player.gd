@@ -9,8 +9,8 @@ extends Area2D
 # Aggiungiamo i suoni come nodi pronti all'uso
 @onready var suono_morte = $SuonoMorte
 @onready var suono_colpo = $SuonoColpo
-@onready var collision_shape = $CollisionShape2D
-@onready var grafica_giocatore = $ColorRect.color
+@onready var collision_shape = $CollisionPolygon2D
+#@onready var grafica_giocatore = $ColorRect.color
 
 var joystick_node = null
 
@@ -47,9 +47,10 @@ func _physics_process(delta):
 
 	# --- BLOCCO AI BORDI (INVARIATO) ---
 	var screen_size = get_viewport_rect().size
-	var player_half_size = collision_shape.shape.size / 2
-	position.x = clamp(position.x, player_half_size.x, screen_size.x - player_half_size.x)
-	position.y = clamp(position.y, player_half_size.y, screen_size.y - player_half_size.y)
+	#var player_half_size = collision_shape.shape / 2
+	var player_half_size:PackedVector2Array = collision_shape.polygon
+	position.x = clamp(position.x, player_half_size[0].x, screen_size.x - player_half_size[0].x)
+	position.y = clamp(position.y, player_half_size[0].y, screen_size.y - player_half_size[0].y)
 
 	# --- GESTIONE SPARO (INVARIATO) ---
 	if Input.is_action_just_pressed("sparo"):
@@ -107,7 +108,8 @@ func _on_area_entered(area: Area2D) -> void:
 		area.queue_free()
 
 func _on_hit_flash_timer_timeout() -> void:
-	$ColorRect.color = grafica_giocatore
+	#$ColorRect.color = grafica_giocatore
+	pass
 
 func _on_autofire_timer_timeout() -> void:
 	sparare() # Replace with function body.

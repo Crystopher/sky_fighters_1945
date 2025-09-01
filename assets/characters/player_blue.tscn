@@ -1,11 +1,77 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgnav3xvt7b08"]
+[gd_scene load_steps=11 format=3 uid="uid://dgnav3xvt7b08"]
 
 [ext_resource type="PackedScene" uid="uid://rcxd2yl0s8qt" path="res://assets/characters/player_base.tscn" id="1_qv3x8"]
 [ext_resource type="PackedScene" uid="uid://cbnywcke0hw8j" path="res://assets/characters/powerups/railgunlow.tscn" id="2_w3sbs"]
+[ext_resource type="Texture2D" uid="uid://4x7mbddbyvfx" path="res://assets/characters/sprites/BlueThunder.png" id="3_jugdk"]
 
-[node name="Giocatore" instance=ExtResource("1_qv3x8")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7jf1"]
+atlas = ExtResource("3_jugdk")
+region = Rect2(0, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qudg"]
+atlas = ExtResource("3_jugdk")
+region = Rect2(1118, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_308u6"]
+atlas = ExtResource("3_jugdk")
+region = Rect2(2236, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4xjq"]
+atlas = ExtResource("3_jugdk")
+region = Rect2(1118, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbsfq"]
+atlas = ExtResource("3_jugdk")
+region = Rect2(2236, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fskuw"]
+atlas = ExtResource("3_jugdk")
+region = Rect2(1118, 0, 1118, 926)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6oix8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7jf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qudg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_308u6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4xjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbsfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fskuw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="GiocatoreBlue" instance=ExtResource("1_qv3x8")]
 velocita = 450.0
 proiettile_scena = ExtResource("2_w3sbs")
 
 [node name="ColorRect" parent="." index="0"]
+visible = false
 color = Color(0, 0, 1, 1)
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="6"]
+polygon = PackedVector2Array(-1, 103, -6, 101, -7, 96, -32, 101, -35, 98, -34, 94, -8, 83, -10, 78, -11, 70, -17, 70, -20, 82, -31, 82, -31, 73, -29, 68, -29, 61, -71, 61, -71, 54, -57, 47, -30, 37, -30, 25, -22, 21, -14, 27, -13, 36, -11, 35, -10, 10, -2, -3, 4, -2, 11, 10, 11, 34, 15, 36, 15, 26, 20, 21, 24, 21, 31, 27, 31, 36, 71, 53, 72, 57, 72, 61, 30, 61, 30, 72, 31, 78, 29, 81, 20, 81, 17, 73, 16, 69, 11, 69, 11, 79, 9, 83, 34, 94, 34, 99, 30, 101, 5, 97, 5, 101)
+
+[node name="GraficaGiocatore" type="AnimatedSprite2D" parent="." index="7"]
+position = Vector2(3, 59)
+scale = Vector2(0.143, 0.143)
+sprite_frames = SubResource("SpriteFrames_6oix8")
+autoplay = "default"
+frame = 4
+frame_progress = 0.0881352

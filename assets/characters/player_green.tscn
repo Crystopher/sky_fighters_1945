@@ -1,12 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://b88vek6t71s80"]
+[gd_scene load_steps=10 format=3 uid="uid://b88vek6t71s80"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_l2c4c"]
 [ext_resource type="PackedScene" uid="uid://ch2g7xbfx36fk" path="res://assets/characters/powerups/railgun.tscn" id="2_dqfg1"]
 [ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="3_03p02"]
 [ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_u7xdr"]
+[ext_resource type="Texture2D" uid="uid://c1efrpqfbncje" path="res://assets/characters/sprites/GreenBerret.png" id="5_dqfg1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rua17"]
-size = Vector2(52, 53)
+[sub_resource type="AtlasTexture" id="AtlasTexture_03p02"]
+atlas = ExtResource("5_dqfg1")
+region = Rect2(0, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7xdr"]
+atlas = ExtResource("5_dqfg1")
+region = Rect2(1118, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhbis"]
+atlas = ExtResource("5_dqfg1")
+region = Rect2(2236, 0, 1118, 926)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ep5j1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03p02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7xdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhbis")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
 
 [node name="GiocatoreVerde" type="Area2D" groups=["giocatore"]]
 collision_mask = 12
@@ -15,6 +42,7 @@ proiettile_scena = ExtResource("2_dqfg1")
 energy_max = 12
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 offset_left = -25.0
 offset_top = -25.0
@@ -22,9 +50,6 @@ offset_right = 25.0
 offset_bottom = 25.0
 color = Color(0, 0.85098, 0, 1)
 metadata/_edit_use_anchors_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_rua17")
 
 [node name="SuonoMorte" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_03p02")
@@ -41,6 +66,21 @@ ignore_time_scale = true
 
 [node name="AutofireTimer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0.400002, 53.9)
+scale = Vector2(3.5, 3.1)
+build_mode = 1
+polygon = PackedVector2Array(-0.285714, 24.5161, -0.857143, 23.871, -0.857143, 19.6774, -1.14286, 18.7097, -5.71429, 19.0323, -8, 17.7419, -8.28571, 15.4839, -2, 13.2258, -3.42857, 4.51613, -20.2857, 1.93548, -22.5714, -0.322581, -22.5714, -3.54839, -18.8571, -4.83871, -4, -8.3871, -7.14286, -14.8387, -6, -21.6129, -0.285714, -24.8387, 4.85714, -21.9355, 7.14286, -15.1613, 4.28571, -8.06452, 20, -4.51613, 22.5714, -2.58065, 21.7143, 0.645161, 18, 2.58064, 3.14286, 4.51613, 1.42857, 13.2258, 7.71429, 15.4839, 7.42857, 17.7419, 4.57143, 19.3548, 0.857143, 18.7097, 0.285714, 19.3548, 0.285714, 23.871)
+
+[node name="GraficaGiocatore" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.599998, 50.9)
+scale = Vector2(0.143113, 0.172786)
+sprite_frames = SubResource("SpriteFrames_ep5j1")
+animation = &"idle"
+autoplay = "idle"
+frame = 1
+frame_progress = 0.597703
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]

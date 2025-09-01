@@ -1,12 +1,60 @@
-[gd_scene load_steps=6 format=3 uid="uid://u2pl5o8s73cp"]
+[gd_scene load_steps=13 format=3 uid="uid://u2pl5o8s73cp"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_6gu8q"]
 [ext_resource type="PackedScene" uid="uid://bvj4siaxmvxa6" path="res://assets/characters/powerups/railgunhigh.tscn" id="2_6gu8q"]
 [ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="3_unxkj"]
 [ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_u8lqw"]
+[ext_resource type="Texture2D" uid="uid://bgjwbblhmvl32" path="res://assets/characters/sprites/RedBomber.png" id="5_0qwn4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rua17"]
-size = Vector2(52, 53)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qwn4"]
+atlas = ExtResource("5_0qwn4")
+region = Rect2(0, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unxkj"]
+atlas = ExtResource("5_0qwn4")
+region = Rect2(1118, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8lqw"]
+atlas = ExtResource("5_0qwn4")
+region = Rect2(2236, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xht6d"]
+atlas = ExtResource("5_0qwn4")
+region = Rect2(1118, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmpcg"]
+atlas = ExtResource("5_0qwn4")
+region = Rect2(2236, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mjpv"]
+atlas = ExtResource("5_0qwn4")
+region = Rect2(1118, 0, 1118, 926)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5mjpv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qwn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unxkj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8lqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xht6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmpcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mjpv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [node name="GiocatoreRosso" type="Area2D" groups=["giocatore"]]
 collision_mask = 12
@@ -16,6 +64,7 @@ proiettile_scena = ExtResource("2_6gu8q")
 energy_max = 15
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 offset_left = -25.0
 offset_top = -25.0
@@ -23,9 +72,6 @@ offset_right = 25.0
 offset_bottom = 25.0
 color = Color(1, 0, 0.0117647, 1)
 metadata/_edit_use_anchors_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_rua17")
 
 [node name="SuonoMorte" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_unxkj")
@@ -42,6 +88,19 @@ ignore_time_scale = true
 
 [node name="AutofireTimer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(0, 122, -4, 117, -26, 117, -30, 112, -29, 108, -23, 106, -11, 102, -12, 85, -13, 57, -11, 55, -73, 46, -79, 39, -79, 34, -73, 30, -24, 23, -25, 13, -20, 8, -13, 14, -14, 23, -8, 22, -8, 10, -5, 2, -13, 0, 0, -4, 11, 0, 4, 1, 7, 9, 7, 22, 13, 23, 13, 14, 20, 8, 26, 14, 26, 23, 71, 30, 78, 34, 78, 39, 74, 44, 69, 46, 10, 55, 12, 58, 11, 85, 11, 102, 28, 108, 29, 112, 27, 116, 22, 117, 3, 117)
+
+[node name="GraficaGiocatore" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 59)
+scale = Vector2(0.143, 0.143)
+sprite_frames = SubResource("SpriteFrames_5mjpv")
+animation = &"idle"
+autoplay = "idle"
+frame = 4
+frame_progress = 0.894799
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]

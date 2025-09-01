@@ -61,26 +61,32 @@ columns = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-Description = "Velocità: Normale"
-Avatar = Color(0, 0.619608, 0, 1)
+Energy = 3
+Power = 3
+Velocity = 3
+PlaneType = "Green"
 HeroKey = "verde"
 
 [node name="Fighter02" parent="GridContainer" groups=["player_selection"] instance=ExtResource("3_tf1hx")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-Name = "Blue Flash"
-Description = "Desrizione di prova giusto per avere qualcosa di scritto per descrivere il tipo di aereo selezionato"
-Avatar = Color(0.266769, 0.00284106, 1, 1)
+Energy = 2
+Power = 2
+Velocity = 4
+Name = "Blue Thunder"
+PlaneType = "Blue"
 HeroKey = "blue"
 
 [node name="Fighter03" parent="GridContainer" groups=["player_selection"] instance=ExtResource("3_tf1hx")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+Energy = 4
+Power = 4
+Velocity = 2
 Name = "Red Bomb"
-Description = "Desrizione di prova giusto per avere qualcosa di scritto per descrivere il tipo di aereo selezionato"
-Avatar = Color(0.933333, 0, 0, 1)
+PlaneType = "Red"
 HeroKey = "rosso"
 
 [connection signal="button_down" from="Button2" to="." method="_on_button_2_button_down"]
