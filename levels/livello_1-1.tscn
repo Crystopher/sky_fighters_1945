@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://6kombs85oynt"]
+[gd_scene load_steps=6 format=3 uid="uid://6kombs85oynt"]
 
-[ext_resource type="PackedScene" uid="uid://rcxd2yl0s8qt" path="res://assets/characters/player.tscn" id="1_e6ueo"]
 [ext_resource type="Script" uid="uid://n5m5c8deypol" path="res://levels/spawner_1-1.gd" id="2_hl8rc"]
 [ext_resource type="PackedScene" uid="uid://cve3mrdrtc0r" path="res://assets/enemies/enemy_base.tscn" id="3_ppx52"]
 [ext_resource type="PackedScene" uid="uid://b8judt8newgkh" path="res://ui.tscn" id="4_e6ueo"]
@@ -8,8 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b71kntjj50abx" path="res://assets/enemies/enemy_strafer.tscn" id="5_ppx52"]
 
 [node name="Livello1-1" type="Node2D"]
-
-[node name="Giocatore" parent="." instance=ExtResource("1_e6ueo")]
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("2_hl8rc")

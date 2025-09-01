@@ -2,7 +2,6 @@ extends Area2D
 
 # La parola chiave @export permette di modificare questa variabile direttamente dall'Inspector di Godot.
 @export var velocita = 300.0
-
 # Esportiamo una variabile di tipo "PackedScene"
 # Questo creerà uno slot nell'Inspector dove potremo trascinare la nostra scena del proiettile.
 @export var proiettile_scena: PackedScene

@@ -32,7 +32,7 @@ func _process(delta):
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("proiettili_giocatore"):
-		subire_danno(1)
+		subire_danno(area.damage)
 		area.queue_free()
 	elif area.is_in_group("giocatore"):
 		explode()

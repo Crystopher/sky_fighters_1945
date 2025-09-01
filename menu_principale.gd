@@ -4,7 +4,8 @@ func _on_button_pressed() -> void:
 	# get_tree() si riferisce all'albero delle scene del gioco.
 	# change_scene_to_file() carica una nuova scena, distruggendo quella attuale.
 	# "res://" è il percorso della cartella principale del tuo progetto.
-	get_tree().change_scene_to_file("res://levels/livello_1-1.tscn")
+	#get_tree().change_scene_to_file("res://levels/livello_1-1.tscn")
+	get_tree().change_scene_to_file("res://player_selection.tscn")
 
 func _on_button_2_pressed() -> void:
 	# Questo comando chiude l'applicazione.

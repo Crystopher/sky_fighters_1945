@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgnav3xvt7b08"]
+
+[ext_resource type="PackedScene" uid="uid://rcxd2yl0s8qt" path="res://assets/characters/player_base.tscn" id="1_qv3x8"]
+[ext_resource type="PackedScene" uid="uid://cbnywcke0hw8j" path="res://assets/characters/powerups/railgunlow.tscn" id="2_w3sbs"]
+
+[node name="Giocatore" instance=ExtResource("1_qv3x8")]
+velocita = 450.0
+proiettile_scena = ExtResource("2_w3sbs")
+
+[node name="ColorRect" parent="." index="0"]
+color = Color(0, 0, 1, 1)

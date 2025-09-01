@@ -33,6 +33,10 @@ const LEVEL_ENEMY_WAVES = [
 
 func _ready():
 	# Inizia la prima ondata all'avvio
+	var scena_giocatore = GameManager.GIOCATORI_DISPONIBILI[GameManager.giocatore_selezionato]
+	var nuovo_giocatore = scena_giocatore.instantiate()
+	get_parent().call_deferred("add_child", nuovo_giocatore)
+	
 	start_next_wave()
 
 func start_next_wave():

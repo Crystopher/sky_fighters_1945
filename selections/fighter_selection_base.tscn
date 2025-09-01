@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://hm4tuawag23b"]
+
+[ext_resource type="Script" uid="uid://jtr657lw2yjc" path="res://selections/fighter_selection_base.gd" id="1_riepq"]
+
+[node name="Fighter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 214.0
+offset_bottom = 272.0
+script = ExtResource("1_riepq")
+Name = "Green Barret"
+Description = "Green BarretGreen BarretGreen BarretGreen BarretGreen BarretGreen BarretGreen BarretGreen Barret Green Barret Green Barret Green Barret Green Barret"
+Avatar = Color(0, 1, 0, 1)
+HeroKey = null
+
+[node name="Bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.564962, 0.564962, 0.564962, 0.235294)
+
+[node name="Avatar" type="ColorRect" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 20.0
+offset_right = 40.0
+offset_bottom = 100.0
+grow_horizontal = 2
+pivot_offset = Vector2(40, 0)
+color = Color(0, 1, 0, 1)
+
+[node name="Name" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 105.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.114897, 0.114897, 0.114897, 1)
+text = "Green Barret"
+horizontal_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 138.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.362829, 0.362829, 0.362829, 1)
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 6
+theme_override_font_sizes/normal_font_size = 12
+text = "Green BarretGreen BarretGreen BarretGreen BarretGreen BarretGreen BarretGreen BarretGreen Barret Green Barret Green Barret Green Barret Green Barret"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

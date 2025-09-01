@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://b88vek6t71s80"]
+
+[ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_l2c4c"]
+[ext_resource type="PackedScene" uid="uid://ch2g7xbfx36fk" path="res://assets/characters/powerups/railgun.tscn" id="2_dqfg1"]
+[ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="3_03p02"]
+[ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_u7xdr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rua17"]
+size = Vector2(52, 53)
+
+[node name="GiocatoreVerde" type="Area2D" groups=["giocatore"]]
+collision_mask = 12
+script = ExtResource("1_l2c4c")
+proiettile_scena = ExtResource("2_dqfg1")
+energy_max = 12
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(50, 50)
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+color = Color(0, 0.85098, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rua17")
+
+[node name="SuonoMorte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_03p02")
+volume_db = 3.748
+
+[node name="SuonoColpo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_u7xdr")
+volume_db = 5.0
+
+[node name="HitFlashTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+ignore_time_scale = true
+
+[node name="AutofireTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="AutofireTimer" to="." method="_on_autofire_timer_timeout"]

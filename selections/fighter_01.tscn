@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b01gb4j0co0fc"]
+
+[ext_resource type="PackedScene" uid="uid://hm4tuawag23b" path="res://selections/fighter_selection_base.tscn" id="1_72rp0"]
+
+[node name="Fighter01" instance=ExtResource("1_72rp0")]
+Name = "Green Barret"
+Description = "Green BarretGreen BarretGreen BarretGreen BarretGreen BarretGreen BarretGreen BarretGreen Barret Green Barret Green Barret Green Barret Green Barret"
+Avatar = Color(0, 1, 0, 1)
+HeroKey = null

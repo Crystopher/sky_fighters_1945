@@ -7,6 +7,16 @@ signal giocatore_morto # Nuovo segnale!
 var current_level = 1
 var current_wave = 0
 
+# Carichiamo le scene dei giocatori disponibili
+const GIOCATORI_DISPONIBILI = {
+	"verde": preload("res://assets/characters/player_green.tscn"),
+	"blue": preload("res://assets/characters/player_blue.tscn"),
+	"rosso": preload("res://assets/characters/player_red.tscn")
+}
+
+# Memorizziamo la scelta attuale del giocatore (il verde sarà il default)
+var giocatore_selezionato = "verde"
+
 func reset_level():
 	punteggio_attuale = 0
 	current_wave = 0 # Resettiamo anche l'ondata

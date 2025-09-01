@@ -1,6 +1,7 @@
 extends Area2D
 
-var velocita = 600.0
+@export var velocita = 600.0
+@export var damage = 1.0
 
 @onready var suono_sparo = $Sparo
 # _process viene chiamato a ogni frame, è ottimo per movimenti non legati alla fisica

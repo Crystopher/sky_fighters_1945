@@ -1,17 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://rcxd2yl0s8qt"]
+[gd_scene load_steps=6 format=3 uid="uid://u2pl5o8s73cp"]
 
-[ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/player.gd" id="1_3rtcq"]
-[ext_resource type="PackedScene" uid="uid://ch2g7xbfx36fk" path="res://assets/powerups/railgun.tscn" id="2_owjqt"]
-[ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="4_33bko"]
-[ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_gmphs"]
+[ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_6gu8q"]
+[ext_resource type="PackedScene" uid="uid://bvj4siaxmvxa6" path="res://assets/characters/powerups/railgunhigh.tscn" id="2_6gu8q"]
+[ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="3_unxkj"]
+[ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_u8lqw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rua17"]
 size = Vector2(52, 53)
 
-[node name="Giocatore" type="Area2D" groups=["giocatore"]]
+[node name="GiocatoreRosso" type="Area2D" groups=["giocatore"]]
 collision_mask = 12
-script = ExtResource("1_3rtcq")
-proiettile_scena = ExtResource("2_owjqt")
+script = ExtResource("1_6gu8q")
+velocita = 200.0
+proiettile_scena = ExtResource("2_6gu8q")
+energy_max = 15
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(50, 50)
@@ -19,18 +21,18 @@ offset_left = -25.0
 offset_top = -25.0
 offset_right = 25.0
 offset_bottom = 25.0
-color = Color(0, 0.768627, 0, 1)
+color = Color(1, 0, 0.0117647, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rua17")
 
 [node name="SuonoMorte" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_33bko")
+stream = ExtResource("3_unxkj")
 volume_db = 3.748
 
 [node name="SuonoColpo" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_gmphs")
+stream = ExtResource("4_u8lqw")
 volume_db = 5.0
 
 [node name="HitFlashTimer" type="Timer" parent="."]
