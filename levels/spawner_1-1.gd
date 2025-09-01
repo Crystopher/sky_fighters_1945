@@ -65,13 +65,13 @@ func start_next_wave():
 			scene_to_spawn = strafer_enemy_scene
 
 		# Usiamo un timer per spawnare i nemici in sequenza
-		var spawn_timer = get_tree().create_timer(enemy_wait)
+		var spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
 		var counter = 0
 		while counter < enemies_number:
 			await spawn_timer.timeout
 			enemy_spawn(scene_to_spawn)
 			counter += 1
-			spawn_timer = get_tree().create_timer(enemy_wait)
+			spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
 
 func enemy_spawn(scene_to_spawn):
 	if not scene_to_spawn: return
