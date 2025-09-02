@@ -112,7 +112,6 @@ offset_bottom = 272.0
 script = ExtResource("1_riepq")
 Name = "Green Barret"
 PlaneType = ""
-HeroKey = null
 
 [node name="Bg" type="ColorRect" parent="."]
 layout_mode = 1

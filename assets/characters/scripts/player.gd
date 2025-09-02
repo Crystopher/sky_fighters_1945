@@ -10,7 +10,7 @@ extends Area2D
 @onready var suono_morte = $SuonoMorte
 @onready var suono_colpo = $SuonoColpo
 @onready var collision_shape = $CollisionPolygon2D
-#@onready var grafica_giocatore = $ColorRect.color
+@onready var ombra_giocatore = $OmbraGiocatore
 
 var joystick_node = null
 
@@ -55,6 +55,8 @@ func _physics_process(delta):
 	# --- GESTIONE SPARO (INVARIATO) ---
 	if Input.is_action_just_pressed("sparo"):
 		sparare()
+	
+	ombra_giocatore.global_position = global_position
 
 # Aggiungi questa nuova funzione in giocatore.gd
 func energy_down(number):
@@ -67,14 +69,23 @@ func energy_down(number):
 
 	if current_energy <= 0:
 		morire() # Chiamiamo la funzione di morte solo quando la salute è finita
-	else:
-		$ColorRect.color = Color("5dff56") 
+	else: 
 		$HitFlashTimer.start()
 
 func _ready():
 	# Questa funzione viene eseguita all'avvio della scena
-	self.position = Vector2(270, 850)
 	current_energy = energy_max
+	await ready
+	# 1. Troviamo il livello delle nuvole
+	var strato_nuvole = get_tree().get_first_node_in_group("strato_nuvole")
+
+	if strato_nuvole and ombra_giocatore:
+		# 2. Stacchiamo l'ombra da noi stessi
+		remove_child(ombra_giocatore)
+
+		# 3. La riattacchiamo come figlia dello strato delle nuvole
+		strato_nuvole.add_child(ombra_giocatore)
+
 	joystick_node = get_tree().get_first_node_in_group("virtual_joystick")
 
 func sparare():

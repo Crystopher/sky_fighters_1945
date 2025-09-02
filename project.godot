@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="SkyFighters_Godot"
-run/main_scene="uid://dd5mjil4g53xu"
+config/name="SkyFighters_1945"
+config/version="0.0.1"
+run/main_scene="uid://davljutnoh0lr"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="uid://dp86k0eiou67a"
+config/icon="uid://dvrs36d37cag1"
 
 [autoload]
 
@@ -22,8 +24,10 @@ GameManager="*res://GameManager.gd"
 [display]
 
 window/size/viewport_width=720
-window/size/viewport_height=1280
+window/size/viewport_height=960
+window/size/borderless=true
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
 window/handheld/orientation=1
 
 [input]

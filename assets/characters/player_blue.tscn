@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgnav3xvt7b08"]
+[gd_scene load_steps=14 format=3 uid="uid://dbmtiqkb33kmf"]
 
-[ext_resource type="PackedScene" uid="uid://rcxd2yl0s8qt" path="res://assets/characters/player_base.tscn" id="1_qv3x8"]
+[ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_6qudg"]
 [ext_resource type="PackedScene" uid="uid://cbnywcke0hw8j" path="res://assets/characters/powerups/railgunlow.tscn" id="2_w3sbs"]
+[ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="3_f4xjq"]
 [ext_resource type="Texture2D" uid="uid://4x7mbddbyvfx" path="res://assets/characters/sprites/BlueThunder.png" id="3_jugdk"]
+[ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_vbsfq"]
+[ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="5_308u6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7jf1"]
 atlas = ExtResource("3_jugdk")
@@ -28,7 +31,7 @@ region = Rect2(2236, 0, 1118, 926)
 atlas = ExtResource("3_jugdk")
 region = Rect2(1118, 0, 1118, 926)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_6oix8"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_6qudg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -54,24 +57,45 @@ animations = [{
 "speed": 16.0
 }]
 
-[node name="GiocatoreBlue" instance=ExtResource("1_qv3x8")]
+[node name="GiocatoreBlue" type="Area2D" groups=["giocatore"]]
+collision_mask = 12
+script = ExtResource("1_6qudg")
 velocita = 450.0
 proiettile_scena = ExtResource("2_w3sbs")
 
-[node name="ColorRect" parent="." index="0"]
-visible = false
-color = Color(0, 0, 1, 1)
+[node name="SuonoMorte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_f4xjq")
+volume_db = 3.748
 
-[node name="CollisionShape2D" parent="." index="1"]
-visible = false
+[node name="SuonoColpo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vbsfq")
+volume_db = 5.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="6"]
+[node name="HitFlashTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+ignore_time_scale = true
+
+[node name="AutofireTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-1, 103, -6, 101, -7, 96, -32, 101, -35, 98, -34, 94, -8, 83, -10, 78, -11, 70, -17, 70, -20, 82, -31, 82, -31, 73, -29, 68, -29, 61, -71, 61, -71, 54, -57, 47, -30, 37, -30, 25, -22, 21, -14, 27, -13, 36, -11, 35, -10, 10, -2, -3, 4, -2, 11, 10, 11, 34, 15, 36, 15, 26, 20, 21, 24, 21, 31, 27, 31, 36, 71, 53, 72, 57, 72, 61, 30, 61, 30, 72, 31, 78, 29, 81, 20, 81, 17, 73, 16, 69, 11, 69, 11, 79, 9, 83, 34, 94, 34, 99, 30, 101, 5, 97, 5, 101)
 
-[node name="GraficaGiocatore" type="AnimatedSprite2D" parent="." index="7"]
+[node name="OmbraGiocatore" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.713726)
+z_index = -1
+position = Vector2(-14, 53)
+scale = Vector2(0.166045, 0.161926)
+texture = ExtResource("5_308u6")
+offset = Vector2(200, 100)
+
+[node name="GraficaGiocatore" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, 59)
 scale = Vector2(0.143, 0.143)
-sprite_frames = SubResource("SpriteFrames_6oix8")
+sprite_frames = SubResource("SpriteFrames_6qudg")
 autoplay = "default"
-frame = 4
-frame_progress = 0.0881352
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="AutofireTimer" to="." method="_on_autofire_timer_timeout"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b88vek6t71s80"]
+[gd_scene load_steps=11 format=3 uid="uid://b88vek6t71s80"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_l2c4c"]
 [ext_resource type="PackedScene" uid="uid://ch2g7xbfx36fk" path="res://assets/characters/powerups/railgun.tscn" id="2_dqfg1"]
 [ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="3_03p02"]
 [ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_u7xdr"]
 [ext_resource type="Texture2D" uid="uid://c1efrpqfbncje" path="res://assets/characters/sprites/GreenBerret.png" id="5_dqfg1"]
+[ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="6_03p02"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03p02"]
 atlas = ExtResource("5_dqfg1")
@@ -41,16 +42,6 @@ script = ExtResource("1_l2c4c")
 proiettile_scena = ExtResource("2_dqfg1")
 energy_max = 12
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-offset_left = -25.0
-offset_top = -25.0
-offset_right = 25.0
-offset_bottom = 25.0
-color = Color(0, 0.85098, 0, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="SuonoMorte" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_03p02")
 volume_db = 3.748
@@ -81,6 +72,14 @@ animation = &"idle"
 autoplay = "idle"
 frame = 1
 frame_progress = 0.597703
+
+[node name="OmbraGiocatore" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.713726)
+z_index = -1
+position = Vector2(-14, 53)
+scale = Vector2(0.166045, 0.161926)
+texture = ExtResource("6_03p02")
+offset = Vector2(200, 100)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]

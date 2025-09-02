@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd5mjil4g53xu"]
+[gd_scene load_steps=4 format=3 uid="uid://dd5mjil4g53xu"]
 
 [ext_resource type="Script" uid="uid://b0nbueo225ge3" path="res://menu_principale.gd" id="1_qkmkp"]
+[ext_resource type="Texture2D" uid="uid://dp86k0eiou67a" path="res://images/splash_screen.png" id="2_jwv8v"]
 [ext_resource type="AudioStream" uid="uid://cae3k4j0ximp5" path="res://audio/switch3.ogg" id="2_xqmsj"]
 
 [node name="MenuPrincipale" type="Control"]
@@ -12,19 +13,25 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qkmkp")
 
-[node name="Titolo" type="Label" parent="."]
+[node name="Control" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -27.5
-offset_bottom = 27.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 40
-text = "Sky Fighters"
-horizontal_alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SplashScreen" type="Sprite2D" parent="Control/AspectRatioContainer"]
+position = Vector2(321, 491)
+texture = ExtResource("2_jwv8v")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -33,10 +40,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -46.5
-offset_top = -400.0
-offset_right = 46.5
-offset_bottom = -369.0
+offset_left = -72.0
+offset_top = -272.0
+offset_right = 79.0
+offset_bottom = -213.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "New Game"
@@ -48,10 +55,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -45.0
-offset_top = -350.0
-offset_right = 48.0
-offset_bottom = -319.0
+offset_left = -71.0
+offset_top = -166.0
+offset_right = 71.0
+offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Quit"

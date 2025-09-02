@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://u2pl5o8s73cp"]
+[gd_scene load_steps=14 format=3 uid="uid://u2pl5o8s73cp"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_6gu8q"]
 [ext_resource type="PackedScene" uid="uid://bvj4siaxmvxa6" path="res://assets/characters/powerups/railgunhigh.tscn" id="2_6gu8q"]
 [ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="3_unxkj"]
 [ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_u8lqw"]
 [ext_resource type="Texture2D" uid="uid://bgjwbblhmvl32" path="res://assets/characters/sprites/RedBomber.png" id="5_0qwn4"]
+[ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="6_unxkj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qwn4"]
 atlas = ExtResource("5_0qwn4")
@@ -63,16 +64,6 @@ velocita = 200.0
 proiettile_scena = ExtResource("2_6gu8q")
 energy_max = 15
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-offset_left = -25.0
-offset_top = -25.0
-offset_right = 25.0
-offset_bottom = 25.0
-color = Color(1, 0, 0.0117647, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="SuonoMorte" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_unxkj")
 volume_db = 3.748
@@ -101,6 +92,14 @@ animation = &"idle"
 autoplay = "idle"
 frame = 4
 frame_progress = 0.894799
+
+[node name="OmbraGiocatore" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.713726)
+z_index = -1
+position = Vector2(-14, 53)
+scale = Vector2(0.166045, 0.161926)
+texture = ExtResource("6_unxkj")
+offset = Vector2(200, 100)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
