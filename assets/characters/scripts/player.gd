@@ -1,16 +1,16 @@
 extends Area2D
 
+const SCENA_ESPLOSIONE = preload("res://assets/characters/scenes/explosion.tscn")
+const SCENA_HIT = preload("res://assets/characters/scenes/hit.tscn")
+
 # La parola chiave @export permette di modificare questa variabile direttamente dall'Inspector di Godot.
 @export var velocita = 300.0
 # Esportiamo una variabile di tipo "PackedScene"
 # Questo creerà uno slot nell'Inspector dove potremo trascinare la nostra scena del proiettile.
 @export var proiettile_scena: PackedScene
-
-# Aggiungiamo i suoni come nodi pronti all'uso
-@onready var suono_morte = $SuonoMorte
-@onready var suono_colpo = $SuonoColpo
 @onready var collision_shape = $CollisionPolygon2D
 @onready var ombra_giocatore = $OmbraGiocatore
+@onready var grafica_giocatore = $GraficaGiocatore
 
 var joystick_node = null
 
@@ -20,6 +20,7 @@ var current_energy
 
 # Creiamo un nuovo segnale che verrà emesso quando la salute cambia
 signal energy_updated(new_energy, energy_top)
+signal giocatore_morto
 
 func _physics_process(delta):
 	var direzione_input = Vector2.ZERO # Iniziamo con una direzione nulla
@@ -64,12 +65,20 @@ func energy_down(number):
 
 	# Emettiamo il segnale per aggiornare la UI
 	energy_updated.emit(current_energy, energy_max)
+	
+	grafica_giocatore.modulate = Color(100,100,100,1)  # Imposta il colore a bianco vivo
+	$HitFlashTimer.start()
 
-	suono_colpo.play()
+	#suono_colpo.play()
 
 	if current_energy <= 0:
 		morire() # Chiamiamo la funzione di morte solo quando la salute è finita
-	else: 
+	else:
+		var hit = SCENA_HIT.instantiate()
+		get_parent().add_child(hit)
+		var hit_position = global_position
+		hit_position.y += 50
+		hit.global_position = hit_position
 		$HitFlashTimer.start()
 
 func _ready():
@@ -95,16 +104,22 @@ func sparare():
 	nuovo_proiettile.global_position = global_position
 
 func morire():
+	var esplosione = SCENA_ESPLOSIONE.instantiate()
+	get_parent().add_child(esplosione)
+	esplosione.global_position = global_position
+	
 	# Nascondi la grafica e disattiva le collisioni
 	hide()
+	ombra_giocatore.hide()
+	$AutofireTimer.stop()
 	collision_shape.set_deferred("disabled", true)
 
 	# Ferma il movimento del giocatore
 	set_physics_process(false)
-	suono_morte.play()
-	await suono_morte.finished
-	print("Suono terminato, riavvio la scena.") # Se non vedi questo messaggio, il problema è l'await
-	get_tree().change_scene_to_file("res://menu_principale.tscn")
+	await get_tree().create_timer(3.0).timeout
+
+	#get_tree().change_scene_to_file("res://menu_principale.tscn")
+	giocatore_morto.emit()
 	GameManager.reset_level()
 
 func _on_area_entered(area: Area2D) -> void:
@@ -119,8 +134,7 @@ func _on_area_entered(area: Area2D) -> void:
 		area.queue_free()
 
 func _on_hit_flash_timer_timeout() -> void:
-	#$ColorRect.color = grafica_giocatore
-	pass
+	grafica_giocatore.modulate = Color(1, 1, 1, 1)
 
 func _on_autofire_timer_timeout() -> void:
 	sparare() # Replace with function body.

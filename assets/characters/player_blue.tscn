@@ -1,10 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbmtiqkb33kmf"]
+[gd_scene load_steps=12 format=3 uid="uid://dbmtiqkb33kmf"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_6qudg"]
 [ext_resource type="PackedScene" uid="uid://cbnywcke0hw8j" path="res://assets/characters/powerups/railgunlow.tscn" id="2_w3sbs"]
-[ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="3_f4xjq"]
 [ext_resource type="Texture2D" uid="uid://4x7mbddbyvfx" path="res://assets/characters/sprites/BlueThunder.png" id="3_jugdk"]
-[ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_vbsfq"]
 [ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="5_308u6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7jf1"]
@@ -63,16 +61,8 @@ script = ExtResource("1_6qudg")
 velocita = 450.0
 proiettile_scena = ExtResource("2_w3sbs")
 
-[node name="SuonoMorte" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_f4xjq")
-volume_db = 3.748
-
-[node name="SuonoColpo" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_vbsfq")
-volume_db = 5.0
-
 [node name="HitFlashTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.1
 one_shot = true
 ignore_time_scale = true
 

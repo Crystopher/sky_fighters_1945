@@ -61,10 +61,21 @@ func _ready():
 	# 3. Assegniamo la posizione calcolata al giocatore
 	nuovo_giocatore.position = start_position
 	
+	nuovo_giocatore.giocatore_morto.connect(_on_giocatore_morto)
+	
 	# 4. Aggiungiamo il giocatore alla scena (invariato)
 	get_parent().call_deferred("add_child", nuovo_giocatore)
 	
 	start_next_wave()
+
+func _on_giocatore_morto():
+	GameManager.reset_level()
+	# Esegui qui la chiamata che ti dava problemi.
+	# Ad esempio, per tornare al menu principale:
+	get_tree().change_scene_to_file("res://menu_principale.tscn")
+
+	# O per ricaricare semplicemente il livello:
+	# get_tree().reload_current_scene()
 
 func start_next_wave():
 	if GameManager.current_wave >= LEVEL_ENEMY_WAVES.size():

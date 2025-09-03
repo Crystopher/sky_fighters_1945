@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://6kombs85oynt"]
+[gd_scene load_steps=12 format=3 uid="uid://6kombs85oynt"]
 
 [ext_resource type="Script" uid="uid://n5m5c8deypol" path="res://levels/level1/scripts/spawner_1-1.gd" id="1_6c6q4"]
 [ext_resource type="PackedScene" uid="uid://cve3mrdrtc0r" path="res://assets/enemies/enemy_base.tscn" id="2_e0wbv"]
 [ext_resource type="PackedScene" uid="uid://bu1y472gt42i2" path="res://assets/enemies/enemy_spitfire.tscn" id="3_bn4n2"]
 [ext_resource type="PackedScene" uid="uid://b71kntjj50abx" path="res://assets/enemies/enemy_strafer.tscn" id="4_wsj16"]
 [ext_resource type="PackedScene" uid="uid://b8judt8newgkh" path="res://ui.tscn" id="5_vwq56"]
-[ext_resource type="Script" uid="uid://qridl4ou6p0s" path="res://levels/level1/sfondo_scorrimento.gd" id="6_bn4n2"]
+[ext_resource type="Script" uid="uid://qridl4ou6p0s" path="res://levels/level1/scripts/sfondo_scorrimento.gd" id="6_bn4n2"]
 [ext_resource type="Texture2D" uid="uid://de4lfg0aab5j5" path="res://levels/level1/images/sea_tile.png" id="6_vbji0"]
-[ext_resource type="Texture2D" uid="uid://bk1ujexwytmjf" path="res://levels/level1/images/cloud_tile.png" id="7_e0wbv"]
+[ext_resource type="Texture2D" uid="uid://bx7ctqxr6hcey" path="res://levels/level1/images/cloud_tile_2.png" id="8_wsj16"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="9_wsj16"]
+[ext_resource type="AudioStream" uid="uid://cuqhu7hb88hnk" path="res://levels/level1/audio/normal.ogg" id="10_vwq56"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vwq56"]
 shader = ExtResource("9_wsj16")
@@ -36,11 +37,12 @@ script = ExtResource("6_bn4n2")
 [node name="StratoTerreno" type="ParallaxLayer" parent="SfondoScorrimento"]
 z_index = -2
 motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(0, 1024)
+motion_mirroring = Vector2(0, 2048)
 
 [node name="TextureRect" type="TextureRect" parent="SfondoScorrimento/StratoTerreno"]
-offset_right = 1200.0
-offset_bottom = 2048.0
+offset_right = 2048.0
+offset_bottom = 4096.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_vbji0")
 expand_mode = 1
 stretch_mode = 1
@@ -51,10 +53,10 @@ motion_mirroring = Vector2(0, 2048)
 
 [node name="TextureRect" type="TextureRect" parent="SfondoScorrimento/StratoNuvole"]
 modulate = Color(1, 1, 1, 0.745098)
-offset_right = 1024.0
-offset_bottom = 1024.0
-scale = Vector2(2, 2)
-texture = ExtResource("7_e0wbv")
+offset_right = 2048.0
+offset_bottom = 4096.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_wsj16")
 expand_mode = 1
 stretch_mode = 1
 
@@ -68,5 +70,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MusicaLivello" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_vwq56")
+volume_db = 7.0
+autoplay = true
 
 [connection signal="timeout" from="WaveManager/Timer" to="WaveManager" method="_on_timer_timeout"]

@@ -19,7 +19,7 @@ text = "Score: 0"
 script = ExtResource("1_fyqef")
 
 [node name="Virtual Joystick" parent="." groups=["virtual_joystick"] instance=ExtResource("3_27fn8")]
-modulate = Color(0.585062, 0.585062, 0.585062, 1)
+modulate = Color(0.584314, 0.584314, 0.584314, 0.592157)
 self_modulate = Color(0.493545, 0.493546, 0.493546, 1)
 anchors_preset = 12
 anchor_right = 1.0

@@ -1,9 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://u2pl5o8s73cp"]
+[gd_scene load_steps=12 format=3 uid="uid://u2pl5o8s73cp"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_6gu8q"]
 [ext_resource type="PackedScene" uid="uid://bvj4siaxmvxa6" path="res://assets/characters/powerups/railgunhigh.tscn" id="2_6gu8q"]
-[ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="3_unxkj"]
-[ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_u8lqw"]
 [ext_resource type="Texture2D" uid="uid://bgjwbblhmvl32" path="res://assets/characters/sprites/RedBomber.png" id="5_0qwn4"]
 [ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="6_unxkj"]
 
@@ -64,16 +62,8 @@ velocita = 200.0
 proiettile_scena = ExtResource("2_6gu8q")
 energy_max = 15
 
-[node name="SuonoMorte" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_unxkj")
-volume_db = 3.748
-
-[node name="SuonoColpo" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_u8lqw")
-volume_db = 5.0
-
 [node name="HitFlashTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.1
 one_shot = true
 ignore_time_scale = true
 

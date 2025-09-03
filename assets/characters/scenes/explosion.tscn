@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://dsf2fgkhis2e4"]
+
+[ext_resource type="Texture2D" uid="uid://ssa514r85yul" path="res://assets/characters/sprites/Explosion01.png" id="1_o1dib"]
+[ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="2_6gd6o"]
+[ext_resource type="Script" uid="uid://bupgkd6qqewev" path="res://assets/characters/scenes/explosion.gd" id="2_byf45"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gd6o"]
+atlas = ExtResource("1_o1dib")
+region = Rect2(2150, 0, 430, 430)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byf45"]
+atlas = ExtResource("1_o1dib")
+region = Rect2(1720, 0, 430, 430)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8871"]
+atlas = ExtResource("1_o1dib")
+region = Rect2(1290, 0, 430, 430)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57s20"]
+atlas = ExtResource("1_o1dib")
+region = Rect2(2580, 0, 430, 430)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g18vi"]
+atlas = ExtResource("1_o1dib")
+region = Rect2(430, 0, 430, 430)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fj5e"]
+atlas = ExtResource("1_o1dib")
+region = Rect2(0, 0, 430, 430)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbonm"]
+atlas = ExtResource("1_o1dib")
+region = Rect2(860, 0, 430, 430)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_birys"]
+atlas = ExtResource("1_o1dib")
+region = Rect2(3010, 0, 430, 430)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_birys"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gd6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byf45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8871")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57s20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g18vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fj5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbonm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_birys")
+}],
+"loop": false,
+"name": &"play",
+"speed": 10.0
+}]
+
+[node name="Explosion" type="AnimatedSprite2D"]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_birys")
+animation = &"play"
+script = ExtResource("2_byf45")
+
+[node name="Esplosione" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6gd6o")
+volume_db = 5.0
+autoplay = true
