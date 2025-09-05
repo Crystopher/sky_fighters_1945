@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdp0n46fykhbt"
-path="res://.godot/imported/sea_and_terrain_tile.png-4aa1e985a39e9fa78754d4f3a12d4bfc.ctex"
+uid="uid://cchq5d67deoym"
+path="res://.godot/imported/sea_and_terrain.png-f3594caea62a2c6d1621c140f82e52a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/level1/images/sea_and_terrain_tile.png"
-dest_files=["res://.godot/imported/sea_and_terrain_tile.png-4aa1e985a39e9fa78754d4f3a12d4bfc.ctex"]
+source_file="res://levels/level1/images/sea_and_terrain.png"
+dest_files=["res://.godot/imported/sea_and_terrain.png-f3594caea62a2c6d1621c140f82e52a6.ctex"]
 
 [params]
 

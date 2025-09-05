@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://6kombs85oynt"]
+[gd_scene load_steps=15 format=3 uid="uid://6kombs85oynt"]
 
 [ext_resource type="Script" uid="uid://n5m5c8deypol" path="res://levels/level1/scripts/spawner_1-1.gd" id="1_6c6q4"]
 [ext_resource type="PackedScene" uid="uid://cve3mrdrtc0r" path="res://assets/enemies/enemy_base.tscn" id="2_e0wbv"]
@@ -7,9 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://b8judt8newgkh" path="res://ui.tscn" id="5_vwq56"]
 [ext_resource type="Script" uid="uid://qridl4ou6p0s" path="res://levels/level1/scripts/sfondo_scorrimento.gd" id="6_bn4n2"]
 [ext_resource type="Texture2D" uid="uid://de4lfg0aab5j5" path="res://levels/level1/images/sea_tile.png" id="6_vbji0"]
+[ext_resource type="Script" uid="uid://coo0wq7ce70vv" path="res://levels/level1/scripts/scrolling_manager.gd" id="7_ks70j"]
 [ext_resource type="Texture2D" uid="uid://bx7ctqxr6hcey" path="res://levels/level1/images/cloud_tile_2.png" id="8_wsj16"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="9_wsj16"]
+[ext_resource type="Texture2D" uid="uid://0suxntxarqhj" path="res://levels/level1/images/terrain.png" id="10_ks70j"]
 [ext_resource type="AudioStream" uid="uid://cuqhu7hb88hnk" path="res://levels/level1/audio/normal.ogg" id="10_vwq56"]
+[ext_resource type="Texture2D" uid="uid://cchq5d67deoym" path="res://levels/level1/images/sea_and_terrain.png" id="11_7vam3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vwq56"]
 shader = ExtResource("9_wsj16")
@@ -33,18 +36,29 @@ ignore_time_scale = true
 
 [node name="SfondoScorrimento" type="ParallaxBackground" parent="."]
 script = ExtResource("6_bn4n2")
+scroll_speed = 350.0
 
-[node name="StratoTerreno" type="ParallaxLayer" parent="SfondoScorrimento"]
-z_index = -2
-motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(0, 2048)
+[node name="GroundManager" type="Node2D" parent="SfondoScorrimento"]
+z_index = -100
+script = ExtResource("7_ks70j")
+textures = Array[Texture2D]([ExtResource("6_vbji0"), ExtResource("6_vbji0"), ExtResource("6_vbji0"), ExtResource("11_7vam3"), ExtResource("10_ks70j")])
 
-[node name="TextureRect" type="TextureRect" parent="SfondoScorrimento/StratoTerreno"]
+[node name="SegmentoA" type="TextureRect" parent="SfondoScorrimento/GroundManager"]
 offset_right = 2048.0
-offset_bottom = 4096.0
-scale = Vector2(0.5, 0.5)
+offset_bottom = 1024.0
 texture = ExtResource("6_vbji0")
-expand_mode = 1
+stretch_mode = 1
+
+[node name="SegmentoB" type="TextureRect" parent="SfondoScorrimento/GroundManager"]
+offset_right = 2048.0
+offset_bottom = 1024.0
+texture = ExtResource("11_7vam3")
+stretch_mode = 1
+
+[node name="SegmentoD" type="TextureRect" parent="SfondoScorrimento/GroundManager"]
+offset_right = 2048.0
+offset_bottom = 1024.0
+texture = ExtResource("10_ks70j")
 stretch_mode = 1
 
 [node name="StratoNuvole" type="ParallaxLayer" parent="SfondoScorrimento" groups=["strato_nuvole"]]
