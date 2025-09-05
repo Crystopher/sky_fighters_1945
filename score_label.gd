@@ -9,4 +9,4 @@ func _ready():
 
 # Questa funzione viene eseguita ogni volta che il segnale viene emesso
 func aggiorna_testo(nuovo_punteggio):
-	text = "Score: " + str(nuovo_punteggio)
+	text = str(nuovo_punteggio)

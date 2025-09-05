@@ -13,7 +13,7 @@ const SCENA_HIT = preload("res://assets/characters/scenes/hit.tscn")
 @onready var grafica_giocatore = $GraficaGiocatore
 
 var joystick_node = null
-
+var invincibile = false
 # In cima a giocatore.gd
 @export var energy_max = 10
 var current_energy
@@ -109,7 +109,7 @@ func morire():
 	esplosione.global_position = global_position
 	
 	# Nascondi la grafica e disattiva le collisioni
-	hide()
+	grafica_giocatore.hide()
 	ombra_giocatore.hide()
 	$AutofireTimer.stop()
 	collision_shape.set_deferred("disabled", true)
@@ -117,10 +117,46 @@ func morire():
 	# Ferma il movimento del giocatore
 	set_physics_process(false)
 	await get_tree().create_timer(3.0).timeout
+	
+	var game_over = GameManager.perdi_vita()
+	if game_over:
+		# Se è Game Over, aspettiamo un po' e torniamo al menu
+		await get_tree().create_timer(2.0).timeout
 
-	#get_tree().change_scene_to_file("res://menu_principale.tscn")
-	giocatore_morto.emit()
-	GameManager.reset_level()
+		#get_tree().change_scene_to_file("res://menu_principale.tscn")
+		giocatore_morto.emit()
+		GameManager.reset_level()
+	else:
+		# Altrimenti, avviamo la sequenza di respawn
+		await get_tree().create_timer(1.5).timeout
+		respawn()
+		
+func respawn():
+	# 1. Resettiamo la salute del giocatore
+	current_energy = energy_max
+	energy_updated.emit(current_energy, energy_max)
+
+	# 2. Riposizioniamo il giocatore al centro in basso
+	var screen_size = get_viewport().get_visible_rect().size
+	global_position = Vector2(screen_size.x / 2.0, screen_size.y - 300)
+
+	# 3. Riattiviamo il giocatore
+	grafica_giocatore.show()
+	ombra_giocatore.show()
+	collision_shape.set_deferred("disabled", false)
+	set_physics_process(true)
+
+	# 4. Avviamo l'invincibilità e l'effetto visivo
+	invincibile = true
+	$InvincibilityTimer.start()
+	# Effetto lampeggio
+	grafica_giocatore.modulate.a = 0.5
+
+# Quando il timer di invincibilità finisce
+func _on_invincibility_timer_timeout():
+	invincibile = false
+	# Riportiamo il giocatore alla piena visibilità
+	grafica_giocatore.modulate.a = 1.0
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("nemici"):

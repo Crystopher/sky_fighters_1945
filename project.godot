@@ -20,6 +20,7 @@ config/icon="uid://dvrs36d37cag1"
 [autoload]
 
 GameManager="*res://GameManager.gd"
+TransitionManager="*res://singleton/transition_manager.tscn"
 
 [display]
 

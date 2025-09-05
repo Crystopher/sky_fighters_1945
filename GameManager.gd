@@ -7,6 +7,11 @@ signal giocatore_morto # Nuovo segnale!
 var current_level = 1
 var current_wave = 0
 
+var vite_iniziali = 3
+var vite_rimanenti
+
+signal vite_aggiornate(nuove_vite)
+
 # Carichiamo le scene dei giocatori disponibili
 const GIOCATORI_DISPONIBILI = {
 	"verde": preload("res://assets/characters/player_green.tscn"),
@@ -17,13 +22,23 @@ const GIOCATORI_DISPONIBILI = {
 # Memorizziamo la scelta attuale del giocatore (il verde sarà il default)
 var giocatore_selezionato = "verde"
 
+# Nuova funzione per gestire la perdita di una vita
+func perdi_vita():
+	vite_rimanenti -= 1
+	vite_aggiornate.emit(vite_rimanenti)
+
+	# Restituisce true se è Game Over, altrimenti false
+	return vite_rimanenti < 0
+
 func reset_level():
 	punteggio_attuale = 0
 	current_wave = 0 # Resettiamo anche l'ondata
+	vite_rimanenti = vite_iniziali # Imposta le vite all'inizio
 	punteggio_aggiornato.emit(punteggio_attuale)
 
 func _ready():
 	# Connettiamo il nuovo segnale alla funzione di game over
+	vite_rimanenti = vite_iniziali
 	giocatore_morto.connect(game_over)
 
 func aggiungi_punti(punti):

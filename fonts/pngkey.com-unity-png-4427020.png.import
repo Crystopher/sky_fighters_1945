@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://dpvk64pyw1f28"
+path="res://.godot/imported/pngkey.com-unity-png-4427020.png-fc8b3b1240a5a5f31e2d64a0c909c6a8.fontdata"
+
+[deps]
+
+source_file="res://fonts/pngkey.com-unity-png-4427020.png"
+dest_files=["res://.godot/imported/pngkey.com-unity-png-4427020.png-fc8b3b1240a5a5f31e2d64a0c909c6a8.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\' \'", "\'0\'-\'9\'", "\':\'", "\';\'", "\' \'", "\' \'", "\' \'", "\'?\'", "\' \'", "\'A\'-\'Z\'")
+kerning_pairs=PackedStringArray()
+columns=16
+rows=6
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2

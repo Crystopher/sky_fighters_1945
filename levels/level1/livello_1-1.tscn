@@ -41,11 +41,11 @@ scroll_speed = 350.0
 [node name="GroundManager" type="Node2D" parent="SfondoScorrimento"]
 z_index = -100
 script = ExtResource("7_ks70j")
-textures = Array[Texture2D]([ExtResource("6_vbji0"), ExtResource("6_vbji0"), ExtResource("6_vbji0"), ExtResource("11_7vam3"), ExtResource("10_ks70j")])
+textures = Array[Texture2D]([ExtResource("6_vbji0"), ExtResource("6_vbji0"), ExtResource("6_vbji0"), ExtResource("6_vbji0"), ExtResource("6_vbji0"), ExtResource("6_vbji0"), ExtResource("6_vbji0"), ExtResource("11_7vam3"), ExtResource("10_ks70j")])
 
 [node name="SegmentoA" type="TextureRect" parent="SfondoScorrimento/GroundManager"]
 offset_right = 2048.0
-offset_bottom = 1024.0
+offset_bottom = 2048.0
 texture = ExtResource("6_vbji0")
 stretch_mode = 1
 
@@ -84,6 +84,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MusicaLivello" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_vwq56")

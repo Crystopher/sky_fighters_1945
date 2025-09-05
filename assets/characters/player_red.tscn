@@ -91,6 +91,11 @@ scale = Vector2(0.166045, 0.161926)
 texture = ExtResource("6_unxkj")
 offset = Vector2(200, 100)
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
 [connection signal="timeout" from="AutofireTimer" to="." method="_on_autofire_timer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

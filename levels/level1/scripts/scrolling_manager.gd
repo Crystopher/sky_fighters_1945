@@ -25,9 +25,12 @@ func _ready():
 	# Posizioniamo tutti i segmenti iniziali in una pila verticale
 	for i in range(segmenti.size()):
 		segment_height = textures[i].get_height()
+		
+		if i == 0:
+			segment_height = segment_height * 2
+
 		segmenti[i].texture = get_prossima_texture()
 		segmenti[i].position = Vector2(0, -i * segment_height)
-		print(segment_height)
 
 func _process(delta):
 	if segmenti.is_empty(): return

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8judt8newgkh"]
+[gd_scene load_steps=7 format=3 uid="uid://b8judt8newgkh"]
 
 [ext_resource type="Script" uid="uid://c4muymr755akf" path="res://score_label.gd" id="1_fyqef"]
 [ext_resource type="Script" uid="uid://bm0phe1hmry01" path="res://ui.gd" id="1_n5ude"]
+[ext_resource type="FontFile" uid="uid://dpvk64pyw1f28" path="res://fonts/pngkey.com-unity-png-4427020.png" id="2_n5ude"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_27fn8"]
 [ext_resource type="Texture2D" uid="uid://o6fhey80pfaw" path="res://images/energy_under.png" id="4_ibotj"]
 [ext_resource type="Texture2D" uid="uid://tdak7yaa88li" path="res://images/energy_progress.png" id="5_n5ude"]
@@ -10,12 +11,25 @@
 script = ExtResource("1_n5ude")
 
 [node name="ScoreLabel" type="Label" parent="."]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 81.0
-offset_bottom = 43.0
+offset_left = 26.0
+offset_top = 32.0
+offset_right = 282.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("2_n5ude")
 theme_override_font_sizes/font_size = 32
-text = "Score: 0"
+text = "0"
+script = ExtResource("1_fyqef")
+
+[node name="Ombra" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+offset_left = 32.0
+offset_top = 36.0
+offset_right = 288.0
+offset_bottom = 68.0
+theme_override_fonts/font = ExtResource("2_n5ude")
+theme_override_font_sizes/font_size = 32
+text = "0"
 script = ExtResource("1_fyqef")
 
 [node name="Virtual Joystick" parent="." groups=["virtual_joystick"] instance=ExtResource("3_27fn8")]
@@ -44,3 +58,23 @@ offset_bottom = 72.0
 grow_horizontal = 0
 texture_under = ExtResource("4_ibotj")
 texture_progress = ExtResource("5_n5ude")
+
+[node name="HealthBarOmbra" type="TextureProgressBar" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -223.0
+offset_top = 30.0
+offset_right = -31.0
+offset_bottom = 78.0
+grow_horizontal = 0
+texture_under = ExtResource("4_ibotj")
+texture_progress = ExtResource("5_n5ude")
+
+[node name="ViteContainer" type="HBoxContainer" parent="."]
+offset_left = 500.0
+offset_top = 35.0
+offset_right = 540.0
+offset_bottom = 75.0

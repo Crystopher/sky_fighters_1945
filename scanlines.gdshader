@@ -10,10 +10,10 @@ uniform float line_darkness : hint_range(0.0, 1.0) = 0.75;
 void fragment() {
     // Prendiamo il colore del pixel. La sintassi qui non cambia.
     vec4 screen_color = texture(SCREEN_TEXTURE, SCREEN_UV);
-    
+
     // Il resto della logica per calcolare e scurire le linee è identico.
     float y_pos = FRAGCOORD.y;
-    
+
     if (mod(y_pos, line_density) < 1.0) {
         COLOR = screen_color * vec4(line_darkness, line_darkness, line_darkness, 1.0);
     } else {

@@ -1,11 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://crh55wx3d22ph"]
+[gd_scene load_steps=8 format=3 uid="uid://crh55wx3d22ph"]
 
 [ext_resource type="Script" uid="uid://c81xqkk8ie1qb" path="res://player_selection.gd" id="1_icves"]
 [ext_resource type="AudioStream" uid="uid://cae3k4j0ximp5" path="res://audio/switch3.ogg" id="2_tf1hx"]
 [ext_resource type="PackedScene" uid="uid://hm4tuawag23b" path="res://selections/fighter_selection_base.tscn" id="3_tf1hx"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="4_kr8bo"]
+[ext_resource type="AudioStream" uid="uid://bo8ra831qk4wf" path="res://audio/player_selection_music.ogg" id="5_h6fdh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h6fdh"]
+shader = ExtResource("4_kr8bo")
+shader_parameter/line_density = 4.0
+shader_parameter/line_darkness = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kr8bo"]
 shader = ExtResource("4_kr8bo")
 shader_parameter/line_density = 4.0
 shader_parameter/line_darkness = 0.6
@@ -97,6 +103,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="EffettiPostProcessing2" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="ColorRect" type="ColorRect" parent="EffettiPostProcessing2"]
+material = SubResource("ShaderMaterial_kr8bo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_h6fdh")
+volume_db = 5.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="button_down" from="Button2" to="." method="_on_button_2_button_down"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
