@@ -1,0 +1,461 @@
+[gd_scene load_steps=21 format=3 uid="uid://dgdypaotkujrd"]
+
+[ext_resource type="Texture2D" uid="uid://6bqcikoj6atl" path="res://levels/level1/images/level1-intro01_1.png" id="1_qr17n"]
+[ext_resource type="Script" uid="uid://c1xc5ujbha1vq" path="res://levels/level1/scenes/intro_01.gd" id="1_xfu3j"]
+[ext_resource type="Texture2D" uid="uid://ci0wmhw2gx2sw" path="res://levels/level1/images/level1-intro01_2.png" id="2_xfu3j"]
+[ext_resource type="Texture2D" uid="uid://clubo3hguqbpv" path="res://levels/level1/images/level1-intro01_3.png" id="3_okjyp"]
+[ext_resource type="Texture2D" uid="uid://cpr0lustpvwjg" path="res://levels/level1/images/level1-intro02_1.png" id="5_xwtgo"]
+[ext_resource type="Texture2D" uid="uid://canbqoaut3io1" path="res://levels/level1/images/level1-intro02_2.png" id="6_arviy"]
+[ext_resource type="Texture2D" uid="uid://bnshxh73f5pay" path="res://levels/level1/images/level1-intro02_3.png" id="7_qrybk"]
+[ext_resource type="Texture2D" uid="uid://cyf0qqpkruc8v" path="res://levels/level1/images/level1-intro03_1.png" id="8_qrybk"]
+[ext_resource type="Texture2D" uid="uid://2gghg7lcnngs" path="res://levels/level1/images/level1-intro03_2.png" id="9_uosaj"]
+[ext_resource type="AudioStream" uid="uid://b1y2jn0rh64us" path="res://levels/level1/scenes/intro01.ogg" id="10_uosaj"]
+[ext_resource type="AudioStream" uid="uid://f4px6qra6xb8" path="res://levels/level1/scenes/drin.ogg" id="11_7ulwy"]
+[ext_resource type="AudioStream" uid="uid://dk53b6lp1f2ri" path="res://levels/level1/scenes/footsteps.ogg" id="12_smr3p"]
+[ext_resource type="AudioStream" uid="uid://cvv04ns7gvpdh" path="res://levels/level1/scenes/engine_start.ogg" id="13_t28pf"]
+[ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="14_mpcfb"]
+
+[sub_resource type="Animation" id="Animation_vqfcl"]
+resource_name = "intro01_1"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridContainer/01_1/TextureRect4:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GridContainer/01_2/TextureRect2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.03333, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GridContainer/01_3/TextureRect2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qr17n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridContainer/01_1/TextureRect4:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GridContainer/01_2/TextureRect2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GridContainer/01_3/TextureRect2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GridContainer2/02_1/TextureRect4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GridContainer2/02_2/TextureRect2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GridContainer2/02_3/TextureRect2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GridContainer3/02_1/TextureRect4:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GridContainer3/02_2/TextureRect2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uosaj"]
+resource_name = "intro01_2"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridContainer2/02_1/TextureRect4:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GridContainer2/02_2/TextureRect2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 2.01, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GridContainer2/02_3/TextureRect2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2, 2.99, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7ulwy"]
+resource_name = "intro01_3"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridContainer3/02_1/TextureRect4:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GridContainer3/02_2/TextureRect2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwtgo"]
+_data = {
+&"RESET": SubResource("Animation_qr17n"),
+&"intro01_1": SubResource("Animation_vqfcl"),
+&"intro01_2": SubResource("Animation_uosaj"),
+&"intro01_3": SubResource("Animation_7ulwy")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q02iu"]
+shader = ExtResource("14_mpcfb")
+shader_parameter/line_density = 4.0
+shader_parameter/line_darkness = 0.6
+
+[node name="Intro01" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xfu3j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="01_1" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect4" type="TextureRect" parent="GridContainer/01_1"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_qr17n")
+expand_mode = 1
+
+[node name="01_2" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect2" type="TextureRect" parent="GridContainer/01_2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -27.0
+offset_right = 3.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xfu3j")
+expand_mode = 1
+
+[node name="01_3" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect2" type="TextureRect" parent="GridContainer/01_3"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -60.0
+offset_right = 3.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_okjyp")
+expand_mode = 1
+
+[node name="GridContainer2" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="02_1" type="Control" parent="GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect4" type="TextureRect" parent="GridContainer2/02_1"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_xwtgo")
+expand_mode = 1
+
+[node name="02_2" type="Control" parent="GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect2" type="TextureRect" parent="GridContainer2/02_2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -27.0
+offset_right = 3.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_arviy")
+expand_mode = 1
+
+[node name="02_3" type="Control" parent="GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect2" type="TextureRect" parent="GridContainer2/02_3"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -60.0
+offset_right = 3.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_qrybk")
+expand_mode = 1
+
+[node name="GridContainer3" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="02_1" type="Control" parent="GridContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect4" type="TextureRect" parent="GridContainer3/02_1"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -154.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_qrybk")
+expand_mode = 1
+
+[node name="02_2" type="Control" parent="GridContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect2" type="TextureRect" parent="GridContainer3/02_2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -171.0
+offset_bottom = -171.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_uosaj")
+expand_mode = 1
+
+[node name="intro01_1_player" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xwtgo")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_uosaj")
+autoplay = true
+
+[node name="Drin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_7ulwy")
+autoplay = true
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_smr3p")
+
+[node name="EngineStart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_t28pf")
+volume_db = -6.559
+
+[node name="EffettiPostProcessing" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="ColorRect" type="ColorRect" parent="EffettiPostProcessing"]
+material = SubResource("ShaderMaterial_q02iu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="animation_finished" from="intro01_1_player" to="." method="_on_animation_player_animation_finished"]

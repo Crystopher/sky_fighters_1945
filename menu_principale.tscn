@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd5mjil4g53xu"]
+[gd_scene load_steps=7 format=3 uid="uid://dd5mjil4g53xu"]
 
 [ext_resource type="Script" uid="uid://b0nbueo225ge3" path="res://menu_principale.gd" id="1_qkmkp"]
 [ext_resource type="Texture2D" uid="uid://dp86k0eiou67a" path="res://images/splash_screen.png" id="2_jwv8v"]
 [ext_resource type="AudioStream" uid="uid://cae3k4j0ximp5" path="res://audio/switch3.ogg" id="2_xqmsj"]
+[ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="3_f4ksu"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="4_kc5wk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um64m"]
@@ -51,13 +52,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -272.0
-offset_right = 79.0
-offset_bottom = -213.0
+offset_left = -148.0
+offset_top = -277.0
+offset_right = 152.0
+offset_bottom = -187.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "New Game"
+theme = ExtResource("3_f4ksu")
+text = "NEW GAME"
 
 [node name="Button2" type="Button" parent="."]
 layout_mode = 1
@@ -66,13 +68,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -71.0
-offset_top = -166.0
-offset_right = 71.0
-offset_bottom = -100.0
+offset_left = -90.0
+offset_top = -143.0
+offset_right = 90.0
+offset_bottom = -53.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Quit"
+theme = ExtResource("3_f4ksu")
+text = "QUIT"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_xqmsj")
