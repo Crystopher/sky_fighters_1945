@@ -148,11 +148,13 @@ anchors_preset = -1
 anchor_top = 0.533
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 41.146
-offset_right = 1.0
+offset_left = 6.0
+offset_top = 41.471
+offset_right = 2.0
+offset_bottom = -28.0
 theme_override_colors/font_shadow_color = Color(0.114897, 0.114897, 0.114897, 1)
 theme_override_fonts/normal_font = ExtResource("2_0fx30")
-theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/normal_font_size = 24
 text = "GREEN BERRETT"
 horizontal_alignment = 1
 
@@ -269,6 +271,39 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="EnergyLabel" type="Label" parent="GridContainer/Details"]
+z_index = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.074
+anchor_top = 0.131
+anchor_right = 0.436
+anchor_bottom = 0.239
+offset_left = 0.174
+offset_top = 0.0969982
+offset_right = -30.164
+offset_bottom = 0.0929985
+theme_override_fonts/font = ExtResource("2_0fx30")
+theme_override_font_sizes/font_size = 21
+text = "ENERGY"
+
+[node name="EnergyLabel2" type="Label" parent="GridContainer/Details"]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.074
+anchor_top = 0.131
+anchor_right = 0.436
+anchor_bottom = 0.239
+offset_left = 4.174
+offset_top = 4.097
+offset_right = 3.836
+offset_bottom = 4.093
+theme_override_fonts/font = ExtResource("2_0fx30")
+theme_override_font_sizes/font_size = 21
+text = "ENERGY"
+
 [node name="EnergyBar" type="ProgressBar" parent="GridContainer/Details"]
 z_index = 1
 layout_mode = 1
@@ -305,6 +340,41 @@ value = 4.0
 rounded = true
 show_percentage = false
 
+[node name="PowerLabel" type="Label" parent="GridContainer/Details"]
+z_index = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.074
+anchor_top = 0.39
+anchor_right = 0.375
+anchor_bottom = 0.5
+offset_left = 0.174
+offset_top = -0.0699997
+offset_right = 0.124985
+offset_bottom = 21.5
+theme_override_fonts/font = ExtResource("2_0fx30")
+theme_override_font_sizes/font_size = 21
+text = "POWER
+"
+
+[node name="PowerLabel2" type="Label" parent="GridContainer/Details"]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.074
+anchor_top = 0.39
+anchor_right = 0.375
+anchor_bottom = 0.5
+offset_left = 6.174
+offset_top = 4.93
+offset_right = 6.12498
+offset_bottom = 26.5
+theme_override_fonts/font = ExtResource("2_0fx30")
+theme_override_font_sizes/font_size = 21
+text = "POWER
+"
+
 [node name="PowerBar" type="ProgressBar" parent="GridContainer/Details"]
 z_index = 1
 layout_mode = 1
@@ -340,6 +410,41 @@ max_value = 4.0
 value = 4.0
 rounded = true
 show_percentage = false
+
+[node name="VelocityLabel" type="Label" parent="GridContainer/Details"]
+z_index = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.074
+anchor_top = 0.653
+anchor_right = 0.556
+anchor_bottom = 0.758
+offset_left = 0.174
+offset_top = -0.0890045
+offset_right = -63.044
+offset_bottom = 22.546
+theme_override_fonts/font = ExtResource("2_0fx30")
+theme_override_font_sizes/font_size = 21
+text = "VELOCITY
+"
+
+[node name="VelocityLabel2" type="Label" parent="GridContainer/Details"]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.074
+anchor_top = 0.653
+anchor_right = 0.556
+anchor_bottom = 0.758
+offset_left = 4.174
+offset_top = 4.911
+offset_right = 3.95598
+offset_bottom = 27.546
+theme_override_fonts/font = ExtResource("2_0fx30")
+theme_override_font_sizes/font_size = 21
+text = "VELOCITY
+"
 
 [node name="VelocityBar" type="ProgressBar" parent="GridContainer/Details"]
 z_index = 1
