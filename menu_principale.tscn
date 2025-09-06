@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dd5mjil4g53xu"]
 
 [ext_resource type="Script" uid="uid://b0nbueo225ge3" path="res://menu_principale.gd" id="1_qkmkp"]
-[ext_resource type="Texture2D" uid="uid://dp86k0eiou67a" path="res://images/splash_screen.png" id="2_jwv8v"]
+[ext_resource type="Texture2D" uid="uid://dnsfoqvas2udi" path="res://images/SkyFightersMain.png" id="2_um64m"]
 [ext_resource type="AudioStream" uid="uid://cae3k4j0ximp5" path="res://audio/switch3.ogg" id="2_xqmsj"]
 [ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="3_f4ksu"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="4_kc5wk"]
@@ -28,22 +28,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -155.0
-offset_right = 149.0
-offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.95, 0.95)
-stretch_mode = 1
-
-[node name="TextureRect" type="TextureRect" parent="Control/AspectRatioContainer"]
-layout_mode = 2
-texture = ExtResource("2_jwv8v")
+texture = ExtResource("2_um64m")
+expand_mode = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -52,10 +45,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -148.0
-offset_top = -277.0
-offset_right = 152.0
-offset_bottom = -187.0
+offset_left = -324.0
+offset_top = -317.0
+offset_right = -24.0
+offset_bottom = -227.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_f4ksu")
@@ -68,14 +61,30 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = -143.0
-offset_right = 90.0
-offset_bottom = -53.0
+offset_left = -322.0
+offset_top = -130.0
+offset_right = -142.0
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_f4ksu")
 text = "QUIT"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -322.0
+offset_top = -224.0
+offset_right = 8.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_f4ksu")
+text = "HIGHSCORE"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_xqmsj")
@@ -96,3 +105,5 @@ mouse_filter = 2
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="button_down" from="Button2" to="." method="_on_button_2_button_down"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="button_down" from="Button3" to="." method="_on_button_3_button_down"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

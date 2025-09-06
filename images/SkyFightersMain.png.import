@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3fm5ee4qyg0h"
-path="res://.godot/imported/EnergyBar04.png-27789e2bb723c0f0437be4de5f09ebf1.ctex"
+uid="uid://dnsfoqvas2udi"
+path="res://.godot/imported/SkyFightersMain.png-2e108c932a0507f1f7788786293683f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://selections/images/EnergyBar04.png"
-dest_files=["res://.godot/imported/EnergyBar04.png-27789e2bb723c0f0437be4de5f09ebf1.ctex"]
+source_file="res://images/SkyFightersMain.png"
+dest_files=["res://.godot/imported/SkyFightersMain.png-2e108c932a0507f1f7788786293683f3.ctex"]
 
 [params]
 

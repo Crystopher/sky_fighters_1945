@@ -1,21 +1,13 @@
-[gd_scene load_steps=29 format=3 uid="uid://hm4tuawag23b"]
+[gd_scene load_steps=21 format=3 uid="uid://hm4tuawag23b"]
 
 [ext_resource type="Script" uid="uid://jtr657lw2yjc" path="res://selections/fighter_selection_base.gd" id="1_riepq"]
+[ext_resource type="FontFile" uid="uid://yj0forao1opc" path="res://fonts/pngkey.com-unity-png-4427020_2.png" id="2_0fx30"]
 [ext_resource type="Texture2D" uid="uid://4x7mbddbyvfx" path="res://assets/characters/sprites/BlueThunder.png" id="2_8jsf8"]
+[ext_resource type="Texture2D" uid="uid://cnbkul0ph5kqf" path="res://selections/images/selection_bg.png" id="2_prite"]
 [ext_resource type="Texture2D" uid="uid://c1efrpqfbncje" path="res://assets/characters/sprites/GreenBerret.png" id="2_s0uo1"]
 [ext_resource type="Texture2D" uid="uid://bgjwbblhmvl32" path="res://assets/characters/sprites/RedBomber.png" id="4_y4rpu"]
-[ext_resource type="Texture2D" uid="uid://byv3026q7wkqf" path="res://selections/images/EnergyBar01.png" id="5_ohua2"]
-[ext_resource type="Texture2D" uid="uid://bibsed728cfy0" path="res://selections/images/EnergyBar02.png" id="6_8v2yo"]
-[ext_resource type="Texture2D" uid="uid://dawquosy2l80k" path="res://selections/images/EnergyBar03.png" id="7_tru30"]
-[ext_resource type="Texture2D" uid="uid://d3fm5ee4qyg0h" path="res://selections/images/EnergyBar04.png" id="8_i3xgr"]
-[ext_resource type="Texture2D" uid="uid://csn144l3g1bpm" path="res://selections/images/PowerBar01.png" id="9_qnss7"]
-[ext_resource type="Texture2D" uid="uid://bqhaxyxu5h7u1" path="res://selections/images/PowerBar02.png" id="10_d8m73"]
-[ext_resource type="Texture2D" uid="uid://btthgd614wdom" path="res://selections/images/PowerBar03.png" id="11_e1xyy"]
-[ext_resource type="Texture2D" uid="uid://btug2e3nrvaes" path="res://selections/images/PowerBar04.png" id="12_4ky75"]
-[ext_resource type="Texture2D" uid="uid://fyubudm8rtqd" path="res://selections/images/VelocityBar01.png" id="13_ui5y6"]
-[ext_resource type="Texture2D" uid="uid://c05t4hyj4ogwe" path="res://selections/images/VelocityBar02.png" id="14_0fx30"]
-[ext_resource type="Texture2D" uid="uid://d1oj47ylpyb1m" path="res://selections/images/VelocityBar03.png" id="15_tpaaq"]
-[ext_resource type="Texture2D" uid="uid://b7xk54v2p1m1l" path="res://selections/images/VelocityBar04.png" id="16_uq4f2"]
+[ext_resource type="AudioStream" uid="uid://dx7co4c7nm0w3" path="res://selections/audio/player_select_hit.ogg" id="8_ohua2"]
+[ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="17_0fx30"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4rpu"]
 atlas = ExtResource("2_s0uo1")
@@ -107,11 +99,24 @@ animations = [{
 [node name="Fighter" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 214.0
-offset_bottom = 272.0
+offset_left = 7.0
+offset_top = 11.0
+offset_right = 709.0
+offset_bottom = 224.0
 script = ExtResource("1_riepq")
-Name = "Green Barret"
+Name = "GREEN BERRETT"
 PlaneType = ""
+
+[node name="Panel" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_prite")
+region_rect = Rect2(48.95, 43.5, 657.975, 278.855)
+patch_margin_left = 215
 
 [node name="Bg" type="ColorRect" parent="."]
 layout_mode = 1
@@ -122,32 +127,255 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.564962, 0.564962, 0.564962, 0.235294)
 
-[node name="Avatar" type="ColorRect" parent="."]
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Avatar" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Name" type="RichTextLabel" parent="GridContainer/Avatar"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.533
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 41.146
+offset_right = 1.0
+theme_override_colors/font_shadow_color = Color(0.114897, 0.114897, 0.114897, 1)
+theme_override_fonts/normal_font = ExtResource("2_0fx30")
+theme_override_font_sizes/normal_font_size = 22
+text = "GREEN BERRETT"
+horizontal_alignment = 1
+
+[node name="Avatar" type="ColorRect" parent="GridContainer/Avatar"]
 visible = false
 clip_contents = true
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -40.0
-offset_top = 20.0
-offset_right = 40.0
-offset_bottom = 100.0
-grow_horizontal = 2
+anchors_preset = -1
+anchor_left = 0.281
+anchor_right = 0.732
+anchor_bottom = 0.626
+offset_left = 0.104996
+offset_top = 16.0
+offset_right = 0.0599823
+offset_bottom = 0.0119934
 pivot_offset = Vector2(40, 0)
 color = Color(0, 1, 0, 1)
 
-[node name="Name" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(0, 25)
+[node name="Green" type="Control" parent="GridContainer/Avatar"]
+visible = false
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 105.0
-offset_bottom = 130.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -39.5
+offset_right = 39.0
+offset_bottom = 39.5
 grow_horizontal = 2
-theme_override_colors/font_shadow_color = Color(0.114897, 0.114897, 0.114897, 1)
-text = "Green Barret"
-horizontal_alignment = 1
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/Avatar/Green"]
+z_index = 1
+position = Vector2(42.8325, 3.9525)
+scale = Vector2(0.141623, 0.141571)
+sprite_frames = SubResource("SpriteFrames_fj1dv")
+autoplay = "default"
+frame_progress = 0.194203
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="GridContainer/Avatar/Green"]
+modulate = Color(0, 0, 0, 0.67451)
+position = Vector2(48.8325, 7.95248)
+scale = Vector2(0.141623, 0.141571)
+sprite_frames = SubResource("SpriteFrames_fj1dv")
+autoplay = "default"
+frame_progress = 0.194203
+
+[node name="Blue" type="Control" parent="GridContainer/Avatar"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/Avatar/Blue"]
+z_index = 1
+position = Vector2(23.5825, -16.7975)
+scale = Vector2(0.140282, 0.139951)
+sprite_frames = SubResource("SpriteFrames_tru30")
+autoplay = "default"
+frame = 2
+frame_progress = 0.627198
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="GridContainer/Avatar/Blue"]
+modulate = Color(0, 0, 0, 0.584314)
+position = Vector2(29.5825, -10.7975)
+scale = Vector2(0.140282, 0.139951)
+sprite_frames = SubResource("SpriteFrames_tru30")
+autoplay = "default"
+frame = 2
+frame_progress = 0.627198
+
+[node name="Red" type="Control" parent="GridContainer/Avatar"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/Avatar/Red"]
+z_index = 1
+position = Vector2(4, -37)
+scale = Vector2(0.134025, 0.143191)
+sprite_frames = SubResource("SpriteFrames_d8m73")
+autoplay = "default"
+frame = 1
+frame_progress = 0.450849
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="GridContainer/Avatar/Red"]
+modulate = Color(0, 0, 0, 0.654902)
+position = Vector2(11, -31)
+scale = Vector2(0.134025, 0.143191)
+sprite_frames = SubResource("SpriteFrames_d8m73")
+autoplay = "default"
+frame = 1
+frame_progress = 0.450849
+
+[node name="Details" type="Control" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EnergyBar" type="ProgressBar" parent="GridContainer/Details"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.184
+anchor_right = 0.906
+anchor_bottom = 0.327
+offset_left = 0.0809994
+offset_top = -0.0480042
+offset_right = 0.557983
+offset_bottom = 0.0559921
+theme = ExtResource("17_0fx30")
+max_value = 4.0
+value = 3.0
+rounded = true
+show_percentage = false
+
+[node name="EnergyBarShadow" type="ProgressBar" parent="GridContainer/Details"]
+modulate = Color(0, 0, 0, 0.552941)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.184
+anchor_right = 0.906
+anchor_bottom = 0.327
+offset_left = 5.081
+offset_top = 4.952
+offset_right = 5.55798
+offset_bottom = 5.05599
+theme = ExtResource("17_0fx30")
+max_value = 4.0
+value = 4.0
+rounded = true
+show_percentage = false
+
+[node name="PowerBar" type="ProgressBar" parent="GridContainer/Details"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.434
+anchor_right = 0.906
+anchor_bottom = 0.577
+offset_left = 0.0809994
+offset_top = -0.0480042
+offset_right = 2.55798
+offset_bottom = 0.0559998
+theme = ExtResource("17_0fx30")
+max_value = 4.0
+value = 3.0
+rounded = true
+show_percentage = false
+
+[node name="PowerBarShadow" type="ProgressBar" parent="GridContainer/Details"]
+modulate = Color(0, 0, 0, 0.501961)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.434
+anchor_right = 0.906
+anchor_bottom = 0.577
+offset_left = 3.081
+offset_top = 5.952
+offset_right = 5.55798
+offset_bottom = 6.056
+theme = ExtResource("17_0fx30")
+max_value = 4.0
+value = 4.0
+rounded = true
+show_percentage = false
+
+[node name="VelocityBar" type="ProgressBar" parent="GridContainer/Details"]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.684
+anchor_right = 0.91
+anchor_bottom = 0.827
+offset_left = 0.0809994
+offset_top = -0.0480042
+offset_right = 0.130005
+offset_bottom = 0.0559998
+theme = ExtResource("17_0fx30")
+max_value = 4.0
+value = 3.0
+rounded = true
+show_percentage = false
+
+[node name="VelocityBarShadow" type="ProgressBar" parent="GridContainer/Details"]
+modulate = Color(0, 0, 0, 0.52549)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.684
+anchor_right = 0.91
+anchor_bottom = 0.827
+offset_left = 3.081
+offset_top = 4.952
+offset_right = 3.13
+offset_bottom = 5.056
+theme = ExtResource("17_0fx30")
+max_value = 4.0
+value = 4.0
+rounded = true
+show_percentage = false
 
 [node name="Button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -159,168 +387,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Green" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -39.0
-offset_top = 20.0
-offset_right = 39.0
-offset_bottom = 99.0
-grow_horizontal = 2
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Green"]
-position = Vector2(38.665, 39.905)
-scale = Vector2(0.0721556, 0.0865983)
-sprite_frames = SubResource("SpriteFrames_fj1dv")
-autoplay = "default"
-frame_progress = 0.194203
-
-[node name="Blue" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 21.0
-offset_right = 20.0
-offset_bottom = 61.0
-grow_horizontal = 2
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Blue"]
-position = Vector2(21, 39)
-scale = Vector2(0.0730501, 0.0855183)
-sprite_frames = SubResource("SpriteFrames_tru30")
-autoplay = "default"
-frame = 2
-frame_progress = 0.627198
-
-[node name="Red" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 24.0
-offset_right = 20.0
-offset_bottom = 64.0
-grow_horizontal = 2
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Red"]
-position = Vector2(19, 39)
-scale = Vector2(0.0712612, 0.0855184)
-sprite_frames = SubResource("SpriteFrames_d8m73")
-autoplay = "default"
-frame = 1
-frame_progress = 0.450849
-
-[node name="Energy" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -3.0
-offset_right = 20.0
-offset_bottom = 27.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="EnergyBar01" type="Sprite2D" parent="Energy"]
-position = Vector2(20, 18)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("5_ohua2")
-
-[node name="EnergyBar02" type="Sprite2D" parent="Energy"]
-visible = false
-position = Vector2(20, 18)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("6_8v2yo")
-
-[node name="EnergyBar03" type="Sprite2D" parent="Energy"]
-visible = false
-position = Vector2(20, 18)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("7_tru30")
-
-[node name="EnergyBar04" type="Sprite2D" parent="Energy"]
-visible = false
-position = Vector2(20, 18)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("8_i3xgr")
-
-[node name="Power" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 36.0
-offset_right = 20.0
-offset_bottom = 76.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PowerBar01" type="Sprite2D" parent="Power"]
-position = Vector2(21, 15)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("9_qnss7")
-
-[node name="PowerBar02" type="Sprite2D" parent="Power"]
-position = Vector2(21, 15)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("10_d8m73")
-
-[node name="PowerBar03" type="Sprite2D" parent="Power"]
-position = Vector2(21, 15)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("11_e1xyy")
-
-[node name="PowerBar04" type="Sprite2D" parent="Power"]
-position = Vector2(21, 15)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("12_4ky75")
-
-[node name="Velocity" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 73.0
-offset_right = 20.0
-offset_bottom = 113.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VelocityBar01" type="Sprite2D" parent="Velocity"]
-position = Vector2(21, 17)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("13_ui5y6")
-
-[node name="VelocityBar02" type="Sprite2D" parent="Velocity"]
-position = Vector2(21, 18)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("14_0fx30")
-
-[node name="VelocityBar03" type="Sprite2D" parent="Velocity"]
-position = Vector2(21, 17)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("15_tpaaq")
-
-[node name="VelocityBar04" type="Sprite2D" parent="Velocity"]
-position = Vector2(21, 17)
-scale = Vector2(0.13, 0.13)
-texture = ExtResource("16_uq4f2")
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ohua2")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

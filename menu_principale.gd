@@ -20,3 +20,9 @@ func _on_button_button_down() -> void:
 
 func _on_button_2_button_down() -> void:
 	$Click.play()
+
+func _on_button_3_pressed() -> void:
+	TransitionManager.change_scene("res://visualizza_highscore.tscn")
+
+func _on_button_3_button_down() -> void:
+	$Click.play()

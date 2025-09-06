@@ -21,6 +21,7 @@ config/icon="uid://dvrs36d37cag1"
 
 GameManager="*res://GameManager.gd"
 TransitionManager="*res://singleton/transition_manager.tscn"
+HighscoreManager="*res://HighscoreManager.gd"
 
 [display]
 

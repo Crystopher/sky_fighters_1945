@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c05t4hyj4ogwe"
-path="res://.godot/imported/VelocityBar02.png-b234053d91865a401ad3a4a3012f5406.ctex"
+uid="uid://cnbkul0ph5kqf"
+path="res://.godot/imported/selection_bg.png-8b73a1144d977a8b5287008dab9b0cae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://selections/images/VelocityBar02.png"
-dest_files=["res://.godot/imported/VelocityBar02.png-b234053d91865a401ad3a4a3012f5406.ctex"]
+source_file="res://selections/images/selection_bg.png"
+dest_files=["res://.godot/imported/selection_bg.png-8b73a1144d977a8b5287008dab9b0cae.ctex"]
 
 [params]
 

@@ -1,0 +1,152 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtq8aaqhaw2mt"]
+
+[ext_resource type="Script" uid="uid://dgjsyudsrfv1j" path="res://inserimento_highscore.gd" id="1_uk0pf"]
+[ext_resource type="FontFile" uid="uid://yj0forao1opc" path="res://fonts/pngkey.com-unity-png-4427020_2.png" id="2_yeqwt"]
+[ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="3_3t367"]
+[ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="4_w3krh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xluy0"]
+shader = ExtResource("4_w3krh")
+shader_parameter/line_density = 4.0
+shader_parameter/line_darkness = 0.6
+
+[node name="InserimentoHighscore" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uk0pf")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_top = 96.0
+offset_right = 210.0
+offset_bottom = 192.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_yeqwt")
+theme_override_font_sizes/font_size = 30
+text = "CONGRATULATION
+
+NEW HIGH SCORE"
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 240.0
+offset_right = 20.0
+offset_bottom = 285.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_yeqwt")
+theme_override_font_sizes/font_size = 45
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.0
+offset_top = 360.0
+offset_right = 79.0
+offset_bottom = 410.0
+grow_horizontal = 2
+
+[node name="freccia_sinistra" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "<"
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="freccia_su_1" type="Button" parent="HBoxContainer/VBoxContainer1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "▲"
+
+[node name="Lettera1" type="Label" parent="HBoxContainer/VBoxContainer1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yeqwt")
+theme_override_font_sizes/font_size = 50
+text = "A"
+
+[node name="freccia_giu_1" type="Button" parent="HBoxContainer/VBoxContainer1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "▼"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="freccia_su_2" type="Button" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "▲"
+
+[node name="Lettera2" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yeqwt")
+theme_override_font_sizes/font_size = 50
+text = "A"
+
+[node name="freccia_giu_2" type="Button" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "▼"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="freccia_su_3" type="Button" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "▲"
+
+[node name="Lettera3" type="Label" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yeqwt")
+theme_override_font_sizes/font_size = 50
+text = "A"
+
+[node name="freccia_giu_3" type="Button" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "▼"
+
+[node name="freccia_destra" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = ">"
+
+[node name="ConfirmButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = 640.0
+offset_right = 135.0
+offset_bottom = 730.0
+grow_horizontal = 2
+theme = ExtResource("3_3t367")
+text = "CONFIRM"
+
+[node name="EffettiPostProcessing" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="ColorRect" type="ColorRect" parent="EffettiPostProcessing"]
+material = SubResource("ShaderMaterial_xluy0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

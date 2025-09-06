@@ -120,12 +120,17 @@ func morire():
 	
 	var game_over = GameManager.perdi_vita()
 	if game_over:
+		GameManager.ultimo_punteggio = GameManager.punteggio_attuale
 		# Se è Game Over, aspettiamo un po' e torniamo al menu
 		await get_tree().create_timer(2.0).timeout
-
-		#get_tree().change_scene_to_file("res://menu_principale.tscn")
-		giocatore_morto.emit()
-		GameManager.reset_level()
+		
+		if HighscoreManager.is_high_score(GameManager.ultimo_punteggio):
+			# Se sì, andiamo alla schermata di inserimento
+			get_tree().change_scene_to_file("res://inserimento_highscore.tscn")
+		else:
+			#get_tree().change_scene_to_file("res://menu_principale.tscn")
+			giocatore_morto.emit()
+			GameManager.reset_level()
 	else:
 		# Altrimenti, avviamo la sequenza di respawn
 		await get_tree().create_timer(1.5).timeout

@@ -12,6 +12,8 @@ var vite_rimanenti
 
 signal vite_aggiornate(nuove_vite)
 
+var ultimo_punteggio = 0
+
 # Carichiamo le scene dei giocatori disponibili
 const GIOCATORI_DISPONIBILI = {
 	"verde": preload("res://assets/characters/player_green.tscn"),

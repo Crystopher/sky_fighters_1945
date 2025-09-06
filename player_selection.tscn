@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://hm4tuawag23b" path="res://selections/fighter_selection_base.tscn" id="3_tf1hx"]
 [ext_resource type="Texture2D" uid="uid://ctc8tri77kfw2" path="res://images/Select_middle.png" id="4_3t6am"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="4_kr8bo"]
-[ext_resource type="AudioStream" uid="uid://bo8ra831qk4wf" path="res://audio/player_selection_music.ogg" id="5_h6fdh"]
+[ext_resource type="AudioStream" uid="uid://ohrgbnffpogh" path="res://audio/player_selection_music.ogg" id="5_h6fdh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kr8bo"]
 shader = ExtResource("4_kr8bo")
@@ -82,8 +82,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -479.0
-offset_bottom = 294.0
+offset_left = 51.0
+offset_top = -437.0
+offset_right = -44.0
+offset_bottom = 304.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 10
@@ -92,6 +94,10 @@ theme_override_constants/h_separation = 10
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+Energy = 3
+Power = 3
+Velocity = 3
+Name = "GREEN BERRETT"
 PlaneType = "Green"
 HeroKey = "verde"
 
@@ -99,7 +105,10 @@ HeroKey = "verde"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-Name = "Blue Thunder"
+Energy = 2
+Power = 2
+Velocity = 4
+Name = "BLUE THUNDER"
 PlaneType = "Blue"
 HeroKey = "blue"
 
@@ -107,7 +116,10 @@ HeroKey = "blue"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-Name = "Red Bomb"
+Energy = 4
+Power = 4
+Velocity = 2
+Name = "RED RIBBON"
 PlaneType = "Red"
 HeroKey = "rosso"
 

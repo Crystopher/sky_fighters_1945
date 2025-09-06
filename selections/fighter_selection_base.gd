@@ -20,13 +20,9 @@ func _highlightSelection(selected):
 
 @export var Energy := 1:
 	set(v):
-		energy_value = v
-		$Energy/EnergyBar01.visible = false
-		$Energy/EnergyBar02.visible = false
-		$Energy/EnergyBar03.visible = false
-		$Energy/EnergyBar04.visible = false
-		var EnergySelected = $Energy.get_node(str("EnergyBar0", energy_value))
-		EnergySelected.visible = true
+		if $GridContainer/Details/EnergyBar != null and v != null:
+			energy_value = v
+			$GridContainer/Details/EnergyBar.value = v
 	get():
 		if energy_value == null:
 			energy_value = 1
@@ -36,13 +32,9 @@ func _highlightSelection(selected):
 
 @export var Power := 1:
 	set(v):
-		power_value = v
-		$Power/PowerBar01.visible = false
-		$Power/PowerBar02.visible = false
-		$Power/PowerBar03.visible = false
-		$Power/PowerBar04.visible = false
-		var Selected = $Power.get_node(str("PowerBar0", power_value))
-		Selected.visible = true
+		if $GridContainer/Details/PowerBar != null and v != null:
+			power_value = v
+			$GridContainer/Details/PowerBar.value = v
 	get():
 		if power_value == null:
 			power_value = 1
@@ -52,36 +44,37 @@ func _highlightSelection(selected):
 
 @export var Velocity := 1:
 	set(v):
-		velocity_value = v
-		$Velocity/VelocityBar01.visible = false
-		$Velocity/VelocityBar02.visible = false
-		$Velocity/VelocityBar03.visible = false
-		$Velocity/VelocityBar04.visible = false
-		var Selected = $Velocity.get_node(str("VelocityBar0", velocity_value))
-		Selected.visible = true
+		if $GridContainer/Details/VelocityBar != null and v != null:
+			velocity_value = v
+			$GridContainer/Details/VelocityBar.value = v
 	get():
 		if velocity_value == null:
 			velocity_value = 1
 		return velocity_value
 
-@export var Name := "Green Berret":
+var name_string = "PIPPO"
+
+@export var Name := "PIPPO":
 	set(v):
-		if $Name != null:
-			$Name.text = v
+		if $GridContainer/Avatar/Name != null and v != null:
+			name_string = v
+			$GridContainer/Avatar/Name.text = v
 	get:
-		return $Name.text
+		if name_string == null:
+			return ""
+		return $GridContainer/Avatar/Name.text
 
 @export_enum("Green", "Blue", "Red") var PlaneType := "Green":
 	set(v):
 		selectedFighterName = v
 		if v != null:
-			if $Green != null:
-				$Green.visible = false
-			if $Blue != null:
-				$Blue.visible = false
-			if $Red != null:
-				$Red.visible = false
-			var ControlSelected = get_node(v)
+			if $GridContainer/Avatar/Green != null:
+				$GridContainer/Avatar/Green.visible = false
+			if $GridContainer/Avatar/Blue != null:
+				$GridContainer/Avatar/Blue.visible = false
+			if $GridContainer/Avatar/Red != null:
+				$GridContainer/Avatar/Red.visible = false
+			var ControlSelected = get_node("GridContainer/Avatar/"+ v)
 			if ControlSelected != null:
 				ControlSelected.visible = true
 	get:
@@ -92,3 +85,4 @@ func _highlightSelection(selected):
 
 func _on_button_pressed() -> void:
 	fighter_selected.emit(HeroKey, self)
+	$HitSound.play()
