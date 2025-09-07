@@ -2,10 +2,9 @@ extends "res://assets/enemies/scripts/enemy_base.gd"
 
 # Carichiamo la scena del proiettile che questo nemico userà
 @export var weapon_scene: PackedScene
-	
-# Questa funzione viene chiamata quando il Timer scatta
-func _on_timer_timeout():
-	sparare()
+
+func _ready() -> void:
+	super()
 
 func sparare():
 	if not weapon_scene: return
@@ -18,6 +17,12 @@ func sparare():
 	# Lo posizioniamo dove si trova il nemico
 	new_weapon.global_position = global_position
 
-func explode():
+func explode(with_sound):
 	$SpawnTimer.stop()
-	super()
+	super(with_sound)
+
+func _on_spawn_timer_timeout() -> void:
+	sparare()
+
+func _on_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

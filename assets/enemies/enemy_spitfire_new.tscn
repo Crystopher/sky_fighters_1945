@@ -1,0 +1,112 @@
+[gd_scene load_steps=14 format=3 uid="uid://2dd1o17p1a5e"]
+
+[ext_resource type="Script" uid="uid://da5c6ku2h4iay" path="res://assets/enemies/scripts/enemy_spitfire.gd" id="1_5t1l6"]
+[ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="1_j7oj3"]
+[ext_resource type="PackedScene" uid="uid://c4vdky4kiiti4" path="res://assets/enemies/weapons/railgun.tscn" id="2_5t1l6"]
+[ext_resource type="Texture2D" uid="uid://bute5ficml0qg" path="res://assets/enemies/images/enemy_spitfire_sheet.png" id="3_g4dud"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7oj3"]
+atlas = ExtResource("3_g4dud")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t1l6"]
+atlas = ExtResource("3_g4dud")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4dud"]
+atlas = ExtResource("3_g4dud")
+region = Rect2(2048, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6liv8"]
+atlas = ExtResource("3_g4dud")
+region = Rect2(3072, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sq5n"]
+atlas = ExtResource("3_g4dud")
+region = Rect2(4096, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhthe"]
+atlas = ExtResource("3_g4dud")
+region = Rect2(5120, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uykj4"]
+atlas = ExtResource("3_g4dud")
+region = Rect2(6144, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3r4a"]
+atlas = ExtResource("3_g4dud")
+region = Rect2(7168, 0, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vh0pk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7oj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t1l6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4dud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6liv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sq5n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhthe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uykj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3r4a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="EnemySpitfireNew" type="Area2D" groups=["nemici"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_5t1l6")
+weapon_scene = ExtResource("2_5t1l6")
+punti_nemico = 60
+salute_massima = 4
+
+[node name="HitFlashTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 73)
+rotation = -3.14159
+polygon = PackedVector2Array(0, 119, -2, 117, -2, 111, -5, 114, -16, 114, -24, 112, -26, 109, -26, 107, -23, 104, -13, 101, -4, 97, -4, 92, -6, 82, -8, 71, -9, 62, -9, 48, -63, 35, -69, 29, -70, 26, -70, 22, -67, 19, -63, 18, -58, 18, -58, 13, -57, 17, -32, 18, -9, 18, -9, 4, -5, 2, -3, 2, -3, -4, -18, -2, -21, -5, -16, -9, -9, -8, -3, -6, 0, -9, 4, -7, 9, -10, 19, -9, 21, -6, 17, -3, 9, -3, 4, -5, 2, -3, 3, 1, 8, 4, 9, 18, 57, 18, 57, 12, 58, 12, 59, 17, 64, 18, 70, 22, 69, 30, 62, 35, 9, 48, 9, 62, 8, 71, 6, 83, 4, 93, 4, 98, 22, 104, 26, 107, 25, 111, 22, 112, 18, 113, 5, 114, 2, 111, 2, 117)
+
+[node name="OmbraGiocatore" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.713726)
+z_index = -1
+position = Vector2(66, 5.00002)
+rotation = -3.14159
+scale = Vector2(0.166045, 0.161926)
+texture = ExtResource("1_j7oj3")
+offset = Vector2(200, 100)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+ignore_time_scale = true
+
+[node name="GraficaNemico" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 22)
+rotation = 3.14159
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_vh0pk")
+autoplay = "default"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

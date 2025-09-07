@@ -54,9 +54,9 @@ func sparare():
 		# IMPORTANTE: Assegniamo al nuovo proiettile la sua direzione specifica!
 		nuovo_proiettile.direzione = dir
 
-func explode():
+func explode(with_sound):
 	$SpawnTimer.stop()
-	super()
+	super(with_sound)
 
 # _process() viene eseguito a ogni frame e contiene la nostra "macchina a stati"
 func _process(delta):
@@ -77,13 +77,14 @@ func _process(delta):
 
 			# Controlla se ha toccato i bordi dello schermo e inverti la direzione
 			var screen_width = get_viewport_rect().size.x
-			var self_half_size = $CollisionShape2D.shape.size.x / 2
+			var self_half_size = $CollisionPolygon2D.polygon[0].x / 2
 
 			if position.x >= screen_width - self_half_size:
 				direzione_orizzontale = -1 # Vai a sinistra
 			elif position.x <= self_half_size:
 				direzione_orizzontale = 1 # Vai a destra
-
+				
+	aggiorna_posizione_ombra()
 
 func _on_spawn_timer_timeout() -> void:
 	sparare()

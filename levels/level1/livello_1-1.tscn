@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://n5m5c8deypol" path="res://levels/level1/scripts/spawner_1-1.gd" id="1_6c6q4"]
 [ext_resource type="PackedScene" uid="uid://cve3mrdrtc0r" path="res://assets/enemies/enemy_base.tscn" id="2_e0wbv"]
-[ext_resource type="PackedScene" uid="uid://bu1y472gt42i2" path="res://assets/enemies/enemy_spitfire.tscn" id="3_bn4n2"]
+[ext_resource type="PackedScene" uid="uid://2dd1o17p1a5e" path="res://assets/enemies/enemy_spitfire_new.tscn" id="3_ks70j"]
 [ext_resource type="PackedScene" uid="uid://b71kntjj50abx" path="res://assets/enemies/enemy_strafer.tscn" id="4_wsj16"]
 [ext_resource type="PackedScene" uid="uid://b8judt8newgkh" path="res://ui.tscn" id="5_vwq56"]
 [ext_resource type="Script" uid="uid://qridl4ou6p0s" path="res://levels/level1/scripts/sfondo_scorrimento.gd" id="6_bn4n2"]
@@ -24,7 +24,7 @@ shader_parameter/line_darkness = 0.6
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("1_6c6q4")
 base_enemy_scene = ExtResource("2_e0wbv")
-spitfire_enemy_scene = ExtResource("3_bn4n2")
+spitfire_enemy_scene = ExtResource("3_ks70j")
 strafer_enemy_scene = ExtResource("4_wsj16")
 
 [node name="Timer" type="Timer" parent="WaveManager"]

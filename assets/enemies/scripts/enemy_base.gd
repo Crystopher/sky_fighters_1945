@@ -4,47 +4,72 @@ var velocita = 150.0
 @export var punti_nemico = 50
 @export var punti_impatto = 1
 @export var salute_massima = 1
-@onready var grafica_nemico = $ColorRect.color
+@onready var grafica_nemico = $GraficaNemico
+@onready var ombra_nemico = $OmbraGiocatore
+
 var salute_attuale
+
+const SCENA_ESPLOSIONE = preload("res://assets/enemies/scenes/explosion_base.tscn")
 
 signal enemy_destroyed
 
 func subire_danno(quantita):
 	salute_attuale -= quantita
 	if salute_attuale > 0:
-		$ColorRect.color = Color("b5c9ff88")
+		#$ColorRect.color = Color("b5c9ff88")
 		$HitFlashTimer.start()
 
 	if salute_attuale <= 0:
-		explode() # Il nemico muore solo quando la salute è finita
+		explode(true) # Il nemico muore solo quando la salute è finita
 
 func _ready() -> void:
 	salute_attuale = salute_massima
+	
+	await ready
+	# 1. Troviamo il livello delle nuvole
+	var strato_nuvole = get_tree().get_first_node_in_group("strato_nuvole")
+
+	if strato_nuvole and ombra_nemico:
+		# 2. Stacchiamo l'ombra da noi stessi
+		remove_child(ombra_nemico)
+
+		# 3. La riattacchiamo come figlia dello strato delle nuvole
+		strato_nuvole.add_child(ombra_nemico)
+
+func aggiorna_posizione_ombra():
+	if ombra_nemico and is_inside_tree() and ombra_nemico.is_inside_tree():
+		ombra_nemico.global_position = global_position
 
 func _process(delta):
 	# Muovi il nemico verso il basso (l'asse Y positivo)
 	position.y += velocita * delta
 
+	aggiorna_posizione_ombra()
+
 	# Se il nemico esce dal bordo inferiore, distruggilo
 	var screen_height = get_viewport_rect().size.y
 	if position.y > screen_height + 50: # +50 è un margine di sicurezza
-		explode()
+		print("entranto")
+		explode(false)
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("proiettili_giocatore"):
 		subire_danno(area.damage)
 		area.queue_free()
 	elif area.is_in_group("giocatore"):
-		explode()
+		explode(true)
 
-func explode():
-	GameManager.aggiungi_punti(punti_nemico)
+func explode(with_sound):	
+	if with_sound == true:
+		var esplosione = SCENA_ESPLOSIONE.instantiate()
+		get_parent().add_child(esplosione)
+		esplosione.global_position = global_position
+		GameManager.aggiungi_punti(punti_nemico)
 	# the enemy starts to be destroyed
 	set_process(false)
-	$CollisionShape2D.set_deferred("disabled", true)
-	$ColorRect.hide()
-	$SuonoEsplosione.play()
-	await $SuonoEsplosione.finished
+	$CollisionPolygon2D.set_deferred("disabled", true)
+	ombra_nemico.hide()
+	grafica_nemico.hide()
 	destroying()
 
 func destroying():
@@ -54,4 +79,5 @@ func destroying():
 
 
 func _on_hit_flash_timer_timeout() -> void:
-	$ColorRect.color = grafica_nemico
+	#$ColorRect.color = grafica_nemico
+	pass
