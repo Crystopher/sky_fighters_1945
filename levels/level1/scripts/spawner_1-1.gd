@@ -4,6 +4,7 @@ extends Node
 @export var base_enemy_scene: PackedScene
 @export var spitfire_enemy_scene: PackedScene
 @export var strafer_enemy_scene: PackedScene
+@export var orbital_enemy_scene: PackedScene
 
 var enemies_remains = 0
 var wave_in_live = false
@@ -11,20 +12,31 @@ var wave_in_live = false
 const LEVEL_ENEMY_WAVES = [
 	{
 		"name": "test", 
+		"active": true,
 		"enemies": [
+			{"type": "enemy_orbital", "number": 2, "wait": 2.0},
 			{"type": "enemy_spitfire", "number": 2, "wait": 2.0},
 			{"type": "base", "number": 2, "wait": 1.5},
 			{"type": "enemy_strafer", "number": 2, "wait": 1.5}
 		]
 	},
 	{
-		"name": "wave1", 
+		"name": "wave0", 
+		"active": true,
 		"enemies": [
-			{"type": "enemy_spitfire", "number": 3, "wait": 2.0}
+			{"type": "base", "number": 3, "wait": 1.0}
+		]
+	},
+	{
+		"name": "wave1", 
+		"active": true,
+		"enemies": [
+			{"type": "enemy_spitfire", "number": 3, "wait": 1.0}
 		]
 	},
 	{
 		"name": "wave2", 
+		"active": true,
 		"enemies": [
 			{"type": "enemy_spitfire", "number": 2, "wait": 2.0},
 			{"type": "base", "number": 2, "wait": 1.5},
@@ -33,12 +45,23 @@ const LEVEL_ENEMY_WAVES = [
 	},
 	{
 		"name": "wave3", 
+		"active": true,
 		"enemies": [
 			{"type": "enemy_spitfire", "number": 1, "wait": 1.5},
 			{"type": "base", "number": 2, "wait": 0.5},
 			{"type": "enemy_spitfire", "number": 1, "wait": 1.5},
 			{"type": "base", "number": 2, "wait": 0.5},
 			{"type": "enemy_strafer", "number": 3, "wait": 1.5}
+		]
+	},
+	{
+		"name": "wave4", 
+		"active": true,
+		"enemies": [
+			{"type": "enemy_spitfire", "number": 3, "wait": 1.5},
+			{"type": "base", "number": 6, "wait": 0.5},
+			{"type": "enemy_strafer", "number": 1, "wait": 1.5},
+			{"type": "enemy_orbital", "number": 2, "wait": 1.5},
 		]
 	}
 ]
@@ -86,32 +109,40 @@ func start_next_wave():
 	var wave_data = LEVEL_ENEMY_WAVES[GameManager.current_wave]
 	
 	# Get totale of enemies
-	for enemy_data in wave_data.enemies:
-		enemies_remains += enemy_data["number"]
+	if wave_data.active:
+		for enemy_data in wave_data.enemies:
+			enemies_remains += enemy_data["number"]
 	
-	for enemy_data in wave_data.enemies:
-		var enemies_number = enemy_data["number"]
-		var enemy_type = enemy_data["type"]
-		var enemy_wait = enemy_data["wait"]
+		for enemy_data in wave_data.enemies:
+			var enemies_number = enemy_data["number"]
+			var enemy_type = enemy_data["type"]
+			var enemy_wait = enemy_data["wait"]
 
-		var scene_to_spawn
-		if enemy_type == "base":
-			scene_to_spawn = base_enemy_scene
-		elif enemy_type == "enemy_spitfire":
-			scene_to_spawn = spitfire_enemy_scene
-		elif enemy_type == "enemy_strafer":
-			scene_to_spawn = strafer_enemy_scene
+			var scene_to_spawn
+			if enemy_type == "base":
+				scene_to_spawn = base_enemy_scene
+			elif enemy_type == "enemy_spitfire":
+				scene_to_spawn = spitfire_enemy_scene
+			elif enemy_type == "enemy_strafer":
+				scene_to_spawn = strafer_enemy_scene
+			elif enemy_type == "enemy_orbital":
+				scene_to_spawn = orbital_enemy_scene
 
-		# Usiamo un timer per spawnare i nemici in sequenza
-		var spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
-		var counter = 0
-		while counter < enemies_number:
-			await spawn_timer.timeout
-			enemy_spawn(scene_to_spawn)
-			counter += 1
-			spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
+			# Usiamo un timer per spawnare i nemici in sequenza
+			var spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
+			var counter = 0
+			while counter < enemies_number:
+				await spawn_timer.timeout
+				enemy_spawn(scene_to_spawn)
+				counter += 1
+				spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
+	else:
+		wave_in_live = false
+		GameManager.current_wave += 1
+		start_next_wave()
 
 func enemy_spawn(scene_to_spawn):
+	var safe_area = 100
 	if not scene_to_spawn: return
 	var new_enemy = scene_to_spawn.instantiate()
 
@@ -119,8 +150,8 @@ func enemy_spawn(scene_to_spawn):
 	new_enemy.enemy_destroyed.connect(on_nemico_destroy)
 
 	var screen_width = get_viewport().size.x
-	var spawn_x = randf_range(50, screen_width - 50)
-	new_enemy.position = Vector2(spawn_x, -50)
+	var spawn_x = randf_range(safe_area, screen_width - safe_area)
+	new_enemy.position = Vector2(spawn_x, -safe_area)
 
 	get_parent().add_child(new_enemy)
 

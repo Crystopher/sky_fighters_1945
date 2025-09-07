@@ -1,0 +1,175 @@
+[gd_scene load_steps=21 format=3 uid="uid://ivho43p005il"]
+
+[ext_resource type="Script" uid="uid://cye3tielp84et" path="res://assets/enemies/scripts/enemy_orbital_new.gd" id="1_h4yj7"]
+[ext_resource type="PackedScene" uid="uid://eusgo1cp8spg" path="res://assets/enemies/weapons/splitter.tscn" id="2_aavmd"]
+[ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="3_duyra"]
+[ext_resource type="Texture2D" uid="uid://cyymiykt70ey3" path="res://assets/enemies/images/orbital_plane.png" id="4_aavmd"]
+[ext_resource type="Texture2D" uid="uid://c4pkd84dig4ac" path="res://assets/enemies/images/orbital_reactor_anim_spritesheet.png" id="4_m5s5m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duyra"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(0, 0, 260, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj1sy"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(260, 0, 260, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbgkl"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(520, 0, 260, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfb2b"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(780, 0, 260, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5x4u"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(0, 240, 260, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20bh4"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(260, 240, 260, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2da7"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(520, 240, 260, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppmfa"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(780, 240, 260, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpndb"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(0, 480, 260, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnxrm"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(260, 480, 260, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86s45"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(520, 480, 260, 240)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p62x"]
+atlas = ExtResource("4_m5s5m")
+region = Rect2(780, 480, 260, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_loebu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duyra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj1sy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbgkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfb2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5x4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20bh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2da7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppmfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpndb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnxrm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86s45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p62x")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 20.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5s5m"]
+atlas = ExtResource("4_aavmd")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vh0pk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5s5m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="EnemyOrbitalNew" type="Area2D" groups=["nemici"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_h4yj7")
+weapon_scene = ExtResource("2_aavmd")
+punti_nemico = 100
+punti_impatto = 4
+salute_massima = 8
+
+[node name="HitFlashTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="OmbraGiocatore" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.713726)
+z_index = -1
+position = Vector2(66, 5.00002)
+rotation = -3.14159
+scale = Vector2(0.166045, 0.161926)
+texture = ExtResource("3_duyra")
+offset = Vector2(200, 100)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+ignore_time_scale = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 9)
+rotation = -3.14159
+polygon = PackedVector2Array(1.00032, 127, -1.99968, 126, -2.99969, 123, -3.9997, 119, -9.9997, 119, -14.9997, 120, -23.9997, 119, -26.9997, 112, -21.9997, 106, -11.9997, 102, -6.99975, 99, -6.99977, 92, -9.99981, 74, -24.9998, 71.0001, -27.9998, 87.0001, -29.9998, 86.0001, -30.9998, 80.0001, -33.9998, 76.0001, -37.9998, 73.0001, -43.9998, 73.0001, -47.9998, 76.0001, -49.9998, 75.0001, -42.9998, 67.0001, -50.9998, 66.0001, -65.9998, 62.0002, -72.9998, 59.0002, -76.9999, 56.0002, -79.9999, 50.0002, -79.9999, 43.0002, -75.9999, 40.0002, -71.9999, 39.0002, -65.9999, 38.0002, -47.9999, 37.0001, -34.9999, 36.0001, -10.9999, 33, -11.9999, 25, -12, 16, -11, 10, -8.99998, 8.00002, -14, 8.00004, -18.9999, 20, -29, 18.0001, -31, 14.0001, -22, -14.9999, -19, -16, -14.0001, -30, -6.00007, -27, -13, 3.33786e-05, -3.99999, 2.00001, -2.00001, -4, 1.99999, -4, 5.00001, 2.99999, 13, -3.33786e-05, 6.99993, -28, 15.9999, -30, 20, -16.0001, 23, -15.0001, 27, -2.00007, 30, 16.9999, 20.0001, 20, 17, 9.99996, 11, 7.99997, 13, 11, 13, 16, 13.0001, 25, 13.0001, 33, 34.0001, 34.9999, 43.0001, 35.9999, 54.0001, 36.9999, 68.0001, 37.9998, 75.0001, 38.9998, 81.0001, 43.9998, 80.0001, 51.9998, 71.0002, 60.9998, 45.0002, 66.9999, 52.0002, 74.9999, 50.0002, 75.9999, 44.0002, 72.9999, 37.0002, 73.9999, 33.0002, 78.9999, 32.0002, 84.9999, 30.0002, 85.9999, 27.0002, 71.9999, 11.0002, 75, 8.00024, 93, 8.00025, 98, 14.0003, 103, 22.0003, 106, 28.0003, 112, 26.0003, 118, 19.0003, 120, 10.0003, 120, 5.0003, 120, 4.00032, 125)
+
+[node name="LeftReactor" type="AnimatedSprite2D" parent="."]
+position = Vector2(-62, -64)
+rotation = -2.02211
+scale = Vector2(0.214436, 0.293681)
+sprite_frames = SubResource("SpriteFrames_loebu")
+animation = &"fire"
+autoplay = "fire"
+
+[node name="RightReactor" type="AnimatedSprite2D" parent="."]
+position = Vector2(60, -63)
+rotation = -1.07906
+scale = Vector2(0.214436, 0.293681)
+sprite_frames = SubResource("SpriteFrames_loebu")
+animation = &"fire"
+autoplay = "fire"
+flip_v = true
+
+[node name="GraficaNemico" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.02625, -42.0658)
+rotation = 3.14159
+scale = Vector2(0.200079, 0.208097)
+sprite_frames = SubResource("SpriteFrames_vh0pk")
+autoplay = "default"
+frame_progress = 0.577613
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

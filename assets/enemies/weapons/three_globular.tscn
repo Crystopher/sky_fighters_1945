@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dhnqv2yb0ce4p" path="res://assets/enemies/weapons/images/globulr_fireball.png" id="3_p2xln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mh6b5"]
-radius = 20.025
+radius = 15.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2xln"]
 atlas = ExtResource("3_p2xln")
@@ -148,7 +148,7 @@ shape = SubResource("CircleShape2D_mh6b5")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2.13163e-14, -6)
 rotation = 1.5708
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.12, 0.12)
 sprite_frames = SubResource("SpriteFrames_r5fcp")
 autoplay = "default"
 frame = 2

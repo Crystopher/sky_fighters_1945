@@ -38,7 +38,10 @@ func _ready() -> void:
 
 func aggiorna_posizione_ombra():
 	if ombra_nemico and is_inside_tree() and ombra_nemico.is_inside_tree():
-		ombra_nemico.global_position = global_position
+		var shadow_position = global_position
+		shadow_position.x += 70
+		shadow_position.y -= 70
+		ombra_nemico.global_position = shadow_position
 
 func _process(delta):
 	# Muovi il nemico verso il basso (l'asse Y positivo)
@@ -48,8 +51,7 @@ func _process(delta):
 
 	# Se il nemico esce dal bordo inferiore, distruggilo
 	var screen_height = get_viewport_rect().size.y
-	if position.y > screen_height + 50: # +50 è un margine di sicurezza
-		print("entranto")
+	if position.y > screen_height + 100: # +50 è un margine di sicurezza
 		explode(false)
 
 func _on_area_entered(area: Area2D) -> void:
