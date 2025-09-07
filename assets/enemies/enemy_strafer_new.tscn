@@ -1,0 +1,115 @@
+[gd_scene load_steps=14 format=3 uid="uid://dwf76xip60nni"]
+
+[ext_resource type="Script" uid="uid://cknqw4rrxq5a2" path="res://assets/enemies/scripts/enemy_strafer.gd" id="1_ybsxu"]
+[ext_resource type="PackedScene" uid="uid://cmm4onbmecos2" path="res://assets/enemies/weapons/three_globular.tscn" id="2_5be1e"]
+[ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="3_v2rh5"]
+[ext_resource type="Texture2D" uid="uid://d23pir3l6mgl3" path="res://assets/enemies/images/enemy_strafer_spritesheet.png" id="4_5be1e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1yr3"]
+atlas = ExtResource("4_5be1e")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2rh5"]
+atlas = ExtResource("4_5be1e")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dajay"]
+atlas = ExtResource("4_5be1e")
+region = Rect2(2048, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3mag"]
+atlas = ExtResource("4_5be1e")
+region = Rect2(3072, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_051i5"]
+atlas = ExtResource("4_5be1e")
+region = Rect2(4096, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lm8f"]
+atlas = ExtResource("4_5be1e")
+region = Rect2(5120, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72kjj"]
+atlas = ExtResource("4_5be1e")
+region = Rect2(6144, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddkty"]
+atlas = ExtResource("4_5be1e")
+region = Rect2(7168, 0, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vh0pk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1yr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2rh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dajay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3mag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_051i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lm8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72kjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddkty")
+}],
+"loop": true,
+"name": &"default",
+"speed": 23.0
+}]
+
+[node name="EnemyStraferNew" type="Area2D" groups=["nemici"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_ybsxu")
+weapon_scene = ExtResource("2_5be1e")
+punti_nemico = 80
+punti_impatto = 2
+salute_massima = 5
+
+[node name="HitFlashTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="OmbraGiocatore" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.713726)
+z_index = -1
+position = Vector2(66, 5.00002)
+rotation = -3.14159
+scale = Vector2(0.166045, 0.161926)
+texture = ExtResource("3_v2rh5")
+offset = Vector2(200, 100)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+ignore_time_scale = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 9)
+rotation = -3.14159
+polygon = PackedVector2Array(0, 119, -2, 117, -2, 111, -5, 114, -9.99969, 121, -14.9997, 122, -19.9997, 121, -18.9997, 115, -17.9997, 110, -13, 101, -6.99975, 97, -6.99977, 92, -6, 82, -25.9998, 83.0001, -35.9998, 81.0001, -38.9998, 76.0001, -33.9998, 71.0001, -10.9998, 66, -9, 62, -9, 48, -63, 35, -70.9999, 31.0002, -75.9999, 27.0002, -76, 19.0002, -71, 15.0002, -65, 14.0002, -61, 14.0002, -58, 13, -55, 9.00014, -53, 3.00014, -42, 4.00011, -42, 11.0001, -37, 14.0001, -9.99996, 14, -9, 4, -9, 2.28882e-05, -7.00001, -1.99998, -3, -4, -3, -6, -3.04222e-05, -12, 4, -7, 9, -3, 4, -5, 2, -3, 10, -1.00002, 10, 2.99998, 9.00004, 15, 38, 14.9999, 41, 11.9999, 43, 4.99989, 54, 4.99986, 58, 12, 65, 14.9998, 73, 15.9998, 77.0001, 22.9998, 71.0001, 29.9998, 62, 35, 9, 48, 9, 62, 11.0002, 66, 32.0002, 70.9999, 38.0002, 76.9999, 34.0002, 80.9999, 21.0002, 82.9999, 7.00021, 83, 6.00024, 94, 8.00025, 98, 11.0003, 104, 17.0003, 110, 20.0003, 115, 20.0003, 121, 15.0003, 123, 5, 114, 2, 111, 2, 117)
+
+[node name="GraficaNemico" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.45519e-11, -59)
+rotation = 3.14159
+scale = Vector2(0.165, 0.165)
+sprite_frames = SubResource("SpriteFrames_vh0pk")
+autoplay = "default"
+frame = 7
+frame_progress = 0.577613
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
