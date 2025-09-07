@@ -47,12 +47,12 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -324.0
 offset_top = -317.0
-offset_right = -24.0
+offset_right = -84.0
 offset_bottom = -227.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_f4ksu")
-text = "NEW GAME"
+text = "ARCADE"
 
 [node name="Button2" type="Button" parent="."]
 layout_mode = 1
