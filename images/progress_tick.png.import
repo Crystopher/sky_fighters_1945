@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm20e7iy20gsq"
-path="res://.godot/imported/TargaShadow.png-49e54649d40607911b55f3bec41b8f13.ctex"
+uid="uid://brca1dxsgurj6"
+path="res://.godot/imported/progress_tick.png-69090633bf1471a47291dec75589629a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/TargaShadow.png"
-dest_files=["res://.godot/imported/TargaShadow.png-49e54649d40607911b55f3bec41b8f13.ctex"]
+source_file="res://images/progress_tick.png"
+dest_files=["res://.godot/imported/progress_tick.png-69090633bf1471a47291dec75589629a.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://jtr657lw2yjc" path="res://selections/fighter_selection_base.gd" id="1_riepq"]
 [ext_resource type="FontFile" uid="uid://yj0forao1opc" path="res://fonts/pngkey.com-unity-png-4427020_2.png" id="2_0fx30"]
 [ext_resource type="Texture2D" uid="uid://4x7mbddbyvfx" path="res://assets/characters/sprites/BlueThunder.png" id="2_8jsf8"]
-[ext_resource type="Texture2D" uid="uid://cnbkul0ph5kqf" path="res://selections/images/selection_bg.png" id="2_prite"]
+[ext_resource type="Texture2D" uid="uid://ddfattvknr20j" path="res://selections/images/player_selection_button.png" id="2_ohua2"]
 [ext_resource type="Texture2D" uid="uid://c1efrpqfbncje" path="res://assets/characters/sprites/GreenBerret.png" id="2_s0uo1"]
 [ext_resource type="Texture2D" uid="uid://bgjwbblhmvl32" path="res://assets/characters/sprites/RedBomber.png" id="4_y4rpu"]
 [ext_resource type="AudioStream" uid="uid://dx7co4c7nm0w3" path="res://selections/audio/player_select_hit.ogg" id="8_ohua2"]
@@ -114,9 +114,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_prite")
-region_rect = Rect2(48.95, 43.5, 657.975, 278.855)
-patch_margin_left = 215
+texture = ExtResource("2_ohua2")
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
 
 [node name="Bg" type="ColorRect" parent="."]
 layout_mode = 1

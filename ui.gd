@@ -2,9 +2,12 @@ extends CanvasLayer
 
 # Prendiamo una referenza alla nostra barra della vita
 @onready var health_bar = $HealthBar
+@onready var health_container = $HealthContainer
+@onready var health_tick = $HealthContainer/TextureRect
 var player = null
 
 const SCENA_ICONA_VITA = preload("res://life_icon.tscn")
+const SCENA_ICONA_ENERGY = preload("res://energy_icon.tscn")
 @onready var vite_container = $ViteContainer
 
 func aggiorna_icone_vita(numero_vite):
@@ -33,7 +36,22 @@ func _ready():
 
 		# Impostiamo i valori iniziali della barra
 		health_bar.max_value = player.energy_max
-		health_bar.value = player.current_energy
+		populate_health_bar()
+
+func populate_health_bar():
+	for i in player.energy_max:
+		health_container.add_child(SCENA_ICONA_ENERGY.instantiate())
+
+func update_health_bar(new_energy, energy_max):
+	var total_point_toremove = energy_max - new_energy
+	for n in health_container.get_children():
+		n.free()
+
+	for i in player.energy_max:
+		var new_child: TextureRect = SCENA_ICONA_ENERGY.instantiate()
+		if i >= new_energy:
+			new_child.modulate = Color(0,0,0,0)
+		health_container.add_child(new_child)
 
 func on_energy_player_updated(new_energy, energy_max):
-	health_bar.value = new_energy
+	update_health_bar(new_energy, energy_max)

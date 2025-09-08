@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnbkul0ph5kqf"
-path="res://.godot/imported/selection_bg.png-8b73a1144d977a8b5287008dab9b0cae.ctex"
+uid="uid://720xya7dhyh6"
+path="res://.godot/imported/pulsante_pressed.png-3ac7f542f978915d538cda2d158ed7c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://selections/images/selection_bg.png"
-dest_files=["res://.godot/imported/selection_bg.png-8b73a1144d977a8b5287008dab9b0cae.ctex"]
+source_file="res://images/pulsante_pressed.png"
+dest_files=["res://.godot/imported/pulsante_pressed.png-3ac7f542f978915d538cda2d158ed7c3.ctex"]
 
 [params]
 

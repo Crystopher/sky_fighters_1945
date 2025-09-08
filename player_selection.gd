@@ -27,3 +27,10 @@ func on_fighter_selection(hero_key, fighter):
 		
 	selection.is_selected = true
 	GameManager.giocatore_selezionato = hero_key
+
+
+func _on_menu_button_button_down() -> void:
+	$Click.play()
+
+func _on_menu_button_pressed() -> void:
+	TransitionManager.change_scene("res://menu_principale.tscn")

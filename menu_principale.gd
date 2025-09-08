@@ -14,7 +14,6 @@ func _on_button_2_pressed() -> void:
 	# non sempre chiude la finestra dell'editor di Godot.
 	get_tree().quit()
 
-
 func _on_button_button_down() -> void:
 	$Click.play()
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j5tv7haajrn0"
-path="res://.godot/imported/TargaPressedShadow.png-7e32910dd27fc008290eb3b6a1e2e0e7.ctex"
+uid="uid://d3qijhhyiyn6i"
+path="res://.godot/imported/pulsante_hover.png-2e5ec33ac0fac1b030e95296a0075c53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/TargaPressedShadow.png"
-dest_files=["res://.godot/imported/TargaPressedShadow.png-7e32910dd27fc008290eb3b6a1e2e0e7.ctex"]
+source_file="res://images/pulsante_hover.png"
+dest_files=["res://.godot/imported/pulsante_hover.png-2e5ec33ac0fac1b030e95296a0075c53.ctex"]
 
 [params]
 

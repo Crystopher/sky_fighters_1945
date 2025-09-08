@@ -64,14 +64,30 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -105.0
-offset_top = -151.0
-offset_right = 105.0
-offset_bottom = -61.0
+offset_left = -218.0
+offset_top = -274.0
+offset_right = 222.0
+offset_bottom = -184.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("2_ltefx")
 text = "START"
+
+[node name="menuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.0
+offset_top = -148.0
+offset_right = 93.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_ltefx")
+text = "BACK"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_tf1hx")
@@ -143,3 +159,5 @@ parameters/looping = true
 
 [connection signal="button_down" from="Button2" to="." method="_on_button_2_button_down"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="button_down" from="menuButton" to="." method="_on_menu_button_button_down"]
+[connection signal="pressed" from="menuButton" to="." method="_on_menu_button_pressed"]

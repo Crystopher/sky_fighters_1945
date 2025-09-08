@@ -1,9 +1,9 @@
 [gd_resource type="Theme" load_steps=13 format=3 uid="uid://25tppc13kpma"]
 
 [ext_resource type="FontFile" uid="uid://yj0forao1opc" path="res://fonts/pngkey.com-unity-png-4427020_2.png" id="1_6abfs"]
-[ext_resource type="Texture2D" uid="uid://1y05lxcnhel1" path="res://images/TargaHoverShadow.png" id="2_6abfs"]
-[ext_resource type="Texture2D" uid="uid://dm20e7iy20gsq" path="res://images/TargaShadow.png" id="2_kwhvy"]
-[ext_resource type="Texture2D" uid="uid://j5tv7haajrn0" path="res://images/TargaPressedShadow.png" id="3_hguu3"]
+[ext_resource type="Texture2D" uid="uid://d3qijhhyiyn6i" path="res://images/pulsante_hover.png" id="2_6abfs"]
+[ext_resource type="Texture2D" uid="uid://720xya7dhyh6" path="res://images/pulsante_pressed.png" id="3_hguu3"]
+[ext_resource type="Texture2D" uid="uid://celg3ohr3b2t4" path="res://images/pulsante.png" id="4_wu4fv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t6ehh"]
 
@@ -22,14 +22,14 @@ texture_margin_right = 30.0
 texture_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r3ivx"]
-texture = ExtResource("2_kwhvy")
+texture = ExtResource("4_wu4fv")
 texture_margin_left = 30.0
 texture_margin_top = 30.0
 texture_margin_right = 30.0
 texture_margin_bottom = 30.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i6wv4"]
-texture = ExtResource("2_kwhvy")
+texture = ExtResource("3_hguu3")
 texture_margin_left = 30.0
 texture_margin_top = 30.0
 texture_margin_right = 30.0
