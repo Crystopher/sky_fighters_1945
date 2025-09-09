@@ -7,14 +7,14 @@ var velocita = 150.0
 @onready var grafica_nemico = $GraficaNemico
 @onready var ombra_nemico = $OmbraGiocatore
 
-var salute_attuale
+var salute_attuale: float
 
 const SCENA_ESPLOSIONE = preload("res://assets/enemies/scenes/explosion_base.tscn")
 
 signal enemy_destroyed
 
 func subire_danno(quantita):
-	salute_attuale -= quantita
+	salute_attuale -= SettingsManager.calculate_difficulty(quantita, "add")
 	if salute_attuale > 0:
 		#$ColorRect.color = Color("b5c9ff88")
 		$HitFlashTimer.start()

@@ -434,17 +434,21 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_uosaj")
 autoplay = true
+bus = &"Music"
 
 [node name="Drin" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_7ulwy")
 autoplay = true
+bus = &"Music"
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_smr3p")
+bus = &"Music"
 
 [node name="EngineStart" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_t28pf")
 volume_db = -6.559
+bus = &"Music"
 
 [node name="EffettiPostProcessing" type="CanvasLayer" parent="."]
 layer = 128

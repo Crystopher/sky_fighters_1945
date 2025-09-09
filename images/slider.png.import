@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b14gmlvrvs53r"
-path="res://.godot/imported/progress_tick.png-78c0ed13cbd52d9745c11b3e422e5805.ctex"
+uid="uid://c7ogs6v54j6hc"
+path="res://.godot/imported/slider.png-51b9984d3197dc8b1ad73dd3dd37dc09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://progress_tick.png"
-dest_files=["res://.godot/imported/progress_tick.png-78c0ed13cbd52d9745c11b3e422e5805.ctex"]
+source_file="res://images/slider.png"
+dest_files=["res://.godot/imported/slider.png-51b9984d3197dc8b1ad73dd3dd37dc09.ctex"]
 
 [params]
 

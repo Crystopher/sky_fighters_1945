@@ -55,3 +55,7 @@ func update_health_bar(new_energy, energy_max):
 
 func on_energy_player_updated(new_energy, energy_max):
 	update_health_bar(new_energy, energy_max)
+
+
+func _on_pausa_pressed() -> void:
+	PauseMenu.toggle_pause()

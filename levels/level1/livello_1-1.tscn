@@ -92,5 +92,6 @@ mouse_filter = 2
 stream = ExtResource("10_vwq56")
 volume_db = 7.0
 autoplay = true
+bus = &"Music"
 
 [connection signal="timeout" from="WaveManager/Timer" to="WaveManager" method="_on_timer_timeout"]

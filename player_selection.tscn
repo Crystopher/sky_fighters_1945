@@ -91,6 +91,7 @@ text = "BACK"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_tf1hx")
+bus = &"SFX"
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -110,9 +111,6 @@ theme_override_constants/h_separation = 10
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-Energy = 3
-Power = 3
-Velocity = 3
 Name = "GREEN BERET"
 PlaneType = "Green"
 HeroKey = "verde"
@@ -121,9 +119,6 @@ HeroKey = "verde"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-Energy = 2
-Power = 2
-Velocity = 4
 Name = "BLUE THUNDER"
 PlaneType = "Blue"
 HeroKey = "blue"
@@ -132,9 +127,6 @@ HeroKey = "blue"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-Energy = 4
-Power = 4
-Velocity = 2
 Name = "RED RIBBON"
 PlaneType = "Red"
 HeroKey = "rosso"
@@ -155,6 +147,7 @@ mouse_filter = 2
 stream = ExtResource("5_h6fdh")
 volume_db = 5.0
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 
 [connection signal="button_down" from="Button2" to="." method="_on_button_2_button_down"]

@@ -1,0 +1,186 @@
+[gd_scene load_steps=10 format=3 uid="uid://bftsegcfjdcg7"]
+
+[ext_resource type="Script" uid="uid://bd6lt3lgyl6ss" path="res://impostazioni.gd" id="1_gbrib"]
+[ext_resource type="FontFile" uid="uid://yj0forao1opc" path="res://fonts/pngkey.com-unity-png-4427020_2.png" id="2_hy1xo"]
+[ext_resource type="Texture2D" uid="uid://m4mwwqo4s3qd" path="res://images/Select_Top.png" id="2_ndba3"]
+[ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="3_4ip4p"]
+[ext_resource type="Texture2D" uid="uid://dewfi8ew31i7g" path="res://images/Select_Bottom.png" id="3_ixpsx"]
+[ext_resource type="Texture2D" uid="uid://ctc8tri77kfw2" path="res://images/Select_middle.png" id="4_gmiee"]
+[ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="4_kqsxe"]
+[ext_resource type="Texture2D" uid="uid://ddfattvknr20j" path="res://selections/images/player_selection_button.png" id="5_ixpsx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kqbx7"]
+shader = ExtResource("4_kqsxe")
+shader_parameter/line_density = 4.0
+shader_parameter/line_darkness = 0.6
+
+[node name="Impostazioni" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gbrib")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 359.0
+grow_horizontal = 2
+texture = ExtResource("2_ndba3")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -330.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_ixpsx")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 358.0
+offset_bottom = -328.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_gmiee")
+expand_mode = 1
+
+[node name="Panel" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 68.0
+offset_top = 104.0
+offset_right = -66.0
+offset_bottom = -535.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_ixpsx")
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
+
+[node name="OptionLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 58.0
+offset_right = 112.0
+offset_bottom = 95.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_hy1xo")
+theme_override_font_sizes/font_size = 40
+text = "OPTIONS"
+
+[node name="Music" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -237.295
+offset_top = 272.0
+offset_right = -87.295
+offset_bottom = 302.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_hy1xo")
+theme_override_font_sizes/font_size = 30
+text = "MUSIC"
+
+[node name="SFX" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -233.325
+offset_top = 145.0
+offset_right = -143.325
+offset_bottom = 175.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_hy1xo")
+theme_override_font_sizes/font_size = 30
+text = "SFX"
+
+[node name="MusicSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 310.0
+offset_right = 597.0
+offset_bottom = 370.0
+theme = ExtResource("3_4ip4p")
+min_value = -40.0
+max_value = 0.0
+
+[node name="SFXSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 172.0
+offset_right = 592.0
+offset_bottom = 232.0
+theme = ExtResource("3_4ip4p")
+min_value = -40.0
+max_value = 0.0
+
+[node name="Difficulty" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -233.48
+offset_top = 400.0
+offset_right = 66.52
+offset_bottom = 430.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_hy1xo")
+theme_override_font_sizes/font_size = 30
+text = "DIFFICULTY"
+
+[node name="DifficultySlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 437.0
+offset_right = 603.0
+offset_bottom = 497.0
+theme = ExtResource("3_4ip4p")
+min_value = 1.0
+max_value = 8.0
+value = 4.0
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 118.0
+offset_top = 1128.0
+offset_right = 298.0
+offset_bottom = 1218.0
+grow_horizontal = 2
+theme = ExtResource("3_4ip4p")
+text = "BACK"
+
+[node name="EffettiPostProcessing" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="ColorRect" type="ColorRect" parent="EffettiPostProcessing"]
+material = SubResource("ShaderMaterial_kqbx7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

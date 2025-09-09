@@ -28,10 +28,12 @@ shape = SubResource("RectangleShape2D_rua17")
 [node name="SuonoMorte" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_33bko")
 volume_db = 3.748
+bus = &"SFX"
 
 [node name="SuonoColpo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_gmphs")
 volume_db = 5.0
+bus = &"SFX"
 
 [node name="HitFlashTimer" type="Timer" parent="."]
 wait_time = 0.3

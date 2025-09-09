@@ -74,5 +74,10 @@ func aggiorna_cursore():
 
 func salva_e_chiudi():
 	var nome = lettere[0].text + lettere[1].text + lettere[2].text
-	HighscoreManager.add_score(nome, punteggio_attuale)
+	HighscoreManager.add_score(
+		nome,
+		GameManager.ultimo_punteggio,
+		GameManager.ultima_difficolta,
+		GameManager.ultimo_aereo
+	)
 	TransitionManager.change_scene("res://menu_principale.tscn") # Torna al menu

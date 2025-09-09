@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dd5mjil4g53xu"]
+[gd_scene load_steps=8 format=3 uid="uid://dd5mjil4g53xu"]
 
 [ext_resource type="Script" uid="uid://b0nbueo225ge3" path="res://menu_principale.gd" id="1_qkmkp"]
 [ext_resource type="Texture2D" uid="uid://dnsfoqvas2udi" path="res://images/SkyFightersMain.png" id="2_um64m"]
 [ext_resource type="AudioStream" uid="uid://cae3k4j0ximp5" path="res://audio/switch3.ogg" id="2_xqmsj"]
 [ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="3_f4ksu"]
+[ext_resource type="Texture2D" uid="uid://kn5x503ybjoe" path="res://images/options.png" id="4_a2e5c"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="4_kc5wk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um64m"]
@@ -54,6 +55,22 @@ grow_vertical = 0
 theme = ExtResource("3_f4ksu")
 text = "ARCADE"
 
+[node name="Options" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 219.0
+offset_top = -150.0
+offset_right = 329.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_f4ksu")
+icon = ExtResource("4_a2e5c")
+
 [node name="Button2" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -88,6 +105,7 @@ text = "HIGHSCORE"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_xqmsj")
+bus = &"SFX"
 
 [node name="EffettiPostProcessing" type="CanvasLayer" parent="."]
 layer = 128
@@ -103,6 +121,8 @@ mouse_filter = 2
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="button_down" from="Options" to="." method="_on_options_button_down"]
+[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
 [connection signal="button_down" from="Button2" to="." method="_on_button_2_button_down"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
 [connection signal="button_down" from="Button3" to="." method="_on_button_3_button_down"]

@@ -16,7 +16,6 @@ func _process(delta):
 # Gestiamo la collisione con il giocatore
 
 func _on_body_entered(body: Node2D) -> void:
-	print("Proiettile nemico")
 	# Se colpisce il giocatore, distrugge se stesso
 	queue_free()
 	# La logica della morte del giocatore è già nel giocatore stesso

@@ -61,7 +61,7 @@ func _physics_process(delta):
 
 # Aggiungi questa nuova funzione in giocatore.gd
 func energy_down(number):
-	current_energy -= number
+	current_energy -= SettingsManager.calculate_difficulty(number, "minus")
 
 	# Emettiamo il segnale per aggiornare la UI
 	energy_updated.emit(current_energy, energy_max)
@@ -120,15 +120,17 @@ func morire():
 	
 	var game_over = GameManager.perdi_vita()
 	if game_over:
+		GameManager.ultima_difficolta = SettingsManager.difficulty_multiplier
+		GameManager.ultimo_aereo = GameManager.giocatore_selezionato
 		GameManager.ultimo_punteggio = GameManager.punteggio_attuale
 		# Se è Game Over, aspettiamo un po' e torniamo al menu
 		await get_tree().create_timer(2.0).timeout
 		
+		GameManager.clean_up_level()
+		
 		if HighscoreManager.is_high_score(GameManager.ultimo_punteggio):
-			# Se sì, andiamo alla schermata di inserimento
 			get_tree().change_scene_to_file("res://inserimento_highscore.tscn")
 		else:
-			#get_tree().change_scene_to_file("res://menu_principale.tscn")
 			giocatore_morto.emit()
 			GameManager.reset_level()
 	else:

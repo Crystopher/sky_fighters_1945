@@ -10,9 +10,11 @@ var current_wave = 0
 var vite_iniziali = 3
 var vite_rimanenti
 
-signal vite_aggiornate(nuove_vite)
-
 var ultimo_punteggio = 0
+var ultima_difficolta = 1.0
+var ultimo_aereo = "verde"
+
+signal vite_aggiornate(nuove_vite)
 
 # Carichiamo le scene dei giocatori disponibili
 const GIOCATORI_DISPONIBILI = {
@@ -23,6 +25,26 @@ const GIOCATORI_DISPONIBILI = {
 
 # Memorizziamo la scelta attuale del giocatore (il verde sarà il default)
 var giocatore_selezionato = "verde"
+
+# in GameManager.gd
+
+func clean_up_level():
+	# Trova tutti i proiettili nemici e distruggili
+	var proiettili_nemici = get_tree().get_nodes_in_group("proiettili_nemici")
+	for p in proiettili_nemici:
+		p.queue_free()
+
+	# Trova tutti i proiettili del giocatore e distruggili
+	var proiettili_giocatore = get_tree().get_nodes_in_group("proiettili_giocatore")
+	for p in proiettili_giocatore:
+		p.queue_free()
+
+	# Trova tutti i nemici e distruggili
+	var nemici = get_tree().get_nodes_in_group("nemici") # Assicurati che i nemici siano in questo gruppo
+	for n in nemici:
+		n.queue_free()
+
+	# Puoi aggiungere altre pulizie qui, come effetti particellari residui, ecc.
 
 # Nuova funzione per gestire la perdita di una vita
 func perdi_vita():

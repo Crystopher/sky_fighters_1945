@@ -3,6 +3,10 @@ extends "res://assets/enemies/weapons/scripts/weapon_base.gd"
 # Questa variabile permette a chi crea il proiettile (lo splitter)
 # di dirgli in quale direzione viaggiare.
 var direzione = Vector2.DOWN # Di default va in basso, ma verrà sovrascritta
+@onready var suono_colpo = $SuonoSparo
+
+func _ready() -> void:
+	suono_colpo.play()
 
 func _process(delta):
 	# Il movimento usa la variabile 'direzione'

@@ -31,5 +31,6 @@ shape = SubResource("RectangleShape2D_kjb7g")
 
 [node name="SuonoSparo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_avht4")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

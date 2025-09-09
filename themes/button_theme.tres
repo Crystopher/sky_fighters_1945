@@ -1,9 +1,12 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://25tppc13kpma"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://25tppc13kpma"]
 
 [ext_resource type="FontFile" uid="uid://yj0forao1opc" path="res://fonts/pngkey.com-unity-png-4427020_2.png" id="1_6abfs"]
 [ext_resource type="Texture2D" uid="uid://d3qijhhyiyn6i" path="res://images/pulsante_hover.png" id="2_6abfs"]
 [ext_resource type="Texture2D" uid="uid://720xya7dhyh6" path="res://images/pulsante_pressed.png" id="3_hguu3"]
 [ext_resource type="Texture2D" uid="uid://celg3ohr3b2t4" path="res://images/pulsante.png" id="4_wu4fv"]
+[ext_resource type="Texture2D" uid="uid://dom34w61huw2q" path="res://images/slider_01.png" id="5_hguu3"]
+[ext_resource type="Texture2D" uid="uid://ditpb5rk5y5q5" path="res://images/slider_03.png" id="6_44si8"]
+[ext_resource type="Texture2D" uid="uid://bte3kbwadcxou" path="res://images/slider_02.png" id="7_t6ehh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t6ehh"]
 
@@ -35,6 +38,19 @@ texture_margin_top = 30.0
 texture_margin_right = 30.0
 texture_margin_bottom = 30.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6abfs"]
+bg_color = Color(0.71094, 0.458117, 0.12247, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 0.47451)
+border_blend = true
+corner_detail = 13
+shadow_color = Color(0, 0, 0, 0.486275)
+shadow_size = 3
+shadow_offset = Vector2(6.86, 3.07)
+
 [sub_resource type="Gradient" id="Gradient_6abfs"]
 colors = PackedColorArray(0, 0.8, 0, 1, 1, 1, 1, 1)
 
@@ -54,4 +70,8 @@ Button/styles/hover = SubResource("StyleBoxTexture_r6pot")
 Button/styles/hover_pressed = SubResource("StyleBoxTexture_dulap")
 Button/styles/normal = SubResource("StyleBoxTexture_r3ivx")
 Button/styles/pressed = SubResource("StyleBoxTexture_i6wv4")
+HSlider/icons/grabber = ExtResource("5_hguu3")
+HSlider/icons/grabber_disabled = ExtResource("6_44si8")
+HSlider/icons/grabber_highlight = ExtResource("7_t6ehh")
+HSlider/styles/slider = SubResource("StyleBoxFlat_6abfs")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_wu4fv")

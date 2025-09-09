@@ -35,5 +35,6 @@ shape = SubResource("RectangleShape2D_vwo73")
 
 [node name="Sparo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_as2hp")
+bus = &"SFX"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

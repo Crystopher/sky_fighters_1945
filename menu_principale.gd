@@ -25,3 +25,9 @@ func _on_button_3_pressed() -> void:
 
 func _on_button_3_button_down() -> void:
 	$Click.play()
+
+func _on_options_button_down() -> void:
+	$Click.play()
+
+func _on_options_pressed() -> void:
+	TransitionManager.change_scene("res://impostazioni.tscn")

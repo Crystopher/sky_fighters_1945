@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdh1uk45e0wp"]
+
+[ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="1_bn8q8"]
+[ext_resource type="Script" uid="uid://xvoufcp58fd0" path="res://singleton/pause_menu.gd" id="1_vkjuq"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_vkjuq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.345098)
+
+[node name="ContinueButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 504.0
+offset_right = 150.0
+offset_bottom = 594.0
+grow_horizontal = 2
+theme = ExtResource("1_bn8q8")
+text = "CONTINUE"
+
+[node name="BackButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_top = 640.0
+offset_right = 210.0
+offset_bottom = 730.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_bn8q8")
+text = "BACK TO MENU"
+
+[node name="ExitButton" type="Button" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -165.0
+offset_top = 784.0
+offset_right = 165.0
+offset_bottom = 874.0
+grow_horizontal = 2
+theme = ExtResource("1_bn8q8")
+text = "EXIT GAME"

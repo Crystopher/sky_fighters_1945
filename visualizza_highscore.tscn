@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbsjskx147gs4"]
+[gd_scene load_steps=10 format=3 uid="uid://bbsjskx147gs4"]
 
 [ext_resource type="Script" uid="uid://cip5yo80t2wxs" path="res://visualizza_highscore.gd" id="1_16kyh"]
 [ext_resource type="FontFile" uid="uid://yj0forao1opc" path="res://fonts/pngkey.com-unity-png-4427020_2.png" id="1_kxs1j"]
+[ext_resource type="Texture2D" uid="uid://m4mwwqo4s3qd" path="res://images/Select_Top.png" id="2_su75q"]
 [ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="2_ygk88"]
+[ext_resource type="Texture2D" uid="uid://dewfi8ew31i7g" path="res://images/Select_Bottom.png" id="3_ti0wb"]
+[ext_resource type="Texture2D" uid="uid://ctc8tri77kfw2" path="res://images/Select_middle.png" id="4_6ylmg"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="4_eoi1y"]
+[ext_resource type="Texture2D" uid="uid://ddfattvknr20j" path="res://selections/images/player_selection_button.png" id="5_1dsqw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1rym8"]
 shader = ExtResource("4_eoi1y")
@@ -19,19 +23,97 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_16kyh")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 359.0
+grow_horizontal = 2
+texture = ExtResource("2_su75q")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -330.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_ti0wb")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 358.0
+offset_bottom = -328.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6ylmg")
+expand_mode = 1
+
+[node name="Panel" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 68.0
+offset_top = 64.0
+offset_right = -66.0
+offset_bottom = -193.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_1dsqw")
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -148.5
-offset_top = 57.0
+offset_top = 112.0
 offset_right = 148.5
-offset_bottom = 90.0
+offset_bottom = 145.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_kxs1j")
-theme_override_font_sizes/font_size = 33
+theme_override_font_sizes/font_size = 34
 text = "HIGHSCORE"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -241.0
+offset_top = 248.0
+offset_right = 65.0
+offset_bottom = 282.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_kxs1j")
+theme_override_font_sizes/font_size = 25
+text = "DIFFICULTY"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -241.0
+offset_top = 355.0
+offset_right = 65.0
+offset_bottom = 389.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_kxs1j")
+theme_override_font_sizes/font_size = 25
+text = "CHARACTER"
 
 [node name="ScoreListContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -40,12 +122,96 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -147.0
-offset_top = -315.0
-offset_right = 147.0
-offset_bottom = 178.0
+offset_left = -232.0
+offset_top = -173.0
+offset_right = 229.0
+offset_bottom = 392.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 187.0
+offset_right = 954.0
+offset_bottom = 277.0
+scale = Vector2(0.6, 0.6)
+
+[node name="Global" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "GLOBAL"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 283.0
+offset_right = 953.0
+offset_bottom = 373.0
+scale = Vector2(0.6, 0.6)
+
+[node name="Difficulty1" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "1"
+
+[node name="Difficulty2" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "2"
+
+[node name="Difficulty3" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "3"
+
+[node name="Difficulty4" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "4"
+
+[node name="Difficulty5" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "5"
+
+[node name="Difficulty6" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "6"
+
+[node name="Difficulty7" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "7"
+
+[node name="Difficulty8" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "8"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 387.0
+offset_right = 954.0
+offset_bottom = 477.0
+scale = Vector2(0.6, 0.6)
+
+[node name="GreentBerret" type="Button" parent="HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "GREEN"
+
+[node name="BluThunder" type="Button" parent="HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "BLUE"
+
+[node name="RedRibbon" type="Button" parent="HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("2_ygk88")
+text = "RED"
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
