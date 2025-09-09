@@ -1,17 +1,17 @@
 extends "res://assets/enemies/weapons/scripts/weapon_base.gd"
 
 @onready var suono_colpo = $SuonoSparo
-var direzione
+var direzione = Vector2.DOWN
 
 func _ready() -> void:
 	suono_colpo.play()
 	
 func _process(delta):
 	# Muovi il proiettile verso il basso (Y positivo)
-	position.y += velocita * delta
+	position += direzione.normalized() * velocita * delta
 
 	# Distruggilo se esce dallo schermo
-	if position.y > get_viewport_rect().size.y + 20:
+	if not get_viewport().get_visible_rect().has_point(global_position):
 		queue_free()
 
 # Gestiamo la collisione con il giocatore

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8chj1fs7k6a"]
+
+[ext_resource type="Script" uid="uid://csii1s3kkc17k" path="res://assets/enemies/weapons/scripts/railgun_sniper.gd" id="1_dtrh1"]
+[ext_resource type="Texture2D" uid="uid://twnfjecepux7" path="res://assets/enemies/weapons/images/proiettile_raffica.png" id="2_dtrh1"]
+[ext_resource type="AudioStream" uid="uid://cngewqy5c1mo4" path="res://assets/enemies/weapons/audio/railgun_fire.ogg" id="3_p2pq7"]
+
+[node name="Railgun" type="Area2D" groups=["enemy_weapons"]]
+collision_layer = 8
+script = ExtResource("1_dtrh1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 10.0
+offset_bottom = 20.0
+color = Color(1, 0.151344, 0.108333, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -8.0
+offset_top = -24.0
+offset_right = 8.0
+offset_bottom = 13.0
+texture = ExtResource("2_dtrh1")
+expand_mode = 1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-5, 12, -8, 7, -8, -9, -6, -12, -6, -19, 0, -24, 6, -19, 6, -11, 8, -9, 8, 8, 6, 12)
+
+[node name="SuonoSparo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_p2pq7")
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

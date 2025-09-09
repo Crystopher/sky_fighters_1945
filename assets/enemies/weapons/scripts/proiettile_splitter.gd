@@ -27,6 +27,9 @@ func _on_timer_timeout():
 	# Impostiamo le loro direzioni
 	proiettile_sx.direzione = Vector2.DOWN.rotated(-angolo_rad)
 	proiettile_dx.direzione = Vector2.DOWN.rotated(angolo_rad)
+	
+	proiettile_dx.rotation = proiettile_dx.direzione.angle() - PI / 2.5
+	proiettile_sx.rotation = proiettile_sx.direzione.angle() - PI / 1.9
 
 	# Aggiungiamo i nuovi proiettili alla scena
 	get_parent().add_child(proiettile_sx)

@@ -5,6 +5,7 @@ extends Node
 @export var spitfire_enemy_scene: PackedScene
 @export var strafer_enemy_scene: PackedScene
 @export var orbital_enemy_scene: PackedScene
+@export var sniper_enemy_scene: PackedScene
 
 var enemies_remains = 0
 var wave_in_live = false
@@ -14,6 +15,7 @@ const LEVEL_ENEMY_WAVES = [
 		"name": "test", 
 		"active": true,
 		"enemies": [
+			{"type": "enemy_sniper", "number": 2, "wait": 2.0},
 			{"type": "enemy_orbital", "number": 2, "wait": 2.0},
 			{"type": "enemy_spitfire", "number": 2, "wait": 2.0},
 			{"type": "base", "number": 2, "wait": 1.5},
@@ -127,6 +129,8 @@ func start_next_wave():
 				scene_to_spawn = strafer_enemy_scene
 			elif enemy_type == "enemy_orbital":
 				scene_to_spawn = orbital_enemy_scene
+			elif enemy_type == "enemy_sniper":
+				scene_to_spawn = sniper_enemy_scene
 
 			# Usiamo un timer per spawnare i nemici in sequenza
 			var spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
