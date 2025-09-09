@@ -10,13 +10,19 @@ var velocita = 150.0
 var salute_attuale: float
 
 const SCENA_ESPLOSIONE = preload("res://assets/enemies/scenes/explosion_base.tscn")
+const SCENA_HIT = preload("res://assets/characters/scenes/hit.tscn")
 
 signal enemy_destroyed
 
 func subire_danno(quantita):
+	grafica_nemico.modulate = Color(100,100,100,1)
 	salute_attuale -= SettingsManager.calculate_difficulty(quantita, "add")
 	if salute_attuale > 0:
-		#$ColorRect.color = Color("b5c9ff88")
+		var hit = SCENA_HIT.instantiate()
+		get_parent().add_child(hit)
+		var hit_position = global_position
+		hit_position.y += 50
+		hit.global_position = hit_position
 		$HitFlashTimer.start()
 
 	if salute_attuale <= 0:
@@ -81,5 +87,4 @@ func destroying():
 
 
 func _on_hit_flash_timer_timeout() -> void:
-	#$ColorRect.color = grafica_nemico
-	pass
+	grafica_nemico.modulate = Color(1, 1, 1, 1)

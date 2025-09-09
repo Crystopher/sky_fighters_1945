@@ -149,9 +149,9 @@ func enemy_spawn(scene_to_spawn):
 	# Colleghiamo un segnale per sapere quando il nemico muore
 	new_enemy.enemy_destroyed.connect(on_nemico_destroy)
 
-	var screen_width = get_viewport().size.x
+	var screen_width = get_viewport().get_visible_rect().size.x
 	var spawn_x = randf_range(safe_area, screen_width - safe_area)
-	new_enemy.position = Vector2(spawn_x, -safe_area)
+	new_enemy.position = Vector2(spawn_x, -100)
 
 	get_parent().add_child(new_enemy)
 

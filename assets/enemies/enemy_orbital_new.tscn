@@ -123,7 +123,7 @@ punti_impatto = 4
 salute_massima = 8
 
 [node name="HitFlashTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.1
 one_shot = true
 
 [node name="OmbraGiocatore" type="Sprite2D" parent="."]
