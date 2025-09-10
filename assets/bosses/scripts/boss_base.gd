@@ -3,7 +3,7 @@ extends Area2D
 var velocita = 150.0
 @export var punti_nemico = 50
 @export var punti_impatto = 1
-@export var salute_massima = 1
+@export var max_health = 1
 @onready var grafica_nemico = $GraficaNemico
 @onready var ombra_nemico = $OmbraGiocatore
 @onready var ombra_nemico_animata = $OmbraNemico
@@ -30,7 +30,7 @@ func subire_danno(quantita):
 		explode(true) # Il nemico muore solo quando la salute è finita
 
 func _ready() -> void:
-	salute_attuale = salute_massima
+	salute_attuale = max_health
 	
 	await ready
 	# 1. Troviamo il livello delle nuvole
@@ -90,7 +90,8 @@ func explode(with_sound):
 		GameManager.aggiungi_punti(punti_nemico)
 	# the enemy starts to be destroyed
 	set_process(false)
-	$CollisionPolygon2D.set_deferred("disabled", true)
+	#if wing_sx_collision: wing_sx_collision.set_deferred("disabled", true)
+	#if wing_dx_collision: wing_dx_collision.set_deferred("disabled", true)
 	if ombra_nemico: ombra_nemico.hide()
 	if ombra_nemico_animata: ombra_nemico_animata.hide()
 	grafica_nemico.hide()
@@ -100,7 +101,6 @@ func destroying():
 	# The enemy is destroyed here
 	enemy_destroyed.emit() # Annuncia al mondo che stiamo per morire
 	queue_free()
-
 
 func _on_hit_flash_timer_timeout() -> void:
 	grafica_nemico.modulate = Color(1, 1, 1, 1)

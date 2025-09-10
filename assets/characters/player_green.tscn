@@ -1,9 +1,37 @@
-[gd_scene load_steps=9 format=3 uid="uid://b88vek6t71s80"]
+[gd_scene load_steps=12 format=3 uid="uid://b88vek6t71s80"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_l2c4c"]
 [ext_resource type="PackedScene" uid="uid://ch2g7xbfx36fk" path="res://assets/characters/powerups/railgun.tscn" id="2_dqfg1"]
 [ext_resource type="Texture2D" uid="uid://c1efrpqfbncje" path="res://assets/characters/sprites/GreenBerret.png" id="5_dqfg1"]
-[ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="6_03p02"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2c4c"]
+atlas = ExtResource("5_dqfg1")
+region = Rect2(0, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqfg1"]
+atlas = ExtResource("5_dqfg1")
+region = Rect2(1118, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep5j1"]
+atlas = ExtResource("5_dqfg1")
+region = Rect2(2236, 0, 1118, 926)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d8i80"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2c4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqfg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep5j1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03p02"]
 atlas = ExtResource("5_dqfg1")
@@ -54,6 +82,16 @@ scale = Vector2(3.5, 3.1)
 build_mode = 1
 polygon = PackedVector2Array(-0.285714, 24.5161, -0.857143, 23.871, -0.857143, 19.6774, -1.14286, 18.7097, -5.71429, 19.0323, -8, 17.7419, -8.28571, 15.4839, -2, 13.2258, -3.42857, 4.51613, -20.2857, 1.93548, -22.5714, -0.322581, -22.5714, -3.54839, -18.8571, -4.83871, -4, -8.3871, -7.14286, -14.8387, -6, -21.6129, -0.285714, -24.8387, 4.85714, -21.9355, 7.14286, -15.1613, 4.28571, -8.06452, 20, -4.51613, 22.5714, -2.58065, 21.7143, 0.645161, 18, 2.58064, 3.14286, 4.51613, 1.42857, 13.2258, 7.71429, 15.4839, 7.42857, 17.7419, 4.57143, 19.3548, 0.857143, 18.7097, 0.285714, 19.3548, 0.285714, 23.871)
 
+[node name="OmbraGiocatoreAnimata" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.396078)
+z_index = -1
+position = Vector2(40, 40)
+scale = Vector2(0.143, 0.173)
+sprite_frames = SubResource("SpriteFrames_d8i80")
+animation = &"idle"
+autoplay = "idle"
+frame = 1
+
 [node name="GraficaGiocatore" type="AnimatedSprite2D" parent="."]
 position = Vector2(-0.599998, 50.9)
 scale = Vector2(0.143113, 0.172786)
@@ -62,14 +100,6 @@ animation = &"idle"
 autoplay = "idle"
 frame = 1
 frame_progress = 0.597703
-
-[node name="OmbraGiocatore" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.713726)
-z_index = -1
-position = Vector2(-14, 53)
-scale = Vector2(0.166045, 0.161926)
-texture = ExtResource("6_03p02")
-offset = Vector2(200, 100)
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 3.0

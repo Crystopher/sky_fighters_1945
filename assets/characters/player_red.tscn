@@ -1,9 +1,37 @@
-[gd_scene load_steps=12 format=3 uid="uid://u2pl5o8s73cp"]
+[gd_scene load_steps=15 format=3 uid="uid://u2pl5o8s73cp"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_6gu8q"]
 [ext_resource type="PackedScene" uid="uid://bvj4siaxmvxa6" path="res://assets/characters/powerups/railgunhigh.tscn" id="2_6gu8q"]
 [ext_resource type="Texture2D" uid="uid://bgjwbblhmvl32" path="res://assets/characters/sprites/RedBomber.png" id="5_0qwn4"]
-[ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="6_unxkj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5acef"]
+atlas = ExtResource("5_0qwn4")
+region = Rect2(0, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gu8q"]
+atlas = ExtResource("5_0qwn4")
+region = Rect2(1118, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykjwp"]
+atlas = ExtResource("5_0qwn4")
+region = Rect2(2236, 0, 1118, 926)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1niv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5acef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gu8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykjwp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qwn4"]
 atlas = ExtResource("5_0qwn4")
@@ -72,24 +100,25 @@ wait_time = 0.2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 build_mode = 1
-polygon = PackedVector2Array(0, 122, -4, 117, -26, 117, -30, 112, -29, 108, -23, 106, -11, 102, -12, 85, -13, 57, -11, 55, -73, 46, -79, 39, -79, 34, -73, 30, -24, 23, -25, 13, -20, 8, -13, 14, -14, 23, -8, 22, -8, 10, -5, 2, -13, 0, 0, -4, 11, 0, 4, 1, 7, 9, 7, 22, 13, 23, 13, 14, 20, 8, 26, 14, 26, 23, 71, 30, 78, 34, 78, 39, 74, 44, 69, 46, 10, 55, 12, 58, 11, 85, 11, 102, 28, 108, 29, 112, 27, 116, 22, 117, 3, 117)
+polygon = PackedVector2Array(0, 136, -3, 129, -26, 129, -29, 126, -30, 122, -27, 117, -12, 111, -12, 85, -13, 57, -11, 55, -73, 43, -79, 36, -79, 28, -73, 24, -25, 16, -26, 4, -20, -4, -13, 4, -14, 16, -8, 15, -8, 10, -8, -1, -7, -7, 0, -18, 6, -7, 7, -1, 7, 9, 7, 15, 13, 16, 13, 4, 19, -4, 25, 3, 26, 16, 71, 24, 78, 28, 78, 36, 74, 41, 69, 43, 10, 55, 12, 58, 11, 85, 11, 112, 29, 119, 29, 125, 27, 128, 22, 129, 3, 129)
+
+[node name="OmbraGiocatoreAnimata" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.396078)
+z_index = -1
+position = Vector2(40, 40)
+scale = Vector2(0.143, 0.173)
+sprite_frames = SubResource("SpriteFrames_1niv4")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="GraficaGiocatore" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 59)
-scale = Vector2(0.143, 0.143)
+scale = Vector2(0.143, 0.173)
 sprite_frames = SubResource("SpriteFrames_5mjpv")
 animation = &"idle"
 autoplay = "idle"
 frame = 4
 frame_progress = 0.894799
-
-[node name="OmbraGiocatore" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.713726)
-z_index = -1
-position = Vector2(-14, 53)
-scale = Vector2(0.166045, 0.161926)
-texture = ExtResource("6_unxkj")
-offset = Vector2(200, 100)
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
 wait_time = 3.0

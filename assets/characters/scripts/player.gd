@@ -10,6 +10,7 @@ const SCENA_HIT = preload("res://assets/characters/scenes/hit.tscn")
 @export var proiettile_scena: PackedScene
 @onready var collision_shape = $CollisionPolygon2D
 @onready var ombra_giocatore = $OmbraGiocatore
+@onready var ombra_giocatore_animata = $OmbraGiocatoreAnimata
 @onready var grafica_giocatore = $GraficaGiocatore
 
 var joystick_node = null
@@ -56,8 +57,12 @@ func _physics_process(delta):
 	# --- GESTIONE SPARO (INVARIATO) ---
 	if Input.is_action_just_pressed("sparo"):
 		sparare()
+		
+	var shadow_position = global_position
+	shadow_position.x += 50 
 	
-	ombra_giocatore.global_position = global_position
+	if ombra_giocatore: ombra_giocatore.global_position = shadow_position
+	if ombra_giocatore_animata: ombra_giocatore_animata.global_position = shadow_position
 
 # Aggiungi questa nuova funzione in giocatore.gd
 func energy_down(number):
@@ -94,6 +99,13 @@ func _ready():
 
 		# 3. La riattacchiamo come figlia dello strato delle nuvole
 		strato_nuvole.add_child(ombra_giocatore)
+		
+	if strato_nuvole and ombra_giocatore_animata:
+		# 2. Stacchiamo l'ombra da noi stessi
+		remove_child(ombra_giocatore_animata)
+
+		# 3. La riattacchiamo come figlia dello strato delle nuvole
+		strato_nuvole.add_child(ombra_giocatore_animata)
 
 	joystick_node = get_tree().get_first_node_in_group("virtual_joystick")
 
@@ -110,7 +122,8 @@ func morire():
 	
 	# Nascondi la grafica e disattiva le collisioni
 	grafica_giocatore.hide()
-	ombra_giocatore.hide()
+	if ombra_giocatore: ombra_giocatore.hide()
+	if ombra_giocatore_animata: ombra_giocatore_animata.hide()
 	$AutofireTimer.stop()
 	collision_shape.set_deferred("disabled", true)
 
@@ -149,7 +162,8 @@ func respawn():
 
 	# 3. Riattiviamo il giocatore
 	grafica_giocatore.show()
-	ombra_giocatore.show()
+	if ombra_giocatore: ombra_giocatore.show()
+	if ombra_giocatore_animata: ombra_giocatore_animata.show()
 	collision_shape.set_deferred("disabled", false)
 	set_physics_process(true)
 

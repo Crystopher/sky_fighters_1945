@@ -6,11 +6,19 @@ extends Node
 @export var strafer_enemy_scene: PackedScene
 @export var orbital_enemy_scene: PackedScene
 @export var sniper_enemy_scene: PackedScene
+@export var boss_enemy_scene: PackedScene
 
 var enemies_remains = 0
 var wave_in_live = false
 
 const LEVEL_ENEMY_WAVES = [
+	{
+		"name": "testboss", 
+		"active": true,
+		"enemies": [
+			{"type": "boss_eagleone", "number": 1, "wait": 1.0}
+		]
+	},
 	{
 		"name": "test", 
 		"active": true,
@@ -119,6 +127,7 @@ func start_next_wave():
 			var enemies_number = enemy_data["number"]
 			var enemy_type = enemy_data["type"]
 			var enemy_wait = enemy_data["wait"]
+			var is_boss = false
 
 			var scene_to_spawn
 			if enemy_type == "base":
@@ -131,13 +140,16 @@ func start_next_wave():
 				scene_to_spawn = orbital_enemy_scene
 			elif enemy_type == "enemy_sniper":
 				scene_to_spawn = sniper_enemy_scene
+			elif enemy_type == "boss_eagleone":
+				scene_to_spawn = boss_enemy_scene
+				is_boss = true
 
 			# Usiamo un timer per spawnare i nemici in sequenza
 			var spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
 			var counter = 0
 			while counter < enemies_number:
 				await spawn_timer.timeout
-				enemy_spawn(scene_to_spawn)
+				enemy_spawn(scene_to_spawn, is_boss)
 				counter += 1
 				spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
 	else:
@@ -145,7 +157,7 @@ func start_next_wave():
 		GameManager.current_wave += 1
 		start_next_wave()
 
-func enemy_spawn(scene_to_spawn):
+func enemy_spawn(scene_to_spawn, is_boss):
 	var safe_area = 100
 	if not scene_to_spawn: return
 	var new_enemy = scene_to_spawn.instantiate()
@@ -154,7 +166,10 @@ func enemy_spawn(scene_to_spawn):
 	new_enemy.enemy_destroyed.connect(on_nemico_destroy)
 
 	var screen_width = get_viewport().get_visible_rect().size.x
-	var spawn_x = randf_range(safe_area, screen_width - safe_area)
+	var spawn_x = screen_width / 2
+	if is_boss == false:
+		spawn_x = randf_range(safe_area, screen_width - safe_area)
+	
 	new_enemy.position = Vector2(spawn_x, -100)
 
 	get_parent().add_child(new_enemy)

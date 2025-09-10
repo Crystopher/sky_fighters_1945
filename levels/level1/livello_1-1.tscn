@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://6kombs85oynt"]
+[gd_scene load_steps=18 format=3 uid="uid://6kombs85oynt"]
 
 [ext_resource type="Script" uid="uid://n5m5c8deypol" path="res://levels/level1/scripts/spawner_1-1.gd" id="1_6c6q4"]
 [ext_resource type="PackedScene" uid="uid://cve3mrdrtc0r" path="res://assets/enemies/enemy_base.tscn" id="2_e0wbv"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cutma30egf2pu" path="res://assets/enemies/enemy_sniper_new.tscn" id="6_dnhyp"]
 [ext_resource type="Texture2D" uid="uid://de4lfg0aab5j5" path="res://levels/level1/images/sea_tile.png" id="6_vbji0"]
 [ext_resource type="Script" uid="uid://coo0wq7ce70vv" path="res://levels/level1/scripts/scrolling_manager.gd" id="7_ks70j"]
+[ext_resource type="PackedScene" uid="uid://cgja0nrcaa7cx" path="res://assets/bosses/boss_eagleone.tscn" id="7_snxqp"]
 [ext_resource type="Texture2D" uid="uid://bx7ctqxr6hcey" path="res://levels/level1/images/cloud_tile_2.png" id="8_wsj16"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="9_wsj16"]
 [ext_resource type="Texture2D" uid="uid://0suxntxarqhj" path="res://levels/level1/images/terrain.png" id="10_ks70j"]
@@ -30,6 +31,7 @@ spitfire_enemy_scene = ExtResource("3_ks70j")
 strafer_enemy_scene = ExtResource("4_ks70j")
 orbital_enemy_scene = ExtResource("5_7vam3")
 sniper_enemy_scene = ExtResource("6_dnhyp")
+boss_enemy_scene = ExtResource("7_snxqp")
 
 [node name="Timer" type="Timer" parent="WaveManager"]
 wait_time = 1.5

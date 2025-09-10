@@ -1,9 +1,37 @@
-[gd_scene load_steps=12 format=3 uid="uid://dbmtiqkb33kmf"]
+[gd_scene load_steps=15 format=3 uid="uid://dbmtiqkb33kmf"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_6qudg"]
 [ext_resource type="PackedScene" uid="uid://cbnywcke0hw8j" path="res://assets/characters/powerups/railgunlow.tscn" id="2_w3sbs"]
 [ext_resource type="Texture2D" uid="uid://4x7mbddbyvfx" path="res://assets/characters/sprites/BlueThunder.png" id="3_jugdk"]
-[ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="5_308u6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jugdk"]
+atlas = ExtResource("3_jugdk")
+region = Rect2(0, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oix8"]
+atlas = ExtResource("3_jugdk")
+region = Rect2(1118, 0, 1118, 926)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdpg5"]
+atlas = ExtResource("3_jugdk")
+region = Rect2(2236, 0, 1118, 926)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qe0ye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jugdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6oix8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdpg5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k7jf1"]
 atlas = ExtResource("3_jugdk")
@@ -70,19 +98,20 @@ ignore_time_scale = true
 wait_time = 0.2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-1, 103, -6, 101, -7, 96, -32, 101, -35, 98, -34, 94, -8, 83, -10, 78, -11, 70, -17, 70, -20, 82, -31, 82, -31, 73, -29, 68, -29, 61, -71, 61, -71, 54, -57, 47, -30, 37, -30, 25, -22, 21, -14, 27, -13, 36, -11, 35, -10, 10, -2, -3, 4, -2, 11, 10, 11, 34, 15, 36, 15, 26, 20, 21, 24, 21, 31, 27, 31, 36, 71, 53, 72, 57, 72, 61, 30, 61, 30, 72, 31, 78, 29, 81, 20, 81, 17, 73, 16, 69, 11, 69, 11, 79, 9, 83, 34, 94, 34, 99, 30, 101, 5, 97, 5, 101)
+polygon = PackedVector2Array(0, 112, -5, 109, -7, 105, -32, 110, -35, 109, -35, 102, -9, 89, -10, 78, -11, 71, -17, 71, -20, 87, -30, 86, -31, 76, -29, 73, -29, 62, -71, 61, -71, 54, -57, 45, -31, 31, -30, 19, -24, 14, -20, 13, -14, 18, -14, 31, -11, 30, -10, -3, -3, -13, 0, -15, 3, -13, 10, -2, 11, 30, 14, 30, 14, 18, 19, 13, 24, 13, 31, 20, 31, 31, 71, 53, 72, 57, 71, 62, 30, 62, 30, 72, 31, 78, 30, 86, 20, 86, 18, 80, 17, 71, 11, 72, 11, 79, 9, 89, 33, 101, 35, 108, 32, 110, 6, 105, 5, 109)
 
-[node name="OmbraGiocatore" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.713726)
+[node name="OmbraGiocatoreAnimata" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.396078)
 z_index = -1
-position = Vector2(-14, 53)
-scale = Vector2(0.166045, 0.161926)
-texture = ExtResource("5_308u6")
-offset = Vector2(200, 100)
+position = Vector2(40, 40)
+scale = Vector2(0.143, 0.173)
+sprite_frames = SubResource("SpriteFrames_qe0ye")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="GraficaGiocatore" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, 59)
-scale = Vector2(0.143, 0.143)
+scale = Vector2(0.143, 0.173)
 sprite_frames = SubResource("SpriteFrames_6qudg")
 autoplay = "default"
 
