@@ -21,10 +21,18 @@ var health_wing_dx: float
 @onready var body_collision = $BodyCollision
 @onready var hit_no_damage_sound = $HitNoDamageSound
 
+@onready var wings_sx_smoke = $WingSX_Smoke
+@onready var wings_dx_smoke = $WingDX_Smoke
+
+@onready var cannon_open_graphics = $CannonOpenGraphics
+@onready var cannon_up_graphics = $CannonUpGraphics
+
+@onready var cannon_collision = $CannonCollision
+
 @export var velocita_entrata = 400.0 # Velocità alta per l'ingresso in scena
 var y_bersaglio_stop # L'altezza a cui il nemico si fermerà
 
-@export var velocita_orbitale = 2.0  # In radianti al secondo (più alto = più veloce)
+@export var velocita_orbitale = 1.7  # In radianti al secondo (più alto = più veloce)
 var raggio_orbita = 100.0           # Il raggio del cerchio
 var centro_orbita = Vector2.ZERO   # Il centro del cerchio
 var direzione_orbita = 1.0         # 1 per antiorario, -1 per orario
@@ -53,9 +61,13 @@ func _ready():
 	
 	health_wing_sx = max_health_wing_sx
 	health_wing_dx = max_health_wing_dx
+	deactivate_cannon_collision(true)
 	deactivate_body_collision(true)
 	deactivate_wings_collision(true)
-	
+
+func deactivate_cannon_collision(value):
+	cannon_collision.set_deferred("disabled", value)
+
 func deactivate_wings_collision(value):
 	wing_sx_collision.set_deferred("disabled", value)
 	wing_dx_collision.set_deferred("disabled", value)
@@ -100,11 +112,12 @@ func _process(delta):
 	aggiorna_posizione_ombra_animata()
 
 func start_idle_animation():
-	grafica_nemico.animation = "open"
-	ombra_nemico_animata.animation = "open"
-	grafica_nemico.play()
-	ombra_nemico_animata.play()
-	$AperturaAlareTimer.start()
+	if not wing_dx_destroyed or not wing_sx_destroyed:
+		grafica_nemico.animation = "open"
+		ombra_nemico_animata.animation = "open"
+		grafica_nemico.play()
+		ombra_nemico_animata.play()
+		$AperturaAlareTimer.start()
 
 func _on_apertura_alare_timer_timeout() -> void:
 	grafica_nemico.animation = "close"
@@ -144,15 +157,35 @@ func wing_damage(damage, wing):
 		wing_to_check = health_wing_sx
 		hit_position.x -= 150
 		if wing_to_check <= 0:
+			var esplosione = SCENA_ESPLOSIONE.instantiate()
+			get_parent().add_child(esplosione)
+			var esplosione_position = global_position
+			esplosione_position.x -= 100
+			esplosione_position.y -= 100
+			esplosione.global_position = esplosione_position
 			wing_sx_destroyed = true
+			wings_sx_smoke.visible = true
+			wings_sx_smoke.play()
 			wing_sx_collision.set_deferred("disabled", true)
 	elif wing == "wing_dx":
 		health_wing_dx -= SettingsManager.calculate_difficulty(damage, "add")
 		wing_to_check = health_wing_dx
 		hit_position.x += 150
 		if wing_to_check <= 0:
+			var esplosione = SCENA_ESPLOSIONE.instantiate()
+			get_parent().add_child(esplosione)
+			var esplosione_position = global_position
+			esplosione_position.x += 150
+			esplosione_position.y -= 100
+			esplosione.global_position = esplosione_position
 			wing_dx_destroyed = true
+			wings_dx_smoke.visible = true
+			wings_dx_smoke.play()
 			wing_dx_collision.set_deferred("disabled", true)
+	
+	if wing_sx_destroyed and wing_dx_destroyed:
+		cannon_open_graphics.visible = true
+		cannon_open_graphics.play()
 		
 	if wing_to_check > 0:
 		var hit = SCENA_HIT.instantiate()
@@ -166,3 +199,8 @@ func check_damage(area, part_name):
 	if area.is_in_group("proiettili_giocatore"):
 		wing_damage(area.damage, part_name)
 		area.queue_free()
+
+
+func _on_cannon_open_graphics_animation_finished() -> void:
+	cannon_up_graphics.visible = true
+	cannon_up_graphics.play()

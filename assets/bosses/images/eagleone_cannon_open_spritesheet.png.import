@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcyaifg5camy7"
-path="res://.godot/imported/eagle_boss_base_spritesheet.png-d847d6c6ddda2d37615b6f301b778362.ctex"
+uid="uid://dbwk1wxocqrh7"
+path="res://.godot/imported/eagleone_cannon_open_spritesheet.png-9462c364d78a0fa1e168b2c9e33478c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bosses/images/eagle_boss_base_spritesheet.png"
-dest_files=["res://.godot/imported/eagle_boss_base_spritesheet.png-d847d6c6ddda2d37615b6f301b778362.ctex"]
+source_file="res://assets/bosses/images/eagleone_cannon_open_spritesheet.png"
+dest_files=["res://.godot/imported/eagleone_cannon_open_spritesheet.png-9462c364d78a0fa1e168b2c9e33478c6.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
