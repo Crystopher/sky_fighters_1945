@@ -38,7 +38,7 @@ func _ready():
 	# Calcoliamo la posizione Y casuale in cui fermarsi (nella metà superiore dello schermo)
 	var screen_height = get_viewport_rect().size.y
 	var screen_size = get_viewport_rect().size
-	y_bersaglio_stop = screen_height / 3
+	y_bersaglio_stop = (screen_height / 3) + 100
 	
 	raggio_orbita = screen_size.x * 0.20
 	
@@ -48,7 +48,7 @@ func _ready():
 	# Decidiamo a quale altezza dovrà iniziare a orbitare
 	# La Y del *centro* dell'orbita sarà questa + il raggio
 	var y_inizio_orbita = y_bersaglio_stop
-	centro_orbita.y = y_inizio_orbita
+	centro_orbita.y = y_inizio_orbita - 120
 	centro_orbita.x = screen_size.x / 2
 	
 	health_wing_sx = max_health_wing_sx
@@ -79,6 +79,11 @@ func _process(delta):
 			if position.y >= y_bersaglio_stop:
 				# Se sì, fermati e inizia a sparare
 				stato_attuale = State.STOP
+
+			if position.y >= centro_orbita.y - raggio_orbita:
+				
+				# Impostiamo l'angolo iniziale per partire dal punto più alto
+				angolo_attuale = PI / 2.0
 		
 		State.STOP:
 			stato_attuale = State.IDLE
