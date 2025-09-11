@@ -34,20 +34,24 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21fyl"]
-size = Vector2(16, 28)
+size = Vector2(18, 30)
 
 [node name="FollowMissile" type="Area2D" groups=["enemy_weapons"]]
 collision_layer = 8
 script = ExtResource("1_65tag")
+punti_arma = 2
+velocita = 550.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -6)
-scale = Vector2(0.0637097, 0.05)
+position = Vector2(0.134869, -5.99974)
+rotation = -3.13966
+scale = Vector2(0.0733013, 0.05)
 sprite_frames = SubResource("SpriteFrames_sy5qk")
 autoplay = "default"
+frame_progress = 0.78486
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 16)
+position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_21fyl")
 
 [node name="SuonoSparo" type="AudioStreamPlayer" parent="."]

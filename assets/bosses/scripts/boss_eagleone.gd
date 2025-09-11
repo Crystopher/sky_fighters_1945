@@ -4,7 +4,12 @@ extends "res://assets/bosses/scripts/boss_base.gd"
 enum State { ENTERING, STOP, IDLE }
 var stato_attuale = State.ENTERING
 
-@export var weapon_scene: PackedScene
+@export var wing_weapon_scene: PackedScene
+@export var cannon_weapon_scene: PackedScene
+@export var railgun_weapon_scene: PackedScene
+@export var laser_weapon_scene: PackedScene
+
+var max_follow_missiles = 5
 
 @export var max_health_wing_sx = 1
 @export var max_health_wing_dx = 1
@@ -44,10 +49,14 @@ var centro_orbita = Vector2.ZERO   # Il centro del cerchio
 var direzione_orbita = 1.0         # 1 per antiorario, -1 per orario
 var angolo_attuale = 0.0           # L'angolo attuale sull'orbita
 
+var riferimento_giocatore = null # Una variabile per "ricordare" dov'è il giocatore
+
 func _ready():
 	super() # Eseguiamo la funzione _ready() del genitore
 	
 	velocita = velocita_entrata
+	
+	riferimento_giocatore = get_tree().get_first_node_in_group("giocatore")
 
 	# Calcoliamo la posizione Y casuale in cui fermarsi (nella metà superiore dello schermo)
 	var screen_height = get_viewport_rect().size.y
@@ -106,6 +115,7 @@ func _process(delta):
 		
 		State.STOP:
 			stato_attuale = State.IDLE
+			$WeaponTimerRailgun.start()
 			start_idle_animation()
 		
 		State.IDLE:
@@ -130,6 +140,7 @@ func start_idle_animation():
 func _on_apertura_alare_timer_timeout() -> void:
 	grafica_nemico.animation = "close"
 	ombra_nemico_animata.animation = "close"
+	$WeaponTimerWing.stop()
 	grafica_nemico.play()
 	ombra_nemico_animata.play()
 	$ChiusuraAlareTimer.start()
@@ -145,6 +156,7 @@ func explode(with_sound):
 
 func _on_grafica_nemico_animation_finished() -> void:
 	if grafica_nemico.animation == "open":
+		$WeaponTimerWing.start()
 		deactivate_wings_collision(false)
 	elif grafica_nemico.animation == "close": 
 		deactivate_wings_collision(true)
@@ -194,6 +206,7 @@ func wing_damage(damage, wing):
 	if wing_sx_destroyed and wing_dx_destroyed:
 		cannon_open_graphics.visible = true
 		cannon_open_graphics.play()
+		max_follow_missiles = 4
 		
 	if wing_to_check > 0:
 		var hit = SCENA_HIT.instantiate()
@@ -261,3 +274,82 @@ func _on_mouth_animation_finished() -> void:
 		$CloseMouth.start()
 	elif mouth.animation == "close":
 		$OpenMouth.start()
+
+
+func _on_weapon_timer_railgun_timeout() -> void:
+	railgun_weapon_shot()
+
+func railgun_weapon_shot():
+	# Controllo di sicurezza: se il giocatore è stato distrutto, non sparare.
+	if not is_instance_valid(riferimento_giocatore):
+		return
+
+	# Eseguiamo un ciclo per sparare 4 proiettili
+	for i in range(max_follow_missiles):
+		# Calcoliamo la direzione verso il giocatore IN QUESTO ISTANTE
+		var direzione = (riferimento_giocatore.global_position - global_position).normalized()
+
+		# Creiamo un proiettile (usiamo quello base nemico)
+		var railgun_follow_sx = railgun_weapon_scene.instantiate()
+		var railgun_follow_dx = railgun_weapon_scene.instantiate()
+		get_parent().add_child(railgun_follow_sx)
+		get_parent().add_child(railgun_follow_dx)
+		
+		var position_sx = global_position
+		var position_dx = global_position
+		
+		position_sx.y -= 35
+		position_dx.y -= 35
+		
+		position_sx.x -= 75
+		position_dx.x += 75
+		
+		railgun_follow_sx.global_position = position_sx
+		railgun_follow_sx.direzione = direzione
+		
+		railgun_follow_dx.global_position = position_dx
+		railgun_follow_dx.direzione = direzione
+		
+		railgun_follow_sx.rotation = direzione.angle() + PI / 2.0
+		railgun_follow_dx.rotation = direzione.angle() + PI / 2.0
+
+		# Aspettiamo un breve istante prima di sparare il prossimo colpo della raffica
+		await get_tree().create_timer(0.3).timeout
+
+
+func _on_weapon_timer_wing_timeout() -> void:
+	wing_weapon_shoot() # Replace with function body.
+
+func wing_weapon_shoot():
+	if not wing_weapon_scene: return
+
+	var new_weapon1 = wing_weapon_scene.instantiate()
+	var new_weapon2 = wing_weapon_scene.instantiate()
+	var new_weapon3 = wing_weapon_scene.instantiate()
+	var new_weapon4 = wing_weapon_scene.instantiate()
+
+	# Aggiungiamo il proiettile alla scena principale, non al nemico stesso
+	get_tree().get_root().add_child(new_weapon1)
+	get_tree().get_root().add_child(new_weapon2)
+	get_tree().get_root().add_child(new_weapon3)
+	get_tree().get_root().add_child(new_weapon4)
+	var weapon1_position = global_position
+	var weapon2_position = global_position
+	var weapon3_position = global_position
+	var weapon4_position = global_position
+	weapon1_position.y -= 60
+	weapon1_position.x -= 120
+	
+	weapon2_position.y -= 60
+	weapon2_position.x += 120
+	
+	weapon3_position.y -= 80
+	weapon3_position.x -= 220
+	
+	weapon4_position.y -= 80
+	weapon4_position.x += 220
+	# Lo posizioniamo dove si trova il nemico
+	new_weapon1.global_position = weapon1_position
+	new_weapon2.global_position = weapon2_position
+	new_weapon3.global_position = weapon3_position
+	new_weapon4.global_position = weapon4_position
