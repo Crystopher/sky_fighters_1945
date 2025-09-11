@@ -8,12 +8,14 @@ var stato_attuale = State.ENTERING
 
 @export var max_health_wing_sx = 1
 @export var max_health_wing_dx = 1
+@export var max_health_cannon = 1
 
 var wing_dx_destroyed = false
 var wing_sx_destroyed = false
 
 var health_wing_sx: float
 var health_wing_dx: float
+var health_cannon: float
 
 # Collisions section
 @onready var wing_sx_collision = $WingSXArea/WingSXCollision
@@ -23,11 +25,15 @@ var health_wing_dx: float
 
 @onready var wings_sx_smoke = $WingSX_Smoke
 @onready var wings_dx_smoke = $WingDX_Smoke
+@onready var cannon_smoke = $Cannon_Smoke
+@onready var cannon_smoke2 = $Cannon_Smoke2
 
 @onready var cannon_open_graphics = $CannonOpenGraphics
 @onready var cannon_up_graphics = $CannonUpGraphics
+@onready var eyes_lights = $EyesLights
+@onready var mouth = $Mouth
 
-@onready var cannon_collision = $CannonCollision
+@onready var cannon_collision = $CannonArea/CannonCollision
 
 @export var velocita_entrata = 400.0 # Velocità alta per l'ingresso in scena
 var y_bersaglio_stop # L'altezza a cui il nemico si fermerà
@@ -61,6 +67,7 @@ func _ready():
 	
 	health_wing_sx = max_health_wing_sx
 	health_wing_dx = max_health_wing_dx
+	health_cannon = max_health_cannon
 	deactivate_cannon_collision(true)
 	deactivate_body_collision(true)
 	deactivate_wings_collision(true)
@@ -115,6 +122,7 @@ func start_idle_animation():
 	if not wing_dx_destroyed or not wing_sx_destroyed:
 		grafica_nemico.animation = "open"
 		ombra_nemico_animata.animation = "open"
+		cannon_up_graphics.animation = "openup"
 		grafica_nemico.play()
 		ombra_nemico_animata.play()
 		$AperturaAlareTimer.start()
@@ -200,7 +208,56 @@ func check_damage(area, part_name):
 		wing_damage(area.damage, part_name)
 		area.queue_free()
 
-
 func _on_cannon_open_graphics_animation_finished() -> void:
 	cannon_up_graphics.visible = true
 	cannon_up_graphics.play()
+
+func _on_cannon_up_graphics_animation_finished() -> void:
+	if cannon_up_graphics.animation == "openup":
+		deactivate_cannon_collision(false)
+
+func _on_cannon_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("proiettili_giocatore"):
+		health_cannon -= SettingsManager.calculate_difficulty(area.damage, "add")
+		if health_cannon > 0:
+			grafica_nemico.modulate = Color(100,100,100,1)
+			var hit = SCENA_HIT.instantiate()
+			get_parent().add_child(hit)
+			var hit_position = global_position
+			hit_position.y -= 50
+			hit.global_position = hit_position
+		else:
+			var esplosione = SCENA_ESPLOSIONE.instantiate()
+			get_parent().add_child(esplosione)
+			var esplosione_position = global_position
+			esplosione_position.y -= 100
+			esplosione.global_position = esplosione_position
+			cannon_up_graphics.animation = "exploded"
+			cannon_up_graphics.play()
+			cannon_smoke.visible = true
+			cannon_smoke.play()
+			cannon_smoke2.visible = true
+			cannon_smoke2.play()
+			eyes_lights.play()
+			$OpenMouth.start()
+			deactivate_cannon_collision(true)
+
+		$HitFlashTimer.start()
+		area.queue_free()
+
+
+func _on_open_mouth_timeout() -> void:
+	mouth.animation = "open"
+	mouth.play()
+
+
+func _on_close_mouth_timeout() -> void:
+	mouth.animation = "close"
+	mouth.play()
+
+
+func _on_mouth_animation_finished() -> void:
+	if mouth.animation == "open":
+		$CloseMouth.start()
+	elif mouth.animation == "close":
+		$OpenMouth.start()
