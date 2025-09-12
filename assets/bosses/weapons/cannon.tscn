@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://bqbq5oveurqto"]
+
+[ext_resource type="Script" uid="uid://bmuownvufyxfe" path="res://assets/bosses/weapons/scripts/vertical_leaf.gd" id="1_og6xn"]
+[ext_resource type="Texture2D" uid="uid://dt47h68y3gbyy" path="res://assets/bosses/weapons/images/splitter_missile_spritesheet.png" id="2_og6xn"]
+[ext_resource type="PackedScene" uid="uid://bpvioxshcou30" path="res://assets/bosses/weapons/cannon_explosion.tscn" id="2_yc73e"]
+[ext_resource type="AudioStream" uid="uid://cngewqy5c1mo4" path="res://assets/enemies/weapons/audio/railgun_fire.ogg" id="3_nq47w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc73e"]
+atlas = ExtResource("2_og6xn")
+region = Rect2(0, 0, 540, 1510)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq47w"]
+atlas = ExtResource("2_og6xn")
+region = Rect2(540, 0, 540, 1510)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqogh"]
+atlas = ExtResource("2_og6xn")
+region = Rect2(1080, 0, 540, 1510)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sy5qk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc73e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq47w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqogh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnhx1"]
+size = Vector2(47, 58)
+
+[node name="CannonMissile" type="Area2D" groups=["enemy_weapons"]]
+collision_layer = 8
+script = ExtResource("1_og6xn")
+proiettile_secondario = ExtResource("2_yc73e")
+punti_arma = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -44)
+rotation = -6.28122
+scale = Vector2(0.101587, 0.0974345)
+sprite_frames = SubResource("SpriteFrames_sy5qk")
+autoplay = "default"
+frame = 1
+frame_progress = 0.805933
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_pnhx1")
+
+[node name="SuonoSparo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nq47w")
+bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+ignore_time_scale = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

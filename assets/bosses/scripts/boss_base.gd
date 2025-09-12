@@ -11,6 +11,7 @@ var velocita = 150.0
 var salute_attuale: float
 
 const SCENA_ESPLOSIONE = preload("res://assets/enemies/scenes/explosion_base.tscn")
+const SCENA_ESPLOSIONE_PROIETTILE = preload("res://assets/bosses/weapons/scenes/bullet_explosion.tscn")
 const SCENA_HIT = preload("res://assets/characters/scenes/hit.tscn")
 
 signal enemy_destroyed

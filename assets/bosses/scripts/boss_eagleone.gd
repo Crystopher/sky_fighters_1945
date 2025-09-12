@@ -228,6 +228,7 @@ func _on_cannon_open_graphics_animation_finished() -> void:
 func _on_cannon_up_graphics_animation_finished() -> void:
 	if cannon_up_graphics.animation == "openup":
 		deactivate_cannon_collision(false)
+		$WeaponTimerCannon.start()
 
 func _on_cannon_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("proiettili_giocatore"):
@@ -253,6 +254,7 @@ func _on_cannon_area_area_entered(area: Area2D) -> void:
 			cannon_smoke2.play()
 			eyes_lights.play()
 			$OpenMouth.start()
+			$WeaponTimerCannon.stop()
 			deactivate_cannon_collision(true)
 
 		$HitFlashTimer.start()
@@ -295,6 +297,11 @@ func railgun_weapon_shot():
 		get_parent().add_child(railgun_follow_sx)
 		get_parent().add_child(railgun_follow_dx)
 		
+		var railgun_sx_explosion = SCENA_ESPLOSIONE_PROIETTILE.instantiate()
+		var railgun_dx_explosion = SCENA_ESPLOSIONE_PROIETTILE.instantiate()
+		get_parent().add_child(railgun_sx_explosion)
+		get_parent().add_child(railgun_dx_explosion)
+		
 		var position_sx = global_position
 		var position_dx = global_position
 		
@@ -304,9 +311,11 @@ func railgun_weapon_shot():
 		position_sx.x -= 75
 		position_dx.x += 75
 		
+		railgun_sx_explosion.global_position = position_sx
 		railgun_follow_sx.global_position = position_sx
 		railgun_follow_sx.direzione = direzione
 		
+		railgun_dx_explosion.global_position = position_dx
 		railgun_follow_dx.global_position = position_dx
 		railgun_follow_dx.direzione = direzione
 		
@@ -353,3 +362,20 @@ func wing_weapon_shoot():
 	new_weapon2.global_position = weapon2_position
 	new_weapon3.global_position = weapon3_position
 	new_weapon4.global_position = weapon4_position
+
+
+func _on_weapon_timer_cannon_timeout() -> void:
+	cannon_weapon_shot()
+
+func cannon_weapon_shot():
+	if not cannon_weapon_scene: return
+	
+	var new_weapon = cannon_weapon_scene.instantiate()
+	get_tree().get_root().add_child(new_weapon)
+	$CannonFire1.play()
+	$CannonFire2.play()
+	
+	var weapon_position = global_position
+	weapon_position.y -= 10
+	
+	new_weapon.global_position = weapon_position

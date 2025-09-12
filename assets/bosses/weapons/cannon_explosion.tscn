@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://bpvioxshcou30"]
+
+[ext_resource type="Script" uid="uid://dbcco2x4daja6" path="res://assets/bosses/weapons/scripts/cannon_explosion.gd" id="1_8aeiu"]
+[ext_resource type="Texture2D" uid="uid://nf0vplwrw2qm" path="res://assets/bosses/weapons/images/eagleone_cannon_explosion_spritesheet.png" id="2_8aeiu"]
+[ext_resource type="AudioStream" uid="uid://gv6dpe2t3avf" path="res://assets/bosses/weapons/audio/bullet_explosion.ogg" id="3_8aeiu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxq2p"]
+atlas = ExtResource("2_8aeiu")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxhr0"]
+atlas = ExtResource("2_8aeiu")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwxwp"]
+atlas = ExtResource("2_8aeiu")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va43y"]
+atlas = ExtResource("2_8aeiu")
+region = Rect2(0, 150, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nnau"]
+atlas = ExtResource("2_8aeiu")
+region = Rect2(150, 150, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gm0w"]
+atlas = ExtResource("2_8aeiu")
+region = Rect2(300, 150, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rxjd"]
+atlas = ExtResource("2_8aeiu")
+region = Rect2(0, 150, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c12ry"]
+atlas = ExtResource("2_8aeiu")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4y3n"]
+atlas = ExtResource("2_8aeiu")
+region = Rect2(0, 300, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4brh"]
+atlas = ExtResource("2_8aeiu")
+region = Rect2(150, 300, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sy5qk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxq2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxhr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwxwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va43y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nnau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nnau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gm0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rxjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c12ry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4y3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4brh")
+}],
+"loop": false,
+"name": &"play",
+"speed": 9.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nxq2p"]
+radius = 143.0
+
+[node name="CannonMissileExplosion" type="Area2D" groups=["enemy_weapons"]]
+collision_layer = 8
+script = ExtResource("1_8aeiu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -1.00001)
+rotation = -3.13966
+scale = Vector2(2.24327, 2.44765)
+sprite_frames = SubResource("SpriteFrames_sy5qk")
+animation = &"play"
+autoplay = "play"
+frame = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 2)
+shape = SubResource("CircleShape2D_nxq2p")
+
+[node name="SuonoSparo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8aeiu")
+bus = &"SFX"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

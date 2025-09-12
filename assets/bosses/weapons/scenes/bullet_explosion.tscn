@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://t6ly7pfscscs"]
+
+[ext_resource type="Texture2D" uid="uid://k28y52dbu752" path="res://assets/bosses/weapons/images/eagleone_mini_expl_spritesheet.png" id="1_b50lv"]
+[ext_resource type="Script" uid="uid://c8w8gva6o041c" path="res://assets/bosses/weapons/scenes/bullet_explosion.gd" id="2_jsk77"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsk77"]
+atlas = ExtResource("1_b50lv")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bs8k8"]
+atlas = ExtResource("1_b50lv")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tinfd"]
+atlas = ExtResource("1_b50lv")
+region = Rect2(0, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7hm7"]
+atlas = ExtResource("1_b50lv")
+region = Rect2(200, 200, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kxs7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsk77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bs8k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tinfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7hm7")
+}],
+"loop": false,
+"name": &"play",
+"speed": 20.0
+}]
+
+[node name="BulletExplosion" type="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.733333)
+position = Vector2(0, 1)
+scale = Vector2(0.265, 0.265)
+sprite_frames = SubResource("SpriteFrames_kxs7o")
+animation = &"play"
+script = ExtResource("2_jsk77")

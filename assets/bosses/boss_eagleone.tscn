@@ -1,8 +1,9 @@
-[gd_scene load_steps=140 format=3 uid="uid://cgja0nrcaa7cx"]
+[gd_scene load_steps=149 format=3 uid="uid://cgja0nrcaa7cx"]
 
 [ext_resource type="Script" uid="uid://co4anmafdkewh" path="res://assets/bosses/scripts/boss_eagleone.gd" id="1_udfac"]
 [ext_resource type="PackedScene" uid="uid://bkm1ex01fev3b" path="res://assets/bosses/weapons/follow_missile.tscn" id="2_lv7em"]
 [ext_resource type="PackedScene" uid="uid://bvkl6i2dn2tb5" path="res://assets/bosses/weapons/vertical_leaf.tscn" id="2_xa4i8"]
+[ext_resource type="PackedScene" uid="uid://bqbq5oveurqto" path="res://assets/bosses/weapons/cannon.tscn" id="3_m7575"]
 [ext_resource type="Texture2D" uid="uid://c4pkd84dig4ac" path="res://assets/enemies/images/orbital_reactor_anim_spritesheet.png" id="4_3vdpe"]
 [ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_udfac"]
 [ext_resource type="Texture2D" uid="uid://b6vjty4qsiiyc" path="res://assets/bosses/images/eagleone_cannon_up_spritesheet.png" id="5_e2rwp"]
@@ -12,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://dbwk1wxocqrh7" path="res://assets/bosses/images/eagleone_cannon_open_spritesheet.png" id="6_u6y13"]
 [ext_resource type="Texture2D" uid="uid://uk6ccxeu2voy" path="res://assets/bosses/images/eagle_boss_eyes_spritesheet.png" id="9_ah1st"]
 [ext_resource type="Texture2D" uid="uid://d1p3exgce07oi" path="res://assets/bosses/images/eagle_boss_mouth_base_spritesheet.png" id="9_bmurp"]
+[ext_resource type="Texture2D" uid="uid://k28y52dbu752" path="res://assets/bosses/weapons/images/eagleone_mini_expl_spritesheet.png" id="10_ioe58"]
+[ext_resource type="Texture2D" uid="uid://pce1egag1r57" path="res://assets/bosses/weapons/images/blank.png" id="11_ngon6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_duyra"]
 atlas = ExtResource("4_3vdpe")
@@ -575,6 +578,49 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji0dj"]
+atlas = ExtResource("10_ioe58")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftuyi"]
+atlas = ExtResource("10_ioe58")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omhkd"]
+atlas = ExtResource("10_ioe58")
+region = Rect2(0, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov8yd"]
+atlas = ExtResource("10_ioe58")
+region = Rect2(200, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fglmr"]
+atlas = ExtResource("11_ngon6")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wexqf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji0dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftuyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omhkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov8yd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fglmr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kcq8"]
 atlas = ExtResource("5_u6y13")
 region = Rect2(500, 340, 250, 340)
@@ -945,6 +991,7 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_udfac")
 wing_weapon_scene = ExtResource("2_xa4i8")
+cannon_weapon_scene = ExtResource("3_m7575")
 railgun_weapon_scene = ExtResource("2_lv7em")
 max_health_wing_sx = 5
 max_health_wing_dx = 5
@@ -1042,7 +1089,21 @@ visible = false
 position = Vector2(2.125, -54.875)
 scale = Vector2(0.319824, 0.319824)
 sprite_frames = SubResource("SpriteFrames_7ejdt")
-animation = &"exploded"
+animation = &"openup"
+frame = 14
+
+[node name="CannonFire1" type="AnimatedSprite2D" parent="."]
+position = Vector2(-17, 21)
+scale = Vector2(0.33125, 0.319375)
+sprite_frames = SubResource("SpriteFrames_wexqf")
+frame = 4
+frame_progress = 1.0
+
+[node name="CannonFire2" type="AnimatedSprite2D" parent="."]
+position = Vector2(19, 20)
+scale = Vector2(0.33125, 0.319375)
+sprite_frames = SubResource("SpriteFrames_wexqf")
+frame = 4
 
 [node name="HitNoDamageSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_udfac")
@@ -1113,6 +1174,9 @@ wait_time = 2.0
 [node name="WeaponTimerWing" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="WeaponTimerCannon" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
@@ -1129,3 +1193,4 @@ wait_time = 2.0
 [connection signal="timeout" from="CloseMouth" to="." method="_on_close_mouth_timeout"]
 [connection signal="timeout" from="WeaponTimerRailgun" to="." method="_on_weapon_timer_railgun_timeout"]
 [connection signal="timeout" from="WeaponTimerWing" to="." method="_on_weapon_timer_wing_timeout"]
+[connection signal="timeout" from="WeaponTimerCannon" to="." method="_on_weapon_timer_cannon_timeout"]
