@@ -1,6 +1,8 @@
 extends Node
 
 # Carichiamo le scene dei nemici che possiamo spawnare
+@export var start_level_scene: PackedScene
+@export var level_completed_scene: PackedScene
 @export var base_enemy_scene: PackedScene
 @export var spitfire_enemy_scene: PackedScene
 @export var strafer_enemy_scene: PackedScene
@@ -8,6 +10,11 @@ extends Node
 @export var sniper_enemy_scene: PackedScene
 @export var boss_enemy_scene: PackedScene
 @export var boss_entering_scene: PackedScene
+@export var boss_defated_scene: PackedScene
+@export var powerup_scenes: Array[PackedScene]
+
+@export var level_music: AudioStreamPlayer
+@export var boss_music: AudioStreamPlayer
 
 var enemies_remains = 0
 var wave_in_live = false
@@ -24,7 +31,7 @@ const LEVEL_ENEMY_WAVES = [
 	},
 	{
 		"name": "testboss",
-		"type": "enemy",
+		"type": "boss",
 		"active": false,
 		"enemies": [
 			{"type": "boss_eagleone", "number": 1, "wait": 1.0}
@@ -41,6 +48,15 @@ const LEVEL_ENEMY_WAVES = [
 			{"type": "base", "number": 2, "wait": 1.5},
 			{"type": "enemy_strafer", "number": 2, "wait": 1.5}
 		]
+	},
+	{
+		"name": "MissionStart",
+		"type": "scene",
+		"active": true,
+		"scene": "mission_start",
+		"wait_before_start": 1.0,
+		"wait_before_end": 3.0,
+		"timeout": 3
 	},
 	{
 		"name": "wave0", 
@@ -137,11 +153,29 @@ const LEVEL_ENEMY_WAVES = [
 	},
 	{
 		"name": "EagleBoss1",
-		"type": "enemy",
+		"type": "boss",
 		"active": true,
 		"enemies": [
 			{"type": "boss_eagleone", "number": 1, "wait": 1.0}
 		]
+	},
+	{
+		"name": "EndLevel01",
+		"type": "scene",
+		"active": true,
+		"scene": "end_level01",
+		"wait_before_start": 1.0,
+		"wait_before_end": 4.0,
+		"timeout": 3
+	},
+	{
+		"name": "MissionComplete",
+		"type": "scene",
+		"active": true,
+		"scene": "mission_complete",
+		"wait_before_start": 1.0,
+		"wait_before_end": 4.0,
+		"timeout": 3
 	}
 ]
 
@@ -169,6 +203,7 @@ func _ready():
 	get_parent().call_deferred("add_child", nuovo_giocatore)
 	
 	start_next_wave()
+	level_music.play()
 
 func _on_giocatore_morto():
 	GameManager.reset_level()
@@ -179,9 +214,25 @@ func _on_giocatore_morto():
 	# O per ricaricare semplicemente il livello:
 	# get_tree().reload_current_scene()
 
+func spawn_powerup():
+	if powerup_scenes.is_empty(): return
+
+	var chosen_powerup_scene = powerup_scenes[randi() % powerup_scenes.size()]
+	var powerup_instance = chosen_powerup_scene.instantiate()
+
+	# Posizione casuale nella parte superiore dello schermo
+	var screen_width = get_viewport().get_visible_rect().size.x
+	var screen_height = get_viewport().get_visible_rect().size.y
+	powerup_instance.position = Vector2(
+		randf_range(screen_width * 0.1, screen_width * 0.9),
+		randf_range(screen_height * 0.1, screen_height * 0.4)
+	)
+	get_parent().add_child(powerup_instance)
+
 func start_next_wave():
 	if GameManager.current_wave >= LEVEL_ENEMY_WAVES.size():
 		print("LEVEL COMPLETE!")
+		# Forzato a uscire per testare il giro completo
 		await get_tree().create_timer(2.0).timeout
 		GameManager.end_game(false)
 		return # Abbiamo finito le ondate
@@ -189,8 +240,11 @@ func start_next_wave():
 	wave_in_live = true
 	var wave_data = LEVEL_ENEMY_WAVES[GameManager.current_wave]
 	
+	if randf() < 0.2: # 20% di probabilità di generare un power-up per ondata
+		spawn_powerup()
+	
 	# Get totale of enemies
-	if wave_data.active and wave_data.type == "enemy":
+	if wave_data.active and (wave_data.type == "enemy" or wave_data.type == "boss"):
 		for enemy_data in wave_data.enemies:
 			enemies_remains += enemy_data["number"]
 	
@@ -220,6 +274,9 @@ func start_next_wave():
 			var counter = 0
 			while counter < enemies_number:
 				await spawn_timer.timeout
+				if wave_data.type == "boss":
+					level_music.stop()
+					boss_music.play()
 				enemy_spawn(scene_to_spawn, is_boss)
 				counter += 1
 				spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
@@ -228,6 +285,13 @@ func start_next_wave():
 		var scene_to_spawn
 		if wave_data.scene == "boss_entering":
 			scene_to_spawn = boss_entering_scene
+		elif wave_data.scene == "mission_start":
+			scene_to_spawn = start_level_scene
+		elif wave_data.scene == "end_level01":
+			scene_to_spawn = boss_defated_scene
+		elif wave_data.scene == "mission_complete":
+			level_music.stop()
+			scene_to_spawn = level_completed_scene
 		scene_spawn(scene_to_spawn)
 		await get_tree().create_timer(wave_data.wait_before_end).timeout
 		delete_scene(scene_to_spawn, wave_data.name)

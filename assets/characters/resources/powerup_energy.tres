@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PowerUpData" load_steps=3 format=3 uid="uid://q0o7q80xa20j"]
+
+[ext_resource type="Texture2D" uid="uid://11a78tpnekyi" path="res://assets/characters/sprites/e.png" id="1_36mh5"]
+[ext_resource type="Script" uid="uid://wo6hmo8qre01" path="res://assets/characters/scripts/powerup_data.gd" id="1_kbc2j"]
+
+[resource]
+script = ExtResource("1_kbc2j")
+type = 1
+duration = 0.0
+value = 10.0
+icon = ExtResource("1_36mh5")
+metadata/_custom_type_script = "uid://wo6hmo8qre01"

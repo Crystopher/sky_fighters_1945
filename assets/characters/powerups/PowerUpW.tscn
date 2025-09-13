@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvmtctn1vwjlh"]
+
+[ext_resource type="Script" uid="uid://dbwau5v1pl4wa" path="res://assets/characters/powerups/scripts/power_up.gd" id="1_gpgvb"]
+[ext_resource type="Resource" uid="uid://bmk2q1jhlis13" path="res://assets/characters/resources/powerup_weapon_upgrade.tres" id="2_8x7ia"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp5d3"]
+
+[node name="PowerUp" type="Area2D"]
+script = ExtResource("1_gpgvb")
+powerup_data = ExtResource("2_8x7ia")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hp5d3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

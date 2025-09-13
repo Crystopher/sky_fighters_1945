@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx71uodgqqh3n"]
+
+[ext_resource type="Script" uid="uid://qbrec8pisy2k" path="res://levels/scenes/scripts/boss_entering.gd" id="1_l02t0"]
+[ext_resource type="Texture2D" uid="uid://b2yaip4vyjh5x" path="res://levels/scenes/images/mission_start.png" id="2_l02t0"]
+
+[sub_resource type="Animation" id="Animation_xrg6s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_48sxm"]
+resource_name = "play"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.01, 1.5, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.485703, 0.485704, 0.485703, 1), Color(1, 1, 1, 1), Color(0.486275, 0.486275, 0.486275, 1), Color(1, 1, 1, 1), Color(0.486275, 0.486275, 0.486275, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0vs7i"]
+_data = {
+&"RESET": SubResource("Animation_xrg6s"),
+&"play": SubResource("Animation_48sxm")
+}
+
+[node name="MissionStart" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l02t0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -379.0
+offset_top = -250.0
+offset_right = 376.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_l02t0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0vs7i")
+}

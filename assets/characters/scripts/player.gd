@@ -18,7 +18,7 @@ var invincibile = false
 # In cima a giocatore.gd
 @export var energy_max = 10
 var current_energy
-
+var tipo_sparo_attuale
 # Creiamo un nuovo segnale che verrà emesso quando la salute cambia
 signal energy_updated(new_energy, energy_top)
 signal giocatore_morto
@@ -172,6 +172,27 @@ func respawn():
 	$InvincibilityTimer.start()
 	# Effetto lampeggio
 	grafica_giocatore.modulate.a = 0.5
+
+func applica_powerup(powerup_data: PowerUpData):
+	match powerup_data.type:
+		PowerUpData.PowerUpType.VELOCITY:
+			velocita_attuale += velocita_base * powerup_data.valore # Es. +10%
+			print("Power-up Velocità! Nuova velocità: ", velocita_attuale)
+
+		PowerUpData.PowerUpType.ENERGY:
+			subire_danno(-int(max_salute_giocatore * powerup_data.valore)) # Cura una % della max_salute
+			print("Power-up Salute! Salute attuale: ", GameManager.salute_giocatore)
+
+		PowerUpData.PowerUpType.WEAPON_DAMAGE:
+			danno_base += int(danno_base * powerup_data.valore) # Es. +20%
+			print("Power-up Danno Base! Nuovo danno: ", danno_base)
+
+		PowerUpData.PowerUpType.WEAPON_UPGRADE:
+			tipo_sparo_attuale = PowerUpData.PowerUpType.DANNO_VENTAGLIO
+			print("Power-up Danno: Sparo a Ventaglio!")
+
+	# Riaggiorna la UI (se necessario)
+	emit_signal("salute_aggiornata", GameManager.salute_giocatore, GameManager.max_salute_giocatore)
 
 # Quando il timer di invincibilità finisce
 func _on_invincibility_timer_timeout():

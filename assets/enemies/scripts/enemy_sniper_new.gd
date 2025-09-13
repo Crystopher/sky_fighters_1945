@@ -21,6 +21,8 @@ func _ready():
 	# Calcoliamo la posizione Y casuale in cui fermarsi (nella metà superiore dello schermo)
 	var screen_height = get_viewport_rect().size.y
 	y_bersaglio_stop = randf_range(screen_height * 0.1, screen_height * 0.5)
+	
+	$RafficaTimer.start() # Avviamo il timer per la prima raffica
 
 func _process(delta):
 	match stato_attuale:
@@ -33,7 +35,6 @@ func _process(delta):
 			if position.y >= y_bersaglio_stop:
 				# Se sì, fermati e inizia a sparare
 				stato_attuale = State.MIRA
-				$RafficaTimer.start() # Avviamo il timer per la prima raffica
 
 		State.MIRA:
 			# Da fermo, non facciamo nulla nel _process. L'azione è gestita dal Timer.

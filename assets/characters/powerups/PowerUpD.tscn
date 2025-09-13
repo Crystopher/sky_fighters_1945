@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkd2heos5bbqe"]
+
+[ext_resource type="Script" uid="uid://dbwau5v1pl4wa" path="res://assets/characters/powerups/scripts/power_up.gd" id="1_iqlrp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hp5d3"]
+
+[node name="PowerUp" type="Area2D"]
+script = ExtResource("1_iqlrp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hp5d3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

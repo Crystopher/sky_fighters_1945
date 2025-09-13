@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://bopoxx7ywe8rp"
+path="res://.godot/imported/courier_monospace.png-2f1246e8c378c7715a591097ba6ce641.fontdata"
+
+[deps]
+
+source_file="res://fonts/courier_monospace.png"
+dest_files=["res://.godot/imported/courier_monospace.png-2f1246e8c378c7715a591097ba6ce641.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("\' \'", "\'!\'", "\'\"\'", "\'#\'", "\'ù\'", "\'%\'", "\'ù\'", "\'\'\'", "\'(\'", "\')\'", "\'*\'", "\'+\'", "\',\'", "\'-\'", "\'.\'", "\'/\'", "\'0\'-\'9\'", "\':\'", "\';\'", "\'<\'", "\'=\'", "\'>\'", "\'?\'", "\'@\'", "\'A\'-\'O\'", "\'P\'-\'Z\'", "\'[\'", "\'\\\'", "\']\'", "\'^\'", "\'_\'", "\'ù\'", "\'a\'-\'o\'", "\'p\'-\'z\'", "\'{\'", "\'|\'", "\'}\'")
+kerning_pairs=PackedStringArray()
+columns=16
+rows=6
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2

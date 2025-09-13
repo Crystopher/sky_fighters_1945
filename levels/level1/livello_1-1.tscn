@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://6kombs85oynt"]
+[gd_scene load_steps=27 format=3 uid="uid://6kombs85oynt"]
 
 [ext_resource type="Script" uid="uid://n5m5c8deypol" path="res://levels/level1/scripts/spawner_1-1.gd" id="1_6c6q4"]
 [ext_resource type="PackedScene" uid="uid://cve3mrdrtc0r" path="res://assets/enemies/enemy_base.tscn" id="2_e0wbv"]
+[ext_resource type="PackedScene" uid="uid://cx71uodgqqh3n" path="res://levels/scenes/mission_start.tscn" id="2_qjekf"]
 [ext_resource type="PackedScene" uid="uid://2dd1o17p1a5e" path="res://assets/enemies/enemy_spitfire_new.tscn" id="3_ks70j"]
+[ext_resource type="PackedScene" uid="uid://swhr6w8kahsf" path="res://levels/scenes/mission_complete.tscn" id="3_n3omv"]
 [ext_resource type="PackedScene" uid="uid://dwf76xip60nni" path="res://assets/enemies/enemy_strafer_new.tscn" id="4_ks70j"]
 [ext_resource type="PackedScene" uid="uid://ivho43p005il" path="res://assets/enemies/enemy_orbital_new.tscn" id="5_7vam3"]
 [ext_resource type="PackedScene" uid="uid://b8judt8newgkh" path="res://ui.tscn" id="5_vwq56"]
@@ -13,10 +15,16 @@
 [ext_resource type="PackedScene" uid="uid://cgja0nrcaa7cx" path="res://assets/bosses/boss_eagleone.tscn" id="7_snxqp"]
 [ext_resource type="PackedScene" uid="uid://3uls4o7kyg48" path="res://levels/scenes/boss_entering.tscn" id="8_qrjjj"]
 [ext_resource type="Texture2D" uid="uid://bx7ctqxr6hcey" path="res://levels/level1/images/cloud_tile_2.png" id="8_wsj16"]
+[ext_resource type="PackedScene" uid="uid://65iux0qllrrp" path="res://levels/level1/scenes/end_level01.tscn" id="9_leb5y"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="9_wsj16"]
 [ext_resource type="Texture2D" uid="uid://0suxntxarqhj" path="res://levels/level1/images/terrain.png" id="10_ks70j"]
 [ext_resource type="AudioStream" uid="uid://cuqhu7hb88hnk" path="res://levels/level1/audio/normal.ogg" id="10_vwq56"]
 [ext_resource type="Texture2D" uid="uid://cchq5d67deoym" path="res://levels/level1/images/sea_and_terrain.png" id="11_7vam3"]
+[ext_resource type="PackedScene" uid="uid://dkd2heos5bbqe" path="res://assets/characters/powerups/PowerUpD.tscn" id="12_835s5"]
+[ext_resource type="PackedScene" uid="uid://dmw20jex2ykxy" path="res://assets/characters/powerups/PowerUpE.tscn" id="13_vy3ul"]
+[ext_resource type="PackedScene" uid="uid://bfaq0tks540w1" path="res://assets/characters/powerups/PowerUpS.tscn" id="14_4m7l1"]
+[ext_resource type="PackedScene" uid="uid://cvmtctn1vwjlh" path="res://assets/characters/powerups/PowerUpW.tscn" id="15_tpiyw"]
+[ext_resource type="AudioStream" uid="uid://lad8h1drrxn5" path="res://levels/level1/audio/eagleone_boss.ogg" id="18_4pmea"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vwq56"]
 shader = ExtResource("9_wsj16")
@@ -25,8 +33,10 @@ shader_parameter/line_darkness = 0.6
 
 [node name="Livello1-1" type="Node2D"]
 
-[node name="WaveManager" type="Node" parent="."]
+[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("level_music", "boss_music")]
 script = ExtResource("1_6c6q4")
+start_level_scene = ExtResource("2_qjekf")
+level_completed_scene = ExtResource("3_n3omv")
 base_enemy_scene = ExtResource("2_e0wbv")
 spitfire_enemy_scene = ExtResource("3_ks70j")
 strafer_enemy_scene = ExtResource("4_ks70j")
@@ -34,6 +44,10 @@ orbital_enemy_scene = ExtResource("5_7vam3")
 sniper_enemy_scene = ExtResource("6_dnhyp")
 boss_enemy_scene = ExtResource("7_snxqp")
 boss_entering_scene = ExtResource("8_qrjjj")
+boss_defated_scene = ExtResource("9_leb5y")
+powerup_scenes = Array[PackedScene]([ExtResource("12_835s5"), ExtResource("13_vy3ul"), ExtResource("14_4m7l1"), ExtResource("15_tpiyw")])
+level_music = NodePath("../MusicaLivello")
+boss_music = NodePath("../MusicaBoss")
 
 [node name="Timer" type="Timer" parent="WaveManager"]
 wait_time = 1.5
@@ -97,7 +111,11 @@ mouse_filter = 2
 [node name="MusicaLivello" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_vwq56")
 volume_db = 7.0
-autoplay = true
 bus = &"Music"
+
+[node name="MusicaBoss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_4pmea")
+bus = &"Music"
+parameters/looping = true
 
 [connection signal="timeout" from="WaveManager/Timer" to="WaveManager" method="_on_timer_timeout"]
