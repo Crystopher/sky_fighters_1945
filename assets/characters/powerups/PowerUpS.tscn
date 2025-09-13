@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfaq0tks540w1"]
+[gd_scene load_steps=4 format=3 uid="uid://bfaq0tks540w1"]
 
 [ext_resource type="Script" uid="uid://dbwau5v1pl4wa" path="res://assets/characters/powerups/scripts/power_up.gd" id="1_ya0fw"]
+[ext_resource type="Resource" uid="uid://ba060qedmlijd" path="res://assets/characters/resources/powerup_velocity.tres" id="2_l7wlb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp5d3"]
 
 [node name="PowerUp" type="Area2D"]
 script = ExtResource("1_ya0fw")
+powerup_data = ExtResource("2_l7wlb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hp5d3")
