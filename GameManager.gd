@@ -78,3 +78,32 @@ func game_over():
 	# Aspettiamo un istante per dare tempo ai suoni di finire, poi ricarichiamo
 	await get_tree().create_timer(0.5).timeout
 	get_tree().reload_current_scene()
+
+func end_game(player_won: bool):
+	# Metti in pausa il gioco per bloccare tutto
+	get_tree().paused = true
+
+	ultimo_punteggio = punteggio_attuale
+	ultima_difficolta = SettingsManager.difficulty_multiplier
+	ultimo_aereo = giocatore_selezionato
+
+	# Pulisci gli elementi visivi della scena
+	clean_up_level()
+
+	# Riattiva il gioco per permettere al TransitionManager di funzionare
+	get_tree().paused = false
+
+	if player_won:
+		# Se il giocatore ha "vinto" o raggiunto la fine del livello
+		# Potresti voler una schermata di "Vittoria" o "Livello Completato"
+		# Per ora, reindirizziamo semplicemente alla schermata di inserimento highscore
+		if HighscoreManager.is_high_score(ultimo_punteggio):
+			TransitionManager.change_scene("res://inserimento_highscore.tscn")
+		else:
+			TransitionManager.change_scene("res://menu_principale.tscn")
+	else:
+		# Questo è il caso del Game Over "standard" (es. vite esaurite)
+		if HighscoreManager.is_high_score(ultimo_punteggio):
+			TransitionManager.change_scene("res://inserimento_highscore.tscn")
+		else:
+			TransitionManager.change_scene("res://menu_principale.tscn")

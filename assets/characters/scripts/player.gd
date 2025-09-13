@@ -188,7 +188,7 @@ func _on_area_entered(area: Area2D) -> void:
 		# Se un proiettile nemico ci tocca, subiamo danno secondo il valore di punti_arma
 		energy_down(area.punti_arma)
 		# Il proiettile viene distrutto
-		area.queue_free()
+		if not area.keep_visible: area.queue_free()
 
 func _on_hit_flash_timer_timeout() -> void:
 	grafica_giocatore.modulate = Color(1, 1, 1, 1)

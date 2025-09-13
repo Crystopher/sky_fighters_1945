@@ -53,7 +53,6 @@ radius = 15.0333
 [node name="FollowMissile" type="Area2D" groups=["enemy_weapons"]]
 collision_layer = 8
 script = ExtResource("1_ic57s")
-punti_arma = 3
 velocita = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

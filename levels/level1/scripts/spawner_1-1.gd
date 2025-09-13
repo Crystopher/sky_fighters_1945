@@ -7,21 +7,33 @@ extends Node
 @export var orbital_enemy_scene: PackedScene
 @export var sniper_enemy_scene: PackedScene
 @export var boss_enemy_scene: PackedScene
+@export var boss_entering_scene: PackedScene
 
 var enemies_remains = 0
 var wave_in_live = false
 
 const LEVEL_ENEMY_WAVES = [
 	{
-		"name": "testboss", 
-		"active": true,
+		"name": "BossEntering",
+		"type": "scene",
+		"active": false,
+		"scene": "boss_entering",
+		"wait_before_start": 2.0,
+		"wait_before_end": 4.0,
+		"timeout": 3
+	},
+	{
+		"name": "testboss",
+		"type": "enemy",
+		"active": false,
 		"enemies": [
 			{"type": "boss_eagleone", "number": 1, "wait": 1.0}
 		]
 	},
 	{
 		"name": "test", 
-		"active": true,
+		"active": false,
+		"type": "enemy",
 		"enemies": [
 			{"type": "enemy_sniper", "number": 2, "wait": 2.0},
 			{"type": "enemy_orbital", "number": 2, "wait": 2.0},
@@ -33,6 +45,7 @@ const LEVEL_ENEMY_WAVES = [
 	{
 		"name": "wave0", 
 		"active": true,
+		"type": "enemy",
 		"enemies": [
 			{"type": "base", "number": 3, "wait": 1.0}
 		]
@@ -40,6 +53,7 @@ const LEVEL_ENEMY_WAVES = [
 	{
 		"name": "wave1", 
 		"active": true,
+		"type": "enemy",
 		"enemies": [
 			{"type": "enemy_spitfire", "number": 3, "wait": 1.0}
 		]
@@ -47,6 +61,7 @@ const LEVEL_ENEMY_WAVES = [
 	{
 		"name": "wave2", 
 		"active": true,
+		"type": "enemy",
 		"enemies": [
 			{"type": "enemy_spitfire", "number": 2, "wait": 2.0},
 			{"type": "base", "number": 2, "wait": 1.5},
@@ -56,6 +71,7 @@ const LEVEL_ENEMY_WAVES = [
 	{
 		"name": "wave3", 
 		"active": true,
+		"type": "enemy",
 		"enemies": [
 			{"type": "enemy_spitfire", "number": 1, "wait": 1.5},
 			{"type": "base", "number": 2, "wait": 0.5},
@@ -67,11 +83,64 @@ const LEVEL_ENEMY_WAVES = [
 	{
 		"name": "wave4", 
 		"active": true,
+		"type": "enemy",
+		"enemies": [
+			{"type": "enemy_spitfire", "number": 1, "wait": 1.5},
+			{"type": "base", "number": 2, "wait": 0.5},
+			{"type": "enemy_spitfire", "number": 1, "wait": 1.5},
+			{"type": "base", "number": 2, "wait": 0.5},
+			{"type": "enemy_strafer", "number": 3, "wait": 1.5}
+		]
+	},
+	{
+		"name": "wave5", 
+		"active": true,
+		"type": "enemy",
 		"enemies": [
 			{"type": "enemy_spitfire", "number": 3, "wait": 1.5},
 			{"type": "base", "number": 6, "wait": 0.5},
 			{"type": "enemy_strafer", "number": 1, "wait": 1.5},
 			{"type": "enemy_orbital", "number": 2, "wait": 1.5},
+		]
+	},
+	{
+		"name": "wave6", 
+		"active": true,
+		"type": "enemy",
+		"enemies": [
+			{"type": "enemy_spitfire", "number": 3, "wait": 1.5},
+			{"type": "base", "number": 6, "wait": 0.5},
+			{"type": "enemy_strafer", "number": 1, "wait": 1.5},
+			{"type": "enemy_orbital", "number": 2, "wait": 1.5},
+		]
+	},
+	{
+		"name": "wave7", 
+		"active": true,
+		"type": "enemy",
+		"enemies": [
+			{"type": "enemy_sniper", "number": 2, "wait": 2.0},
+			{"type": "enemy_orbital", "number": 2, "wait": 2.0},
+			{"type": "enemy_spitfire", "number": 2, "wait": 2.0},
+			{"type": "base", "number": 2, "wait": 1.5},
+			{"type": "enemy_strafer", "number": 2, "wait": 1.5}
+		]
+	},
+	{
+		"name": "BossEntering",
+		"type": "scene",
+		"active": true,
+		"scene": "boss_entering",
+		"wait_before_start": 2.0,
+		"wait_before_end": 4.0,
+		"timeout": 3
+	},
+	{
+		"name": "EagleBoss1",
+		"type": "enemy",
+		"active": true,
+		"enemies": [
+			{"type": "boss_eagleone", "number": 1, "wait": 1.0}
 		]
 	}
 ]
@@ -113,13 +182,15 @@ func _on_giocatore_morto():
 func start_next_wave():
 	if GameManager.current_wave >= LEVEL_ENEMY_WAVES.size():
 		print("LEVEL COMPLETE!")
+		await get_tree().create_timer(2.0).timeout
+		GameManager.end_game(false)
 		return # Abbiamo finito le ondate
 
 	wave_in_live = true
 	var wave_data = LEVEL_ENEMY_WAVES[GameManager.current_wave]
 	
 	# Get totale of enemies
-	if wave_data.active:
+	if wave_data.active and wave_data.type == "enemy":
 		for enemy_data in wave_data.enemies:
 			enemies_remains += enemy_data["number"]
 	
@@ -152,10 +223,35 @@ func start_next_wave():
 				enemy_spawn(scene_to_spawn, is_boss)
 				counter += 1
 				spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
+	elif wave_data.active and wave_data.type == "scene":
+		await get_tree().create_timer(wave_data.wait_before_start).timeout
+		var scene_to_spawn
+		if wave_data.scene == "boss_entering":
+			scene_to_spawn = boss_entering_scene
+		scene_spawn(scene_to_spawn)
+		await get_tree().create_timer(wave_data.wait_before_end).timeout
+		delete_scene(scene_to_spawn, wave_data.name)
+		GameManager.current_wave += 1
+		start_next_wave()
 	else:
 		wave_in_live = false
 		GameManager.current_wave += 1
 		start_next_wave()
+
+func delete_scene(scene_to_spawn, name):
+	for i in get_parent().get_child_count():
+		var child = get_parent().get_child(i)
+		if child != null and child.name == name:
+			child.free()
+
+func scene_spawn(scene_to_spawn):
+	if not scene_to_spawn: return
+	var scene = scene_to_spawn.instantiate()
+
+	scene.size.x = get_viewport().get_visible_rect().size.x
+	scene.size.y = get_viewport().get_visible_rect().size.y
+
+	get_parent().add_child(scene)
 
 func enemy_spawn(scene_to_spawn, is_boss):
 	var safe_area = 100

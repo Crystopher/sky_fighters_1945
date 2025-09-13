@@ -7,7 +7,6 @@ var stato_attuale = State.ENTERING
 @export var wing_weapon_scene: PackedScene
 @export var cannon_weapon_scene: PackedScene
 @export var railgun_weapon_scene: PackedScene
-@export var laser_weapon_scene: PackedScene
 
 var max_follow_missiles = 5
 
@@ -17,6 +16,8 @@ var max_follow_missiles = 5
 
 var wing_dx_destroyed = false
 var wing_sx_destroyed = false
+var cannon_destroyed = false
+var boss_destroyed = false
 
 var health_wing_sx: float
 var health_wing_dx: float
@@ -97,7 +98,7 @@ func deactivate_wings_collision(value):
 func deactivate_body_collision(value):
 	body_collision.set_deferred("disabled", value)
 
-func _process(delta):
+func _process(delta):	
 	match stato_attuale:
 		State.ENTERING:
 			# Muoviti verso il basso
@@ -256,6 +257,7 @@ func _on_cannon_area_area_entered(area: Area2D) -> void:
 			$OpenMouth.start()
 			$WeaponTimerCannon.stop()
 			deactivate_cannon_collision(true)
+			deactivate_body_collision(false)
 
 		$HitFlashTimer.start()
 		area.queue_free()
@@ -265,17 +267,25 @@ func _on_open_mouth_timeout() -> void:
 	mouth.animation = "open"
 	mouth.play()
 
-
 func _on_close_mouth_timeout() -> void:
 	mouth.animation = "close"
 	mouth.play()
 
-
 func _on_mouth_animation_finished() -> void:
-	if mouth.animation == "open":
+	if not boss_destroyed:
+		if mouth.animation == "open":
+			$LaserWeapon/LaserAudio.play()
+			await get_tree().create_timer(1.35).timeout
+			$LaserWeapon.visible = true
+			$LaserPlayer.play("laser_on")
+			$CloseMouth.start()
+			await get_tree().create_timer(2).timeout
+			$LaserPlayer.play("RESET")
+			$LaserWeapon.visible = false
+		elif mouth.animation == "close":
+			$OpenMouth.start()
+	else:
 		$CloseMouth.start()
-	elif mouth.animation == "close":
-		$OpenMouth.start()
 
 
 func _on_weapon_timer_railgun_timeout() -> void:

@@ -41,7 +41,7 @@ size = Vector2(47, 58)
 collision_layer = 8
 script = ExtResource("1_og6xn")
 proiettile_secondario = ExtResource("2_yc73e")
-punti_arma = 3
+punti_arma = 1.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -44)

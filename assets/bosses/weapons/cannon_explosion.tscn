@@ -91,6 +91,7 @@ radius = 143.0
 [node name="CannonMissileExplosion" type="Area2D" groups=["enemy_weapons"]]
 collision_layer = 8
 script = ExtResource("1_8aeiu")
+punti_arma = 3.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3, -1.00001)

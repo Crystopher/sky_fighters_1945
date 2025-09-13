@@ -39,7 +39,7 @@ size = Vector2(18, 30)
 [node name="FollowMissile" type="Area2D" groups=["enemy_weapons"]]
 collision_layer = 8
 script = ExtResource("1_65tag")
-punti_arma = 2
+punti_arma = 0.5
 velocita = 550.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

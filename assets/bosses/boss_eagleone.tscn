@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=3 uid="uid://cgja0nrcaa7cx"]
+[gd_scene load_steps=157 format=3 uid="uid://cgja0nrcaa7cx"]
 
 [ext_resource type="Script" uid="uid://co4anmafdkewh" path="res://assets/bosses/scripts/boss_eagleone.gd" id="1_udfac"]
 [ext_resource type="PackedScene" uid="uid://bkm1ex01fev3b" path="res://assets/bosses/weapons/follow_missile.tscn" id="2_lv7em"]
@@ -15,6 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://d1p3exgce07oi" path="res://assets/bosses/images/eagle_boss_mouth_base_spritesheet.png" id="9_bmurp"]
 [ext_resource type="Texture2D" uid="uid://k28y52dbu752" path="res://assets/bosses/weapons/images/eagleone_mini_expl_spritesheet.png" id="10_ioe58"]
 [ext_resource type="Texture2D" uid="uid://pce1egag1r57" path="res://assets/bosses/weapons/images/blank.png" id="11_ngon6"]
+[ext_resource type="Script" uid="uid://ndk1sujnhwae" path="res://assets/bosses/weapons/scripts/laser_weapon.gd" id="16_0sc2a"]
+[ext_resource type="Texture2D" uid="uid://c6ibbct2wb0rv" path="res://assets/bosses/weapons/images/start_laser.png" id="16_shj2d"]
+[ext_resource type="Texture2D" uid="uid://dogdtfp4ypk5l" path="res://assets/bosses/weapons/images/laser.png" id="17_0sc2a"]
+[ext_resource type="AudioStream" uid="uid://dj6558qspwtq6" path="res://assets/bosses/weapons/audio/laser.ogg" id="19_sq6jh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_duyra"]
 atlas = ExtResource("4_3vdpe")
@@ -986,6 +990,142 @@ animations = [{
 "speed": 11.0
 }]
 
+[sub_resource type="Animation" id="Animation_shj2d"]
+resource_name = "laser_on"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserWeapon/CollisionShape2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.06, 0.15, 0.24, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 16.445), Vector2(1, 46.045), Vector2(1, 116), Vector2(1, 183.295), Vector2(1, 222.775)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LaserWeapon/LaserHead:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(18, 4), Vector2(42, 20)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LaserWeapon/LaserHead:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-9, 2), Vector2(-21, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LaserWeapon/LaserBody:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(18, 4), Vector2(42, 1237)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LaserWeapon/LaserBody:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-9, 6), Vector2(-21, 19)]
+}
+
+[sub_resource type="Animation" id="Animation_0sc2a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserWeapon/CollisionShape2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LaserWeapon/LaserHead:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LaserWeapon/LaserHead:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LaserWeapon/LaserBody:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 4)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LaserWeapon/LaserBody:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, 6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sq6jh"]
+_data = {
+&"RESET": SubResource("Animation_0sc2a"),
+&"laser_on": SubResource("Animation_shj2d")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shj2d"]
+size = Vector2(20, 11)
+
 [node name="BossEagleOne" type="Area2D" groups=["nemici"]]
 collision_layer = 4
 collision_mask = 3
@@ -993,12 +1133,12 @@ script = ExtResource("1_udfac")
 wing_weapon_scene = ExtResource("2_xa4i8")
 cannon_weapon_scene = ExtResource("3_m7575")
 railgun_weapon_scene = ExtResource("2_lv7em")
-max_health_wing_sx = 5
-max_health_wing_dx = 5
-max_health_cannon = 5
+max_health_wing_sx = 20
+max_health_wing_dx = 20
+max_health_cannon = 50
 punti_nemico = 1500
 punti_impatto = 30
-max_health = 10000
+max_health = 100
 
 [node name="HitFlashTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -1176,6 +1316,43 @@ wait_time = 2.0
 
 [node name="WeaponTimerCannon" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="LaserPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sq6jh")
+}
+
+[node name="LaserWeapon" type="Area2D" parent="." groups=["enemy_weapons"]]
+visible = false
+position = Vector2(3, 85)
+collision_layer = 8
+script = ExtResource("16_0sc2a")
+punti_arma = 4.0
+keep_visible = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserWeapon"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_shj2d")
+
+[node name="LaserHead" type="TextureRect" parent="LaserWeapon"]
+offset_left = -9.0
+offset_top = 2.0
+offset_right = 9.0
+offset_bottom = 6.0
+texture = ExtResource("16_shj2d")
+expand_mode = 1
+
+[node name="LaserBody" type="TextureRect" parent="LaserWeapon"]
+offset_left = -9.0
+offset_top = 6.0
+offset_right = 9.0
+offset_bottom = 10.0
+texture = ExtResource("17_0sc2a")
+expand_mode = 1
+
+[node name="LaserAudio" type="AudioStreamPlayer" parent="LaserWeapon"]
+stream = ExtResource("19_sq6jh")
+bus = &"SFX"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
