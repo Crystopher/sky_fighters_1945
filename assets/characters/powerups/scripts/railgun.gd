@@ -6,6 +6,9 @@ var current_damage
 var sound_delay = 0.0
 var sound_mute = false
 
+var is_right = false
+var is_left = false
+
 @onready var suono_sparo = $Sparo
 # _process viene chiamato a ogni frame, è ottimo per movimenti non legati alla fisica
 # _process viene chiamato a ogni frame
@@ -14,6 +17,9 @@ func _ready() -> void:
 	if not sound_mute:
 		get_tree().create_timer(sound_delay).timeout
 		suono_sparo.play()
+	
+	if $Rotation != null:
+		$Rotation.play("rotation")
 	
 func _process(delta):
 	# Il movimento verso l'alto non cambia

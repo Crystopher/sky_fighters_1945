@@ -427,8 +427,7 @@ offset_right = -63.044
 offset_bottom = 22.546
 theme_override_fonts/font = ExtResource("2_0fx30")
 theme_override_font_sizes/font_size = 21
-text = "VELOCITY
-"
+text = "SPEED"
 
 [node name="VelocityLabel2" type="Label" parent="GridContainer/Details"]
 modulate = Color(0, 0, 0, 1)
@@ -445,7 +444,7 @@ offset_right = 3.95598
 offset_bottom = 27.546
 theme_override_fonts/font = ExtResource("2_0fx30")
 theme_override_font_sizes/font_size = 21
-text = "VELOCITY
+text = "SPEED
 "
 
 [node name="VelocityBar" type="ProgressBar" parent="GridContainer/Details"]

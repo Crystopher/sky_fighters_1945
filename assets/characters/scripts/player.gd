@@ -7,7 +7,7 @@ const SCENA_HIT = preload("res://assets/characters/scenes/hit.tscn")
 @export var velocita = 300.0
 var velocita_attuale
 var current_weapon = 0
-var max_waepon = 1
+var max_waepon = 3
 var current_damage_powerup = 0.0
 # Esportiamo una variabile di tipo "PackedScene"
 # Questo creerà uno slot nell'Inspector dove potremo trascinare la nostra scena del proiettile.
@@ -16,6 +16,8 @@ var current_damage_powerup = 0.0
 @onready var ombra_giocatore = $OmbraGiocatore
 @onready var ombra_giocatore_animata = $OmbraGiocatoreAnimata
 @onready var grafica_giocatore = $GraficaGiocatore
+
+@export var player_code = ""
 
 var joystick_node = null
 var invincibile = false
@@ -45,9 +47,12 @@ func _physics_process(delta):
 		# Se il giocatore si sta muovendo e il timer è fermo, fallo partire.
 		if $AutofireTimer.is_stopped():
 			$AutofireTimer.start()
+		if $Autofire2Timer.is_stopped():
+			$Autofire2Timer.start()
 	else:
 		# Se il giocatore è fermo, ferma il timer.
 		$AutofireTimer.stop()
+		$Autofire2Timer.stop()
 
 	position += direzione_input * velocita_attuale * delta
 
@@ -121,7 +126,27 @@ func shot_0():
 	nuovo_proiettile.current_damage = nuovo_proiettile.current_damage + (nuovo_proiettile.damage * current_damage_powerup)
 	nuovo_proiettile.global_position = global_position
 
-func shot_1():
+func shot_green_3():
+	var projectile_sx = weapons[2].instantiate()
+	var projectile_dx = weapons[2].instantiate()
+	projectile_dx.sound_mute = true
+	projectile_sx.sound_mute = true
+	projectile_sx.is_left = true
+	projectile_dx.is_right = true
+	get_parent().add_child(projectile_dx)
+	get_parent().add_child(projectile_sx)
+	projectile_sx.current_damage = projectile_sx.current_damage + (projectile_sx.damage * current_damage_powerup)
+	projectile_dx.current_damage = projectile_dx.current_damage + (projectile_dx.damage * current_damage_powerup)
+	var sx_postion = global_position
+	sx_postion.x -= 80
+	sx_postion.y += 30
+	var dx_postion = global_position
+	dx_postion.x += 80
+	dx_postion.y += 30
+	projectile_dx.global_position = sx_postion
+	projectile_sx.global_position = dx_postion
+
+func shot_green_2():
 	var projectile_sx = weapons[1].instantiate()
 	var projectile_dx = weapons[1].instantiate()
 	projectile_dx.sound_mute = true
@@ -139,6 +164,34 @@ func shot_1():
 	projectile_dx.global_position = sx_postion
 	projectile_sx.global_position = dx_postion
 
+func shot_green_1():
+	var nuovo_proiettile_1 = weapons[0].instantiate()
+	var nuovo_proiettile_2 = weapons[0].instantiate()
+	nuovo_proiettile_2.sound_mute = true
+	nuovo_proiettile_1.sound_mute = false
+	get_parent().add_child(nuovo_proiettile_1)
+	get_parent().add_child(nuovo_proiettile_2)
+	nuovo_proiettile_1.current_damage = (nuovo_proiettile_1.current_damage/2) + ((nuovo_proiettile_1.damage/2) * current_damage_powerup)
+	nuovo_proiettile_2.current_damage = (nuovo_proiettile_2.current_damage/2) + ((nuovo_proiettile_2.damage/2) * current_damage_powerup)
+	var position_dx = global_position
+	position_dx.x += 20
+	var position_sx = global_position
+	position_sx.x -= 20
+	nuovo_proiettile_1.global_position = position_sx
+	nuovo_proiettile_2.global_position = position_dx
+
+func shot_1():
+	if player_code == "green":
+		shot_green_1()
+		
+func shot_2():
+	if player_code == "green":
+		shot_green_2()
+		
+func shot_3():
+	if player_code == "green":
+		shot_green_3()
+
 func sparare():
 	if not weapons: return
 	
@@ -147,9 +200,27 @@ func sparare():
 	if current_weapon == 0:
 		shot_0()
 	elif current_weapon == 1:
-		shot_0()
 		if weapons.size() >= 1:
 			shot_1()
+	elif current_weapon == 2:
+		if weapons.size() >= 2:
+			shot_1()
+	elif current_weapon == 3:
+		if weapons.size() >= 3:
+			shot_1()
+
+func sparare_02():
+	if not weapons: return
+	
+	if current_weapon > max_waepon: current_weapon = max_waepon
+	
+	if current_weapon == 2:
+		if weapons.size() >= 2:
+			shot_2()
+	elif current_weapon == 3:
+		if weapons.size() >= 3:
+			shot_2()
+			shot_3()
 
 func morire():
 	var esplosione = SCENA_ESPLOSIONE.instantiate()
@@ -161,6 +232,7 @@ func morire():
 	if ombra_giocatore: ombra_giocatore.hide()
 	if ombra_giocatore_animata: ombra_giocatore_animata.hide()
 	$AutofireTimer.stop()
+	$Autofire2Timer.stop()
 	collision_shape.set_deferred("disabled", true)
 
 	# Ferma il movimento del giocatore
@@ -253,3 +325,7 @@ func _on_hit_flash_timer_timeout() -> void:
 
 func _on_autofire_timer_timeout() -> void:
 	sparare() # Replace with function body.
+
+
+func _on_autofire_2_timer_timeout() -> void:
+	sparare_02() # Replace with function body.

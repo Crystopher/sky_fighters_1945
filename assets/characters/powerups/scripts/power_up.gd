@@ -22,6 +22,7 @@ func _on_body_entered(body):
 	if body.is_in_group("giocatore"):
 		$Obtained.play()
 		$Sprite2D.visible = false
+		$Sprite2D2.visible = false
 		$CollisionShape2D.set_deferred_thread_group("disabled", true)
 		$Message.visible = true
 		$AnimationPlayer.play("glow")
@@ -34,6 +35,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("giocatore"):
 		$Obtained.play()
 		$Sprite2D.visible = false
+		$Sprite2D2.visible = false
 		$CollisionShape2D.set_deferred_thread_group("disabled", true)
 		$Message.visible = true
 		$AnimationPlayer.play("glow")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://b88vek6t71s80"]
+[gd_scene load_steps=14 format=3 uid="uid://b88vek6t71s80"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_l2c4c"]
 [ext_resource type="PackedScene" uid="uid://ch2g7xbfx36fk" path="res://assets/characters/powerups/railgun_1.tscn" id="2_dqfg1"]
 [ext_resource type="PackedScene" uid="uid://c13scsxdd7klf" path="res://assets/characters/powerups/railgun_2.tscn" id="3_l2c4c"]
+[ext_resource type="PackedScene" uid="uid://ba1jo1pc4upfl" path="res://assets/characters/powerups/railgun_3.tscn" id="4_dqfg1"]
 [ext_resource type="Texture2D" uid="uid://c1efrpqfbncje" path="res://assets/characters/sprites/GreenBerret.png" id="5_dqfg1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l2c4c"]
@@ -66,7 +67,8 @@ animations = [{
 [node name="GiocatoreVerde" type="Area2D" groups=["giocatore"]]
 collision_mask = 12
 script = ExtResource("1_l2c4c")
-weapons = Array[PackedScene]([ExtResource("2_dqfg1"), ExtResource("3_l2c4c")])
+weapons = Array[PackedScene]([ExtResource("2_dqfg1"), ExtResource("3_l2c4c"), ExtResource("4_dqfg1")])
+player_code = "green"
 energy_max = 12
 
 [node name="HitFlashTimer" type="Timer" parent="."]
@@ -76,6 +78,9 @@ ignore_time_scale = true
 
 [node name="AutofireTimer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="Autofire2Timer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0.400002, 53.9)
@@ -109,4 +114,5 @@ one_shot = true
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
 [connection signal="timeout" from="AutofireTimer" to="." method="_on_autofire_timer_timeout"]
+[connection signal="timeout" from="Autofire2Timer" to="." method="_on_autofire_2_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
