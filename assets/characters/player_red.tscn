@@ -87,7 +87,7 @@ animations = [{
 collision_mask = 12
 script = ExtResource("1_6gu8q")
 velocita = 200.0
-proiettile_scena = ExtResource("2_6gu8q")
+weapons = Array[PackedScene]([ExtResource("2_6gu8q")])
 energy_max = 15
 
 [node name="HitFlashTimer" type="Timer" parent="."]

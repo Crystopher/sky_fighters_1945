@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmw20jex2ykxy"]
+[gd_scene load_steps=7 format=3 uid="uid://dmw20jex2ykxy"]
 
 [ext_resource type="Script" uid="uid://dbwau5v1pl4wa" path="res://assets/characters/powerups/scripts/power_up.gd" id="1_4kwlv"]
 [ext_resource type="Resource" uid="uid://q0o7q80xa20j" path="res://assets/characters/resources/powerup_energy.tres" id="2_wpm63"]
+[ext_resource type="Texture2D" uid="uid://11a78tpnekyi" path="res://assets/characters/sprites/e.png" id="3_wpm63"]
+[ext_resource type="AudioStream" uid="uid://cqgh2sv1rtt1c" path="res://assets/characters/powerups/audio/energy_restored.ogg" id="4_6kokj"]
+[ext_resource type="Texture2D" uid="uid://705mxyk2yle1" path="res://assets/characters/powerups/images/energy_up.png" id="5_ktnoe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp5d3"]
+size = Vector2(66, 64)
 
 [node name="PowerUp" type="Area2D"]
+collision_layer = 16
 script = ExtResource("1_4kwlv")
 powerup_data = ExtResource("2_wpm63")
 
@@ -13,3 +18,18 @@ powerup_data = ExtResource("2_wpm63")
 shape = SubResource("RectangleShape2D_hp5d3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("3_wpm63")
+
+[node name="Obtained" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6kokj")
+bus = &"SFX"
+
+[node name="Message" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2.86102e-06, -1.90735e-06)
+scale = Vector2(0.373057, 0.373057)
+texture = ExtResource("5_ktnoe")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -10,6 +10,11 @@ var current_wave = 0
 var vite_iniziali = 3
 var vite_rimanenti
 
+var current_energy
+var current_speed
+var current_weapon_damage_powerup
+var current_weapon_selected
+
 var ultimo_punteggio = 0
 var ultima_difficolta = 1.0
 var ultimo_aereo = "verde"

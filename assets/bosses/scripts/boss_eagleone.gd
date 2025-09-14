@@ -219,7 +219,7 @@ func wing_damage(damage, wing):
 
 func check_damage(area, part_name):
 	if area.is_in_group("proiettili_giocatore"):
-		wing_damage(area.damage, part_name)
+		wing_damage(area.current_damage, part_name)
 		area.queue_free()
 
 func _on_cannon_open_graphics_animation_finished() -> void:
@@ -233,7 +233,7 @@ func _on_cannon_up_graphics_animation_finished() -> void:
 
 func _on_cannon_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("proiettili_giocatore"):
-		health_cannon -= SettingsManager.calculate_difficulty(area.damage, "add")
+		health_cannon -= SettingsManager.calculate_difficulty(area.current_damage, "add")
 		if health_cannon > 0:
 			grafica_nemico.modulate = Color(100,100,100,1)
 			var hit = SCENA_HIT.instantiate()

@@ -1,15 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvmtctn1vwjlh"]
+[gd_scene load_steps=7 format=3 uid="uid://cvmtctn1vwjlh"]
 
 [ext_resource type="Script" uid="uid://dbwau5v1pl4wa" path="res://assets/characters/powerups/scripts/power_up.gd" id="1_gpgvb"]
 [ext_resource type="Resource" uid="uid://bmk2q1jhlis13" path="res://assets/characters/resources/powerup_weapon_upgrade.tres" id="2_8x7ia"]
+[ext_resource type="Texture2D" uid="uid://blcd0evokjvw8" path="res://assets/characters/sprites/w.png" id="3_4p7ru"]
+[ext_resource type="AudioStream" uid="uid://ehcfcvmwpuqq" path="res://assets/characters/powerups/audio/weapon_upgrade.ogg" id="4_323qt"]
+[ext_resource type="Texture2D" uid="uid://cyd4s2yreu7t" path="res://assets/characters/powerups/images/weapon_up.png" id="5_l5gqh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hp5d3"]
+size = Vector2(67, 66)
 
 [node name="PowerUp" type="Area2D"]
+collision_layer = 16
 script = ExtResource("1_gpgvb")
 powerup_data = ExtResource("2_8x7ia")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_hp5d3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("3_4p7ru")
+
+[node name="Obtained" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_323qt")
+bus = &"SFX"
+
+[node name="Message" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2.86102e-06, -1.90735e-06)
+scale = Vector2(0.373057, 0.373057)
+texture = ExtResource("5_l5gqh")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -2,12 +2,18 @@ extends Area2D
 
 @export var velocita = 600.0
 @export var damage = 1.0
+var current_damage
+var sound_delay = 0.0
+var sound_mute = false
 
 @onready var suono_sparo = $Sparo
 # _process viene chiamato a ogni frame, è ottimo per movimenti non legati alla fisica
 # _process viene chiamato a ogni frame
 func _ready() -> void:
-	suono_sparo.play()
+	current_damage = damage
+	if not sound_mute:
+		get_tree().create_timer(sound_delay).timeout
+		suono_sparo.play()
 	
 func _process(delta):
 	# Il movimento verso l'alto non cambia

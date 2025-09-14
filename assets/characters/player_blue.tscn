@@ -87,7 +87,7 @@ animations = [{
 collision_mask = 12
 script = ExtResource("1_6qudg")
 velocita = 450.0
-proiettile_scena = ExtResource("2_w3sbs")
+weapons = Array[PackedScene]([ExtResource("2_w3sbs")])
 
 [node name="HitFlashTimer" type="Timer" parent="."]
 wait_time = 0.1

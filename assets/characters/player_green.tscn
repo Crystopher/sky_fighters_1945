@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://b88vek6t71s80"]
+[gd_scene load_steps=13 format=3 uid="uid://b88vek6t71s80"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_l2c4c"]
-[ext_resource type="PackedScene" uid="uid://ch2g7xbfx36fk" path="res://assets/characters/powerups/railgun.tscn" id="2_dqfg1"]
+[ext_resource type="PackedScene" uid="uid://ch2g7xbfx36fk" path="res://assets/characters/powerups/railgun_1.tscn" id="2_dqfg1"]
+[ext_resource type="PackedScene" uid="uid://c13scsxdd7klf" path="res://assets/characters/powerups/railgun_2.tscn" id="3_l2c4c"]
 [ext_resource type="Texture2D" uid="uid://c1efrpqfbncje" path="res://assets/characters/sprites/GreenBerret.png" id="5_dqfg1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l2c4c"]
@@ -65,7 +66,7 @@ animations = [{
 [node name="GiocatoreVerde" type="Area2D" groups=["giocatore"]]
 collision_mask = 12
 script = ExtResource("1_l2c4c")
-proiettile_scena = ExtResource("2_dqfg1")
+weapons = Array[PackedScene]([ExtResource("2_dqfg1"), ExtResource("3_l2c4c")])
 energy_max = 12
 
 [node name="HitFlashTimer" type="Timer" parent="."]

@@ -5,9 +5,13 @@ const SCENA_HIT = preload("res://assets/characters/scenes/hit.tscn")
 
 # La parola chiave @export permette di modificare questa variabile direttamente dall'Inspector di Godot.
 @export var velocita = 300.0
+var velocita_attuale
+var current_weapon = 0
+var max_waepon = 1
+var current_damage_powerup = 0.0
 # Esportiamo una variabile di tipo "PackedScene"
 # Questo creerà uno slot nell'Inspector dove potremo trascinare la nostra scena del proiettile.
-@export var proiettile_scena: PackedScene
+@export var weapons: Array[PackedScene]
 @onready var collision_shape = $CollisionPolygon2D
 @onready var ombra_giocatore = $OmbraGiocatore
 @onready var ombra_giocatore_animata = $OmbraGiocatoreAnimata
@@ -45,7 +49,7 @@ func _physics_process(delta):
 		# Se il giocatore è fermo, ferma il timer.
 		$AutofireTimer.stop()
 
-	position += direzione_input * velocita * delta
+	position += direzione_input * velocita_attuale * delta
 
 	# --- BLOCCO AI BORDI (INVARIATO) ---
 	var screen_size = get_viewport_rect().size
@@ -66,6 +70,7 @@ func _physics_process(delta):
 
 # Aggiungi questa nuova funzione in giocatore.gd
 func energy_down(number):
+	if invincibile: return
 	current_energy -= SettingsManager.calculate_difficulty(number, "minus")
 
 	# Emettiamo il segnale per aggiornare la UI
@@ -89,6 +94,7 @@ func energy_down(number):
 func _ready():
 	# Questa funzione viene eseguita all'avvio della scena
 	current_energy = energy_max
+	velocita_attuale = velocita
 	await ready
 	# 1. Troviamo il livello delle nuvole
 	var strato_nuvole = get_tree().get_first_node_in_group("strato_nuvole")
@@ -109,11 +115,41 @@ func _ready():
 
 	joystick_node = get_tree().get_first_node_in_group("virtual_joystick")
 
-func sparare():
-	if not proiettile_scena: return
-	var nuovo_proiettile = proiettile_scena.instantiate()
+func shot_0():
+	var nuovo_proiettile = weapons[0].instantiate()
 	get_parent().add_child(nuovo_proiettile)
+	nuovo_proiettile.current_damage = nuovo_proiettile.current_damage + (nuovo_proiettile.damage * current_damage_powerup)
 	nuovo_proiettile.global_position = global_position
+
+func shot_1():
+	var projectile_sx = weapons[1].instantiate()
+	var projectile_dx = weapons[1].instantiate()
+	projectile_dx.sound_mute = true
+	projectile_sx.sound_mute = true
+	get_parent().add_child(projectile_dx)
+	get_parent().add_child(projectile_sx)
+	projectile_sx.current_damage = projectile_sx.current_damage + (projectile_sx.damage * current_damage_powerup)
+	projectile_dx.current_damage = projectile_dx.current_damage + (projectile_dx.damage * current_damage_powerup)
+	var sx_postion = global_position
+	sx_postion.x -= 80
+	sx_postion.y += 30
+	var dx_postion = global_position
+	dx_postion.x += 80
+	dx_postion.y += 30
+	projectile_dx.global_position = sx_postion
+	projectile_sx.global_position = dx_postion
+
+func sparare():
+	if not weapons: return
+	
+	if current_weapon > max_waepon: current_weapon = max_waepon
+	
+	if current_weapon == 0:
+		shot_0()
+	elif current_weapon == 1:
+		shot_0()
+		if weapons.size() >= 1:
+			shot_1()
 
 func morire():
 	var esplosione = SCENA_ESPLOSIONE.instantiate()
@@ -155,6 +191,10 @@ func respawn():
 	# 1. Resettiamo la salute del giocatore
 	current_energy = energy_max
 	energy_updated.emit(current_energy, energy_max)
+	
+	current_weapon = 0
+	velocita_attuale = velocita
+	current_damage_powerup = 0.0
 
 	# 2. Riposizioniamo il giocatore al centro in basso
 	var screen_size = get_viewport().get_visible_rect().size
@@ -176,23 +216,20 @@ func respawn():
 func applica_powerup(powerup_data: PowerUpData):
 	match powerup_data.type:
 		PowerUpData.PowerUpType.VELOCITY:
-			velocita_attuale += velocita_base * powerup_data.valore # Es. +10%
-			print("Power-up Velocità! Nuova velocità: ", velocita_attuale)
+			velocita_attuale += velocita * powerup_data.value # Es. +10%
 
 		PowerUpData.PowerUpType.ENERGY:
-			subire_danno(-int(max_salute_giocatore * powerup_data.valore)) # Cura una % della max_salute
-			print("Power-up Salute! Salute attuale: ", GameManager.salute_giocatore)
+			current_energy = energy_max # Cura salute a max
 
 		PowerUpData.PowerUpType.WEAPON_DAMAGE:
-			danno_base += int(danno_base * powerup_data.valore) # Es. +20%
-			print("Power-up Danno Base! Nuovo danno: ", danno_base)
+			current_damage_powerup += powerup_data.value # Es. +20%
 
 		PowerUpData.PowerUpType.WEAPON_UPGRADE:
-			tipo_sparo_attuale = PowerUpData.PowerUpType.DANNO_VENTAGLIO
+			current_weapon += 1
 			print("Power-up Danno: Sparo a Ventaglio!")
 
 	# Riaggiorna la UI (se necessario)
-	emit_signal("salute_aggiornata", GameManager.salute_giocatore, GameManager.max_salute_giocatore)
+	emit_signal("energy_updated", current_energy, energy_max)
 
 # Quando il timer di invincibilità finisce
 func _on_invincibility_timer_timeout():

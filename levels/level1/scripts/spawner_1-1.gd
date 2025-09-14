@@ -216,17 +216,17 @@ func _on_giocatore_morto():
 
 func spawn_powerup():
 	if powerup_scenes.is_empty(): return
+	
+	var safe_area = 200
 
 	var chosen_powerup_scene = powerup_scenes[randi() % powerup_scenes.size()]
 	var powerup_instance = chosen_powerup_scene.instantiate()
 
-	# Posizione casuale nella parte superiore dello schermo
 	var screen_width = get_viewport().get_visible_rect().size.x
-	var screen_height = get_viewport().get_visible_rect().size.y
-	powerup_instance.position = Vector2(
-		randf_range(screen_width * 0.1, screen_width * 0.9),
-		randf_range(screen_height * 0.1, screen_height * 0.4)
-	)
+	var spawn_x = randf_range(safe_area, screen_width - safe_area)
+	
+	powerup_instance.position = Vector2(spawn_x, -100)
+	
 	get_parent().add_child(powerup_instance)
 
 func start_next_wave():
@@ -240,8 +240,8 @@ func start_next_wave():
 	wave_in_live = true
 	var wave_data = LEVEL_ENEMY_WAVES[GameManager.current_wave]
 	
-	if randf() < 0.2: # 20% di probabilità di generare un power-up per ondata
-		spawn_powerup()
+	#if GameManager.current_wave == 0 or GameManager.current_wave == 1 or GameManager.current_wave == 2: # 20% di probabilità di generare un power-up per ondata
+	spawn_powerup()
 	
 	# Get totale of enemies
 	if wave_data.active and (wave_data.type == "enemy" or wave_data.type == "boss"):
