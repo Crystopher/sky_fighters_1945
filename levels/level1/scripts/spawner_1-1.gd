@@ -18,6 +18,7 @@ extends Node
 
 var enemies_remains = 0
 var wave_in_live = false
+var spawn_completed = false
 
 const LEVEL_ENEMY_WAVES = [
 	{
@@ -238,10 +239,13 @@ func start_next_wave():
 		return # Abbiamo finito le ondate
 
 	wave_in_live = true
+	spawn_completed = false
 	var wave_data = LEVEL_ENEMY_WAVES[GameManager.current_wave]
 	
 	#if GameManager.current_wave == 0 or GameManager.current_wave == 1 or GameManager.current_wave == 2: # 20% di probabilità di generare un power-up per ondata
 	spawn_powerup()
+	
+	enemies_remains = 0
 	
 	# Get totale of enemies
 	if wave_data.active and (wave_data.type == "enemy" or wave_data.type == "boss"):
@@ -280,6 +284,7 @@ func start_next_wave():
 				enemy_spawn(scene_to_spawn, is_boss)
 				counter += 1
 				spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
+		spawn_completed = true
 	elif wave_data.active and wave_data.type == "scene":
 		await get_tree().create_timer(wave_data.wait_before_start).timeout
 		var scene_to_spawn
@@ -297,7 +302,7 @@ func start_next_wave():
 		delete_scene(scene_to_spawn, wave_data.name)
 		GameManager.current_wave += 1
 		start_next_wave()
-	else:
+	elif not wave_data.active:
 		wave_in_live = false
 		GameManager.current_wave += 1
 		start_next_wave()
@@ -336,7 +341,7 @@ func enemy_spawn(scene_to_spawn, is_boss):
 
 func on_nemico_destroy():
 	enemies_remains -= 1
-	if enemies_remains <= 0 and wave_in_live:
+	if enemies_remains <= 0 and wave_in_live and spawn_completed:
 		wave_in_live = false
 		GameManager.current_wave += 1
 		# Aspettiamo 3 secondi prima di lanciare la prossima ondata

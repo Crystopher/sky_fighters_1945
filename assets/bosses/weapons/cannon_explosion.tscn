@@ -92,6 +92,7 @@ radius = 143.0
 collision_layer = 8
 script = ExtResource("1_8aeiu")
 punti_arma = 3.0
+keep_visible = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3, -1.00001)
