@@ -107,7 +107,7 @@ func end_game(player_won: bool):
 		else:
 			TransitionManager.change_scene("res://menu_principale.tscn")
 	else:
-		# Questo è il caso del Game Over "standard" (es. vite esaurite)
+		# Questo è# il caso del Game Over "standard" (es. vite esaurite)
 		if HighscoreManager.is_high_score(ultimo_punteggio):
 			TransitionManager.change_scene("res://inserimento_highscore.tscn")
 		else:

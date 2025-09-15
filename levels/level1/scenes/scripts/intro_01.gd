@@ -17,8 +17,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		animation_player.play("intro01_3")
 		engine_start.play()
 	elif anim_name == "intro01_3":
-		TransitionManager.change_scene(SCENA_LIVELLO_PRINCIPALE)
+		TransitionManager.change_scene_async(SCENA_LIVELLO_PRINCIPALE)
 
 func _on_skip_pressed() -> void:
 	animation_player.stop()
-	TransitionManager.change_scene(SCENA_LIVELLO_PRINCIPALE)
+	TransitionManager.change_scene_async(SCENA_LIVELLO_PRINCIPALE)

@@ -1,11 +1,84 @@
-[gd_scene load_steps=8 format=3 uid="uid://dd5mjil4g53xu"]
+[gd_scene load_steps=20 format=3 uid="uid://dd5mjil4g53xu"]
 
 [ext_resource type="Script" uid="uid://b0nbueo225ge3" path="res://menu_principale.gd" id="1_qkmkp"]
 [ext_resource type="Texture2D" uid="uid://dnsfoqvas2udi" path="res://images/SkyFightersMain.png" id="2_um64m"]
 [ext_resource type="AudioStream" uid="uid://cae3k4j0ximp5" path="res://audio/switch3.ogg" id="2_xqmsj"]
+[ext_resource type="Texture2D" uid="uid://bvwa21c17rijn" path="res://images/title_spritesheet.png" id="3_0novl"]
 [ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="3_f4ksu"]
 [ext_resource type="Texture2D" uid="uid://kn5x503ybjoe" path="res://images/options.png" id="4_a2e5c"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="4_kc5wk"]
+[ext_resource type="AudioStream" uid="uid://capalfqqc1oup" path="res://audio/title.ogg" id="8_0novl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5kwv"]
+atlas = ExtResource("3_0novl")
+region = Rect2(0, 0, 666, 758)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw175"]
+atlas = ExtResource("3_0novl")
+region = Rect2(666, 0, 666, 758)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af1hb"]
+atlas = ExtResource("3_0novl")
+region = Rect2(1332, 0, 666, 758)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpsvf"]
+atlas = ExtResource("3_0novl")
+region = Rect2(0, 758, 666, 758)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbyk3"]
+atlas = ExtResource("3_0novl")
+region = Rect2(666, 758, 666, 758)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyshl"]
+atlas = ExtResource("3_0novl")
+region = Rect2(1332, 758, 666, 758)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg0q2"]
+atlas = ExtResource("3_0novl")
+region = Rect2(0, 1516, 666, 758)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tarm0"]
+atlas = ExtResource("3_0novl")
+region = Rect2(666, 1516, 666, 758)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg1og"]
+atlas = ExtResource("3_0novl")
+region = Rect2(1332, 1516, 666, 758)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hr3ll"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5kwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tw175")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af1hb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpsvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbyk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyshl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg0q2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tarm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg1og")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um64m"]
 shader = ExtResource("4_kc5wk")
@@ -29,7 +102,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,6 +122,14 @@ grow_vertical = 2
 texture = ExtResource("2_um64m")
 expand_mode = 1
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(361, 505.5)
+scale = Vector2(1, 1.2942)
+sprite_frames = SubResource("SpriteFrames_hr3ll")
+autoplay = "default"
+frame = 5
+frame_progress = 0.0306152
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -46,10 +137,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -324.0
-offset_top = -317.0
-offset_right = -84.0
-offset_bottom = -227.0
+offset_left = -117.0
+offset_top = -649.0
+offset_right = 123.0
+offset_bottom = -559.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_f4ksu")
@@ -78,14 +169,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -322.0
-offset_top = -130.0
-offset_right = -142.0
-offset_bottom = -40.0
+offset_left = -90.0
+offset_top = -411.0
+offset_right = 90.0
+offset_bottom = -321.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_f4ksu")
-text = "QUIT"
+text = "EXIT GAME"
 
 [node name="Button3" type="Button" parent="."]
 layout_mode = 1
@@ -94,10 +185,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -322.0
-offset_top = -224.0
-offset_right = 8.0
-offset_bottom = -134.0
+offset_left = -162.0
+offset_top = -529.0
+offset_right = 168.0
+offset_bottom = -439.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_f4ksu")
@@ -118,6 +209,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_0novl")
+autoplay = true
+bus = &"Music"
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

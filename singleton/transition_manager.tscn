@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c426tmaowqhkh"]
+[gd_scene load_steps=8 format=3 uid="uid://c426tmaowqhkh"]
 
 [ext_resource type="Script" uid="uid://x7jlpwfca2m5" path="res://singleton/transition_manager.gd" id="1_m8kef"]
+[ext_resource type="FontFile" uid="uid://yj0forao1opc" path="res://fonts/pngkey.com-unity-png-4427020_2.png" id="2_a0byw"]
+[ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="2_kb6aj"]
 
 [sub_resource type="Animation" id="Animation_m8kef"]
 length = 0.001
@@ -58,6 +60,50 @@ _data = {
 
 [node name="TransitionManager" type="CanvasLayer"]
 script = ExtResource("1_m8kef")
+
+[node name="LoadingScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -326.0
+offset_top = -48.0
+offset_right = 340.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_kb6aj")
+max_value = 1.0
+allow_greater = true
+allow_lesser = true
+
+[node name="Label" type="Label" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = -84.0
+offset_right = 90.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_a0byw")
+theme_override_font_sizes/font_size = 32
+text = "PLEASE WAIT"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

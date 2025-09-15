@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://25tppc13kpma"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://25tppc13kpma"]
 
 [ext_resource type="FontFile" uid="uid://yj0forao1opc" path="res://fonts/pngkey.com-unity-png-4427020_2.png" id="1_6abfs"]
 [ext_resource type="Texture2D" uid="uid://d3qijhhyiyn6i" path="res://images/pulsante_hover.png" id="2_6abfs"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dom34w61huw2q" path="res://images/slider_01.png" id="5_hguu3"]
 [ext_resource type="Texture2D" uid="uid://ditpb5rk5y5q5" path="res://images/slider_03.png" id="6_44si8"]
 [ext_resource type="Texture2D" uid="uid://bte3kbwadcxou" path="res://images/slider_02.png" id="7_t6ehh"]
+[ext_resource type="FontFile" uid="uid://bopoxx7ywe8rp" path="res://fonts/courier_monospace.png" id="8_t6ehh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t6ehh"]
 
@@ -74,4 +75,8 @@ HSlider/icons/grabber = ExtResource("5_hguu3")
 HSlider/icons/grabber_disabled = ExtResource("6_44si8")
 HSlider/icons/grabber_highlight = ExtResource("7_t6ehh")
 HSlider/styles/slider = SubResource("StyleBoxFlat_6abfs")
+ProgressBar/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/colors/font_outline_color = Color(1, 1, 1, 1)
+ProgressBar/font_sizes/font_size = 24
+ProgressBar/fonts/font = ExtResource("8_t6ehh")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_wu4fv")

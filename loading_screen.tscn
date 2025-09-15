@@ -1,15 +1,54 @@
-[gd_scene load_steps=2 format=3 uid="uid://davljutnoh0lr"]
+[gd_scene load_steps=3 format=3 uid="uid://davljutnoh0lr"]
 
-[ext_resource type="Script" uid="uid://rtjljrbnwc2u" path="res://loading_screen.gd" id="1_mggpi"]
+[ext_resource type="FontFile" uid="uid://yj0forao1opc" path="res://fonts/pngkey.com-unity-png-4427020_2.png" id="2_htrc2"]
 
-[node name="SchermataCaricamento" type="Control"]
+[sub_resource type="GDScript" id="GDScript_mggpi"]
+script/source = "extends Control
+
+@onready var progress_bar = $ProgressBar
+@onready var label = $Label
+
+# La scena che vogliamo caricare in background
+var percorso_scena_da_caricare = \"res://menu_principale.tscn\"
+
+# Questa variabile-array verrà usata per tracciare l'avanzamento
+var progress = []
+
+func _ready():
+	pass
+
+func start_loading(scene_full_path):
+	percorso_scena_da_caricare = scene_full_path
+	# Avviamo la richiesta di caricamento
+	ResourceLoader.load_threaded_request(percorso_scena_da_caricare)
+
+func _process(delta):
+	# Controlliamo lo stato passando l'array 'progress' come secondo argomento
+	var stato_caricamento = ResourceLoader.load_threaded_get_status(percorso_scena_da_caricare, progress)
+	
+	match stato_caricamento:
+		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+			# Se sta caricando, aggiorniamo la barra usando il valore nell'array
+			progress_bar.value = progress[0] * 100
+
+		ResourceLoader.THREAD_LOAD_LOADED:
+			# Se ha finito, prendiamo la risorsa e cambiamo scena
+			var scena_caricata = ResourceLoader.load_threaded_get(percorso_scena_da_caricare)
+			get_tree().change_scene_to_packed(scena_caricata)
+
+		ResourceLoader.THREAD_LOAD_FAILED:
+			label.text = \"ERROR\"
+"
+
+[node name="LoadingScreen" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mggpi")
+script = SubResource("GDScript_mggpi")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 1
@@ -32,10 +71,11 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -238.0
-offset_top = -48.0
-offset_right = -159.0
-offset_bottom = -25.0
+offset_left = -86.0
+offset_top = -84.0
+offset_right = 90.0
+offset_bottom = -61.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Loading ..."
+theme_override_fonts/font = ExtResource("2_htrc2")
+text = "PLEASE WAIT"
