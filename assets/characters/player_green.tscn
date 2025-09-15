@@ -82,6 +82,9 @@ wait_time = 0.2
 [node name="Autofire2Timer" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="Autofire3Timer" type="Timer" parent="."]
+wait_time = 0.2
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0.400002, 53.9)
 scale = Vector2(3.5, 3.1)
@@ -115,4 +118,5 @@ one_shot = true
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
 [connection signal="timeout" from="AutofireTimer" to="." method="_on_autofire_timer_timeout"]
 [connection signal="timeout" from="Autofire2Timer" to="." method="_on_autofire_2_timer_timeout"]
+[connection signal="timeout" from="Autofire3Timer" to="." method="_on_autofire_3_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

@@ -6,6 +6,8 @@ var current_damage
 var sound_delay = 0.0
 var sound_mute = false
 
+@export var keep_visible = false
+
 var is_right = false
 var is_left = false
 
@@ -34,6 +36,21 @@ func _process(delta):
 	if position.y < 0 or position.y > screen_size.y:
 		queue_free() # Questo comando distrugge il nodo in modo sicuro
 
-
 func _on_area_entered(area: Area2D) -> void:
-	queue_free() # Replace with function body.
+	#queue_free() # Replace with function body.
+	pass
+
+func _on_thunder_timer_timeout() -> void:
+	$ThunderAudio.play()
+	$CollisionShape2D.set_deferred("disabled", false)
+	$CollisionShape2D2.set_deferred("disabled", false)
+	$TextureRect.visible = true
+	$TextureRect2.visible = true
+	$ThunderTimer2.start()
+
+func _on_thunder_timer_2_timeout() -> void:
+	$CollisionShape2D.set_deferred("disabled", true)
+	$CollisionShape2D2.set_deferred("disabled", true)
+	$TextureRect.visible = false
+	$TextureRect2.visible = false
+	$ThunderTimer.start()

@@ -1,65 +1,59 @@
-[gd_scene load_steps=20 format=3 uid="uid://dd5mjil4g53xu"]
+[gd_scene load_steps=29 format=3 uid="uid://dd5mjil4g53xu"]
 
 [ext_resource type="Script" uid="uid://b0nbueo225ge3" path="res://menu_principale.gd" id="1_qkmkp"]
+[ext_resource type="Texture2D" uid="uid://bx7ctqxr6hcey" path="res://levels/level1/images/cloud_tile_2.png" id="2_hpsvf"]
 [ext_resource type="Texture2D" uid="uid://dnsfoqvas2udi" path="res://images/SkyFightersMain.png" id="2_um64m"]
+[ext_resource type="Script" uid="uid://buft2guyl5y52" path="res://parallax_background.gd" id="2_wbyk3"]
 [ext_resource type="AudioStream" uid="uid://cae3k4j0ximp5" path="res://audio/switch3.ogg" id="2_xqmsj"]
-[ext_resource type="Texture2D" uid="uid://bvwa21c17rijn" path="res://images/title_spritesheet.png" id="3_0novl"]
 [ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="3_f4ksu"]
+[ext_resource type="Texture2D" uid="uid://de4lfg0aab5j5" path="res://levels/level1/images/sea_tile.png" id="3_vyshl"]
 [ext_resource type="Texture2D" uid="uid://kn5x503ybjoe" path="res://images/options.png" id="4_a2e5c"]
+[ext_resource type="Texture2D" uid="uid://dwyael4o84xl4" path="res://images/Gemini_Generated_Image_81sv2a81sv2a81sv.png" id="4_af1hb"]
+[ext_resource type="Texture2D" uid="uid://bd8vut3co4qms" path="res://images/title_spritesheet_transparent.png" id="4_hpsvf"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="4_kc5wk"]
+[ext_resource type="Texture2D" uid="uid://cdig8kws5kndn" path="res://images/Gemini_Generated_Image_ap94m9ap94m9ap94.png" id="5_hpsvf"]
+[ext_resource type="Texture2D" uid="uid://bj74etvgey5tj" path="res://images/Gemini_Generated_Image_oh5mpjoh5mpjoh5m.png" id="6_wbyk3"]
 [ext_resource type="AudioStream" uid="uid://capalfqqc1oup" path="res://audio/title.ogg" id="8_0novl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_n5kwv"]
-atlas = ExtResource("3_0novl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbyk3"]
+atlas = ExtResource("4_hpsvf")
 region = Rect2(0, 0, 666, 758)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tw175"]
-atlas = ExtResource("3_0novl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyshl"]
+atlas = ExtResource("4_hpsvf")
 region = Rect2(666, 0, 666, 758)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_af1hb"]
-atlas = ExtResource("3_0novl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg0q2"]
+atlas = ExtResource("4_hpsvf")
 region = Rect2(1332, 0, 666, 758)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hpsvf"]
-atlas = ExtResource("3_0novl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tarm0"]
+atlas = ExtResource("4_hpsvf")
 region = Rect2(0, 758, 666, 758)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wbyk3"]
-atlas = ExtResource("3_0novl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg1og"]
+atlas = ExtResource("4_hpsvf")
 region = Rect2(666, 758, 666, 758)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vyshl"]
-atlas = ExtResource("3_0novl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hr3ll"]
+atlas = ExtResource("4_hpsvf")
 region = Rect2(1332, 758, 666, 758)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hg0q2"]
-atlas = ExtResource("3_0novl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hts22"]
+atlas = ExtResource("4_hpsvf")
 region = Rect2(0, 1516, 666, 758)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tarm0"]
-atlas = ExtResource("3_0novl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_sloow"]
+atlas = ExtResource("4_hpsvf")
 region = Rect2(666, 1516, 666, 758)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mg1og"]
-atlas = ExtResource("3_0novl")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ky81c"]
+atlas = ExtResource("4_hpsvf")
 region = Rect2(1332, 1516, 666, 758)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hr3ll"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n5kwv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tw175")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_af1hb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hpsvf")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wbyk3")
 }, {
@@ -74,11 +68,252 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mg1og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hr3ll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hts22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sloow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ky81c")
 }],
 "loop": true,
 "name": &"default",
 "speed": 16.0
 }]
+
+[sub_resource type="Animation" id="Animation_af1hb"]
+resource_name = "play"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect4:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 0.25),
+"update": 0,
+"values": [Vector2(46, 38), Vector2(-5, -3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 4.43828),
+"update": 0,
+"values": [Vector2(318, 81), Vector2(410, 24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(297, 351), Vector2(371, 380)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect3:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 0.0669859),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(0.845, 0.845)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TextureRect2:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(0.845, 0.845)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TextureRect4:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(0.845, 0.845)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TextureRect2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.01),
+"transitions": PackedFloat32Array(1, 9.18958),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TextureRect3:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TextureRect4:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.01),
+"transitions": PackedFloat32Array(1, 0.233258),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hpsvf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect4:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(46, 38)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(318, 81)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(297, 351)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect3:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6, 0.6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TextureRect2:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6, 0.6)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TextureRect4:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6, 0.6)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TextureRect2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TextureRect3:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TextureRect4:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wbyk3"]
+_data = {
+&"RESET": SubResource("Animation_hpsvf"),
+&"play": SubResource("Animation_af1hb")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_um64m"]
 shader = ExtResource("4_kc5wk")
@@ -94,6 +329,40 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qkmkp")
 
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+script = ExtResource("2_wbyk3")
+scroll_speed = 250.0
+
+[node name="StratoMare" type="ParallaxLayer" parent="ParallaxBackground2" groups=["strato_nuvole"]]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(0, 2048)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground2/StratoMare"]
+modulate = Color(1, 1, 1, 0.745098)
+offset_right = 2048.0
+offset_bottom = 4096.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_vyshl")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_wbyk3")
+scroll_speed = 350.0
+
+[node name="StratoNuvole" type="ParallaxLayer" parent="ParallaxBackground" groups=["strato_nuvole"]]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(0, 2048)
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/StratoNuvole"]
+modulate = Color(1, 1, 1, 0.745098)
+offset_right = 2048.0
+offset_bottom = 4096.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_hpsvf")
+expand_mode = 1
+stretch_mode = 1
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -103,6 +372,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -122,13 +392,92 @@ grow_vertical = 2
 texture = ExtResource("2_um64m")
 expand_mode = 1
 
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(370, 519.5)
+scale = Vector2(1, 1.2942)
+sprite_frames = SubResource("SpriteFrames_hr3ll")
+autoplay = "default"
+frame = 5
+frame_progress = 0.0873992
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(361, 505.5)
 scale = Vector2(1, 1.2942)
 sprite_frames = SubResource("SpriteFrames_hr3ll")
 autoplay = "default"
 frame = 5
-frame_progress = 0.0306152
+frame_progress = 0.0873992
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 0
+offset_left = 318.0
+offset_top = 81.0
+offset_right = 668.0
+offset_bottom = 431.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_af1hb")
+
+[node name="TextureRect2" type="TextureRect" parent="Control/TextureRect2"]
+modulate = Color(0, 0, 0, 0.568627)
+z_index = -1
+offset_left = 56.8047
+offset_top = 88.7574
+offset_right = 406.805
+offset_bottom = 438.757
+scale = Vector2(0.845, 0.845)
+texture = ExtResource("4_af1hb")
+
+[node name="TextureRect3" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 0
+offset_left = 297.0
+offset_top = 351.0
+offset_right = 647.0
+offset_bottom = 701.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_hpsvf")
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="Control/TextureRect3"]
+modulate = Color(0, 0, 0, 0.505882)
+z_index = -1
+offset_left = -20.1183
+offset_top = -29.5858
+offset_right = 329.882
+offset_bottom = 320.414
+scale = Vector2(0.845, 0.845)
+texture = ExtResource("5_hpsvf")
+flip_h = true
+
+[node name="TextureRect4" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 0
+offset_left = 46.0
+offset_top = 38.0
+offset_right = 396.0
+offset_bottom = 388.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_wbyk3")
+
+[node name="TextureRect4" type="TextureRect" parent="Control/TextureRect4"]
+modulate = Color(0, 0, 0, 0.423529)
+z_index = -1
+offset_left = 137.012
+offset_top = 91.6746
+offset_right = 487.012
+offset_bottom = 441.675
+scale = Vector2(0.845, 0.845)
+texture = ExtResource("6_wbyk3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_wbyk3")
+}
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

@@ -1,5 +1,8 @@
 extends Control
 
+func _ready() -> void:
+	$Control/AnimationPlayer.play("play")
+
 func _on_button_pressed() -> void:
 	# get_tree() si riferisce all'albero delle scene del gioco.
 	# change_scene_to_file() carica una nuova scena, distruggendo quella attuale.

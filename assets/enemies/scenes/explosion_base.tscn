@@ -76,5 +76,5 @@ script = ExtResource("2_5n6tp")
 
 [node name="Esplosione" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_tdbqr")
-volume_db = 5.0
+volume_db = 1.0
 autoplay = true

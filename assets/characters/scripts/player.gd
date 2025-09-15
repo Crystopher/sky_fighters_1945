@@ -49,10 +49,13 @@ func _physics_process(delta):
 			$AutofireTimer.start()
 		if $Autofire2Timer.is_stopped():
 			$Autofire2Timer.start()
+		if $Autofire3Timer.is_stopped():
+			$Autofire3Timer.start()
 	else:
 		# Se il giocatore è fermo, ferma il timer.
 		$AutofireTimer.stop()
 		$Autofire2Timer.stop()
+		$Autofire3Timer.stop()
 
 	position += direzione_input * velocita_attuale * delta
 
@@ -164,6 +167,12 @@ func shot_green_2():
 	projectile_dx.global_position = sx_postion
 	projectile_sx.global_position = dx_postion
 
+func shot_blue_3():
+	var nuovo_proiettile_1 = weapons[2].instantiate()
+	get_parent().add_child(nuovo_proiettile_1)
+	nuovo_proiettile_1.current_damage = (nuovo_proiettile_1.current_damage/2) + ((nuovo_proiettile_1.damage/2) * current_damage_powerup)
+	nuovo_proiettile_1.global_position = global_position
+
 func shot_green_1():
 	var nuovo_proiettile_1 = weapons[0].instantiate()
 	var nuovo_proiettile_2 = weapons[0].instantiate()
@@ -181,16 +190,18 @@ func shot_green_1():
 	nuovo_proiettile_2.global_position = position_dx
 
 func shot_1():
-	if player_code == "green":
+	if player_code == "green" or player_code == "blue" or player_code == "red":
 		shot_green_1()
 		
 func shot_2():
-	if player_code == "green":
+	if player_code == "green" or player_code == "blue" or player_code == "red":
 		shot_green_2()
 		
 func shot_3():
 	if player_code == "green":
 		shot_green_3()
+	elif player_code == "blue":
+		shot_blue_3()
 
 func sparare():
 	if not weapons: return
@@ -209,6 +220,15 @@ func sparare():
 		if weapons.size() >= 3:
 			shot_1()
 
+func sparare_03():
+	if not weapons: return
+	
+	if current_weapon > max_waepon: current_weapon = max_waepon
+	
+	if current_weapon == 3:
+		if weapons.size() >= 3:
+			shot_3()
+
 func sparare_02():
 	if not weapons: return
 	
@@ -220,7 +240,6 @@ func sparare_02():
 	elif current_weapon == 3:
 		if weapons.size() >= 3:
 			shot_2()
-			shot_3()
 
 func morire():
 	var esplosione = SCENA_ESPLOSIONE.instantiate()
@@ -233,6 +252,7 @@ func morire():
 	if ombra_giocatore_animata: ombra_giocatore_animata.hide()
 	$AutofireTimer.stop()
 	$Autofire2Timer.stop()
+	$Autofire3Timer.stop()
 	collision_shape.set_deferred("disabled", true)
 
 	# Ferma il movimento del giocatore
@@ -326,6 +346,8 @@ func _on_hit_flash_timer_timeout() -> void:
 func _on_autofire_timer_timeout() -> void:
 	sparare() # Replace with function body.
 
-
 func _on_autofire_2_timer_timeout() -> void:
 	sparare_02() # Replace with function body.
+
+func _on_autofire_3_timer_timeout() -> void:
+	sparare_03() # Replace with function body.

@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dbmtiqkb33kmf"]
+[gd_scene load_steps=17 format=3 uid="uid://dbmtiqkb33kmf"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_6qudg"]
-[ext_resource type="PackedScene" uid="uid://cbnywcke0hw8j" path="res://assets/characters/powerups/railgunlow.tscn" id="2_w3sbs"]
+[ext_resource type="PackedScene" uid="uid://cbnywcke0hw8j" path="res://assets/characters/powerups/railgunlow_1.tscn" id="2_w3sbs"]
 [ext_resource type="Texture2D" uid="uid://4x7mbddbyvfx" path="res://assets/characters/sprites/BlueThunder.png" id="3_jugdk"]
+[ext_resource type="PackedScene" uid="uid://cd3s10hiuxihs" path="res://assets/characters/powerups/railgunlow_2.tscn" id="3_k7jf1"]
+[ext_resource type="PackedScene" uid="uid://cdium57oehdp" path="res://assets/characters/powerups/railgunlow_3.tscn" id="4_6qudg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jugdk"]
 atlas = ExtResource("3_jugdk")
@@ -87,7 +89,7 @@ animations = [{
 collision_mask = 12
 script = ExtResource("1_6qudg")
 velocita = 450.0
-weapons = Array[PackedScene]([ExtResource("2_w3sbs")])
+weapons = Array[PackedScene]([ExtResource("2_w3sbs"), ExtResource("3_k7jf1"), ExtResource("4_6qudg")])
 player_code = "blue"
 
 [node name="HitFlashTimer" type="Timer" parent="."]
@@ -97,6 +99,12 @@ ignore_time_scale = true
 
 [node name="AutofireTimer" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="Autofire2Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Autofire3Timer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, 112, -5, 109, -7, 105, -32, 110, -35, 109, -35, 102, -9, 89, -10, 78, -11, 71, -17, 71, -20, 87, -30, 86, -31, 76, -29, 73, -29, 62, -71, 61, -71, 54, -57, 45, -31, 31, -30, 19, -24, 14, -20, 13, -14, 18, -14, 31, -11, 30, -10, -3, -3, -13, 0, -15, 3, -13, 10, -2, 11, 30, 14, 30, 14, 18, 19, 13, 24, 13, 31, 20, 31, 31, 71, 53, 72, 57, 71, 62, 30, 62, 30, 72, 31, 78, 30, 86, 20, 86, 18, 80, 17, 71, 11, 72, 11, 79, 9, 89, 33, 101, 35, 108, 32, 110, 6, 105, 5, 109)
@@ -123,4 +131,6 @@ one_shot = true
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
 [connection signal="timeout" from="AutofireTimer" to="." method="_on_autofire_timer_timeout"]
+[connection signal="timeout" from="Autofire2Timer" to="." method="_on_autofire_2_timer_timeout"]
+[connection signal="timeout" from="Autofire3Timer" to="." method="_on_autofire_3_timer_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
