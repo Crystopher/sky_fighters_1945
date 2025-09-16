@@ -1,12 +1,9 @@
 extends "res://assets/enemies/weapons/scripts/weapon_base.gd"
 
-# La scena del proiettile "figlio" che verrà generato
 @export var proiettile_secondario: PackedScene
-@onready var suono_colpo = $SuonoSparo
 
 func _ready():
-	# Avviamo il conto alla rovescia per la divisione
-	suono_colpo.play()
+	AudioManager.enemy_railgun_fire()
 	$Timer.start()
 
 func _process(delta):

@@ -11,14 +11,13 @@ var sound_mute = false
 var is_right = false
 var is_left = false
 
-@onready var suono_sparo = $Sparo
 # _process viene chiamato a ogni frame, è ottimo per movimenti non legati alla fisica
 # _process viene chiamato a ogni frame
 func _ready() -> void:
 	current_damage = damage
 	if not sound_mute:
 		get_tree().create_timer(sound_delay).timeout
-		suono_sparo.play()
+		AudioManager.weapon_railgun()
 	
 	if $Rotation != null:
 		$Rotation.play("rotation")
@@ -41,16 +40,14 @@ func _on_area_entered(area: Area2D) -> void:
 	pass
 
 func _on_thunder_timer_timeout() -> void:
-	$ThunderAudio.play()
+	AudioManager.weapon_thunder()
 	$CollisionShape2D.set_deferred("disabled", false)
 	$CollisionShape2D2.set_deferred("disabled", false)
 	$TextureRect.visible = true
-	$TextureRect2.visible = true
 	$ThunderTimer2.start()
 
 func _on_thunder_timer_2_timeout() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	$CollisionShape2D2.set_deferred("disabled", true)
 	$TextureRect.visible = false
-	$TextureRect2.visible = false
 	$ThunderTimer.start()

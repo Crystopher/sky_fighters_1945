@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://cmm4onbmecos2"]
+[gd_scene load_steps=21 format=3 uid="uid://cmm4onbmecos2"]
 
 [ext_resource type="Script" uid="uid://bmdpuru0o8qvu" path="res://assets/enemies/weapons/scripts/three_globular.gd" id="1_mh6b5"]
-[ext_resource type="AudioStream" uid="uid://bevmg7yxxigq" path="res://assets/enemies/weapons/audio/three_shots.ogg" id="2_gxi6m"]
 [ext_resource type="Texture2D" uid="uid://dhnqv2yb0ce4p" path="res://assets/enemies/weapons/images/globulr_fireball.png" id="3_p2xln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mh6b5"]
@@ -130,18 +129,6 @@ animations = [{
 [node name="ThreeGlobular" type="Area2D" groups=["enemy_weapons"]]
 collision_layer = 8
 script = ExtResource("1_mh6b5")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_right = 19.0
-offset_bottom = 20.0
-color = Color(0.805152, 0.441679, 0.103267, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="SuonoSparo" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_gxi6m")
-volume_db = -15.0
-bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_mh6b5")

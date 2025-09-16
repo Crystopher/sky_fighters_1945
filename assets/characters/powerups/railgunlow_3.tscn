@@ -1,12 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cdium57oehdp"]
+[gd_scene load_steps=11 format=3 uid="uid://cdium57oehdp"]
 
 [ext_resource type="Script" uid="uid://bd8svnqk4bb3f" path="res://assets/characters/powerups/scripts/railgun.gd" id="1_vkclk"]
-[ext_resource type="Texture2D" uid="uid://hbiwfojcmv2b" path="res://assets/characters/powerups/images/thunder_side.png" id="2_eo0j6"]
 [ext_resource type="Texture2D" uid="uid://cdi7fevflvqdg" path="res://assets/characters/powerups/images/thunder_proiect01.png" id="2_vkclk"]
-[ext_resource type="AudioStream" uid="uid://cc0vm327m7bwm" path="res://assets/characters/powerups/audio/railgun.ogg" id="3_03km4"]
 [ext_resource type="Texture2D" uid="uid://b17o0jeiyls07" path="res://assets/characters/powerups/images/thunder_proiect02.png" id="3_eo0j6"]
 [ext_resource type="Texture2D" uid="uid://dqa0df7vctowg" path="res://assets/characters/powerups/images/thunder_proiect03.png" id="4_uotam"]
-[ext_resource type="AudioStream" uid="uid://bvabdpmyt4snu" path="res://assets/characters/powerups/audio/thunder.ogg" id="7_uotam"]
+[ext_resource type="Texture2D" uid="uid://duj682ub2mguy" path="res://assets/characters/powerups/images/thunder_laser.png" id="5_03km4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2q3ud"]
 atlas = ExtResource("2_vkclk")
@@ -47,29 +45,9 @@ size = Vector2(587, 21)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_vkclk")
-velocita = 200.0
+velocita = 170.0
 damage = 0.2
 keep_visible = true
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-offset_left = 21.0
-offset_top = -51.0
-offset_right = 592.0
-offset_bottom = 33.0
-texture = ExtResource("2_eo0j6")
-expand_mode = 1
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-visible = false
-offset_left = -611.0
-offset_top = -54.0
-offset_right = 68.0
-offset_bottom = 30.0
-texture = ExtResource("2_eo0j6")
-expand_mode = 1
-flip_h = true
-flip_v = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -11.55)
@@ -89,10 +67,6 @@ position = Vector2(302, -14)
 shape = SubResource("RectangleShape2D_vwo73")
 disabled = true
 
-[node name="Sparo" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_03km4")
-bus = &"SFX"
-
 [node name="ThunderTimer" type="Timer" parent="."]
 wait_time = 0.8
 one_shot = true
@@ -102,10 +76,14 @@ autostart = true
 wait_time = 0.2
 one_shot = true
 
-[node name="ThunderAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_uotam")
-volume_db = -5.0
-bus = &"SFX"
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_left = -598.0
+offset_top = -76.0
+offset_right = 593.0
+offset_bottom = 65.0
+texture = ExtResource("5_03km4")
+expand_mode = 1
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="ThunderTimer" to="." method="_on_thunder_timer_timeout"]

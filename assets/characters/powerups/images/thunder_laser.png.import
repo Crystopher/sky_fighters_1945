@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hbiwfojcmv2b"
-path="res://.godot/imported/thunder_side.png-90fe0ef13c38c6b363e9ebdc60182b79.ctex"
+uid="uid://duj682ub2mguy"
+path="res://.godot/imported/thunder_laser.png-e9e298037c38e680ab9b25a2ef6f80b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/powerups/images/thunder_side.png"
-dest_files=["res://.godot/imported/thunder_side.png-90fe0ef13c38c6b363e9ebdc60182b79.ctex"]
+source_file="res://assets/characters/powerups/images/thunder_laser.png"
+dest_files=["res://.godot/imported/thunder_laser.png-e9e298037c38e680ab9b25a2ef6f80b3.ctex"]
 
 [params]
 

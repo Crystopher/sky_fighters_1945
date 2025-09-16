@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsf2fgkhis2e4"]
+[gd_scene load_steps=12 format=3 uid="uid://dsf2fgkhis2e4"]
 
 [ext_resource type="Texture2D" uid="uid://ssa514r85yul" path="res://assets/characters/sprites/Explosion01.png" id="1_o1dib"]
-[ext_resource type="AudioStream" uid="uid://bhjyfmxkm5jm0" path="res://assets/characters/audio/explosion.wav" id="2_6gd6o"]
 [ext_resource type="Script" uid="uid://bupgkd6qqewev" path="res://assets/characters/scenes/explosion.gd" id="2_byf45"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6gd6o"]
@@ -73,9 +72,3 @@ scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_birys")
 animation = &"play"
 script = ExtResource("2_byf45")
-
-[node name="Esplosione" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_6gd6o")
-volume_db = 1.0
-autoplay = true
-bus = &"SFX"

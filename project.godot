@@ -24,6 +24,7 @@ TransitionManager="*res://singleton/transition_manager.tscn"
 HighscoreManager="*res://HighscoreManager.gd"
 SettingsManager="*res://singleton/SettingsManager.gd"
 PauseMenu="*res://singleton/PauseMenu.tscn"
+AudioManager="*res://singleton/AudioManager.tscn"
 
 [display]
 

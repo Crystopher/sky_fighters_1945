@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbfu521u23h0q" path="res://assets/bosses/weapons/scripts/follow_missile.gd" id="1_65tag"]
 [ext_resource type="Texture2D" uid="uid://b47jv1iupuqd" path="res://assets/enemies/weapons/images/splitter_missile_single_spritesheet.png" id="1_ralkr"]
-[ext_resource type="AudioStream" uid="uid://cngewqy5c1mo4" path="res://assets/enemies/weapons/audio/railgun_fire.ogg" id="2_65tag"]
+[ext_resource type="AudioStream" uid="uid://cngewqy5c1mo4" path="res://audio/effects/railgun_fire.ogg" id="2_65tag"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_boa0n"]
 atlas = ExtResource("1_ralkr")

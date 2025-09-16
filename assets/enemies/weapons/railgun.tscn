@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4vdky4kiiti4"]
+[gd_scene load_steps=4 format=3 uid="uid://c4vdky4kiiti4"]
 
 [ext_resource type="Script" uid="uid://c20bcq4ta3tk3" path="res://assets/enemies/weapons/scripts/railgun.gd" id="1_y7pjd"]
-[ext_resource type="AudioStream" uid="uid://cngewqy5c1mo4" path="res://assets/enemies/weapons/audio/railgun_fire.ogg" id="2_avht4"]
 [ext_resource type="Texture2D" uid="uid://bfdxjlhvv6oay" path="res://assets/characters/powerups/images/riflegun_grap.png" id="3_8tahy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kjb7g"]
@@ -11,12 +10,6 @@ size = Vector2(14, 26)
 collision_layer = 8
 script = ExtResource("1_y7pjd")
 velocita = 550.0
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_right = 10.0
-offset_bottom = 20.0
-color = Color(1, 0.151344, 0.108333, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -7.0
@@ -28,9 +21,5 @@ expand_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kjb7g")
-
-[node name="SuonoSparo" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_avht4")
-bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

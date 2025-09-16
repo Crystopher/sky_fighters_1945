@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bmuownvufyxfe" path="res://assets/bosses/weapons/scripts/vertical_leaf.gd" id="1_og6xn"]
 [ext_resource type="Texture2D" uid="uid://dt47h68y3gbyy" path="res://assets/bosses/weapons/images/splitter_missile_spritesheet.png" id="2_og6xn"]
 [ext_resource type="PackedScene" uid="uid://bpvioxshcou30" path="res://assets/bosses/weapons/cannon_explosion.tscn" id="2_yc73e"]
-[ext_resource type="AudioStream" uid="uid://cngewqy5c1mo4" path="res://assets/enemies/weapons/audio/railgun_fire.ogg" id="3_nq47w"]
+[ext_resource type="AudioStream" uid="uid://cngewqy5c1mo4" path="res://audio/effects/railgun_fire.ogg" id="3_nq47w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yc73e"]
 atlas = ExtResource("2_og6xn")

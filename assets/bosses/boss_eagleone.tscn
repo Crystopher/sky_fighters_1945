@@ -1,11 +1,10 @@
-[gd_scene load_steps=157 format=3 uid="uid://cgja0nrcaa7cx"]
+[gd_scene load_steps=156 format=3 uid="uid://cgja0nrcaa7cx"]
 
 [ext_resource type="Script" uid="uid://co4anmafdkewh" path="res://assets/bosses/scripts/boss_eagleone.gd" id="1_udfac"]
 [ext_resource type="PackedScene" uid="uid://bkm1ex01fev3b" path="res://assets/bosses/weapons/follow_missile.tscn" id="2_lv7em"]
 [ext_resource type="PackedScene" uid="uid://bvkl6i2dn2tb5" path="res://assets/bosses/weapons/vertical_leaf.tscn" id="2_xa4i8"]
 [ext_resource type="PackedScene" uid="uid://bqbq5oveurqto" path="res://assets/bosses/weapons/cannon.tscn" id="3_m7575"]
 [ext_resource type="Texture2D" uid="uid://c4pkd84dig4ac" path="res://assets/enemies/images/orbital_reactor_anim_spritesheet.png" id="4_3vdpe"]
-[ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="4_udfac"]
 [ext_resource type="Texture2D" uid="uid://b6vjty4qsiiyc" path="res://assets/bosses/images/eagleone_cannon_up_spritesheet.png" id="5_e2rwp"]
 [ext_resource type="Texture2D" uid="uid://bcyaifg5camy7" path="res://assets/bosses/images/eagle_boss_base_spritesheet.png" id="5_mc60e"]
 [ext_resource type="Texture2D" uid="uid://cxq0lie7atyy8" path="res://assets/bosses/images/smoke_eagleone_spritesheet.png" id="5_u6y13"]
@@ -1244,11 +1243,6 @@ position = Vector2(19, 20)
 scale = Vector2(0.33125, 0.319375)
 sprite_frames = SubResource("SpriteFrames_wexqf")
 frame = 4
-
-[node name="HitNoDamageSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_udfac")
-volume_db = 5.0
-bus = &"SFX"
 
 [node name="WingSX_Smoke" type="AnimatedSprite2D" parent="."]
 visible = false

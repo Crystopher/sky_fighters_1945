@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c13scsxdd7klf"]
+[gd_scene load_steps=4 format=3 uid="uid://c13scsxdd7klf"]
 
 [ext_resource type="Script" uid="uid://bd8svnqk4bb3f" path="res://assets/characters/powerups/scripts/railgun.gd" id="1_arih3"]
 [ext_resource type="Texture2D" uid="uid://cwoxmtpmnuqvc" path="res://assets/characters/powerups/images/proiettile_01.png" id="2_arih3"]
-[ext_resource type="AudioStream" uid="uid://cc0vm327m7bwm" path="res://assets/characters/powerups/audio/railgun.ogg" id="3_bdee8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwo73"]
 size = Vector2(16, 20)
@@ -25,9 +24,5 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_vwo73")
-
-[node name="Sparo" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_bdee8")
-bus = &"SFX"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

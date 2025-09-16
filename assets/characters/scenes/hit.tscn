@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhrx7xbsa8bcs"]
+[gd_scene load_steps=7 format=3 uid="uid://bhrx7xbsa8bcs"]
 
 [ext_resource type="Texture2D" uid="uid://ssa514r85yul" path="res://assets/characters/sprites/Explosion01.png" id="1_pbdlu"]
 [ext_resource type="Script" uid="uid://cigbox5wmlu8t" path="res://assets/characters/scenes/hit.gd" id="2_4yp0h"]
-[ext_resource type="AudioStream" uid="uid://c1l510bak2xg8" path="res://assets/characters/audio/hit.wav" id="3_u43gj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4yp0h"]
 atlas = ExtResource("1_pbdlu")
@@ -38,9 +37,3 @@ scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_5csfs")
 animation = &"play"
 script = ExtResource("2_4yp0h")
-
-[node name="SuonoColpo" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_u43gj")
-volume_db = 5.0
-autoplay = true
-bus = &"SFX"

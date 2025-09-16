@@ -27,7 +27,6 @@ var health_cannon: float
 @onready var wing_sx_collision = $WingSXArea/WingSXCollision
 @onready var wing_dx_collision = $WingDXArea/WingDXCollision
 @onready var body_collision = $BodyCollision
-@onready var hit_no_damage_sound = $HitNoDamageSound
 
 @onready var wings_sx_smoke = $WingSX_Smoke
 @onready var wings_dx_smoke = $WingDX_Smoke
