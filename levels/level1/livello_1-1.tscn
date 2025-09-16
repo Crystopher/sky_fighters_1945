@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cutma30egf2pu" path="res://assets/enemies/enemy_sniper_new.tscn" id="6_dnhyp"]
 [ext_resource type="Texture2D" uid="uid://de4lfg0aab5j5" path="res://levels/level1/images/sea_tile.png" id="6_vbji0"]
 [ext_resource type="Script" uid="uid://coo0wq7ce70vv" path="res://levels/level1/scripts/scrolling_manager.gd" id="7_ks70j"]
-[ext_resource type="PackedScene" uid="uid://cgja0nrcaa7cx" path="res://assets/bosses/boss_eagleone.tscn" id="7_snxqp"]
+[ext_resource type="PackedScene" uid="uid://cgja0nrcaa7cx" path="res://assets/bosses/boss_eagleone_1.tscn" id="7_snxqp"]
 [ext_resource type="PackedScene" uid="uid://3uls4o7kyg48" path="res://levels/scenes/boss_entering.tscn" id="8_qrjjj"]
 [ext_resource type="Texture2D" uid="uid://bx7ctqxr6hcey" path="res://levels/level1/images/cloud_tile_2.png" id="8_wsj16"]
 [ext_resource type="PackedScene" uid="uid://65iux0qllrrp" path="res://levels/level1/scenes/end_level01.tscn" id="9_leb5y"]

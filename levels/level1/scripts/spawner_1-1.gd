@@ -241,9 +241,11 @@ func start_next_wave():
 	wave_in_live = true
 	spawn_completed = false
 	var wave_data = LEVEL_ENEMY_WAVES[GameManager.current_wave]
-	
-	#if GameManager.current_wave == 0 or GameManager.current_wave == 1 or GameManager.current_wave == 2: # 20% di probabilità di generare un power-up per ondata
-	spawn_powerup()
+
+	if wave_data.type == "scene" and wave_data.scene != "mission_complete" and wave_data.scene != "end_level01":	
+		spawn_powerup()
+	elif wave_data.type == "enemy":
+		spawn_powerup()
 	
 	enemies_remains = 0
 	
@@ -296,6 +298,7 @@ func start_next_wave():
 			scene_to_spawn = boss_defated_scene
 		elif wave_data.scene == "mission_complete":
 			level_music.stop()
+			boss_music.stop()
 			scene_to_spawn = level_completed_scene
 		scene_spawn(scene_to_spawn)
 		await get_tree().create_timer(wave_data.wait_before_end).timeout
