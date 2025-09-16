@@ -51,3 +51,35 @@ func _on_thunder_timer_2_timeout() -> void:
 	$CollisionShape2D2.set_deferred("disabled", true)
 	$TextureRect.visible = false
 	$ThunderTimer.start()
+
+
+func _on_bomb_01_timer_timeout() -> void:
+	AudioManager.plane_explosion()
+	$CollisionShape2D.set_deferred("disabled", false)
+	$Explosion_01.visible = true
+	$Explosion_01.play("default")
+	$Explosion_01/Shadow.play("default")
+	await $Explosion_01.animation_finished
+	$Bomb01_Timer2.start()
+
+
+func _on_bomb_02_timer_timeout() -> void:
+	AudioManager.plane_explosion()
+	$CollisionShape2D2.set_deferred("disabled", false)
+	$Explosion_02.visible = true
+	$Explosion_02.play("default")
+	$Explosion_02/Shadow.play("default")
+	await $Explosion_02.animation_finished
+	$Bomb02_Timer2.start()
+
+
+func _on_bomb_01_timer_2_timeout() -> void:
+	$CollisionShape2D.set_deferred("disabled", true)
+	$Explosion_01.visible = false
+	$Bomb01_Timer.start()
+
+
+func _on_bomb_02_timer_2_timeout() -> void:
+	$CollisionShape2D2.set_deferred("disabled", true)
+	$Explosion_02.visible = false
+	$Bomb02_Timer.start()

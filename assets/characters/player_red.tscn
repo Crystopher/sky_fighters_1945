@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://u2pl5o8s73cp"]
+[gd_scene load_steps=17 format=3 uid="uid://u2pl5o8s73cp"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_6gu8q"]
 [ext_resource type="PackedScene" uid="uid://bvj4siaxmvxa6" path="res://assets/characters/powerups/railgunhigh_1.tscn" id="2_6gu8q"]
 [ext_resource type="PackedScene" uid="uid://b2ciqdgw4yjjq" path="res://assets/characters/powerups/railgunhigh_2.tscn" id="3_6gu8q"]
+[ext_resource type="PackedScene" uid="uid://ckinre3wau8ds" path="res://assets/characters/powerups/railgunhigh_3.tscn" id="4_0qwn4"]
 [ext_resource type="Texture2D" uid="uid://bgjwbblhmvl32" path="res://assets/characters/sprites/RedBomber.png" id="5_0qwn4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5acef"]
@@ -88,7 +89,7 @@ animations = [{
 collision_mask = 12
 script = ExtResource("1_6gu8q")
 velocita = 200.0
-weapons = Array[PackedScene]([ExtResource("2_6gu8q"), ExtResource("3_6gu8q")])
+weapons = Array[PackedScene]([ExtResource("2_6gu8q"), ExtResource("3_6gu8q"), ExtResource("4_0qwn4")])
 player_code = "blue"
 energy_max = 15
 

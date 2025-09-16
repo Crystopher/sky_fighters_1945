@@ -167,6 +167,12 @@ func shot_green_2():
 	projectile_dx.global_position = sx_postion
 	projectile_sx.global_position = dx_postion
 
+func shot_red_3():
+	var nuovo_proiettile_1 = weapons[2].instantiate()
+	get_parent().add_child(nuovo_proiettile_1)
+	nuovo_proiettile_1.current_damage = (nuovo_proiettile_1.current_damage/2) + ((nuovo_proiettile_1.damage/2) * current_damage_powerup)
+	nuovo_proiettile_1.global_position = global_position
+
 func shot_blue_3():
 	var nuovo_proiettile_1 = weapons[2].instantiate()
 	get_parent().add_child(nuovo_proiettile_1)
@@ -202,6 +208,8 @@ func shot_3():
 		shot_green_3()
 	elif player_code == "blue":
 		shot_blue_3()
+	elif player_code == "red":
+		shot_red_3()
 
 func sparare():
 	if not weapons: return
