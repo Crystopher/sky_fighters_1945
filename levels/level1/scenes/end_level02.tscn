@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxajt724a5ul0"]
+
+[ext_resource type="Script" uid="uid://dkfoidc0eq6i7" path="res://levels/level1/scenes/scripts/end_level_01.gd" id="1_qprkv"]
+[ext_resource type="Texture2D" uid="uid://dsjnjtuux4bvg" path="res://levels/level1/images/what_face.png" id="2_a852f"]
+[ext_resource type="FontFile" uid="uid://bopoxx7ywe8rp" path="res://fonts/courier_monospace.png" id="3_7hi07"]
+
+[sub_resource type="Animation" id="Animation_exvus"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+
+[sub_resource type="Animation" id="Animation_5tohg"]
+resource_name = "speak"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 1.02, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", "What was that?", "What was that? It wasn't a normal fighter plane like the others...", "What was that? It wasn't a normal fighter plane like the others...it looked more like an eagle...", "What was that? It wasn't a normal fighter plane like the others...it looked more like an eagle..."]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6jrgm"]
+_data = {
+&"RESET": SubResource("Animation_exvus"),
+&"speak": SubResource("Animation_5tohg")
+}
+
+[node name="EndLevel01" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qprkv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -268.0
+offset_right = -18.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -266.0
+offset_right = 176.0
+offset_bottom = -16.0
+grow_vertical = 0
+texture = ExtResource("2_a852f")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 193.0
+offset_top = -250.0
+offset_right = -33.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("3_7hi07")
+theme_override_font_sizes/normal_font_size = 35
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6jrgm")
+}

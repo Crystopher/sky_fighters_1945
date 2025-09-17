@@ -2,9 +2,9 @@ extends Node
 
 var punteggio_attuale = 0
 signal punteggio_aggiornato(nuovo_punteggio)
-signal giocatore_morto # Nuovo segnale!
+signal giocatore_morto
 
-var current_level = 1
+var current_level = ""
 var current_wave = 0
 
 var vite_iniziali = 3
@@ -20,6 +20,21 @@ var ultima_difficolta = 1.0
 var ultimo_aereo = "verde"
 
 signal vite_aggiornate(nuove_vite)
+
+const LEVELS_SCHEMA = [
+	{
+		"level": "1.1",
+		"schema": {
+			"next_level": "1.2"
+		}
+	},
+	{
+		"level": "1.2",
+		"schema": {
+			"next_level": "end_game"
+		}
+	}
+]
 
 # Carichiamo le scene dei giocatori disponibili
 const GIOCATORI_DISPONIBILI = {
@@ -49,7 +64,14 @@ func clean_up_level():
 	for n in nemici:
 		n.queue_free()
 
-	# Puoi aggiungere altre pulizie qui, come effetti particellari residui, ecc.
+func next_level(current_finished):
+	var found_levels = LEVELS_SCHEMA.filter(func(item): return item.level == current_finished)
+	if not found_levels.is_empty():
+		var level_data = found_levels[0]
+		print("Livello trovato: ", level_data) # Stampa: Livello trovato: {level:1.1, schema:{next_level:1.2}}
+		print("Prossimo livello: ", level_data.schema.next_level) # Stampa: Prossimo livello: 1.2
+	else:
+		print("Nessun livello trovato con quell'ID.")
 
 # Nuova funzione per gestire la perdita di una vita
 func perdi_vita():

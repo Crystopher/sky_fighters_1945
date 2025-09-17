@@ -134,7 +134,7 @@ func _ready() -> void:
 			"timeout": 3
 		},
 		{
-			"name": "EagleBoss1",
+			"name": "EagleBoss2",
 			"type": "boss",
 			"active": true,
 			"enemies": [
@@ -142,10 +142,10 @@ func _ready() -> void:
 			]
 		},
 		{
-			"name": "EndLevel01",
+			"name": "EndLevel02",
 			"type": "scene",
 			"active": true,
-			"scene": "end_level01",
+			"scene": "end_level02",
 			"wait_before_start": 1.0,
 			"wait_before_end": 4.0,
 			"timeout": 3

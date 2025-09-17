@@ -48,6 +48,7 @@ boss_defated_scene = ExtResource("9_leb5y")
 powerup_scenes = Array[PackedScene]([ExtResource("12_835s5"), ExtResource("13_vy3ul"), ExtResource("14_4m7l1"), ExtResource("15_tpiyw")])
 level_music = NodePath("../MusicaLivello")
 boss_music = NodePath("../MusicaBoss")
+level_tag = "1.1"
 
 [node name="Timer" type="Timer" parent="WaveManager"]
 wait_time = 1.5

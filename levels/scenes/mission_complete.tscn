@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://swhr6w8kahsf"]
+[gd_scene load_steps=8 format=3 uid="uid://swhr6w8kahsf"]
 
 [ext_resource type="Script" uid="uid://qbrec8pisy2k" path="res://levels/scenes/scripts/boss_entering.gd" id="1_4ykuj"]
 [ext_resource type="Texture2D" uid="uid://cf42w2xxu07bs" path="res://levels/scenes/images/mission_complete.png" id="2_4ykuj"]
 [ext_resource type="AudioStream" uid="uid://b73jjadq73j02" path="res://levels/scenes/audio/mission_complete.ogg" id="3_4ykuj"]
+[ext_resource type="AudioStream" uid="uid://cvmhh83t7mhdr" path="res://levels/scenes/audio/mission_complete_speak.ogg" id="4_lxfv4"]
 
 [sub_resource type="Animation" id="Animation_xrg6s"]
 length = 0.001
@@ -74,3 +75,9 @@ libraries = {
 [node name="MissionComplete" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_4ykuj")
 autoplay = true
+bus = &"Music"
+
+[node name="SpeakComplete" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lxfv4")
+autoplay = true
+bus = &"SFX"
