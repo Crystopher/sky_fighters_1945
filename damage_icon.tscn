@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhfoddcsff0x6"]
+
+[ext_resource type="Texture2D" uid="uid://ckq0i2iu5q6v1" path="res://images/damage_tick.png" id="1_yhld3"]
+
+[node name="EnergyIcon" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+texture = ExtResource("1_yhld3")
+expand_mode = 1

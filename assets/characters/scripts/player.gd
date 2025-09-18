@@ -6,9 +6,9 @@ const SCENA_HIT = preload("res://assets/characters/scenes/hit.tscn")
 # La parola chiave @export permette di modificare questa variabile direttamente dall'Inspector di Godot.
 @export var velocita = 300.0
 var velocita_attuale
-var current_weapon = 0
+var current_weapon = GameManager.current_weapon_selected
 var max_waepon = 3
-var current_damage_powerup = 0.0
+var current_damage_powerup = GameManager.current_weapon_damage_powerup
 # Esportiamo una variabile di tipo "PackedScene"
 # Questo creerà uno slot nell'Inspector dove potremo trascinare la nostra scena del proiettile.
 @export var weapons: Array[PackedScene]
@@ -17,6 +17,7 @@ var current_damage_powerup = 0.0
 @onready var ombra_giocatore_animata = $OmbraGiocatoreAnimata
 @onready var grafica_giocatore = $GraficaGiocatore
 
+var is_moving_to_position = false
 @export var player_code = ""
 
 var joystick_node = null
@@ -24,12 +25,35 @@ var invincibile = false
 # In cima a giocatore.gd
 @export var energy_max = 10
 var current_energy
+var current_speed_level = 0
+var current_damage_level = 0
 var tipo_sparo_attuale
 # Creiamo un nuovo segnale che verrà emesso quando la salute cambia
 signal energy_updated(new_energy, energy_top)
+signal speed_powerup_updated(new_speed, speed_max)
+signal damage_powerup_updated(new_damage, damage_max)
 signal giocatore_morto
 
+func move_to_target_position(target_position: Vector2, duration: float = 1.0):
+	is_moving_to_position = true
+	# Ferma qualsiasi input del giocatore temporaneamente
+	# Puoi anche disabilitare la collisione se necessario, ma di solito non serve
+
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE) # Animazione più fluida
+	tween.set_ease(Tween.EASE_IN_OUT) # Inizia e finisce dolcemente
+	tween.tween_property(self, "position", target_position, duration)
+
+	# Aspetta che il tween finisca
+	await tween.finished
+	is_moving_to_position = false
+	# Riabilita input o altre logiche se disabilitate
+
 func _physics_process(delta):
+	if is_moving_to_position:
+	# Se siamo in movimento automatico, ignoriamo l'input
+		return
+		
 	var direzione_input = Vector2.ZERO # Iniziamo con una direzione nulla
 	# --- CONTROLLO JOYSTICK ---
 	# Controlliamo se il joystick esiste e se è in uso
@@ -103,7 +127,9 @@ func _ready():
 	# Questa funzione viene eseguita all'avvio della scena
 	current_energy = energy_max
 	velocita_attuale = velocita
+	GameManager.current_speed = velocita_attuale
 	await ready
+	
 	# 1. Troviamo il livello delle nuvole
 	var strato_nuvole = get_tree().get_first_node_in_group("strato_nuvole")
 
@@ -291,6 +317,11 @@ func respawn():
 	# 1. Resettiamo la salute del giocatore
 	current_energy = energy_max
 	energy_updated.emit(current_energy, energy_max)
+	GameManager.current_speed = velocita
+	current_speed_level = 0
+	current_damage_level = 0
+	emit_signal("speed_powerup_updated", current_speed_level, GameManager.speed_powerup_max)
+	emit_signal("damage_powerup_updated", current_damage_level, GameManager.damage_powerup_max)
 	
 	current_weapon = 0
 	velocita_attuale = velocita
@@ -317,19 +348,26 @@ func applica_powerup(powerup_data: PowerUpData):
 	match powerup_data.type:
 		PowerUpData.PowerUpType.VELOCITY:
 			velocita_attuale += velocita * powerup_data.value # Es. +10%
+			GameManager.current_speed = velocita_attuale
+			current_speed_level += 1
 
 		PowerUpData.PowerUpType.ENERGY:
 			current_energy = energy_max # Cura salute a max
+			GameManager.current_energy = current_energy
 
 		PowerUpData.PowerUpType.WEAPON_DAMAGE:
 			current_damage_powerup += powerup_data.value # Es. +20%
+			GameManager.current_weapon_damage_powerup = current_damage_powerup
+			current_damage_level += 1
 
 		PowerUpData.PowerUpType.WEAPON_UPGRADE:
 			current_weapon += 1
-			print("Power-up Danno: Sparo a Ventaglio!")
+			GameManager.current_weapon_selected = current_weapon
 
 	# Riaggiorna la UI (se necessario)
 	emit_signal("energy_updated", current_energy, energy_max)
+	emit_signal("speed_powerup_updated", current_speed_level, GameManager.speed_powerup_max)
+	emit_signal("damage_powerup_updated", current_damage_level, GameManager.damage_powerup_max)
 
 # Quando il timer di invincibilità finisce
 func _on_invincibility_timer_timeout():

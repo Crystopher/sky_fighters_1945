@@ -24,6 +24,19 @@ var enemies_remains = 0
 var wave_in_live = false
 var spawn_completed = false
 
+func manage_warning_scene(): # Esempio di funzione
+	# 1. Calcola la posizione target per il giocatore
+	var screen_width = get_viewport().get_visible_rect().size.x
+	var screen_height = get_viewport().get_visible_rect().size.y
+	var target_player_pos = Vector2(screen_width / 2, screen_height * 0.8) # Es. centro, 80% in basso
+
+	# 2. Resetta la posizione del giocatore
+	var riferimento_giocatore = get_tree().get_first_node_in_group("giocatore")
+	if riferimento_giocatore:
+		# Aspetta che il giocatore sia arrivato alla sua posizione
+		await riferimento_giocatore.move_to_target_position(target_player_pos, 1.5) # Durata 1.5 secondi
+
+
 func _ready():
 	GameManager.current_level = level_tag
 	# Inizia la prima ondata all'avvio
@@ -53,12 +66,7 @@ func _ready():
 
 func _on_giocatore_morto():
 	GameManager.reset_level()
-	# Esegui qui la chiamata che ti dava problemi.
-	# Ad esempio, per tornare al menu principale:
 	get_tree().change_scene_to_file("res://menu_principale.tscn")
-
-	# O per ricaricare semplicemente il livello:
-	# get_tree().reload_current_scene()
 
 func spawn_powerup():
 	if powerup_scenes.is_empty(): return
@@ -80,9 +88,6 @@ func start_next_wave():
 		# LEVEL COMPLETE STAGE
 		GameManager.next_level(level_tag)
 		# Forzato a uscire su 1.2 per testare il giro completo
-		if level_tag == "1.2":
-			await get_tree().create_timer(2.0).timeout
-			GameManager.end_game(false)
 		return # Abbiamo finito le ondate
 
 	wave_in_live = true
@@ -139,6 +144,7 @@ func start_next_wave():
 		var scene_to_spawn
 		if wave_data.scene == "boss_entering":
 			scene_to_spawn = boss_entering_scene
+			manage_warning_scene()
 		elif wave_data.scene == "mission_start":
 			scene_to_spawn = start_level_scene
 		elif wave_data.scene == "end_level01":

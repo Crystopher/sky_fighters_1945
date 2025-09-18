@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8judt8newgkh"]
+[gd_scene load_steps=11 format=3 uid="uid://b8judt8newgkh"]
 
 [ext_resource type="Script" uid="uid://c4muymr755akf" path="res://score_label.gd" id="1_fyqef"]
 [ext_resource type="Script" uid="uid://bm0phe1hmry01" path="res://ui.gd" id="1_n5ude"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://tdak7yaa88li" path="res://images/energy_progress.png" id="5_n5ude"]
 [ext_resource type="Theme" uid="uid://25tppc13kpma" path="res://themes/button_theme.tres" id="7_waa4j"]
 [ext_resource type="Texture2D" uid="uid://couffaykude1u" path="res://images/pulsante_pausa.png" id="8_ok7cu"]
+[ext_resource type="Texture2D" uid="uid://yjvg6ofsa3j7" path="res://images/speed_progress.png" id="9_irxef"]
+[ext_resource type="Texture2D" uid="uid://t4mnvwee6s8y" path="res://images/damage_progress.png" id="10_e2l4f"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_n5ude")
@@ -79,9 +81,9 @@ texture_progress = ExtResource("5_n5ude")
 
 [node name="ViteContainer" type="HBoxContainer" parent="."]
 offset_left = 468.0
-offset_top = 84.0
+offset_top = 151.0
 offset_right = 508.0
-offset_bottom = 124.0
+offset_bottom = 191.0
 
 [node name="HealthContainer" type="HBoxContainer" parent="."]
 offset_left = 469.0
@@ -102,5 +104,75 @@ grow_horizontal = 2
 scale = Vector2(0.4, 0.4)
 theme = ExtResource("7_waa4j")
 icon = ExtResource("8_ok7cu")
+
+[node name="SpeedBar" type="TextureProgressBar" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -261.0
+offset_top = 88.0
+offset_right = -69.0
+offset_bottom = 136.0
+grow_horizontal = 0
+scale = Vector2(1.2, 0.295)
+texture_under = ExtResource("4_ibotj")
+texture_progress = ExtResource("9_irxef")
+
+[node name="SpeedBarOmbra" type="TextureProgressBar" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -254.0
+offset_top = 93.0
+offset_right = -62.0
+offset_bottom = 141.0
+grow_horizontal = 0
+scale = Vector2(1.2, 0.295)
+texture_under = ExtResource("4_ibotj")
+texture_progress = ExtResource("9_irxef")
+
+[node name="SpeedContainer" type="HBoxContainer" parent="."]
+offset_left = 469.0
+offset_top = 91.0
+offset_right = 679.0
+offset_bottom = 100.0
+size_flags_horizontal = 0
+
+[node name="DamageBar" type="TextureProgressBar" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -261.0
+offset_top = 120.0
+offset_right = -69.0
+offset_bottom = 168.0
+grow_horizontal = 0
+scale = Vector2(1.2, 0.295)
+texture_under = ExtResource("4_ibotj")
+texture_progress = ExtResource("10_e2l4f")
+
+[node name="DamageBarOmbra" type="TextureProgressBar" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -254.0
+offset_top = 126.0
+offset_right = -62.0
+offset_bottom = 174.0
+grow_horizontal = 0
+scale = Vector2(1.2, 0.295)
+texture_under = ExtResource("4_ibotj")
+texture_progress = ExtResource("10_e2l4f")
+
+[node name="DamageContainer" type="HBoxContainer" parent="."]
+offset_left = 469.0
+offset_top = 123.0
+offset_right = 679.0
+offset_bottom = 131.0
+size_flags_horizontal = 0
 
 [connection signal="pressed" from="Pausa" to="." method="_on_pausa_pressed"]

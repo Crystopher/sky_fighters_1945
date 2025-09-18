@@ -12,8 +12,10 @@ var vite_rimanenti
 
 var current_energy
 var current_speed
-var current_weapon_damage_powerup
-var current_weapon_selected
+var speed_powerup_max = 10
+var damage_powerup_max = 10
+var current_weapon_damage_powerup = 0.0
+var current_weapon_selected = 0
 
 var ultimo_punteggio = 0
 var ultima_difficolta = 1.0
@@ -25,7 +27,8 @@ const LEVELS_SCHEMA = [
 	{
 		"level": "1.1",
 		"schema": {
-			"next_level": "1.2"
+			"next_level": "1.2",
+			"level_scene": "res://levels/level1/scenes/intro02.tscn"
 		}
 	},
 	{
@@ -68,10 +71,19 @@ func next_level(current_finished):
 	var found_levels = LEVELS_SCHEMA.filter(func(item): return item.level == current_finished)
 	if not found_levels.is_empty():
 		var level_data = found_levels[0]
-		print("Livello trovato: ", level_data) # Stampa: Livello trovato: {level:1.1, schema:{next_level:1.2}}
-		print("Prossimo livello: ", level_data.schema.next_level) # Stampa: Prossimo livello: 1.2
+		if level_data.schema["next_level"] == "end_game":
+			await get_tree().create_timer(2.0).timeout
+			GameManager.end_game(false)
+		else:
+			GameManager.current_wave = 0
+			TransitionManager.change_scene(level_data.schema["level_scene"])
+			print("Livello trovato: ", level_data) # Stampa: Livello trovato: {level:1.1, schema:{next_level:1.2}}
+			print("Prossimo livello: ", level_data.schema.next_level) # Stampa: Prossimo livello: 1.2
 	else:
 		print("Nessun livello trovato con quell'ID.")
+
+func update_weapon_level(value):
+	current_weapon_selected = value
 
 # Nuova funzione per gestire la perdita di una vita
 func perdi_vita():
@@ -82,6 +94,8 @@ func perdi_vita():
 	return vite_rimanenti < 0
 
 func reset_level():
+	current_weapon_selected = 0
+	current_weapon_damage_powerup = 0.0
 	punteggio_attuale = 0
 	current_wave = 0 # Resettiamo anche l'ondata
 	vite_rimanenti = vite_iniziali # Imposta le vite all'inizio

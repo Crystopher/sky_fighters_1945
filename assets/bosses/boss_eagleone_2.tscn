@@ -1,6 +1,9 @@
-[gd_scene load_steps=154 format=3 uid="uid://d2plmggggw6qp"]
+[gd_scene load_steps=157 format=3 uid="uid://d2plmggggw6qp"]
 
 [ext_resource type="Script" uid="uid://c1c0buubuabca" path="res://assets/bosses/scripts/boss_eagleone_2.gd" id="1_ce2di"]
+[ext_resource type="PackedScene" uid="uid://bvkl6i2dn2tb5" path="res://assets/bosses/weapons/vertical_leaf.tscn" id="2_mweri"]
+[ext_resource type="PackedScene" uid="uid://bqbq5oveurqto" path="res://assets/bosses/weapons/cannon.tscn" id="3_h5h4a"]
+[ext_resource type="PackedScene" uid="uid://bkm1ex01fev3b" path="res://assets/bosses/weapons/follow_missile.tscn" id="4_qnqef"]
 [ext_resource type="Texture2D" uid="uid://crnb6guuh5ncd" path="res://assets/bosses/images/eagle_boss_base_spritesheet_phase2.png" id="4_t7rve"]
 [ext_resource type="Texture2D" uid="uid://c4pkd84dig4ac" path="res://assets/enemies/images/orbital_reactor_anim_spritesheet.png" id="5_rylir"]
 [ext_resource type="Texture2D" uid="uid://xhqh4kl87bek" path="res://assets/bosses/images/eagleone_cannon_open_spritesheet_phase2.png" id="5_t7rve"]
@@ -1127,6 +1130,15 @@ size = Vector2(20, 11)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ce2di")
+wing_weapon_scene = ExtResource("2_mweri")
+cannon_weapon_scene = ExtResource("3_h5h4a")
+railgun_weapon_scene = ExtResource("4_qnqef")
+max_health_wing_sx = 30
+max_health_wing_dx = 30
+max_health_cannon = 40
+punti_nemico = 1800
+punti_impatto = 30
+max_health = 100
 
 [node name="HitFlashTimer" type="Timer" parent="."]
 wait_time = 0.1

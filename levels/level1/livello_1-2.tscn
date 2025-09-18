@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://kjb1pivduitq"]
+[gd_scene load_steps=28 format=3 uid="uid://kjb1pivduitq"]
 
 [ext_resource type="Script" uid="uid://oo267t4xl1pu" path="res://levels/level1/scripts/spawner_1-2.gd" id="1_dt8w8"]
 [ext_resource type="PackedScene" uid="uid://cx71uodgqqh3n" path="res://levels/scenes/mission_start.tscn" id="2_rb3sc"]
@@ -18,8 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://b8judt8newgkh" path="res://ui.tscn" id="16_3533i"]
 [ext_resource type="Script" uid="uid://qridl4ou6p0s" path="res://levels/level1/scripts/sfondo_scorrimento.gd" id="17_tvybq"]
 [ext_resource type="Script" uid="uid://coo0wq7ce70vv" path="res://levels/level1/scripts/scrolling_manager.gd" id="18_20yo4"]
-[ext_resource type="Texture2D" uid="uid://de4lfg0aab5j5" path="res://levels/level1/images/sea_tile.png" id="19_naxfo"]
-[ext_resource type="Texture2D" uid="uid://cchq5d67deoym" path="res://levels/level1/images/sea_and_terrain.png" id="20_dw13s"]
 [ext_resource type="Texture2D" uid="uid://0suxntxarqhj" path="res://levels/level1/images/terrain.png" id="21_fqup2"]
 [ext_resource type="Texture2D" uid="uid://cxhmx0hnlfh8g" path="res://levels/level1/images/terrain_02.png" id="22_ethpc"]
 [ext_resource type="Texture2D" uid="uid://bx7ctqxr6hcey" path="res://levels/level1/images/cloud_tile_2.png" id="22_to308"]
@@ -34,7 +32,7 @@ shader = ExtResource("23_o2tu5")
 shader_parameter/line_density = 4.0
 shader_parameter/line_darkness = 0.6
 
-[node name="Livello1-1" type="Node2D"]
+[node name="Livello1-2" type="Node2D"]
 
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("level_music", "boss_music")]
 script = ExtResource("1_dt8w8")
@@ -67,7 +65,7 @@ scroll_speed = 350.0
 [node name="GroundManager" type="Node2D" parent="SfondoScorrimento"]
 z_index = -100
 script = ExtResource("18_20yo4")
-textures = Array[Texture2D]([ExtResource("19_naxfo"), ExtResource("19_naxfo"), ExtResource("19_naxfo"), ExtResource("19_naxfo"), ExtResource("19_naxfo"), ExtResource("19_naxfo"), ExtResource("19_naxfo"), ExtResource("20_dw13s"), ExtResource("21_fqup2")])
+textures = Array[Texture2D]([ExtResource("21_fqup2"), ExtResource("21_fqup2"), ExtResource("21_fqup2"), ExtResource("21_fqup2"), ExtResource("22_ethpc"), ExtResource("21_fqup2"), ExtResource("22_ethpc"), ExtResource("23_m3uc6"), ExtResource("23_m3uc6"), ExtResource("24_w6bmr")])
 
 [node name="SegmentoA" type="TextureRect" parent="SfondoScorrimento/GroundManager"]
 offset_right = 2048.0
