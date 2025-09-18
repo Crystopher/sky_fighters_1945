@@ -148,6 +148,18 @@ func _ready():
 		strato_nuvole.add_child(ombra_giocatore_animata)
 
 	joystick_node = get_tree().get_first_node_in_group("virtual_joystick")
+	
+	reload_player_stats()
+
+func reload_player_stats():
+	var player_stats = GameManager.player_stats_store
+	if player_stats.has("current_speed"):
+		velocita_attuale = player_stats.current_speed
+		current_damage_level = player_stats.current_damage_powerup
+		current_speed_level = player_stats.current_speed_powerup
+		await get_tree().process_frame
+		emit_signal("speed_powerup_updated", current_speed_level, GameManager.speed_powerup_max)
+		emit_signal("damage_powerup_updated", current_damage_level, GameManager.damage_powerup_max)
 
 func shot_0():
 	var nuovo_proiettile = weapons[0].instantiate()

@@ -2,6 +2,7 @@ extends Node
 
 # Carichiamo le scene dei nemici che possiamo spawnare
 @export var start_level_scene: PackedScene
+@export var extra_start_level_scene: PackedScene
 @export var level_completed_scene: PackedScene
 @export var base_enemy_scene: PackedScene
 @export var spitfire_enemy_scene: PackedScene
@@ -87,7 +88,7 @@ func start_next_wave():
 	if GameManager.current_wave >= LEVEL_ENEMY_WAVES.size():
 		# LEVEL COMPLETE STAGE
 		GameManager.next_level(level_tag)
-		# Forzato a uscire su 1.2 per testare il giro completo
+		GameManager.store_player_info()
 		return # Abbiamo finito le ondate
 
 	wave_in_live = true
@@ -147,6 +148,8 @@ func start_next_wave():
 			manage_warning_scene()
 		elif wave_data.scene == "mission_start":
 			scene_to_spawn = start_level_scene
+		elif wave_data.scene == "mission_explain":
+			scene_to_spawn = extra_start_level_scene
 		elif wave_data.scene == "end_level01":
 			scene_to_spawn = boss_defated_scene
 		elif wave_data.scene == "mission_complete":
@@ -166,6 +169,8 @@ func start_next_wave():
 func delete_scene(scene_to_spawn, name):
 	for i in get_parent().get_child_count():
 		var child = get_parent().get_child(i)
+		if child != null:
+			print(child.name)
 		if child != null and child.name == name:
 			child.free()
 

@@ -56,6 +56,8 @@ func populate_speed_bar():
 		speed_container.add_child(new_child)
 
 func update_damage_bar(new_damage, damage_max):
+	print(new_damage)
+	GameManager.current_damage_powerup = new_damage
 	var total_point_toremove = damage_max - new_damage
 	for n in damage_container.get_children():
 		n.free()
@@ -67,6 +69,7 @@ func update_damage_bar(new_damage, damage_max):
 		damage_container.add_child(new_child)
 
 func update_speed_bar(new_speed, speed_max):
+	GameManager.current_speed_powerup = new_speed
 	var total_point_toremove = speed_max - new_speed
 	for n in speed_container.get_children():
 		n.free()

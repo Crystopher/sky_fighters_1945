@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://bk6464xj71epm"]
+
+[ext_resource type="Script" uid="uid://dkfoidc0eq6i7" path="res://levels/level1/scenes/scripts/end_level_01.gd" id="1_t6oe3"]
+[ext_resource type="Texture2D" uid="uid://bp0jkdh8ikfj" path="res://levels/level1/images/captain_01.png" id="2_t6oe3"]
+[ext_resource type="FontFile" uid="uid://bopoxx7ywe8rp" path="res://fonts/courier_monospace.png" id="3_ayhx0"]
+
+[sub_resource type="Animation" id="Animation_exvus"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+
+[sub_resource type="Animation" id="Animation_5tohg"]
+resource_name = "speak"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.21, 1, 2.05, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", "From now on ", "From now on you can use a new  power-up ", "From now on you can use a new power-up that will allow you to easily destroy the enemy....", "From now on you can use a new power-up that will allow you to easily destroy the enemy...."]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6jrgm"]
+_data = {
+&"RESET": SubResource("Animation_exvus"),
+&"speak": SubResource("Animation_5tohg")
+}
+
+[node name="MissionExplain" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t6oe3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -268.0
+offset_right = -18.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -259.0
+offset_right = 183.0
+offset_bottom = -25.0
+grow_vertical = 0
+texture = ExtResource("2_t6oe3")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 193.0
+offset_top = -250.0
+offset_right = -33.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("3_ayhx0")
+theme_override_font_sizes/normal_font_size = 35
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6jrgm")
+}

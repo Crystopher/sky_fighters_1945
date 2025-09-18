@@ -4,6 +4,8 @@ var punteggio_attuale = 0
 signal punteggio_aggiornato(nuovo_punteggio)
 signal giocatore_morto
 
+var player_stats_store = {}
+
 var current_level = ""
 var current_wave = 0
 
@@ -13,7 +15,9 @@ var vite_rimanenti
 var current_energy
 var current_speed
 var speed_powerup_max = 10
+var current_speed_powerup = 0
 var damage_powerup_max = 10
+var current_damage_powerup = 0
 var current_weapon_damage_powerup = 0.0
 var current_weapon_selected = 0
 
@@ -67,6 +71,18 @@ func clean_up_level():
 	for n in nemici:
 		n.queue_free()
 
+func reset_player_stats():
+	player_stats_store = {}
+
+func store_player_info():
+	player_stats_store = {
+		"current_damage_powerup": current_damage_powerup,
+		"current_speed_powerup": current_speed_powerup,
+		"current_speed": current_speed,
+		"current_weapon_damage_powerup": current_weapon_damage_powerup,
+		"current_weapon_selected": current_weapon_selected
+	}
+	
 func next_level(current_finished):
 	var found_levels = LEVELS_SCHEMA.filter(func(item): return item.level == current_finished)
 	if not found_levels.is_empty():

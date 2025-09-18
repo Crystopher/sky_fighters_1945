@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://kjb1pivduitq"]
+[gd_scene load_steps=29 format=3 uid="uid://kjb1pivduitq"]
 
 [ext_resource type="Script" uid="uid://oo267t4xl1pu" path="res://levels/level1/scripts/spawner_1-2.gd" id="1_dt8w8"]
 [ext_resource type="PackedScene" uid="uid://cx71uodgqqh3n" path="res://levels/scenes/mission_start.tscn" id="2_rb3sc"]
+[ext_resource type="PackedScene" uid="uid://bk6464xj71epm" path="res://levels/level1/scenes/start_level_1-2.tscn" id="3_ethpc"]
 [ext_resource type="PackedScene" uid="uid://swhr6w8kahsf" path="res://levels/scenes/mission_complete.tscn" id="3_ur440"]
 [ext_resource type="PackedScene" uid="uid://cve3mrdrtc0r" path="res://assets/enemies/enemy_base.tscn" id="4_ethpc"]
 [ext_resource type="PackedScene" uid="uid://2dd1o17p1a5e" path="res://assets/enemies/enemy_spitfire_new.tscn" id="5_m3uc6"]
@@ -37,6 +38,7 @@ shader_parameter/line_darkness = 0.6
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("level_music", "boss_music")]
 script = ExtResource("1_dt8w8")
 start_level_scene = ExtResource("2_rb3sc")
+extra_start_level_scene = ExtResource("3_ethpc")
 level_completed_scene = ExtResource("3_ur440")
 base_enemy_scene = ExtResource("4_ethpc")
 spitfire_enemy_scene = ExtResource("5_m3uc6")
