@@ -21,6 +21,7 @@ var LEVEL_ENEMY_WAVES = []
 
 @export var level_tag = "0.0"
 
+var total_enemies = 0
 var enemies_remains = 0
 var wave_in_live = false
 var spawn_completed = false
@@ -35,31 +36,21 @@ func manage_warning_scene(): # Esempio di funzione
 	var riferimento_giocatore = get_tree().get_first_node_in_group("giocatore")
 	if riferimento_giocatore:
 		# Aspetta che il giocatore sia arrivato alla sua posizione
-		await riferimento_giocatore.move_to_target_position(target_player_pos, 1.5) # Durata 1.5 secondi
-
+		await riferimento_giocatore.move_to_target_position(target_player_pos, 1.5)
 
 func _ready():
 	GameManager.current_level = level_tag
 	# Inizia la prima ondata all'avvio
 	var scena_giocatore = GameManager.GIOCATORI_DISPONIBILI[GameManager.giocatore_selezionato]
 	var nuovo_giocatore = scena_giocatore.instantiate()
-	
-	# 2. Calcoliamo la posizione dinamicamente
 	var screen_size = get_viewport().get_visible_rect().size
 	var start_position = Vector2() # Creiamo un vettore di posizione vuoto
-	
-	# Impostiamo la X al centro esatto dello schermo
+
 	start_position.x = screen_size.x / 2.0 
-	
-	# Impostiamo la Y in fondo allo schermo, con un margine di 100 pixel
 	start_position.y = screen_size.y - 300
-	
-	# 3. Assegniamo la posizione calcolata al giocatore
 	nuovo_giocatore.position = start_position
-	
 	nuovo_giocatore.giocatore_morto.connect(_on_giocatore_morto)
-	
-	# 4. Aggiungiamo il giocatore alla scena (invariato)
+
 	get_parent().call_deferred("add_child", nuovo_giocatore)
 	
 	start_next_wave()
@@ -95,18 +86,21 @@ func start_next_wave():
 	spawn_completed = false
 	var wave_data = LEVEL_ENEMY_WAVES[GameManager.current_wave]
 
-	if wave_data.type == "scene" and wave_data.scene != "mission_complete" and wave_data.scene != "end_level01":	
+	if wave_data.type == "scene" and not "mission_" in wave_data.scene and not "end_" in wave_data.scene:	
 		spawn_powerup()
 	elif wave_data.type == "enemy":
 		spawn_powerup()
 	
 	enemies_remains = 0
+	total_enemies = 0
 	
 	# Get totale of enemies
 	if wave_data.active and (wave_data.type == "enemy" or wave_data.type == "boss"):
 		for enemy_data in wave_data.enemies:
 			enemies_remains += enemy_data["number"]
-	
+		
+		total_enemies = enemies_remains
+		
 		for enemy_data in wave_data.enemies:
 			var enemies_number = enemy_data["number"]
 			var enemy_type = enemy_data["type"]
@@ -158,7 +152,7 @@ func start_next_wave():
 			scene_to_spawn = level_completed_scene
 		scene_spawn(scene_to_spawn)
 		await get_tree().create_timer(wave_data.wait_before_end).timeout
-		delete_scene(scene_to_spawn, wave_data.name)
+		delete_scene(wave_data.name)
 		GameManager.current_wave += 1
 		start_next_wave()
 	elif not wave_data.active:
@@ -166,12 +160,10 @@ func start_next_wave():
 		GameManager.current_wave += 1
 		start_next_wave()
 
-func delete_scene(scene_to_spawn, name):
+func delete_scene(scene_name):
 	for i in get_parent().get_child_count():
 		var child = get_parent().get_child(i)
-		if child != null:
-			print(child.name)
-		if child != null and child.name == name:
+		if child != null and child.name == scene_name:
 			child.free()
 
 func scene_spawn(scene_to_spawn):
@@ -199,6 +191,7 @@ func enemy_spawn(scene_to_spawn, is_boss):
 	new_enemy.position = Vector2(spawn_x, -100)
 
 	get_parent().add_child(new_enemy)
+	await new_enemy.ready
 
 func on_nemico_destroy():
 	enemies_remains -= 1

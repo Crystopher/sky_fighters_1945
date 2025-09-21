@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SuperMoveData" load_steps=3 format=3 uid="uid://sxulpwn63g6m"]
+
+[ext_resource type="Script" uid="uid://drvrqqumn2ves" path="res://assets/characters/super_powerups/scripts/super_powerups_data.gd" id="1_0m12d"]
+[ext_resource type="Texture2D" uid="uid://dvvdkvf0q6w4p" path="res://assets/characters/super_powerups/images/super_charge.png" id="1_ng30j"]
+
+[resource]
+script = ExtResource("1_0m12d")
+type = 2
+name = "SupoerCharge"
+icon = ExtResource("1_ng30j")
+cooldown = 30.0
+duration = 6.0
+description = "Una potente abilità speciale."
+metadata/_custom_type_script = "uid://drvrqqumn2ves"

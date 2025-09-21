@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SuperMoveData" load_steps=3 format=3 uid="uid://dm48mwth45kob"]
+
+[ext_resource type="Script" uid="uid://drvrqqumn2ves" path="res://assets/characters/super_powerups/scripts/super_powerups_data.gd" id="1_an8f1"]
+[ext_resource type="Texture2D" uid="uid://d1uqj2stnrj41" path="res://assets/characters/super_powerups/images/super_shield.png" id="1_dov75"]
+
+[resource]
+script = ExtResource("1_an8f1")
+type = 1
+name = "SuperShield"
+icon = ExtResource("1_dov75")
+cooldown = 40.0
+duration = 10.0
+description = "Una potente abilità speciale."
+metadata/_custom_type_script = "uid://drvrqqumn2ves"

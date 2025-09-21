@@ -8,6 +8,7 @@ var player_stats_store = {}
 
 var current_level = ""
 var current_wave = 0
+var supermoves_activated = []
 
 var vite_iniziali = 3
 var vite_rimanenti
@@ -32,11 +33,26 @@ const LEVELS_SCHEMA = [
 		"level": "1.1",
 		"schema": {
 			"next_level": "1.2",
-			"level_scene": "res://levels/level1/scenes/intro02.tscn"
+			"level_scene": "res://levels/level1/scenes/intro02.tscn",
+			"supermoves": [
+				"res://assets/characters/super_powerups/resources/super_shield.tres",
+			]
 		}
 	},
 	{
 		"level": "1.2",
+		"schema": {
+			"next_level": "1.3",
+			"level_scene": "res://levels/level1/livello_1-3.tscn",
+			"supermoves": [
+				"res://assets/characters/super_powerups/resources/super_shield.tres",
+				"res://assets/characters/super_powerups/resources/super_overcharge.tres",
+				"res://assets/characters/super_powerups/resources/super_bomb.tres"
+			]
+		}
+	},
+	{
+		"level": "1.3",
 		"schema": {
 			"next_level": "end_game"
 		}
@@ -54,6 +70,10 @@ const GIOCATORI_DISPONIBILI = {
 var giocatore_selezionato = "verde"
 
 # in GameManager.gd
+
+func get_player_node():
+	var player = get_tree().get_first_node_in_group("giocatore")
+	return player
 
 func clean_up_level():
 	# Trova tutti i proiettili nemici e distruggili
@@ -93,10 +113,9 @@ func next_level(current_finished):
 		else:
 			GameManager.current_wave = 0
 			TransitionManager.change_scene(level_data.schema["level_scene"])
-			print("Livello trovato: ", level_data) # Stampa: Livello trovato: {level:1.1, schema:{next_level:1.2}}
-			print("Prossimo livello: ", level_data.schema.next_level) # Stampa: Prossimo livello: 1.2
-	else:
-		print("Nessun livello trovato con quell'ID.")
+			supermoves_activated = level_data.schema["supermoves"]
+	else: # Nessun livello trovato con quell'ID.
+		pass
 
 func update_weapon_level(value):
 	current_weapon_selected = value
@@ -114,6 +133,7 @@ func reset_level():
 	current_weapon_damage_powerup = 0.0
 	punteggio_attuale = 0
 	current_wave = 0 # Resettiamo anche l'ondata
+	supermoves_activated = []
 	vite_rimanenti = vite_iniziali # Imposta le vite all'inizio
 	punteggio_aggiornato.emit(punteggio_attuale)
 

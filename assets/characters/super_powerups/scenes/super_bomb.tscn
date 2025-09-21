@@ -1,0 +1,229 @@
+[gd_scene load_steps=26 format=3 uid="uid://dg2seycc4hsjp"]
+
+[ext_resource type="Texture2D" uid="uid://bvlw164sdeadj" path="res://assets/characters/super_powerups/images/bomb_spritesheet.png" id="1_cgial"]
+[ext_resource type="Script" uid="uid://dwrnt267fodhl" path="res://assets/characters/super_powerups/scripts/super_bomb_animation.gd" id="1_rm5xx"]
+[ext_resource type="AudioStream" uid="uid://cu7bqpligx6l3" path="res://assets/characters/super_powerups/audio/bomb_explosion.ogg" id="2_5gfu4"]
+
+[sub_resource type="Animation" id="Animation_ie5m4"]
+resource_name = "play"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(0.129408, 0.812252, 2.82843),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(2, 2), Vector2(0.7, 0.7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(50, 50)]
+}
+
+[sub_resource type="Animation" id="Animation_cgial"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.7, 0.7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y2e65"]
+_data = {
+&"RESET": SubResource("Animation_cgial"),
+&"play": SubResource("Animation_ie5m4")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgial"]
+atlas = ExtResource("1_cgial")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gfu4"]
+atlas = ExtResource("1_cgial")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm5xx"]
+atlas = ExtResource("1_cgial")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3gib"]
+atlas = ExtResource("1_cgial")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h52t"]
+atlas = ExtResource("1_cgial")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq4oc"]
+atlas = ExtResource("1_cgial")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1gc1"]
+atlas = ExtResource("1_cgial")
+region = Rect2(512, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4dyt"]
+atlas = ExtResource("1_cgial")
+region = Rect2(768, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwa4d"]
+atlas = ExtResource("1_cgial")
+region = Rect2(0, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6qsh"]
+atlas = ExtResource("1_cgial")
+region = Rect2(256, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdrnk"]
+atlas = ExtResource("1_cgial")
+region = Rect2(512, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4dwn"]
+atlas = ExtResource("1_cgial")
+region = Rect2(768, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af6cu"]
+atlas = ExtResource("1_cgial")
+region = Rect2(0, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4f0v"]
+atlas = ExtResource("1_cgial")
+region = Rect2(256, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxwov"]
+atlas = ExtResource("1_cgial")
+region = Rect2(512, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usb23"]
+atlas = ExtResource("1_cgial")
+region = Rect2(768, 768, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p7ddd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgial")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gfu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm5xx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3gib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h52t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq4oc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1gc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4dyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwa4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6qsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdrnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4dwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af6cu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4f0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxwov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usb23")
+}],
+"loop": false,
+"name": &"play",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7ddd"]
+atlas = ExtResource("1_cgial")
+region = Rect2(768, 768, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ie5m4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7ddd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="SuperBomb" type="Node2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_rm5xx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_y2e65")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_p7ddd")
+animation = &"play"
+autoplay = "play"
+frame = 15
+frame_progress = 1.0
+
+[node name="Bomb" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5gfu4")
+autoplay = true
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.258824)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_ie5m4")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

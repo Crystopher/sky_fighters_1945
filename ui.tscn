@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8judt8newgkh"]
+[gd_scene load_steps=15 format=3 uid="uid://b8judt8newgkh"]
 
 [ext_resource type="Script" uid="uid://c4muymr755akf" path="res://score_label.gd" id="1_fyqef"]
 [ext_resource type="Script" uid="uid://bm0phe1hmry01" path="res://ui.gd" id="1_n5ude"]
@@ -10,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://couffaykude1u" path="res://images/pulsante_pausa.png" id="8_ok7cu"]
 [ext_resource type="Texture2D" uid="uid://yjvg6ofsa3j7" path="res://images/speed_progress.png" id="9_irxef"]
 [ext_resource type="Texture2D" uid="uid://t4mnvwee6s8y" path="res://images/damage_progress.png" id="10_e2l4f"]
+[ext_resource type="Texture2D" uid="uid://y1oyhnotsow" path="res://ui/images/red_button.png" id="11_e2l4f"]
+[ext_resource type="Script" uid="uid://s62605llm86b" path="res://ui/supermoves/scripts/super_wheel.gd" id="12_gs482"]
+[ext_resource type="PackedScene" uid="uid://durvo50hkhjbg" path="res://ui/supermoves/supermove_wheel_item.tscn" id="13_cxd00"]
+[ext_resource type="Texture2D" uid="uid://d1lu6lw4mpdc0" path="res://ui/images/super_wheel_selection.png" id="14_cxd00"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_n5ude")
@@ -93,6 +97,7 @@ offset_bottom = 65.0
 size_flags_horizontal = 0
 
 [node name="Pausa" type="Button" parent="."]
+process_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -175,4 +180,52 @@ offset_right = 679.0
 offset_bottom = 131.0
 size_flags_horizontal = 0
 
+[node name="SupermoveToggleButton" type="Button" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -273.0
+offset_right = 146.0
+offset_bottom = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+icon = ExtResource("11_e2l4f")
+flat = true
+
+[node name="SuperWheel" type="Control" parent="."]
+process_mode = 3
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+script = ExtResource("12_gs482")
+supermove_item_scene = ExtResource("13_cxd00")
+
+[node name="TextureRect" type="TextureRect" parent="SuperWheel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_cxd00")
+
 [connection signal="pressed" from="Pausa" to="." method="_on_pausa_pressed"]
+[connection signal="pressed" from="SupermoveToggleButton" to="." method="_on_supermove_toggle_button_pressed"]

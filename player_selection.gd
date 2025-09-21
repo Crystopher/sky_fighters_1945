@@ -18,6 +18,18 @@ func _ready() -> void:
 	var fighters_selection = get_tree().get_nodes_in_group("player_selection")
 	for fighter_select in fighters_selection:
 		fighter_select.fighter_selected.connect(on_fighter_selection)
+	
+	fighter01.Energy = 3
+	fighter01.Power = 3
+	fighter01.Velocity = 3
+	
+	fighter02.Energy = 2
+	fighter02.Power = 2
+	fighter02.Velocity = 4
+	
+	fighter03.Energy = 4
+	fighter03.Power = 4
+	fighter03.Velocity = 2
 
 func on_fighter_selection(hero_key, fighter):
 	selection = fighter

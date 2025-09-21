@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b88vek6t71s80"]
+[gd_scene load_steps=15 format=3 uid="uid://b88vek6t71s80"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_l2c4c"]
 [ext_resource type="PackedScene" uid="uid://ch2g7xbfx36fk" path="res://assets/characters/powerups/railgun_1.tscn" id="2_dqfg1"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://ba1jo1pc4upfl" path="res://assets/characters/powerups/railgun_3.tscn" id="4_dqfg1"]
 [ext_resource type="Shader" uid="uid://kcn424wcw4i8" path="res://shield_glow.gdshader" id="5_03p02"]
 [ext_resource type="Texture2D" uid="uid://c1efrpqfbncje" path="res://assets/characters/sprites/GreenBerret.png" id="5_dqfg1"]
-[ext_resource type="Shader" uid="uid://cqyec62xlsncu" path="res://fire_aura.gdshader" id="6_uhbis"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l2c4c"]
 atlas = ExtResource("5_dqfg1")
@@ -71,7 +70,6 @@ collision_mask = 12
 script = ExtResource("1_l2c4c")
 weapons = Array[PackedScene]([ExtResource("2_dqfg1"), ExtResource("3_l2c4c"), ExtResource("4_dqfg1")])
 shield_glow_shader = ExtResource("5_03p02")
-overcharge_glow_shader = ExtResource("6_uhbis")
 player_code = "green"
 energy_max = 12
 

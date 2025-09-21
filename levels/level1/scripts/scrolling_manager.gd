@@ -9,8 +9,7 @@ var segment_height
 var prossimo_texture_idx = 0
 
 func _ready():
-	if textures.is_empty():
-		print("Nessuna texture assegnata a questo layer.")
+	if textures.is_empty(): #Nessuna texture assegnata a questo layer.
 		return
 
 	# Popoliamo l'array con i figli TextureRect
@@ -18,8 +17,7 @@ func _ready():
 		if child is TextureRect:
 			segmenti.append(child)
 
-	if segmenti.is_empty():
-		print("Nessun nodo TextureRect trovato come figlio.")
+	if segmenti.is_empty(): # Nessun nodo TextureRect trovato come figlio.
 		return
 
 	# Posizioniamo tutti i segmenti iniziali in una pila verticale

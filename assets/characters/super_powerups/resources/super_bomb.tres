@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SuperMoveData" load_steps=4 format=3 uid="uid://tl4esievf7tl"]
+
+[ext_resource type="Texture2D" uid="uid://buybrn3unfj64" path="res://assets/characters/super_powerups/images/super_bomb.png" id="1_1jiim"]
+[ext_resource type="Script" uid="uid://drvrqqumn2ves" path="res://assets/characters/super_powerups/scripts/super_powerups_data.gd" id="1_4hs25"]
+[ext_resource type="PackedScene" uid="uid://dg2seycc4hsjp" path="res://assets/characters/super_powerups/scenes/super_bomb.tscn" id="1_lts6y"]
+
+[resource]
+script = ExtResource("1_4hs25")
+type = 0
+name = "SupoerBomb"
+icon = ExtResource("1_1jiim")
+cooldown = 40.0
+duration = 0.0
+description = "Supoer Bomba"
+animation = ExtResource("1_lts6y")
+metadata/_custom_type_script = "uid://drvrqqumn2ves"

@@ -13,7 +13,9 @@ var salute_attuale: float
 const SCENA_ESPLOSIONE = preload("res://assets/enemies/scenes/explosion_base.tscn")
 const SCENA_HIT = preload("res://assets/characters/scenes/hit.tscn")
 
-signal enemy_destroyed
+var already_destroyed = false
+
+signal enemy_destroyed()
 
 func subire_danno(quantita):
 	grafica_nemico.modulate = Color(100,100,100,1)
@@ -97,7 +99,10 @@ func explode(with_sound):
 	destroying()
 
 func destroying():
+	if already_destroyed:
+		return
 	# The enemy is destroyed here
+	already_destroyed = true
 	enemy_destroyed.emit() # Annuncia al mondo che stiamo per morire
 	queue_free()
 

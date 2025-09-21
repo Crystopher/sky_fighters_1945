@@ -9,12 +9,13 @@ var velocita = 150.0
 @onready var ombra_nemico_animata = $OmbraNemico
 
 var salute_attuale: float
+var already_destroyed = false
 
 const SCENA_ESPLOSIONE = preload("res://assets/enemies/scenes/explosion_base.tscn")
 const SCENA_ESPLOSIONE_PROIETTILE = preload("res://assets/bosses/weapons/scenes/bullet_explosion.tscn")
 const SCENA_HIT = preload("res://assets/characters/scenes/hit.tscn")
 
-signal enemy_destroyed
+signal enemy_destroyed()
 
 func subire_danno(quantita):
 	grafica_nemico.modulate = Color(100,100,100,1)
@@ -99,6 +100,10 @@ func explode(with_sound):
 	destroying()
 
 func destroying():
+	if already_destroyed:
+		return
+	
+	already_destroyed = true
 	# The enemy is destroyed here
 	enemy_destroyed.emit() # Annuncia al mondo che stiamo per morire
 	queue_free()

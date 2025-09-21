@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://dbmtiqkb33kmf"]
+[gd_scene load_steps=19 format=3 uid="uid://dbmtiqkb33kmf"]
 
 [ext_resource type="Script" uid="uid://c8ea6vawhlr11" path="res://assets/characters/scripts/player.gd" id="1_6qudg"]
 [ext_resource type="PackedScene" uid="uid://cbnywcke0hw8j" path="res://assets/characters/powerups/railgunlow_1.tscn" id="2_w3sbs"]
 [ext_resource type="Texture2D" uid="uid://4x7mbddbyvfx" path="res://assets/characters/sprites/BlueThunder.png" id="3_jugdk"]
 [ext_resource type="PackedScene" uid="uid://cd3s10hiuxihs" path="res://assets/characters/powerups/railgunlow_2.tscn" id="3_k7jf1"]
 [ext_resource type="PackedScene" uid="uid://cdium57oehdp" path="res://assets/characters/powerups/railgunlow_3.tscn" id="4_6qudg"]
+[ext_resource type="Shader" uid="uid://kcn424wcw4i8" path="res://shield_glow.gdshader" id="5_308u6"]
+[ext_resource type="Shader" uid="uid://cqyec62xlsncu" path="res://fire_aura.gdshader" id="6_vbsfq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jugdk"]
 atlas = ExtResource("3_jugdk")
@@ -90,6 +92,8 @@ collision_mask = 12
 script = ExtResource("1_6qudg")
 velocita = 450.0
 weapons = Array[PackedScene]([ExtResource("2_w3sbs"), ExtResource("3_k7jf1"), ExtResource("4_6qudg")])
+shield_glow_shader = ExtResource("5_308u6")
+overcharge_glow_shader = ExtResource("6_vbsfq")
 player_code = "blue"
 
 [node name="HitFlashTimer" type="Timer" parent="."]

@@ -9,6 +9,7 @@ var velocita_attuale
 var current_weapon = GameManager.current_weapon_selected
 var max_waepon = 3
 var current_damage_powerup = GameManager.current_weapon_damage_powerup
+var damage_multiplier = 1.0
 # Esportiamo una variabile di tipo "PackedScene"
 # Questo creerà uno slot nell'Inspector dove potremo trascinare la nostra scena del proiettile.
 @export var weapons: Array[PackedScene]
@@ -16,6 +17,14 @@ var current_damage_powerup = GameManager.current_weapon_damage_powerup
 @onready var ombra_giocatore = $OmbraGiocatore
 @onready var ombra_giocatore_animata = $OmbraGiocatoreAnimata
 @onready var grafica_giocatore = $GraficaGiocatore
+
+@export var shield_glow_shader: Shader
+var original_material: Material = null
+var shield_material: ShaderMaterial = null
+
+@export var overcharge_glow_shader: Shader
+var overcharge_original_material: Material = null
+var overcharge_material: ShaderMaterial = null
 
 var is_moving_to_position = false
 @export var player_code = ""
@@ -29,10 +38,118 @@ var current_speed_level = 0
 var current_damage_level = 0
 var tipo_sparo_attuale
 # Creiamo un nuovo segnale che verrà emesso quando la salute cambia
+
+# Lista delle Supermosse acquisite dal giocatore (verranno aggiunte dal GameManager)
+var supermove_enabled: Array[SuperMoveData] = []
+var supermove_cooldowns: Dictionary = {} 
+
+# Segnale per aggiornare la UI della supermossa (cooldown, icone)
+signal supermove_status_updated(supermove_type, cooldown_progress) 
+signal supermove_activated(supermove_type)
+signal supermove_deactivated(supermove_type)
+
 signal energy_updated(new_energy, energy_top)
 signal speed_powerup_updated(new_speed, speed_max)
 signal damage_powerup_updated(new_damage, damage_max)
 signal giocatore_morto
+
+func add_supermove(supermove_data: SuperMoveData):
+	if not supermove_data in supermove_enabled:
+		supermove_enabled.append(supermove_data)
+		supermove_cooldowns[supermove_data.type] = 0.0 # Inizializza cooldown a 0
+		# Notifica la UI che una nuova supermossa è disponibile
+		emit_signal("supermove_status_updated", supermove_data.type, 0.0)
+
+func get_supermove_data(type_key: SuperMoveData.SuperMoveType) -> SuperMoveData:
+	for sm_data in supermove_enabled:
+		if sm_data.type == type_key:
+			return sm_data
+	return null
+
+func perform_bomb(super_animation: PackedScene):
+	# Trova tutti i nemici e i proiettili nemici e distruggili
+	var nemici = get_tree().get_nodes_in_group("nemici")
+	if super_animation:
+		var animation = super_animation.instantiate()
+		var screen_width = get_viewport().get_visible_rect().size.x
+		animation.position = Vector2(screen_width/2, 300)
+		get_parent().add_child(animation)
+	for n in nemici:
+		n.subire_danno(20) # Danno letale
+
+	var proiettili_nemici = get_tree().get_nodes_in_group("proiettili_nemici")
+	for p in proiettili_nemici:
+		p.queue_free()
+
+
+func _set_fire_glow_strength(strength: float):
+	if overcharge_material:
+		overcharge_material.set_shader_parameter("glow_strength", strength)
+
+func _set_glow_strength(strength: float):
+	if shield_material:
+		shield_material.set_shader_parameter("glow_strength", strength)
+
+func perform_shield(duration: float):
+	invincibile = true
+	grafica_giocatore.material = shield_material
+	var tween_in = create_tween()
+	tween_in.tween_method(Callable(self, "_set_glow_strength"), 0.0, 1.0, 0.5) # Fade-in in 0.5s
+	await get_tree().create_timer(duration).timeout
+	var tween_out = create_tween()
+	tween_out.tween_method(Callable(self, "_set_glow_strength"), 1.0, 0.0, 0.5) # Fade-out in 0.5s
+	await tween_out.finished
+	
+	invincibile = false
+	
+	grafica_giocatore.material = original_material
+	emit_signal("supermove_deactivated", SuperMoveData.SuperMoveType.SHIELD)
+
+func _set_fire_strength(strength: float):
+	if overcharge_material:
+		overcharge_material.set_shader_parameter("fire_strength", strength)
+
+func perform_overcharge(duration: float):
+	damage_multiplier = 2.0
+	grafica_giocatore.material = overcharge_material
+	var tween_in = create_tween()
+	tween_in.tween_method(Callable(self, "_set_fire_glow_strength"), 0.0, 1.0, 0.5) # Fade-in in 0.5s
+	await get_tree().create_timer(duration).timeout
+	var tween_out = create_tween()
+	tween_out.tween_method(Callable(self, "_set_fire_glow_strength"), 1.0, 0.0, 0.5) # Fade-out in 0.5s
+	await tween_out.finished
+	
+	invincibile = false
+	
+	grafica_giocatore.material = overcharge_original_material
+
+	damage_multiplier = 1.0
+	emit_signal("supermove_deactivated", SuperMoveData.SuperMoveType.OVERCHARGE_WEAPON)
+
+func activate_supermove(supermove_type: SuperMoveData.SuperMoveType):
+	var sm_data = get_supermove_data(supermove_type)
+	if not sm_data:
+		push_error("Supermossa non trovata: ", supermove_type)
+		return
+
+	# Controlla il cooldown
+	if supermove_cooldowns.get(supermove_type, 0.0) > 0.0:
+		return
+
+	# Imposta il cooldown
+	supermove_cooldowns[supermove_type] = sm_data.cooldown
+	emit_signal("supermove_status_updated", supermove_type, 1.0) # UI: metti in cooldown
+
+	# Esegui l'effetto della supermossa
+	match supermove_type:
+		SuperMoveData.SuperMoveType.BOMB:
+			perform_bomb(sm_data.animation)
+		SuperMoveData.SuperMoveType.SHIELD:
+			perform_shield(sm_data.duration)
+		SuperMoveData.SuperMoveType.OVERCHARGE_WEAPON:
+			perform_overcharge(sm_data.duration)
+
+	emit_signal("supermove_activated", supermove_type)
 
 func move_to_target_position(target_position: Vector2, duration: float = 1.0):
 	is_moving_to_position = true
@@ -99,6 +216,17 @@ func _physics_process(delta):
 	
 	if ombra_giocatore: ombra_giocatore.global_position = shadow_position
 	if ombra_giocatore_animata: ombra_giocatore_animata.global_position = shadow_position
+	
+	for type_key in supermove_cooldowns.keys():
+		if supermove_cooldowns[type_key] > 0.0:
+			supermove_cooldowns[type_key] -= delta
+			if supermove_cooldowns[type_key] < 0.0:
+				supermove_cooldowns[type_key] = 0.0
+
+			var sm_data = get_supermove_data(type_key)
+			if sm_data:
+				var progress = 1.0 - (supermove_cooldowns[type_key] / sm_data.cooldown)
+				emit_signal("supermove_status_updated", type_key, progress)
 
 # Aggiungi questa nuova funzione in giocatore.gd
 func energy_down(number):
@@ -148,8 +276,25 @@ func _ready():
 		strato_nuvole.add_child(ombra_giocatore_animata)
 
 	joystick_node = get_tree().get_first_node_in_group("virtual_joystick")
-	
 	reload_player_stats()
+	
+	if grafica_giocatore and shield_glow_shader:
+		original_material = grafica_giocatore.material # Salva il materiale originale
+
+		shield_material = ShaderMaterial.new()
+		shield_material.shader = shield_glow_shader
+		# Imposta i valori iniziali delle uniform dello shader
+		shield_material.set_shader_parameter("glow_strength", 4.0)
+		shield_material.set_shader_parameter("glow_size", 40.0)
+		
+	if grafica_giocatore and overcharge_glow_shader:
+		overcharge_original_material = grafica_giocatore.material # Salva il materiale originale
+
+		overcharge_material = ShaderMaterial.new()
+		overcharge_material.shader = overcharge_glow_shader
+		# Imposta i valori iniziali delle uniform dello shader
+		overcharge_material.set_shader_parameter("glow_strength", 4.0)
+		overcharge_material.set_shader_parameter("glow_size", 40.0)
 
 func reload_player_stats():
 	var player_stats = GameManager.player_stats_store
@@ -161,10 +306,13 @@ func reload_player_stats():
 		emit_signal("speed_powerup_updated", current_speed_level, GameManager.speed_powerup_max)
 		emit_signal("damage_powerup_updated", current_damage_level, GameManager.damage_powerup_max)
 
+func calculate_damage(current_damage, initial_damage):
+	return (current_damage + (initial_damage * current_damage_powerup)) * damage_multiplier
+
 func shot_0():
 	var nuovo_proiettile = weapons[0].instantiate()
 	get_parent().add_child(nuovo_proiettile)
-	nuovo_proiettile.current_damage = nuovo_proiettile.current_damage + (nuovo_proiettile.damage * current_damage_powerup)
+	nuovo_proiettile.current_damage = calculate_damage(nuovo_proiettile.current_damage, nuovo_proiettile.damage)
 	nuovo_proiettile.global_position = global_position
 
 func shot_green_3():
@@ -176,8 +324,8 @@ func shot_green_3():
 	projectile_dx.is_right = true
 	get_parent().add_child(projectile_dx)
 	get_parent().add_child(projectile_sx)
-	projectile_sx.current_damage = projectile_sx.current_damage + (projectile_sx.damage * current_damage_powerup)
-	projectile_dx.current_damage = projectile_dx.current_damage + (projectile_dx.damage * current_damage_powerup)
+	projectile_sx.current_damage = calculate_damage(projectile_sx.current_damage, projectile_sx.damage)
+	projectile_dx.current_damage = calculate_damage(projectile_dx.current_damage, projectile_dx.damage)
 	var sx_postion = global_position
 	sx_postion.x -= 80
 	sx_postion.y += 30
@@ -194,8 +342,8 @@ func shot_green_2():
 	projectile_sx.sound_mute = true
 	get_parent().add_child(projectile_dx)
 	get_parent().add_child(projectile_sx)
-	projectile_sx.current_damage = projectile_sx.current_damage + (projectile_sx.damage * current_damage_powerup)
-	projectile_dx.current_damage = projectile_dx.current_damage + (projectile_dx.damage * current_damage_powerup)
+	projectile_sx.current_damage = calculate_damage(projectile_sx.current_damage, projectile_sx.damage)
+	projectile_dx.current_damage = calculate_damage(projectile_dx.current_damage, projectile_dx.damage)
 	var sx_postion = global_position
 	sx_postion.x -= 80
 	sx_postion.y += 30
@@ -208,13 +356,13 @@ func shot_green_2():
 func shot_red_3():
 	var nuovo_proiettile_1 = weapons[2].instantiate()
 	get_parent().add_child(nuovo_proiettile_1)
-	nuovo_proiettile_1.current_damage = (nuovo_proiettile_1.current_damage/2) + ((nuovo_proiettile_1.damage/2) * current_damage_powerup)
+	nuovo_proiettile_1.current_damage = calculate_damage(nuovo_proiettile_1.current_damage/2, nuovo_proiettile_1.damage/2)
 	nuovo_proiettile_1.global_position = global_position
 
 func shot_blue_3():
 	var nuovo_proiettile_1 = weapons[2].instantiate()
 	get_parent().add_child(nuovo_proiettile_1)
-	nuovo_proiettile_1.current_damage = (nuovo_proiettile_1.current_damage/2) + ((nuovo_proiettile_1.damage/2) * current_damage_powerup)
+	nuovo_proiettile_1.current_damage = calculate_damage(nuovo_proiettile_1.current_damage/2, nuovo_proiettile_1.damage/2)
 	nuovo_proiettile_1.global_position = global_position
 
 func shot_green_1():
@@ -224,8 +372,8 @@ func shot_green_1():
 	nuovo_proiettile_1.sound_mute = false
 	get_parent().add_child(nuovo_proiettile_1)
 	get_parent().add_child(nuovo_proiettile_2)
-	nuovo_proiettile_1.current_damage = (nuovo_proiettile_1.current_damage/2) + ((nuovo_proiettile_1.damage/2) * current_damage_powerup)
-	nuovo_proiettile_2.current_damage = (nuovo_proiettile_2.current_damage/2) + ((nuovo_proiettile_2.damage/2) * current_damage_powerup)
+	nuovo_proiettile_1.current_damage = calculate_damage(nuovo_proiettile_1.current_damage/2, nuovo_proiettile_1.damage/2)
+	nuovo_proiettile_2.current_damage = calculate_damage(nuovo_proiettile_2.current_damage/2, nuovo_proiettile_2.damage/2)
 	var position_dx = global_position
 	position_dx.x += 20
 	var position_sx = global_position
@@ -336,6 +484,8 @@ func respawn():
 	emit_signal("damage_powerup_updated", current_damage_level, GameManager.damage_powerup_max)
 	
 	current_weapon = 0
+	GameManager.current_weapon_selected = 0
+	GameManager.update_weapon_level(0)
 	velocita_attuale = velocita
 	current_damage_powerup = 0.0
 

@@ -13,6 +13,9 @@ const SCENA_ICONA_SPEED = preload("res://speed_icon.tscn")
 const SCENA_ICONA_DAMAGE = preload("res://damage_icon.tscn")
 @onready var vite_container = $ViteContainer
 
+@onready var supermove_toggle_button = $SupermoveToggleButton
+@onready var supermove_wheel = $SuperWheel # Il nodo SupermoveWheel
+
 func aggiorna_icone_vita(numero_vite):
 	# Prima cancelliamo tutte le icone vecchie
 	for icona in vite_container.get_children():
@@ -27,6 +30,8 @@ func _ready():
 	await get_tree().process_frame
 
 	player = get_tree().get_first_node_in_group("giocatore")
+	if GameManager.supermoves_activated.size() > 0:
+		$SupermoveToggleButton.visible = true
 
 	# Connettiamoci al segnale del GameManager
 	GameManager.vite_aggiornate.connect(aggiorna_icone_vita)
@@ -42,6 +47,8 @@ func _ready():
 		# Impostiamo i valori iniziali della barra
 		health_bar.max_value = player.energy_max
 		populate_health_bar()
+		
+	supermove_toggle_button.pressed.connect(_on_supermove_toggle_button_pressed)
 
 func populate_damage_bar():
 	for i in GameManager.damage_powerup_max:
@@ -56,7 +63,6 @@ func populate_speed_bar():
 		speed_container.add_child(new_child)
 
 func update_damage_bar(new_damage, damage_max):
-	print(new_damage)
 	GameManager.current_damage_powerup = new_damage
 	var total_point_toremove = damage_max - new_damage
 	for n in damage_container.get_children():
@@ -106,3 +112,7 @@ func on_speed_player_updated(new_speed, speed_max):
 
 func _on_pausa_pressed() -> void:
 	PauseMenu.toggle_pause()
+
+func _on_supermove_toggle_button_pressed() -> void:
+	var player_node = GameManager.get_player_node()
+	supermove_wheel.toggle_wheel_visibility(player_node) # Replace with function body.
