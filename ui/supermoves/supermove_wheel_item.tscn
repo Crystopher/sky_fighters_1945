@@ -8,28 +8,20 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_fovq7")
 
-[node name="TextureButton" type="TextureButton" parent="."]
-process_mode = 3
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SupermoveIcon" type="TextureRect" parent="TextureButton"]
+[node name="SuperMoveButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+flat = true
 
 [node name="CooldownProgressBar" type="ProgressBar" parent="."]
 layout_mode = 1
@@ -47,4 +39,4 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 max_value = 1.0
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="SuperMoveButton" to="." method="_on_super_move_button_pressed"]

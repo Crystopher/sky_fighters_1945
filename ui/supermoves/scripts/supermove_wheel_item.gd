@@ -3,7 +3,7 @@ extends Control
 
 class_name SupermoveWheelItem
 
-@onready var texture_button = $TextureButton
+@onready var super_button = $SuperMoveButton
 @onready var icon = $TextureButton/SupermoveIcon
 @onready var cooldown_bar = $CooldownProgressBar
 
@@ -17,12 +17,10 @@ func _ready():
 func setup(sm_data: SuperMoveData):
 	supermove_data = sm_data
 	if sm_data:
-		icon.texture = sm_data.icon
-		icon.visible = true
-		texture_button.disabled = false
+		super_button.icon = sm_data.icon
+		super_button.disabled = false
 	else:
-		icon.visible = false
-		texture_button.disabled = true
+		super_button.disabled = true
 	update_cooldown_display(1.0) # Mostra come pronto all'uso
 
 func update_cooldown_display(progress: float):
@@ -30,13 +28,17 @@ func update_cooldown_display(progress: float):
 
 	cooldown_bar.value = progress
 	if progress >= 1.0: # Pronto
-		texture_button.modulate = Color(1, 1, 1, 1)
+		super_button.modulate = Color(1, 1, 1, 1)
 		cooldown_bar.visible = false
 	else: # In cooldown
-		texture_button.modulate = Color(0.7, 0.7, 0.7, 0.7)
+		super_button.modulate = Color(0.7, 0.7, 0.7, 0.7)
 		cooldown_bar.visible = true
 		# countdown_label.text = str(int(supermove_data.cooldown * (1.0 - progress)) + 1)
 
 func _on_texture_button_pressed():
+	if supermove_data and GameManager.get_player_node().supermove_cooldowns.get(supermove_data.type, 0.0) <= 0.0:
+		selected.emit(supermove_data.type)
+
+func _on_super_move_button_pressed() -> void:
 	if supermove_data and GameManager.get_player_node().supermove_cooldowns.get(supermove_data.type, 0.0) <= 0.0:
 		selected.emit(supermove_data.type)

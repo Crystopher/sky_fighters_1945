@@ -5,7 +5,7 @@ var velocita = 150.0
 @export var punti_impatto = 1
 @export var salute_massima = 1
 @onready var grafica_nemico = $GraficaNemico
-@onready var ombra_nemico = $OmbraGiocatore
+@onready var ombra_nemico = $OmbraNemicoAnimata
 @onready var ombra_nemico_animata = $OmbraNemico
 
 var salute_attuale: float

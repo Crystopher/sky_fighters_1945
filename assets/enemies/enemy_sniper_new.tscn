@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cutma30egf2pu"]
+[gd_scene load_steps=20 format=3 uid="uid://cutma30egf2pu"]
 
 [ext_resource type="Script" uid="uid://wil7tox0w5lv" path="res://assets/enemies/scripts/enemy_sniper_new.gd" id="1_vwyay"]
 [ext_resource type="PackedScene" uid="uid://c8chj1fs7k6a" path="res://assets/enemies/weapons/railgun_sniper.tscn" id="2_oor1c"]
-[ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="3_0i5va"]
 [ext_resource type="Texture2D" uid="uid://c4pkd84dig4ac" path="res://assets/enemies/images/orbital_reactor_anim_spritesheet.png" id="4_jgbjw"]
 [ext_resource type="Texture2D" uid="uid://cuyf3xb0jjbu0" path="res://assets/enemies/images/sniper_enemy.png" id="5_oor1c"]
 
@@ -126,15 +125,6 @@ salute_massima = 6
 wait_time = 0.1
 one_shot = true
 
-[node name="OmbraGiocatore" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.713726)
-z_index = -1
-position = Vector2(66, 5.00002)
-rotation = -3.14159
-scale = Vector2(0.166045, 0.161926)
-texture = ExtResource("3_0i5va")
-offset = Vector2(200, 100)
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(1, -20)
 rotation = -3.14159
@@ -180,6 +170,16 @@ animation = &"fire"
 autoplay = "fire"
 frame_progress = 0.562207
 flip_h = true
+
+[node name="OmbraNemicoAnimata" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.396078)
+z_index = -1
+position = Vector2(45.7433, -19.9671)
+rotation = 3.14159
+scale = Vector2(0.159487, 0.16951)
+sprite_frames = SubResource("SpriteFrames_vh0pk")
+autoplay = "default"
+frame_progress = 0.604862
 
 [node name="GraficaNemico" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.25666, -61.9671)

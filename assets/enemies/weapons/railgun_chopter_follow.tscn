@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdhpakjjq07u8"]
+
+[ext_resource type="Script" uid="uid://csii1s3kkc17k" path="res://assets/enemies/weapons/scripts/railgun_sniper.gd" id="1_28bc2"]
+[ext_resource type="Texture2D" uid="uid://ekw5bbwbvkyv" path="res://assets/enemies/weapons/images/spritesheets/chopter_follow/chopter_missile_follow_frame1.png" id="3_ryygw"]
+[ext_resource type="Texture2D" uid="uid://cdnjrm26s2qig" path="res://assets/enemies/weapons/images/spritesheets/chopter_follow/chopter_missile_follow_frame2.png" id="4_xggbk"]
+[ext_resource type="Texture2D" uid="uid://cptpqa5bw4y5n" path="res://assets/enemies/weapons/images/spritesheets/chopter_follow/chopter_missile_follow_frame3.png" id="5_4ul2o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu5yp"]
+atlas = ExtResource("3_ryygw")
+region = Rect2(0, 0, 203, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvsyi"]
+atlas = ExtResource("4_xggbk")
+region = Rect2(0, 0, 203, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8xrw"]
+atlas = ExtResource("5_4ul2o")
+region = Rect2(0, 0, 203, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2je1"]
+atlas = ExtResource("4_xggbk")
+region = Rect2(0, 0, 203, 553)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkwl3"]
+atlas = ExtResource("3_ryygw")
+region = Rect2(0, 0, 203, 553)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_at6eq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu5yp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvsyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8xrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2je1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkwl3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Railgun" type="Area2D" groups=["enemy_weapons"]]
+collision_layer = 8
+script = ExtResource("1_28bc2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9.53674e-07, -5)
+rotation = 3.14159
+scale = Vector2(0.150862, 0.150862)
+sprite_frames = SubResource("SpriteFrames_at6eq")
+autoplay = "default"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-11, 12, -11, 6, -5, 0, -5, -13, -5, -34, 0, -45, 5, -34, 5, -13, 5, 0, 11, 7, 11, 12, 4, 11, 4, 18, -4, 18, -4, 11)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

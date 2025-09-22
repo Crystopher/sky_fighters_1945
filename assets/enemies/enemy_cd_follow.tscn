@@ -1,0 +1,187 @@
+[gd_scene load_steps=32 format=3 uid="uid://c3jjwow6jvfm"]
+
+[ext_resource type="Script" uid="uid://2swm0yngevyb" path="res://assets/enemies/scripts/enemy_cd_follow.gd" id="1_lyakq"]
+[ext_resource type="PackedScene" uid="uid://bdhpakjjq07u8" path="res://assets/enemies/weapons/railgun_chopter_follow.tscn" id="2_liiq3"]
+[ext_resource type="Texture2D" uid="uid://ckw2hsgqsdygp" path="res://assets/enemies/images/chopter_double_spitfire.png" id="3_7x84g"]
+[ext_resource type="Texture2D" uid="uid://cx3xcka5q6q5f" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame1.png" id="4_ivm0f"]
+[ext_resource type="Texture2D" uid="uid://cxxd6i75uec68" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame2.png" id="5_v0nrr"]
+[ext_resource type="Texture2D" uid="uid://dfe0v8dns0c3v" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame3.png" id="6_wbbjm"]
+[ext_resource type="Texture2D" uid="uid://cb8dkb3s4k6jb" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame4.png" id="7_67xh4"]
+[ext_resource type="Texture2D" uid="uid://bftcbrwwq0gea" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame5.png" id="8_3qqwg"]
+[ext_resource type="Texture2D" uid="uid://bn71n5gkh85s2" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame6.png" id="9_epfci"]
+[ext_resource type="Texture2D" uid="uid://culpc8rqitbi3" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame7.png" id="10_ehn24"]
+[ext_resource type="Texture2D" uid="uid://bjxhqai3novro" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame8.png" id="11_n77w0"]
+[ext_resource type="Texture2D" uid="uid://c1nqmg4l4qwov" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame9.png" id="12_jiypv"]
+[ext_resource type="Texture2D" uid="uid://b68qflt5xh8yc" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame10.png" id="13_y4tbo"]
+[ext_resource type="Texture2D" uid="uid://bt26galrqqkyb" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame11.png" id="14_7fyoy"]
+[ext_resource type="Texture2D" uid="uid://cm7s5sf0sak6s" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame12.png" id="15_gv643"]
+[ext_resource type="Texture2D" uid="uid://chgstl042nvvh" path="res://assets/enemies/images/spritesheets/chopter_follow_main_fan/chopter_double_follow_fan_frame13.png" id="16_1032l"]
+[ext_resource type="Texture2D" uid="uid://bgniwsyik5lke" path="res://assets/enemies/images/chopter_double_follow.png" id="22_3n7ul"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7npi"]
+atlas = ExtResource("4_ivm0f")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwmhn"]
+atlas = ExtResource("5_v0nrr")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u42rv"]
+atlas = ExtResource("6_wbbjm")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq6ax"]
+atlas = ExtResource("7_67xh4")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia4jr"]
+atlas = ExtResource("8_3qqwg")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wecvf"]
+atlas = ExtResource("9_epfci")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nxmi"]
+atlas = ExtResource("10_ehn24")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3mqe"]
+atlas = ExtResource("11_n77w0")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfnas"]
+atlas = ExtResource("12_jiypv")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h0xb"]
+atlas = ExtResource("13_y4tbo")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi2pw"]
+atlas = ExtResource("14_7fyoy")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a85pq"]
+atlas = ExtResource("15_gv643")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im753"]
+atlas = ExtResource("16_1032l")
+region = Rect2(0, 0, 512, 480)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0o3ko"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7npi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwmhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u42rv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq6ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia4jr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wecvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nxmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3mqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfnas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h0xb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi2pw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a85pq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im753")
+}],
+"loop": true,
+"name": &"default",
+"speed": 25.0
+}]
+
+[node name="EnemyChopterDoubleFollow" type="Area2D" groups=["nemici"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_lyakq")
+weapon_scene = ExtResource("2_liiq3")
+velocita_entrata = 650.0
+punti_nemico = 70
+punti_impatto = 4
+salute_massima = 5
+
+[node name="HitFlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+ignore_time_scale = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 9)
+rotation = -3.14159
+polygon = PackedVector2Array(0.000461403, 182, -4.99957, 171, -21.9996, 171, -20.9996, 162, -4.99959, 161, -13.9997, 123, -24.9998, 94.0001, -32.9998, 94.0001, -33.3611, 87.1352, -102, 87.0003, -102, 78.0003, -33.7831, 79.1166, -33.9998, 75.0001, -25.9998, 74.0001, -34.9998, 69.0001, -39.9998, 69.0001, -39.9998, 71.0001, -43.9998, 71.0001, -46.9998, 66.0001, -46.9999, 52.0001, -44.9999, 48.0001, -41.9999, 48.0001, -38.9999, 57.0001, -38.9999, 45.0001, -37.9999, 31.0001, -27.9999, 31.0001, -26.9999, 44.0001, -22.9999, 41.0001, -22.9999, 22.0001, -16, 12, -3.99999, 3.00001, 3.00001, 2.99999, 17, 13, 22.0001, 23.9999, 23.0001, 41.9999, 26.0001, 44.9999, 27.0001, 30.9999, 37.0001, 30.9999, 37.0001, 44.9999, 36.0001, 56.9999, 41.0001, 46.9999, 44.0001, 46.9999, 46.0001, 52.9999, 46.0002, 66.9999, 44.0002, 71.9999, 39.0002, 71.9999, 37.0002, 67.9999, 29.0002, 72.9999, 33.0002, 74.9999, 33.0002, 79.9716, 101, 79.9997, 101, 88.9997, 33.0002, 90.2654, 33.0002, 94.9999, 23.0002, 94.9999, 19.9649, 104.78, 16.9139, 114.611, 14.0003, 124, 4.00041, 161, 1.00045, 176)
+
+[node name="OmbraNemicoAnimata" type="CanvasGroup" parent="."]
+z_index = -1
+
+[node name="OmbraNemico" type="Sprite2D" parent="OmbraNemicoAnimata"]
+modulate = Color(0, 0, 0, 0.396078)
+position = Vector2(34, -48)
+scale = Vector2(0.482422, 0.4375)
+texture = ExtResource("3_7x84g")
+
+[node name="OmbraPaleSec2" type="AnimatedSprite2D" parent="OmbraNemicoAnimata"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.552941)
+position = Vector2(34, -124)
+scale = Vector2(0.132813, 0.132813)
+sprite_frames = SubResource("SpriteFrames_0o3ko")
+autoplay = "default"
+
+[node name="OmbraPale" type="AnimatedSprite2D" parent="OmbraNemicoAnimata"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.623529)
+position = Vector2(33, -41)
+scale = Vector2(0.451328, 0.451328)
+sprite_frames = SubResource("SpriteFrames_0o3ko")
+autoplay = "default"
+
+[node name="GraficaNemico" type="Sprite2D" parent="."]
+position = Vector2(5.96046e-08, -82)
+scale = Vector2(0.482422, 0.4375)
+texture = ExtResource("22_3n7ul")
+
+[node name="PaleSec" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -156)
+scale = Vector2(0.132813, 0.132813)
+sprite_frames = SubResource("SpriteFrames_0o3ko")
+autoplay = "default"
+
+[node name="Pale" type="AnimatedSprite2D" parent="."]
+position = Vector2(4.17233e-07, -70)
+scale = Vector2(0.472656, 0.472656)
+sprite_frames = SubResource("SpriteFrames_0o3ko")
+autoplay = "default"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://ivho43p005il"]
+[gd_scene load_steps=20 format=3 uid="uid://ivho43p005il"]
 
 [ext_resource type="Script" uid="uid://cye3tielp84et" path="res://assets/enemies/scripts/enemy_orbital_new.gd" id="1_h4yj7"]
 [ext_resource type="PackedScene" uid="uid://eusgo1cp8spg" path="res://assets/enemies/weapons/splitter.tscn" id="2_aavmd"]
-[ext_resource type="Texture2D" uid="uid://csomijen0eshi" path="res://assets/characters/sprites/shadow.png" id="3_duyra"]
 [ext_resource type="Texture2D" uid="uid://cyymiykt70ey3" path="res://assets/enemies/images/orbital_plane.png" id="4_aavmd"]
 [ext_resource type="Texture2D" uid="uid://c4pkd84dig4ac" path="res://assets/enemies/images/orbital_reactor_anim_spritesheet.png" id="4_m5s5m"]
 
@@ -126,15 +125,6 @@ salute_massima = 8
 wait_time = 0.1
 one_shot = true
 
-[node name="OmbraGiocatore" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.713726)
-z_index = -1
-position = Vector2(66, 5.00002)
-rotation = -3.14159
-scale = Vector2(0.166045, 0.161926)
-texture = ExtResource("3_duyra")
-offset = Vector2(200, 100)
-
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
 ignore_time_scale = true
@@ -160,6 +150,16 @@ sprite_frames = SubResource("SpriteFrames_loebu")
 animation = &"fire"
 autoplay = "fire"
 flip_v = true
+
+[node name="OmbraNemicoAnimata" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.396078)
+z_index = -1
+position = Vector2(32.0262, -2.0658)
+rotation = 3.14159
+scale = Vector2(0.200079, 0.208097)
+sprite_frames = SubResource("SpriteFrames_vh0pk")
+autoplay = "default"
+frame_progress = 0.577613
 
 [node name="GraficaNemico" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.02625, -42.0658)

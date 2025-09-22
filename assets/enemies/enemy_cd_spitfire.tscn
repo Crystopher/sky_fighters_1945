@@ -1,0 +1,238 @@
+[gd_scene load_steps=42 format=3 uid="uid://dn5eiepdk01y0"]
+
+[ext_resource type="Script" uid="uid://d4ae2glsmvfw" path="res://assets/enemies/scripts/enemy_cd_spitfire.gd" id="1_ihduy"]
+[ext_resource type="PackedScene" uid="uid://b7k8dc1tg6jp4" path="res://assets/enemies/weapons/railgun_chopter.tscn" id="2_5nwft"]
+[ext_resource type="Texture2D" uid="uid://ckw2hsgqsdygp" path="res://assets/enemies/images/chopter_double_spitfire.png" id="4_t71gr"]
+[ext_resource type="Texture2D" uid="uid://cbilf28hdqya6" path="res://assets/enemies/images/spritesheets/chopter_main_fan/chopter_double_spitfire_fan_frame01.png" id="5_jkns3"]
+[ext_resource type="Texture2D" uid="uid://bny2gv1t4n165" path="res://assets/enemies/images/spritesheets/chopter_main_fan/chopter_double_spitfire_fan_frame02.png" id="6_7ich0"]
+[ext_resource type="Texture2D" uid="uid://f3h86vlr8qxn" path="res://assets/enemies/images/spritesheets/chopter_main_fan/chopter_double_spitfire_fan_frame03.png" id="7_ehfwt"]
+[ext_resource type="Texture2D" uid="uid://bv5pc1tfps8k6" path="res://assets/enemies/images/spritesheets/chopter_main_fan/chopter_double_spitfire_fan_frame04.png" id="8_0q1pm"]
+[ext_resource type="Texture2D" uid="uid://bm6a3harv3d2t" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame01.png" id="9_38l4b"]
+[ext_resource type="Texture2D" uid="uid://bnkxjexveubcm" path="res://assets/enemies/images/spritesheets/chopter_main_fan/chopter_double_spitfire_fan_frame05.png" id="9_66wiu"]
+[ext_resource type="Texture2D" uid="uid://dkt8key5ws3gy" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame02.png" id="10_5nwft"]
+[ext_resource type="Texture2D" uid="uid://1dnd2s0iweem" path="res://assets/enemies/images/spritesheets/chopter_main_fan/chopter_double_spitfire_fan_frame06.png" id="10_ihkak"]
+[ext_resource type="Texture2D" uid="uid://cmmm5sxvyq1to" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame03.png" id="11_0o3ko"]
+[ext_resource type="Texture2D" uid="uid://drall7mqbmykb" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame04.png" id="12_nlwj2"]
+[ext_resource type="Texture2D" uid="uid://cg5eg604vhjc5" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame05.png" id="13_sdtq1"]
+[ext_resource type="Texture2D" uid="uid://b8ijsighxgxag" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame06.png" id="14_5cgvh"]
+[ext_resource type="Texture2D" uid="uid://ctgcmn31j6cdu" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame07.png" id="15_o4wn4"]
+[ext_resource type="Texture2D" uid="uid://cun66e6jgm2gu" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame08.png" id="16_wvdts"]
+[ext_resource type="Texture2D" uid="uid://i2a481nxxl5v" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame09.png" id="17_s7xig"]
+[ext_resource type="Texture2D" uid="uid://dkl7r7u41hnh4" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame10.png" id="18_gpjd0"]
+[ext_resource type="Texture2D" uid="uid://blrhmrnnmsn88" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame11.png" id="19_ed4hm"]
+[ext_resource type="Texture2D" uid="uid://b7qw3td1m8tbh" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame12.png" id="20_duy6q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wu7vc"]
+atlas = ExtResource("5_jkns3")
+region = Rect2(0, 0, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik8hm"]
+atlas = ExtResource("6_7ich0")
+region = Rect2(0, 0, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsxri"]
+atlas = ExtResource("7_ehfwt")
+region = Rect2(0, 0, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pghmy"]
+atlas = ExtResource("8_0q1pm")
+region = Rect2(0, 0, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38l4b"]
+atlas = ExtResource("9_66wiu")
+region = Rect2(0, 0, 350, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nwft"]
+atlas = ExtResource("10_ihkak")
+region = Rect2(0, 0, 350, 350)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0o3ko"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wu7vc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik8hm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsxri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pghmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38l4b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nwft")
+}],
+"loop": true,
+"name": &"default",
+"speed": 25.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlmlv"]
+atlas = ExtResource("9_38l4b")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bryh6"]
+atlas = ExtResource("10_5nwft")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id5ts"]
+atlas = ExtResource("11_0o3ko")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v88q"]
+atlas = ExtResource("12_nlwj2")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iitgh"]
+atlas = ExtResource("13_sdtq1")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioe3t"]
+atlas = ExtResource("14_5cgvh")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_440p5"]
+atlas = ExtResource("15_o4wn4")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uquho"]
+atlas = ExtResource("16_wvdts")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u7w3"]
+atlas = ExtResource("17_s7xig")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri3fj"]
+atlas = ExtResource("18_gpjd0")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_astlt"]
+atlas = ExtResource("19_ed4hm")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7586"]
+atlas = ExtResource("20_duy6q")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xo52q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlmlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bryh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_id5ts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0v88q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iitgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ioe3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_440p5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uquho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u7w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri3fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_astlt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7586")
+}],
+"loop": true,
+"name": &"default",
+"speed": 40.0
+}]
+
+[node name="EnemyChopterDoubleSpitfire" type="Area2D" groups=["nemici"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_ihduy")
+weapon_scene = ExtResource("2_5nwft")
+velocita_entrata = 650.0
+punti_nemico = 70
+punti_impatto = 4
+salute_massima = 6
+
+[node name="HitFlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+ignore_time_scale = true
+
+[node name="SpawnTimer2" type="Timer" parent="."]
+ignore_time_scale = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 9)
+rotation = -3.14159
+polygon = PackedVector2Array(0.000461403, 182, -4.99957, 171, -21.9996, 171, -20.9996, 162, -4.99959, 161, -13.9997, 123, -24.9998, 94.0001, -32.9998, 94.0001, -33.3611, 87.1352, -102, 87.0003, -102, 78.0003, -33.7831, 79.1166, -33.9998, 75.0001, -25.9998, 74.0001, -34.9998, 69.0001, -39.9998, 69.0001, -39.9998, 71.0001, -43.9998, 71.0001, -46.9998, 66.0001, -46.9999, 52.0001, -44.9999, 48.0001, -41.9999, 48.0001, -38.9999, 57.0001, -38.9999, 45.0001, -37.9999, 31.0001, -27.9999, 31.0001, -26.9999, 44.0001, -22.9999, 41.0001, -22.9999, 22.0001, -16, 12, -3.99999, 3.00001, 3.00001, 2.99999, 17, 13, 22.0001, 23.9999, 23.0001, 41.9999, 26.0001, 44.9999, 27.0001, 30.9999, 37.0001, 30.9999, 37.0001, 44.9999, 36.0001, 56.9999, 41.0001, 46.9999, 44.0001, 46.9999, 46.0001, 52.9999, 46.0002, 66.9999, 44.0002, 71.9999, 39.0002, 71.9999, 37.0002, 67.9999, 29.0002, 72.9999, 33.0002, 74.9999, 33.0002, 79.9716, 101, 79.9997, 101, 88.9997, 33.0002, 90.2654, 33.0002, 94.9999, 23.0002, 94.9999, 19.9649, 104.78, 16.9139, 114.611, 14.0003, 124, 4.00041, 161, 1.00045, 176)
+
+[node name="OmbraNemicoAnimata" type="CanvasGroup" parent="."]
+z_index = -1
+
+[node name="OmbraNemico" type="Sprite2D" parent="OmbraNemicoAnimata"]
+modulate = Color(0, 0, 0, 0.396078)
+position = Vector2(34, -48)
+scale = Vector2(0.482422, 0.4375)
+texture = ExtResource("4_t71gr")
+
+[node name="OmbraPale" type="AnimatedSprite2D" parent="OmbraNemicoAnimata"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.623529)
+position = Vector2(30, -49)
+scale = Vector2(0.68, 0.68)
+sprite_frames = SubResource("SpriteFrames_0o3ko")
+autoplay = "default"
+
+[node name="OmbraPaleSec2" type="AnimatedSprite2D" parent="OmbraNemicoAnimata"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.568627)
+position = Vector2(31.75, -125.25)
+scale = Vector2(0.3775, 0.3775)
+sprite_frames = SubResource("SpriteFrames_xo52q")
+autoplay = "default"
+
+[node name="GraficaNemico" type="Sprite2D" parent="."]
+position = Vector2(2, -80)
+scale = Vector2(0.482422, 0.4375)
+texture = ExtResource("4_t71gr")
+
+[node name="Pale" type="AnimatedSprite2D" parent="."]
+position = Vector2(7.15256e-07, -73)
+scale = Vector2(0.68, 0.68)
+sprite_frames = SubResource("SpriteFrames_0o3ko")
+autoplay = "default"
+
+[node name="PaleSec" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.249999, -156.25)
+scale = Vector2(0.3775, 0.3775)
+sprite_frames = SubResource("SpriteFrames_xo52q")
+autoplay = "default"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer2" to="." method="_on_spawn_timer_2_timeout"]

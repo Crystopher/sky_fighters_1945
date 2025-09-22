@@ -12,7 +12,8 @@ func _on_button_2_button_down() -> void:
 func _on_button_2_pressed() -> void:
 	#get_tree().change_scene_to_file("res://levels/level1/livello_1-1.tscn")
 	#TransitionManager.change_scene("res://levels/level1/livello_1-1.tscn")
-	TransitionManager.change_scene("res://levels/level1/scenes/intro01.tscn")
+	#TransitionManager.change_scene("res://levels/level1/scenes/intro01.tscn")
+	TransitionManager.change_scene("res://levels/level2/livello_2-1.tscn")
 
 func _ready() -> void:
 	var fighters_selection = get_tree().get_nodes_in_group("player_selection")
