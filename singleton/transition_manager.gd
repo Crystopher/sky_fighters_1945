@@ -35,7 +35,7 @@ func change_scene_async(path: String):
 				call_deferred("update_loading_progress", progress[0]) # Aggiorna la UI dal thread principale
 			await get_tree().process_frame # Aspetta un frame per non bloccare il gioco
 		call_deferred("update_loading_progress", 1.0)
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.3, false).timeout
 		animation_player.play("fade_out")
 		await animation_player.animation_finished
 		var loaded_scene = resource_loader.load_threaded_get(path)
@@ -61,7 +61,6 @@ func change_scene(percorso_scena):
 
 	# 2. Aspetta che l'animazione sia finita
 	await animation_player.animation_finished
-	#await get_tree().create_timer(3).timeout
 	# 3. Cambia la scena
 	get_tree().change_scene_to_file(percorso_scena)
 	# 4. Dissolvi dalla schermata nera alla nuova scena

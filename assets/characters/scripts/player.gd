@@ -95,7 +95,7 @@ func perform_shield(duration: float):
 	grafica_giocatore.material = shield_material
 	var tween_in = create_tween()
 	tween_in.tween_method(Callable(self, "_set_glow_strength"), 0.0, 1.0, 0.5) # Fade-in in 0.5s
-	await get_tree().create_timer(duration).timeout
+	await get_tree().create_timer(duration, false).timeout
 	var tween_out = create_tween()
 	tween_out.tween_method(Callable(self, "_set_glow_strength"), 1.0, 0.0, 0.5) # Fade-out in 0.5s
 	await tween_out.finished
@@ -114,7 +114,7 @@ func perform_overcharge(duration: float):
 	grafica_giocatore.material = overcharge_material
 	var tween_in = create_tween()
 	tween_in.tween_method(Callable(self, "_set_fire_glow_strength"), 0.0, 1.0, 0.5) # Fade-in in 0.5s
-	await get_tree().create_timer(duration).timeout
+	await get_tree().create_timer(duration, false).timeout
 	var tween_out = create_tween()
 	tween_out.tween_method(Callable(self, "_set_fire_glow_strength"), 1.0, 0.0, 0.5) # Fade-out in 0.5s
 	await tween_out.finished
@@ -451,7 +451,7 @@ func morire():
 
 	# Ferma il movimento del giocatore
 	set_physics_process(false)
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(3.0, false).timeout
 	
 	var game_over = GameManager.perdi_vita()
 	if game_over:
@@ -459,7 +459,7 @@ func morire():
 		GameManager.ultimo_aereo = GameManager.giocatore_selezionato
 		GameManager.ultimo_punteggio = GameManager.punteggio_attuale
 		# Se è Game Over, aspettiamo un po' e torniamo al menu
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(2.0, false).timeout
 		
 		GameManager.clean_up_level()
 		
@@ -470,7 +470,7 @@ func morire():
 			GameManager.reset_level()
 	else:
 		# Altrimenti, avviamo la sequenza di respawn
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(1.5, false).timeout
 		respawn()
 		
 func respawn():

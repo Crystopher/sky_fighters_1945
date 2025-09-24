@@ -45,7 +45,7 @@ func _ready() -> void:
 func aggiorna_posizione_ombra():
 	if ombra_nemico and is_inside_tree() and ombra_nemico.is_inside_tree():
 		var shadow_position = global_position
-		shadow_position.x += 70
+		shadow_position.x += 10
 		shadow_position.y -= 70
 		ombra_nemico.global_position = shadow_position
 

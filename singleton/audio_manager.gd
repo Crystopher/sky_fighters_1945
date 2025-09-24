@@ -15,6 +15,11 @@ func enemy_railgun_fire():
 		$EnemyRailgunFire.stop()
 	$EnemyRailgunFire.play()
 
+func enemy_turret_fire():
+	if $TurretShot.playing:
+		$TurretShot.stop()
+	$TurretShot.play()
+
 func enemy_three_globular():
 	if $EnemyThreeGlobular.playing:
 		$EnemyThreeGlobular.stop()

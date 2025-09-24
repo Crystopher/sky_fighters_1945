@@ -108,7 +108,7 @@ func next_level(current_finished):
 	if not found_levels.is_empty():
 		var level_data = found_levels[0]
 		if level_data.schema["next_level"] == "end_game":
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(2.0, false).timeout
 			GameManager.end_game(false)
 		else:
 			GameManager.current_wave = 0
@@ -153,7 +153,7 @@ func reset_punteggio():
 func game_over():
 	reset_punteggio()
 	# Aspettiamo un istante per dare tempo ai suoni di finire, poi ricarichiamo
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 	get_tree().reload_current_scene()
 
 func end_game(player_won: bool):

@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bvck8oqpdynik"]
+
+[ext_resource type="Script" uid="uid://dbm5bmbs4weni" path="res://assets/enemies/weapons/scripts/railgun_chopter_arc_shot.gd" id="1_op20b"]
+[ext_resource type="Texture2D" uid="uid://b3nnriagw3kwf" path="res://assets/enemies/weapons/images/leaf_projectile.png" id="3_yvvjt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lajch"]
+atlas = ExtResource("3_yvvjt")
+region = Rect2(0, 0, 125, 139)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2til1"]
+atlas = ExtResource("3_yvvjt")
+region = Rect2(125, 0, 125, 139)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq5uj"]
+atlas = ExtResource("3_yvvjt")
+region = Rect2(125, 139, 125, 139)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hnj28"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lajch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2til1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bq5uj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 13.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_op20b"]
+radius = 11.0454
+
+[node name="RailgunArcShot" type="Area2D" groups=["enemy_weapons"]]
+collision_layer = 8
+script = ExtResource("1_op20b")
+velocita = 500.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.239, 0.239)
+sprite_frames = SubResource("SpriteFrames_hnj28")
+autoplay = "default"
+frame_progress = 0.726295
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_op20b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

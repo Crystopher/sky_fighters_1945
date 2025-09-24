@@ -6,9 +6,9 @@ extends Node
 @export var level_completed_scene: PackedScene
 @export var chopter_dspitfire_scene: PackedScene
 @export var chopter_dfollow_scene: PackedScene
-@export var strafer_enemy_scene: PackedScene
-@export var orbital_enemy_scene: PackedScene
-@export var sniper_enemy_scene: PackedScene
+@export var turret_enemy_scene: PackedScene
+@export var chopter_darc_shooter_scene: PackedScene
+@export var chopter_strafer_scene: PackedScene
 @export var boss_enemy_scene: PackedScene
 @export var boss_entering_scene: PackedScene
 @export var boss_defated_scene: PackedScene
@@ -112,30 +112,33 @@ func start_next_wave():
 				scene_to_spawn = chopter_dspitfire_scene
 			elif enemy_type == "chopter_dfollow":
 				scene_to_spawn = chopter_dfollow_scene
-			elif enemy_type == "enemy_strafer":
-				scene_to_spawn = strafer_enemy_scene
-			elif enemy_type == "enemy_orbital":
-				scene_to_spawn = orbital_enemy_scene
-			elif enemy_type == "enemy_sniper":
-				scene_to_spawn = sniper_enemy_scene
+			elif enemy_type == "enemy_turret":
+				scene_to_spawn = turret_enemy_scene
+			elif enemy_type == "chopter_darc_shooter":
+				scene_to_spawn = chopter_darc_shooter_scene
+			elif enemy_type == "chopter_strafer":
+				scene_to_spawn = chopter_strafer_scene
 			elif enemy_type == "boss_eagleone":
 				scene_to_spawn = boss_enemy_scene
 				is_boss = true
 
 			# Usiamo un timer per spawnare i nemici in sequenza
-			var spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
+			var spawn_timer = get_tree().create_timer(enemy_wait, false, false, true)
 			var counter = 0
 			while counter < enemies_number:
 				await spawn_timer.timeout
 				if wave_data.type == "boss":
 					level_music.stop()
 					boss_music.play()
-				enemy_spawn(scene_to_spawn, is_boss)
+				if enemy_type == "enemy_turret":
+					turret_spawn(scene_to_spawn, randi_range(1, 3))
+				else:
+					enemy_spawn(scene_to_spawn, is_boss)
 				counter += 1
-				spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
+				spawn_timer = get_tree().create_timer(enemy_wait, false, false, true)
 		spawn_completed = true
 	elif wave_data.active and wave_data.type == "scene":
-		await get_tree().create_timer(wave_data.wait_before_start).timeout
+		await get_tree().create_timer(wave_data.wait_before_start, false).timeout
 		var scene_to_spawn
 		if wave_data.scene == "boss_entering":
 			scene_to_spawn = boss_entering_scene
@@ -151,7 +154,7 @@ func start_next_wave():
 			boss_music.stop()
 			scene_to_spawn = level_completed_scene
 		scene_spawn(scene_to_spawn)
-		await get_tree().create_timer(wave_data.wait_before_end).timeout
+		await get_tree().create_timer(wave_data.wait_before_end, false).timeout
 		delete_scene(wave_data.name)
 		GameManager.current_wave += 1
 		start_next_wave()
@@ -165,6 +168,23 @@ func delete_scene(scene_name):
 		var child = get_parent().get_child(i)
 		if child != null and child.name == scene_name:
 			child.free()
+
+func turret_spawn(scene_to_spawn, screen_section):
+	if not scene_to_spawn: return
+	var middle_x = get_viewport().get_visible_rect().size.x / 2
+	var static_y = -200
+	var position = Vector2(200, static_y)
+	if screen_section == 1:
+		position = Vector2(middle_x - 200, static_y)
+	elif screen_section == 3:
+		position = Vector2(middle_x + 200, static_y)
+	elif screen_section == 2:
+		position = Vector2(middle_x, static_y)
+	var turret_instance = scene_to_spawn.instantiate()
+	turret_instance.position = position
+	var sfondo = get_tree().get_first_node_in_group("sfondo")
+	sfondo.add_child(turret_instance)
+	await turret_instance.ready
 
 func scene_spawn(scene_to_spawn):
 	if not scene_to_spawn: return
@@ -199,5 +219,5 @@ func on_nemico_destroy():
 		wave_in_live = false
 		GameManager.current_wave += 1
 		# Aspettiamo 3 secondi prima di lanciare la prossima ondata
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(3.0, false).timeout
 		start_next_wave()

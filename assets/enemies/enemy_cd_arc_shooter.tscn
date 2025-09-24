@@ -1,0 +1,297 @@
+[gd_scene load_steps=57 format=3 uid="uid://bt5njctmkut2d"]
+
+[ext_resource type="Script" uid="uid://ci4qnr3adldc1" path="res://assets/enemies/scripts/enemy_cd_arc_shooter.gd" id="1_dltqd"]
+[ext_resource type="PackedScene" uid="uid://bvck8oqpdynik" path="res://assets/enemies/weapons/railgun_chopter_arc_shot.tscn" id="2_212qb"]
+[ext_resource type="Texture2D" uid="uid://ckw2hsgqsdygp" path="res://assets/enemies/images/chopter_double_spitfire.png" id="3_gey2c"]
+[ext_resource type="Texture2D" uid="uid://1a6rs2bn3xv6" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_01.png" id="4_212qb"]
+[ext_resource type="Texture2D" uid="uid://cak6m0sto0viq" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_02.png" id="5_1lr2w"]
+[ext_resource type="Texture2D" uid="uid://b7w5jbgkebe6" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_03.png" id="6_3eb10"]
+[ext_resource type="Texture2D" uid="uid://bik22luynmdjs" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_04.png" id="7_hn0t2"]
+[ext_resource type="Texture2D" uid="uid://mxig4avsybdv" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_05.png" id="8_0amq2"]
+[ext_resource type="Texture2D" uid="uid://c3lsgckd8n377" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_06.png" id="9_veco6"]
+[ext_resource type="Texture2D" uid="uid://ynkw61vsatvu" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_07.png" id="10_0vehl"]
+[ext_resource type="Texture2D" uid="uid://bm6a3harv3d2t" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame01.png" id="10_1lr2w"]
+[ext_resource type="Texture2D" uid="uid://i0e5mrntcn7s" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_08.png" id="11_0lker"]
+[ext_resource type="Texture2D" uid="uid://dkt8key5ws3gy" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame02.png" id="11_3eb10"]
+[ext_resource type="Texture2D" uid="uid://bbtpfsxjcjcd2" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_09.png" id="12_57c3y"]
+[ext_resource type="Texture2D" uid="uid://cmmm5sxvyq1to" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame03.png" id="12_hn0t2"]
+[ext_resource type="Texture2D" uid="uid://drall7mqbmykb" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame04.png" id="13_0amq2"]
+[ext_resource type="Texture2D" uid="uid://bcdkifgkbjll5" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_10.png" id="13_iw8tl"]
+[ext_resource type="Texture2D" uid="uid://c0roknfv30oy7" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_11.png" id="14_qm0jw"]
+[ext_resource type="Texture2D" uid="uid://cg5eg604vhjc5" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame05.png" id="14_veco6"]
+[ext_resource type="Texture2D" uid="uid://b8ijsighxgxag" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame06.png" id="15_0vehl"]
+[ext_resource type="Texture2D" uid="uid://dq467wnqi0lu7" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_12.png" id="15_br3c8"]
+[ext_resource type="Texture2D" uid="uid://ctgcmn31j6cdu" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame07.png" id="16_0lker"]
+[ext_resource type="Texture2D" uid="uid://c58st1g5fhfth" path="res://assets/enemies/images/spritesheets/chopter_arc_shooter/chopter_arc_shooter_main_fan_13.png" id="16_g2jwx"]
+[ext_resource type="Texture2D" uid="uid://cun66e6jgm2gu" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame08.png" id="17_57c3y"]
+[ext_resource type="Texture2D" uid="uid://i2a481nxxl5v" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame09.png" id="18_iw8tl"]
+[ext_resource type="Texture2D" uid="uid://dkl7r7u41hnh4" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame10.png" id="19_qm0jw"]
+[ext_resource type="Texture2D" uid="uid://blrhmrnnmsn88" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame11.png" id="20_br3c8"]
+[ext_resource type="Texture2D" uid="uid://b7qw3td1m8tbh" path="res://assets/enemies/images/spritesheets/chopter_sec_fan/chopter_double_spitfire_fan__02_frame12.png" id="21_g2jwx"]
+[ext_resource type="Texture2D" uid="uid://cw46ga6teqym2" path="res://assets/enemies/images/chopter_arc_shooter.png" id="22_5be7q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjl4q"]
+atlas = ExtResource("4_212qb")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7neew"]
+atlas = ExtResource("5_1lr2w")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb3s6"]
+atlas = ExtResource("6_3eb10")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7edbl"]
+atlas = ExtResource("7_hn0t2")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy1r2"]
+atlas = ExtResource("8_0amq2")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1tbl"]
+atlas = ExtResource("9_veco6")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6v4h"]
+atlas = ExtResource("10_0vehl")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs77w"]
+atlas = ExtResource("11_0lker")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gomcq"]
+atlas = ExtResource("12_57c3y")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h0ew"]
+atlas = ExtResource("13_iw8tl")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0bua"]
+atlas = ExtResource("14_qm0jw")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3855f"]
+atlas = ExtResource("15_br3c8")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj1lt"]
+atlas = ExtResource("16_g2jwx")
+region = Rect2(0, 0, 400, 341)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0o3ko"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjl4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7neew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb3s6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7edbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy1r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1tbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6v4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs77w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gomcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h0ew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0bua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3855f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wj1lt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 25.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlmlv"]
+atlas = ExtResource("10_1lr2w")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bryh6"]
+atlas = ExtResource("11_3eb10")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id5ts"]
+atlas = ExtResource("12_hn0t2")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v88q"]
+atlas = ExtResource("13_0amq2")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iitgh"]
+atlas = ExtResource("14_veco6")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioe3t"]
+atlas = ExtResource("15_0vehl")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_440p5"]
+atlas = ExtResource("16_0lker")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uquho"]
+atlas = ExtResource("17_57c3y")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u7w3"]
+atlas = ExtResource("18_iw8tl")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri3fj"]
+atlas = ExtResource("19_qm0jw")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_astlt"]
+atlas = ExtResource("20_br3c8")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7586"]
+atlas = ExtResource("21_g2jwx")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xo52q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlmlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bryh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_id5ts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0v88q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iitgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ioe3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_440p5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uquho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u7w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri3fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_astlt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7586")
+}],
+"loop": true,
+"name": &"default",
+"speed": 40.0
+}]
+
+[node name="EnemyChopterArcShooter" type="Area2D" groups=["nemici"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_dltqd")
+weapon_scene = ExtResource("2_212qb")
+velocita_entrata = 500.0
+numero_proiettili_ventaglio = 3
+angolo_apertura_ventaglio = 60.0
+velocita_proiettile = 400.0
+punti_nemico = 70
+punti_impatto = 2
+salute_massima = 6
+
+[node name="HitFlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+ignore_time_scale = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 9)
+rotation = -3.14159
+polygon = PackedVector2Array(-1.99952, 190, -9.99953, 187, -10.9995, 178, -23.9995, 178, -23.9996, 169, -10.9996, 168, -16.9997, 124, -26.9998, 98.0001, -32.9998, 94.0001, -33.3611, 87.1352, -102, 87.0003, -102, 78.0003, -33.7831, 79.1166, -33.9998, 75.0001, -25.9998, 74.0001, -34.9998, 69.0001, -39.9998, 69.0001, -39.9998, 71.0001, -43.9998, 71.0001, -46.9998, 66.0001, -46.9999, 52.0001, -44.9999, 48.0001, -41.9999, 48.0001, -38.9999, 57.0001, -38.9999, 45.0001, -37.9999, 31.0001, -27.9999, 31.0001, -26.9999, 44.0001, -22.9999, 41.0001, -22.9999, 22.0001, -16, 12, -3.99999, 3.00001, 3.00001, 2.99999, 17, 13, 22.0001, 23.9999, 23.0001, 41.9999, 26.0001, 44.9999, 27.0001, 30.9999, 37.0001, 30.9999, 37.0001, 44.9999, 36.0001, 56.9999, 41.0001, 46.9999, 44.0001, 46.9999, 46.0001, 52.9999, 46.0002, 66.9999, 44.0002, 71.9999, 39.0002, 71.9999, 37.0002, 67.9999, 29.0002, 72.9999, 33.0002, 74.9999, 33.0002, 79.9716, 101, 79.9997, 101, 88.9997, 33.0002, 90.2654, 33.0002, 94.9999, 23.0002, 94.9999, 19.9649, 104.78, 16.9139, 114.611, 14.0003, 124, 4.00041, 161, 2.00047, 185)
+
+[node name="OmbraNemicoAnimata" type="CanvasGroup" parent="."]
+z_index = -1
+
+[node name="OmbraNemico" type="Sprite2D" parent="OmbraNemicoAnimata"]
+modulate = Color(0, 0, 0, 0.396078)
+position = Vector2(34, -48)
+scale = Vector2(0.482422, 0.4375)
+texture = ExtResource("3_gey2c")
+
+[node name="OmbraPale" type="AnimatedSprite2D" parent="OmbraNemicoAnimata"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.623529)
+position = Vector2(30, -49)
+scale = Vector2(0.68, 0.68)
+sprite_frames = SubResource("SpriteFrames_0o3ko")
+autoplay = "default"
+
+[node name="OmbraPaleSec2" type="AnimatedSprite2D" parent="OmbraNemicoAnimata"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.568627)
+position = Vector2(31.75, -125.25)
+scale = Vector2(0.3775, 0.3775)
+sprite_frames = SubResource("SpriteFrames_xo52q")
+autoplay = "default"
+
+[node name="GraficaNemico" type="Sprite2D" parent="."]
+position = Vector2(2, -88)
+scale = Vector2(0.482422, 0.4375)
+texture = ExtResource("22_5be7q")
+
+[node name="PaleSec" type="AnimatedSprite2D" parent="."]
+position = Vector2(4.51833, -163.833)
+scale = Vector2(0.264908, 0.264908)
+sprite_frames = SubResource("SpriteFrames_0o3ko")
+autoplay = "default"
+
+[node name="Pale" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -77)
+scale = Vector2(0.7175, 0.7175)
+sprite_frames = SubResource("SpriteFrames_0o3ko")
+autoplay = "default"
+
+[node name="Muzzle" type="Node2D" parent="."]
+position = Vector2(1, 5)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

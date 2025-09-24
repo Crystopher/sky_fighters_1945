@@ -123,7 +123,7 @@ func start_next_wave():
 				is_boss = true
 
 			# Usiamo un timer per spawnare i nemici in sequenza
-			var spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
+			var spawn_timer = get_tree().create_timer(enemy_wait, false, false, true)
 			var counter = 0
 			while counter < enemies_number:
 				await spawn_timer.timeout
@@ -132,10 +132,10 @@ func start_next_wave():
 					boss_music.play()
 				enemy_spawn(scene_to_spawn, is_boss)
 				counter += 1
-				spawn_timer = get_tree().create_timer(enemy_wait, true, false, true)
+				spawn_timer = get_tree().create_timer(enemy_wait, false, false, true)
 		spawn_completed = true
 	elif wave_data.active and wave_data.type == "scene":
-		await get_tree().create_timer(wave_data.wait_before_start).timeout
+		await get_tree().create_timer(wave_data.wait_before_start, false).timeout
 		var scene_to_spawn
 		if wave_data.scene == "boss_entering":
 			scene_to_spawn = boss_entering_scene
@@ -151,7 +151,7 @@ func start_next_wave():
 			boss_music.stop()
 			scene_to_spawn = level_completed_scene
 		scene_spawn(scene_to_spawn)
-		await get_tree().create_timer(wave_data.wait_before_end).timeout
+		await get_tree().create_timer(wave_data.wait_before_end, false).timeout
 		delete_scene(wave_data.name)
 		GameManager.current_wave += 1
 		start_next_wave()
@@ -199,5 +199,5 @@ func on_nemico_destroy():
 		wave_in_live = false
 		GameManager.current_wave += 1
 		# Aspettiamo 3 secondi prima di lanciare la prossima ondata
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(3.0, false).timeout
 		start_next_wave()

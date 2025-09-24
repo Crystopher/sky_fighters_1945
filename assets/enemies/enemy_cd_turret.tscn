@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7owavbs087te"]
+
+[ext_resource type="Script" uid="uid://dinm3aakggdjf" path="res://assets/enemies/scripts/enemy_cd_turret.gd" id="1_bm2tl"]
+[ext_resource type="Texture2D" uid="uid://d2s77oh3qnbgh" path="res://assets/enemies/images/turret_base.png" id="1_u5nh8"]
+[ext_resource type="Texture2D" uid="uid://d18m1wtl4l1r7" path="res://assets/enemies/images/turret.png" id="2_bm2tl"]
+[ext_resource type="PackedScene" uid="uid://coed72vmmumbm" path="res://assets/enemies/weapons/turret_shot.tscn" id="2_bq1kj"]
+[ext_resource type="Texture2D" uid="uid://b0u0ljpoga7n8" path="res://assets/enemies/images/zolla.png" id="3_dlaub"]
+[ext_resource type="Texture2D" uid="uid://btg8qxnjggw40" path="res://assets/enemies/images/turret_base_02.png" id="4_exjst"]
+[ext_resource type="Texture2D" uid="uid://ct5ck4oibuepy" path="res://assets/enemies/images/turret_destroyed.png" id="6_omdos"]
+[ext_resource type="Script" uid="uid://c8jgui0upv08f" path="res://assets/enemies/scripts/enemy_turret_area_2d.gd" id="7_6j77x"]
+
+[node name="EnemyCdTurret" type="Node2D" groups=["nemici"]]
+z_index = -1
+script = ExtResource("1_bm2tl")
+punti_nemico = 70
+salute_attuale = 10
+proiettile_nemico_scene = ExtResource("2_bq1kj")
+
+[node name="Base3" type="Sprite2D" parent="."]
+position = Vector2(-6.18114, 49)
+scale = Vector2(1.38583, 1.38583)
+texture = ExtResource("3_dlaub")
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("1_u5nh8")
+
+[node name="Base2" type="Sprite2D" parent="."]
+position = Vector2(0.999999, 1)
+scale = Vector2(0.875, 0.875)
+texture = ExtResource("4_exjst")
+
+[node name="Cannon" type="Sprite2D" parent="."]
+position = Vector2(-1, -4)
+scale = Vector2(0.437, 0.437)
+texture = ExtResource("2_bm2tl")
+offset = Vector2(80, 0)
+
+[node name="Muzzle" type="Node2D" parent="Cannon"]
+position = Vector2(283.237, -1.44509)
+scale = Vector2(1.44509, 1.44509)
+
+[node name="CannonDestroyed" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-1, -4)
+scale = Vector2(0.437, 0.437)
+texture = ExtResource("6_omdos")
+offset = Vector2(79, 0)
+
+[node name="ShootTimer" type="Timer" parent="."]
+autostart = true
+ignore_time_scale = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["nemici"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("7_6j77x")
+punti_impatto = 2
+
+[node name="Hitbox" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-53, 13, -45, 30, -28, 44, -11, 50, 9, 50, 26, 41, 37, 34, 49, 20, 52, -14, 43, -33, 34, -42, 23, -54, -5, -57, -29, -51, -44, -40, -55, -15)
+
+[node name="HitFlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]

@@ -274,11 +274,11 @@ func _on_mouth_animation_finished() -> void:
 	if not boss_destroyed:
 		if mouth.animation == "open":
 			$LaserWeapon/LaserAudio.play()
-			await get_tree().create_timer(1.35).timeout
+			await get_tree().create_timer(1.35, false).timeout
 			$LaserWeapon.visible = true
 			$LaserPlayer.play("laser_on")
 			$CloseMouth.start()
-			await get_tree().create_timer(2).timeout
+			await get_tree().create_timer(2, false).timeout
 			$LaserPlayer.play("RESET")
 			$LaserWeapon.visible = false
 		elif mouth.animation == "close":
@@ -332,7 +332,7 @@ func railgun_weapon_shot():
 		railgun_follow_dx.rotation = direzione.angle() + PI / 2.0
 
 		# Aspettiamo un breve istante prima di sparare il prossimo colpo della raffica
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.3, false).timeout
 
 
 func _on_weapon_timer_wing_timeout() -> void:

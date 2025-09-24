@@ -13,7 +13,7 @@ var stato_attuale = State.ENTRANDO
 func _ready() -> void:
 	super()
 	spawn_shot_1.start()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 	spawn_shot_2.start()
 
 func sparare(side):

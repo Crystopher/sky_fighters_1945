@@ -7,8 +7,15 @@ func _ready() -> void:
 			"active": true,
 			"type": "enemy",
 			"enemies": [
+				{"type": "chopter_strafer", "number": 2, "wait": 2.0},
+				{"type": "chopter_darc_shooter", "number": 2, "wait": 2.0},
 				{"type": "chopter_dspitfire", "number": 2, "wait": 2.0},
 				{"type": "chopter_dfollow", "number": 2, "wait": 2.0},
+				{"type": "enemy_turret", "number": 1, "wait": 1.0},
+				{"type": "chopter_dfollow", "number": 2, "wait": 2.0},
+				{"type": "enemy_turret", "number": 1, "wait": 7.0},
+				{"type": "chopter_dfollow", "number": 2, "wait": 2.0},
+				{"type": "enemy_turret", "number": 1, "wait": 7.0},
 			]
 		},
 	]

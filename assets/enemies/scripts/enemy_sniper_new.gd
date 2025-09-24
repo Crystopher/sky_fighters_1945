@@ -64,4 +64,4 @@ func sparare_raffica():
 		proiettile.rotation = direzione.angle() + PI / 2.0
 
 		# Aspettiamo un breve istante prima di sparare il prossimo colpo della raffica
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.2, false).timeout
