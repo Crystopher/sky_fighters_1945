@@ -151,6 +151,10 @@ func _on_chiusura_alare_timer_timeout() -> void:
 func explode(with_sound):
 	if wing_sx_collision: wing_sx_collision.set_deferred("disabled", true)
 	if wing_dx_collision: wing_dx_collision.set_deferred("disabled", true)
+	$WeaponTimerWing.stop()
+	$WeaponTimerRailgun.stop()
+	$WeaponTimerCannon.stop()
+	boss_destroyed = true
 	super(with_sound)
 
 

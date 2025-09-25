@@ -153,14 +153,20 @@ func activate_supermove(supermove_type: SuperMoveData.SuperMoveType):
 
 func move_to_target_position(target_position: Vector2, duration: float = 1.0):
 	is_moving_to_position = true
-	# Ferma qualsiasi input del giocatore temporaneamente
-	# Puoi anche disabilitare la collisione se necessario, ma di solito non serve
+
+	var shadow_position = target_position
+	shadow_position.x += 50
 
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE) # Animazione più fluida
 	tween.set_ease(Tween.EASE_IN_OUT) # Inizia e finisce dolcemente
 	tween.tween_property(self, "position", target_position, duration)
-
+	
+	var tween2 = create_tween()
+	tween2.set_trans(Tween.TRANS_SINE) # Animazione più fluida
+	tween2.set_ease(Tween.EASE_IN_OUT) # Inizia e finisce dolcemente
+	tween2.tween_property(ombra_giocatore_animata, "global_position", shadow_position, duration)
+	
 	# Aspetta che il tween finisca
 	await tween.finished
 	is_moving_to_position = false

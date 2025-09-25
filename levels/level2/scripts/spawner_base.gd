@@ -118,7 +118,7 @@ func start_next_wave():
 				scene_to_spawn = chopter_darc_shooter_scene
 			elif enemy_type == "chopter_strafer":
 				scene_to_spawn = chopter_strafer_scene
-			elif enemy_type == "boss_eagleone":
+			elif enemy_type == "boss_sharktwo":
 				scene_to_spawn = boss_enemy_scene
 				is_boss = true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c18vwxd78hcls"]
+[gd_scene load_steps=23 format=3 uid="uid://c18vwxd78hcls"]
 
 [ext_resource type="Script" uid="uid://dxjg0ry8twf1j" path="res://levels/level2/scripts/spawner_2-1.gd" id="1_3f7h3"]
 [ext_resource type="PackedScene" uid="uid://cx71uodgqqh3n" path="res://levels/scenes/mission_start.tscn" id="2_c4bar"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://87s3e6c0dh8x" path="res://levels/level2/images/palude_sea.png" id="6_jrmtn"]
 [ext_resource type="Texture2D" uid="uid://dv8b6j4k0iaw7" path="res://levels/level2/images/palude.png" id="7_jh2oa"]
 [ext_resource type="Texture2D" uid="uid://qgqdji57bbs5" path="res://levels/level2/images/palude_gas.png" id="9_ral0x"]
+[ext_resource type="PackedScene" uid="uid://ct61xmn6vvkwl" path="res://assets/bosses/boss_sharktwo_1.tscn" id="9_vcxbm"]
 [ext_resource type="PackedScene" uid="uid://3uls4o7kyg48" path="res://levels/scenes/boss_entering.tscn" id="9_yqfw3"]
 [ext_resource type="AudioStream" uid="uid://bd1chkikqp6yk" path="res://levels/level2/audio/music_2.ogg" id="11_ral0x"]
 [ext_resource type="PackedScene" uid="uid://b8judt8newgkh" path="res://ui.tscn" id="16_8cm7s"]
@@ -37,6 +38,7 @@ chopter_dfollow_scene = ExtResource("3_jh2oa")
 turret_enemy_scene = ExtResource("4_h6phn")
 chopter_darc_shooter_scene = ExtResource("5_8g4u8")
 chopter_strafer_scene = ExtResource("6_7v7je")
+boss_enemy_scene = ExtResource("9_vcxbm")
 boss_entering_scene = ExtResource("9_yqfw3")
 level_music = NodePath("../MusicaLivello")
 boss_music = NodePath("../MusicaBoss")

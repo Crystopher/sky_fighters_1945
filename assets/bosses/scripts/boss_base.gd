@@ -34,6 +34,9 @@ func subire_danno(quantita):
 func _ready() -> void:
 	salute_attuale = max_health
 	
+	if ombra_nemico: ombra_nemico.position = Vector2(-200, -200)
+	if ombra_nemico_animata: ombra_nemico_animata.position = Vector2(-200, -200)
+	
 	await ready
 	# 1. Troviamo il livello delle nuvole
 	var strato_nuvole = get_tree().get_first_node_in_group("strato_nuvole")
@@ -78,22 +81,45 @@ func _process(delta):
 		explode(false)
 
 func _on_area_entered(area: Area2D) -> void:
+	manage_damage(area)
+	
+func manage_damage(area):
 	if area.is_in_group("proiettili_giocatore"):
 		subire_danno(area.current_damage)
 		area.queue_free()
 	elif area.is_in_group("giocatore"):
-		explode(true)
+		#explode(true)
+		pass
 
 func explode(with_sound):	
-	if with_sound == true:
-		var esplosione = SCENA_ESPLOSIONE.instantiate()
-		get_parent().add_child(esplosione)
-		esplosione.global_position = global_position
-		GameManager.aggiungi_punti(punti_nemico)
-	# the enemy starts to be destroyed
+	if already_destroyed:
+		return
+
 	set_process(false)
-	#if wing_sx_collision: wing_sx_collision.set_deferred("disabled", true)
-	#if wing_dx_collision: wing_dx_collision.set_deferred("disabled", true)
+
+	if with_sound == true:
+		var esplosione_1 = SCENA_ESPLOSIONE.instantiate()
+		get_parent().add_child(esplosione_1)
+		esplosione_1.global_position = $ExplosionPoint_1.global_position
+		await get_tree().create_timer(0.5, false).timeout
+		
+		var esplosione_2 = SCENA_ESPLOSIONE.instantiate()
+		get_parent().add_child(esplosione_2)
+		esplosione_2.global_position = $ExplosionPoint_2.global_position
+		await get_tree().create_timer(0.5, false).timeout
+		
+		var esplosione_3 = SCENA_ESPLOSIONE.instantiate()
+		get_parent().add_child(esplosione_3)
+		esplosione_3.global_position = $ExplosionPoint_3.global_position
+		await get_tree().create_timer(0.5, false).timeout
+		
+		var esplosione_4 = SCENA_ESPLOSIONE.instantiate()
+		get_parent().add_child(esplosione_4)
+		esplosione_4.global_position = $ExplosionPoint_4.global_position
+		await get_tree().create_timer(0.5, false).timeout
+		
+		GameManager.aggiungi_punti(punti_nemico)
+
 	if ombra_nemico: ombra_nemico.hide()
 	if ombra_nemico_animata: ombra_nemico_animata.hide()
 	grafica_nemico.hide()
