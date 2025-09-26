@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://bgi8dixy7j132"]
+[gd_scene load_steps=86 format=3 uid="uid://ck671j6p0mf0k"]
 
 [ext_resource type="Script" uid="uid://b4g44nt0ly0o7" path="res://assets/bosses/scripts/boss_sharktwo_2.gd" id="1_rn8x4"]
 [ext_resource type="Texture2D" uid="uid://c4pkd84dig4ac" path="res://assets/enemies/images/orbital_reactor_anim_spritesheet.png" id="2_brcfc"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://coyhs7mllo1k5" path="res://assets/bosses/images/spritesheets/sharktwo_boss_missile_wing_03.png" id="29_3fxke"]
 [ext_resource type="Texture2D" uid="uid://b2ssyuavtrggq" path="res://assets/bosses/images/spritesheets/sharktwo_boss_missile_wing_02.png" id="30_0rgak"]
 [ext_resource type="Texture2D" uid="uid://dfktt3ihlcvfx" path="res://assets/bosses/images/spritesheets/sharktwo_boss_missile_wing_01.png" id="31_ti2am"]
+[ext_resource type="Texture2D" uid="uid://bbm8fi44rlesr" path="res://assets/bosses/images/sharktwo_boss_02.png" id="32_brcfc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_duyra"]
 atlas = ExtResource("2_brcfc")
@@ -483,6 +484,12 @@ script = ExtResource("1_rn8x4")
 wait_time = 0.1
 one_shot = true
 
+[node name="SpawnTimer" type="Timer" parent="."]
+ignore_time_scale = true
+
+[node name="SpawnTimer2" type="Timer" parent="."]
+ignore_time_scale = true
+
 [node name="LeftReactor2" type="AnimatedSprite2D" parent="."]
 position = Vector2(25.5633, -203.43)
 rotation = 0.0811143
@@ -556,9 +563,9 @@ animation = &"open"
 flip_h = true
 
 [node name="GraficaNemico" type="Sprite2D" parent="."]
-position = Vector2(1.99999, -75)
-scale = Vector2(0.4903, 0.4903)
-texture = ExtResource("3_mnqlj")
+position = Vector2(0.28397, -72.5)
+scale = Vector2(0.496506, 0.484746)
+texture = ExtResource("32_brcfc")
 
 [node name="MainFan" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -83)
@@ -605,6 +612,21 @@ position = Vector2(140, -25)
 position = Vector2(151.5, -24)
 shape = SubResource("RectangleShape2D_8wdow")
 
+[node name="Muzzle_1" type="Node2D" parent="MissileWingsDXArea"]
+position = Vector2(192, 12)
+
+[node name="Muzzle_2" type="Node2D" parent="MissileWingsDXArea"]
+position = Vector2(161, 12)
+
+[node name="Muzzle_3" type="Node2D" parent="MissileWingsDXArea"]
+position = Vector2(130, 12)
+
+[node name="Muzzle_4" type="Node2D" parent="MissileWingsDXArea"]
+position = Vector2(98, 12)
+
+[node name="Muzzle_5" type="Node2D" parent="MissileWingsDXArea"]
+position = Vector2(66, 12)
+
 [node name="MissileWingsSXArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 3
@@ -616,6 +638,21 @@ position = Vector2(-117, -27)
 position = Vector2(-146, -24)
 shape = SubResource("RectangleShape2D_8wdow")
 
+[node name="Muzzle_1" type="Node2D" parent="MissileWingsSXArea"]
+position = Vector2(-187, 14)
+
+[node name="Muzzle_2" type="Node2D" parent="MissileWingsSXArea"]
+position = Vector2(-156, 14)
+
+[node name="Muzzle_3" type="Node2D" parent="MissileWingsSXArea"]
+position = Vector2(-124, 14)
+
+[node name="Muzzle_4" type="Node2D" parent="MissileWingsSXArea"]
+position = Vector2(-93, 14)
+
+[node name="Muzzle_5" type="Node2D" parent="MissileWingsSXArea"]
+position = Vector2(-66, 14)
+
 [node name="MuzzleSX" type="Node2D" parent="."]
 position = Vector2(-31, 138)
 
@@ -623,8 +660,11 @@ position = Vector2(-31, 138)
 position = Vector2(35, 138)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer2" to="." method="_on_spawn_timer_2_timeout"]
+[connection signal="animation_finished" from="MissileWingDX" to="." method="_on_missile_wing_dx_animation_finished"]
+[connection signal="animation_finished" from="MissileWingSX" to="." method="_on_missile_wing_sx_animation_finished"]
 [connection signal="timeout" from="OpenWingDX" to="." method="_on_open_wing_dx_timeout"]
 [connection signal="timeout" from="OpenWingSX" to="." method="_on_open_wing_sx_timeout"]
 [connection signal="timeout" from="CloseWingDX" to="." method="_on_close_wing_dx_timeout"]

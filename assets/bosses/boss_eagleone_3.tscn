@@ -1362,7 +1362,6 @@ position = Vector2(110, -41)
 position = Vector2(1, 10)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
 [connection signal="animation_finished" from="GraficaNemico" to="." method="_on_grafica_nemico_animation_finished"]
 [connection signal="animation_finished" from="CannonOpenGraphics" to="." method="_on_cannon_open_graphics_animation_finished"]

@@ -15,6 +15,11 @@ func enemy_railgun_fire():
 		$EnemyRailgunFire.stop()
 	$EnemyRailgunFire.play()
 
+func enemy_chopter_missile():
+	if $ChopterMissile.playing:
+		$ChopterMissile.stop()
+	$ChopterMissile.play()
+
 func enemy_turret_fire():
 	if $TurretShot.playing:
 		$TurretShot.stop()

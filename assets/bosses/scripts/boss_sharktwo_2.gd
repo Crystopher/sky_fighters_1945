@@ -27,9 +27,14 @@ var missile_wing_dx_destroyed = false
 var missile_wing_sx_destroyed = false
 
 var waypoint_timer: Timer
+@onready var spawn_shot_1 = $SpawnTimer
+@onready var spawn_shot_2 = $SpawnTimer2
 
 func _ready() -> void:
 	super()
+	spawn_shot_1.start()
+	await get_tree().create_timer(0.5, false).timeout
+	spawn_shot_2.start()
 	waypoint_timer = Timer.new()
 	add_child(waypoint_timer)
 	waypoint_timer.wait_time = waypoint_change_interval
@@ -142,6 +147,8 @@ func _on_missile_wings_dx_area_area_entered(area: Area2D) -> void:
 
 func check_to_explode():
 	if missile_wing_dx_destroyed and missile_wing_sx_destroyed:
+		spawn_shot_1.stop()
+		spawn_shot_2.stop()
 		explode(true)
 
 func _on_open_wing_dx_timeout() -> void:
@@ -178,3 +185,47 @@ func _on_close_wing_sx_timeout() -> void:
 	await missile_wing_sx.animation_finished
 	
 	$OpenWingSX.start()
+
+func sparare(side):
+	if not frontal_weapon_scene: return
+
+	var new_weapon = frontal_weapon_scene.instantiate()
+	get_tree().get_root().add_child(new_weapon)
+	var shot_position
+	if side == "sx":
+		shot_position = $MuzzleSX.global_position
+	elif side == "dx":
+		shot_position = $MuzzleDX.global_position
+		
+	new_weapon.global_position = shot_position
+
+func _on_spawn_timer_2_timeout() -> void:
+	sparare("sx") # Replace with function body.
+
+
+func _on_spawn_timer_timeout() -> void:
+	sparare("dx") # Replace with function body.
+
+
+func _on_missile_wing_dx_animation_finished() -> void:
+	if not wing_weapon_scene: return
+	
+	if missile_wing_dx.animation == "open":
+		for i in range(5):
+			var new_weapon = wing_weapon_scene.instantiate()
+			get_tree().get_root().add_child(new_weapon)
+			var muzzle_name = "Muzzle_" + str(i+1)
+			new_weapon.global_position = $MissileWingsDXArea.get_node(muzzle_name).global_position
+			await get_tree().create_timer(0.3, false).timeout
+
+
+func _on_missile_wing_sx_animation_finished() -> void:
+	if not wing_weapon_scene: return
+	
+	if missile_wing_sx.animation == "open":
+		for i in range(5):
+			var new_weapon = wing_weapon_scene.instantiate()
+			get_tree().get_root().add_child(new_weapon)
+			var muzzle_name = "Muzzle_" + str(i+1)
+			new_weapon.global_position = $MissileWingsSXArea.get_node(muzzle_name).global_position
+			await get_tree().create_timer(0.3, false).timeout

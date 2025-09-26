@@ -1,6 +1,8 @@
-[gd_scene load_steps=85 format=3 uid="uid://ct61xmn6vvkwl"]
+[gd_scene load_steps=87 format=3 uid="uid://ct61xmn6vvkwl"]
 
 [ext_resource type="Script" uid="uid://bxqyb45ug121n" path="res://assets/bosses/scripts/boss_sharktwo_1.gd" id="1_wprcb"]
+[ext_resource type="PackedScene" uid="uid://b6la0gudsb1dt" path="res://assets/bosses/weapons/railgun_chopter.tscn" id="2_piy8i"]
+[ext_resource type="PackedScene" uid="uid://drudkoit2rros" path="res://assets/bosses/weapons/chopter_missile.tscn" id="3_uqvd8"]
 [ext_resource type="Texture2D" uid="uid://chkroblyuheow" path="res://assets/bosses/images/spritesheets/sharktwo_boss_fan_01.png" id="4_btxfe"]
 [ext_resource type="Texture2D" uid="uid://df1m27b4d2fb2" path="res://assets/bosses/images/sharktwo_boss.png" id="4_lt7kn"]
 [ext_resource type="Texture2D" uid="uid://d1k4n0fdq2of3" path="res://assets/bosses/images/spritesheets/sharktwo_boss_fan_02.png" id="5_8rqd5"]
@@ -478,8 +480,10 @@ size = Vector2(183, 74)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_wprcb")
-missile_wing_dx_health = 5
-missile_wing_sx_health = 5
+missile_wing_dx_health = 50
+missile_wing_sx_health = 50
+frontal_weapon_scene = ExtResource("2_piy8i")
+wing_weapon_scene = ExtResource("3_uqvd8")
 punti_nemico = 1500
 punti_impatto = 50
 max_health = 150
@@ -487,6 +491,12 @@ max_health = 150
 [node name="HitFlashTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+ignore_time_scale = true
+
+[node name="SpawnTimer2" type="Timer" parent="."]
+ignore_time_scale = true
 
 [node name="LeftReactor2" type="AnimatedSprite2D" parent="."]
 position = Vector2(25.5633, -203.43)
@@ -610,6 +620,21 @@ position = Vector2(140, -25)
 position = Vector2(151.5, -24)
 shape = SubResource("RectangleShape2D_8wdow")
 
+[node name="Muzzle_1" type="Node2D" parent="MissileWingsDXArea"]
+position = Vector2(192, 12)
+
+[node name="Muzzle_2" type="Node2D" parent="MissileWingsDXArea"]
+position = Vector2(161, 12)
+
+[node name="Muzzle_3" type="Node2D" parent="MissileWingsDXArea"]
+position = Vector2(130, 12)
+
+[node name="Muzzle_4" type="Node2D" parent="MissileWingsDXArea"]
+position = Vector2(98, 12)
+
+[node name="Muzzle_5" type="Node2D" parent="MissileWingsDXArea"]
+position = Vector2(66, 12)
+
 [node name="MissileWingsSXArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 3
@@ -621,6 +646,21 @@ position = Vector2(-117, -27)
 position = Vector2(-146, -24)
 shape = SubResource("RectangleShape2D_8wdow")
 
+[node name="Muzzle_1" type="Node2D" parent="MissileWingsSXArea"]
+position = Vector2(-187, 14)
+
+[node name="Muzzle_2" type="Node2D" parent="MissileWingsSXArea"]
+position = Vector2(-156, 14)
+
+[node name="Muzzle_3" type="Node2D" parent="MissileWingsSXArea"]
+position = Vector2(-124, 14)
+
+[node name="Muzzle_4" type="Node2D" parent="MissileWingsSXArea"]
+position = Vector2(-93, 14)
+
+[node name="Muzzle_5" type="Node2D" parent="MissileWingsSXArea"]
+position = Vector2(-66, 14)
+
 [node name="MuzzleSX" type="Node2D" parent="."]
 position = Vector2(-31, 138)
 
@@ -628,8 +668,11 @@ position = Vector2(-31, 138)
 position = Vector2(35, 138)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer2" to="." method="_on_spawn_timer_2_timeout"]
+[connection signal="animation_finished" from="MissileWingDX" to="." method="_on_missile_wing_dx_animation_finished"]
+[connection signal="animation_finished" from="MissileWingSX" to="." method="_on_missile_wing_sx_animation_finished"]
 [connection signal="timeout" from="OpenWingDX" to="." method="_on_open_wing_dx_timeout"]
 [connection signal="timeout" from="OpenWingSX" to="." method="_on_open_wing_sx_timeout"]
 [connection signal="timeout" from="CloseWingDX" to="." method="_on_close_wing_dx_timeout"]
