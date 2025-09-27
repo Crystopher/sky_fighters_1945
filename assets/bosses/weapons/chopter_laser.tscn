@@ -1,0 +1,106 @@
+[gd_scene load_steps=19 format=3 uid="uid://cy7c6v4r3sjyb"]
+
+[ext_resource type="Script" uid="uid://d2olsqjx2j5nn" path="res://assets/bosses/weapons/scripts/chopter_laser.gd" id="1_3dx4j"]
+[ext_resource type="Texture2D" uid="uid://o4g5g1ymdmv2" path="res://assets/bosses/weapons/images/spritesheets/laser/sharktwo_laser_beam_01.png" id="2_flwth"]
+[ext_resource type="Texture2D" uid="uid://cd7jyjl121fhv" path="res://assets/bosses/weapons/images/spritesheets/laser/sharktwo_laser_beam_02.png" id="3_u4g1j"]
+[ext_resource type="Texture2D" uid="uid://bfhply5qmo5ky" path="res://assets/bosses/weapons/images/spritesheets/laser/sharktwo_laser_beam_03.png" id="4_sv3xj"]
+[ext_resource type="Texture2D" uid="uid://0qk6e6wucj3s" path="res://assets/bosses/weapons/images/spritesheets/laser/sharktwo_laser_beam_04.png" id="5_rn2yu"]
+[ext_resource type="Texture2D" uid="uid://dak5q0livglqc" path="res://assets/bosses/weapons/images/spritesheets/laser/sharktwo_laser_beam_05.png" id="6_wgdn3"]
+[ext_resource type="Texture2D" uid="uid://pce1egag1r57" path="res://assets/bosses/weapons/images/blank.png" id="7_u4g1j"]
+[ext_resource type="Script" uid="uid://cgusorhd71auo" path="res://assets/bosses/weapons/scripts/laser_ray.gd" id="8_rp38h"]
+[ext_resource type="Texture2D" uid="uid://dbny5nr05idqy" path="res://assets/bosses/weapons/images/spritesheets/laser/sharktwo_laser_beam_ray_01.png" id="8_wp248"]
+[ext_resource type="Texture2D" uid="uid://bxp1tna44wc6b" path="res://assets/bosses/weapons/images/spritesheets/laser/sharktwo_laser_beam_ray_02.png" id="9_rp38h"]
+[ext_resource type="Texture2D" uid="uid://b7iv38luqjno2" path="res://assets/bosses/weapons/images/spritesheets/laser/sharktwo_laser_beam_ray_03.png" id="10_rxs81"]
+[ext_resource type="Texture2D" uid="uid://bwspef1lhxjfg" path="res://assets/bosses/weapons/images/spritesheets/laser/sharktwo_laser_beam_ray_04.png" id="11_fpy0l"]
+[ext_resource type="Texture2D" uid="uid://dhad08o61fdir" path="res://assets/bosses/weapons/images/spritesheets/laser/sharktwo_laser_beam_ray_05.png" id="12_kkswo"]
+[ext_resource type="Texture2D" uid="uid://c34etfxpej28g" path="res://assets/bosses/weapons/images/spritesheets/laser/sharktwo_laser_beam_ray_07.png" id="13_cchi8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhqro"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_flwth")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_u4g1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sv3xj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rn2yu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wgdn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_u4g1j")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unxn0"]
+size = Vector2(19, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bn7as"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_wp248")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rp38h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_rxs81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fpy0l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_kkswo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_cchi8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bhcx"]
+size = Vector2(28, 119)
+
+[node name="ChopterLaser" type="Node2D" groups=["enemy_weapons"]]
+script = ExtResource("1_3dx4j")
+punti_arma = 3.0
+velocita = 750.0
+
+[node name="LaserBeam" type="Area2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LaserBeam"]
+position = Vector2(0, -6)
+scale = Vector2(1, 0.78)
+sprite_frames = SubResource("SpriteFrames_bhqro")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserBeam"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_unxn0")
+
+[node name="LaserRay" type="Area2D" parent="." groups=["enemy_weapons"]]
+collision_layer = 8
+script = ExtResource("8_rp38h")
+punti_arma = 4.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="LaserRay"]
+position = Vector2(0, 3)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_bn7as")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserRay"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_0bhcx")

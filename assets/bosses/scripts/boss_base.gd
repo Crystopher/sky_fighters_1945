@@ -14,6 +14,7 @@ var already_destroyed = false
 const SCENA_ESPLOSIONE = preload("res://assets/enemies/scenes/explosion_base.tscn")
 const SCENA_ESPLOSIONE_PROIETTILE = preload("res://assets/bosses/weapons/scenes/bullet_explosion.tscn")
 const SCENA_HIT = preload("res://assets/characters/scenes/hit.tscn")
+const SCENA_SMOKE = preload("res://assets/bosses/scenes/smoke.tscn")
 
 signal enemy_destroyed()
 
@@ -34,8 +35,8 @@ func subire_danno(quantita):
 func _ready() -> void:
 	salute_attuale = max_health
 	
-	if ombra_nemico: ombra_nemico.position = Vector2(-200, -200)
-	if ombra_nemico_animata: ombra_nemico_animata.position = Vector2(-200, -200)
+	if ombra_nemico: ombra_nemico.position = Vector2(-400, -400)
+	if ombra_nemico_animata: ombra_nemico_animata.position = Vector2(-400, -400)
 	
 	await ready
 	# 1. Troviamo il livello delle nuvole
@@ -70,15 +71,7 @@ func aggiorna_posizione_ombra_animata():
 		ombra_nemico_animata.global_position = shadow_position
 
 func _process(delta):
-	# Muovi il nemico verso il basso (l'asse Y positivo)
-	position.y += velocita * delta
-
-	aggiorna_posizione_ombra()
-
-	# Se il nemico esce dal bordo inferiore, distruggilo
-	var screen_height = get_viewport_rect().size.y
-	if position.y > screen_height + 100: # +50 è un margine di sicurezza
-		explode(false)
+	if not already_destroyed: aggiorna_posizione_ombra()
 
 func _on_area_entered(area: Area2D) -> void:
 	manage_damage(area)
@@ -96,6 +89,8 @@ func explode(with_sound):
 		return
 
 	set_process(false)
+	if ombra_nemico: ombra_nemico.hide()
+	if ombra_nemico_animata: ombra_nemico_animata.hide()
 
 	if with_sound == true:
 		var esplosione_1 = SCENA_ESPLOSIONE.instantiate()
@@ -120,8 +115,6 @@ func explode(with_sound):
 		
 		GameManager.aggiungi_punti(punti_nemico)
 
-	if ombra_nemico: ombra_nemico.hide()
-	if ombra_nemico_animata: ombra_nemico_animata.hide()
 	grafica_nemico.hide()
 	destroying()
 

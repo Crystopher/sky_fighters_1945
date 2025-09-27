@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://coh1xtxw4bvy"]
+
+[ext_resource type="Texture2D" uid="uid://cxq0lie7atyy8" path="res://assets/bosses/images/smoke_eagleone_spritesheet.png" id="1_xuvwj"]
+[ext_resource type="Script" uid="uid://bh7rviitwoyj6" path="res://assets/bosses/scenes/smoke.gd" id="2_xuvwj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kv3dm"]
+atlas = ExtResource("1_xuvwj")
+region = Rect2(0, 0, 250, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv2t4"]
+atlas = ExtResource("1_xuvwj")
+region = Rect2(250, 0, 250, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhn8h"]
+atlas = ExtResource("1_xuvwj")
+region = Rect2(500, 0, 250, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trv8q"]
+atlas = ExtResource("1_xuvwj")
+region = Rect2(0, 340, 250, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45p2j"]
+atlas = ExtResource("1_xuvwj")
+region = Rect2(250, 340, 250, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxuf6"]
+atlas = ExtResource("1_xuvwj")
+region = Rect2(500, 340, 250, 340)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_birys"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kv3dm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv2t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhn8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trv8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45p2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxuf6")
+}],
+"loop": true,
+"name": &"play",
+"speed": 10.0
+}]
+
+[node name="Smoke" type="AnimatedSprite2D"]
+modulate = Color(1, 1, 1, 0.596078)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_birys")
+animation = &"play"
+frame = 4
+frame_progress = 0.211104
+offset = Vector2(0, -140)
+script = ExtResource("2_xuvwj")

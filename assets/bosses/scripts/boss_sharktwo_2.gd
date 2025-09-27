@@ -1,5 +1,8 @@
 extends "res://assets/bosses/scripts/boss_base.gd"
 
+enum phase { PHASE1, PHASE2 }
+var current_phase = phase.PHASE1
+
 @onready var body_collision = $BodyCollision
 @onready var missile_wing_dx_collision = $MissileWingsDXArea/MissileWingDXCollision
 @onready var missile_wing_sx_collision = $MissileWingsSXArea/MissileWingSXCollision
@@ -11,13 +14,22 @@ extends "res://assets/bosses/scripts/boss_base.gd"
 @onready var missile_wings_timer_sx_open = $OpenWingSX
 @onready var missile_wings_timer_dx_open = $OpenWingDX
 
+@onready var horn_dx = $HornDX/HornLaserDX
+@onready var horn_sx = $HornSX/HornLaserSX
+
 @export var missile_wing_dx_health = 1
 @export var missile_wing_sx_health = 1
 
+@export var horn_laser_dx_health = 1
+@export var horn_laser_sx_health = 1
+
 @export var frontal_weapon_scene: PackedScene
 @export var wing_weapon_scene: PackedScene
+@export var wing_laser_weapon_scene: PackedScene
 
 var invincible = true
+var horn_dx_invincible = true
+var horn_sx_invincible = true
 
 var target_waypoint: Vector2
 @export var waypoint_speed: float = 150.0
@@ -25,6 +37,9 @@ var target_waypoint: Vector2
 
 var missile_wing_dx_destroyed = false
 var missile_wing_sx_destroyed = false
+
+var horn_dx_destroyed = false
+var horn_sx_destroyed = false
 
 var waypoint_timer: Timer
 @onready var spawn_shot_1 = $SpawnTimer
@@ -99,7 +114,6 @@ func manage_damage(area):
 	else:
 		super(area)
 
-
 func _on_missile_wings_sx_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("proiettili_giocatore"):
 		missile_wing_sx_health -= SettingsManager.calculate_difficulty(area.current_damage, "add")
@@ -107,8 +121,10 @@ func _on_missile_wings_sx_area_area_entered(area: Area2D) -> void:
 		if missile_wing_sx_health <= 0:
 			missile_wing_sx.play("close")
 			missile_wing_sx_destroyed = true
+			var smoke = SCENA_SMOKE.instantiate()
 			var esplosione = SCENA_ESPLOSIONE.instantiate()
 			get_parent().add_child(esplosione)
+			$SmokeArea/WingSX.add_child(smoke)
 			esplosione.global_position = missile_expl_sx_muzzle.global_position
 			deactivate_missile_wing_sx(true)
 		else:
@@ -124,6 +140,8 @@ func _on_hit_flash_timer_timeout() -> void:
 	super()
 	missile_wing_sx.modulate = Color(1, 1, 1, 1)
 	missile_wing_dx.modulate = Color(1, 1, 1, 1)
+	horn_dx.modulate = Color(1, 1, 1, 1)
+	horn_sx.modulate = Color(1, 1, 1, 1)
 
 func _on_missile_wings_dx_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("proiettili_giocatore"):
@@ -132,8 +150,10 @@ func _on_missile_wings_dx_area_area_entered(area: Area2D) -> void:
 		if missile_wing_dx_health <= 0:
 			missile_wing_dx.play("close")
 			missile_wing_dx_destroyed = true
+			var smoke = SCENA_SMOKE.instantiate()
 			var esplosione = SCENA_ESPLOSIONE.instantiate()
 			get_parent().add_child(esplosione)
+			$SmokeArea/WingDX.add_child(smoke)
 			esplosione.global_position = missile_expl_dx_muzzle.global_position
 			deactivate_missile_wing_dx(true)
 		else:
@@ -147,9 +167,16 @@ func _on_missile_wings_dx_area_area_entered(area: Area2D) -> void:
 
 func check_to_explode():
 	if missile_wing_dx_destroyed and missile_wing_sx_destroyed:
-		spawn_shot_1.stop()
-		spawn_shot_2.stop()
-		explode(true)
+		if horn_dx_destroyed and horn_sx_destroyed:
+			spawn_shot_1.stop()
+			spawn_shot_2.stop()
+			explode(true)
+		
+		if current_phase == phase.PHASE1:
+			current_phase = phase.PHASE2
+			horn_dx.play("open")
+			horn_sx.play("open")
+			
 
 func _on_open_wing_dx_timeout() -> void:
 	if not missile_wing_dx_destroyed:
@@ -212,11 +239,20 @@ func _on_missile_wing_dx_animation_finished() -> void:
 	
 	if missile_wing_dx.animation == "open":
 		for i in range(5):
-			var new_weapon = wing_weapon_scene.instantiate()
-			get_tree().get_root().add_child(new_weapon)
-			var muzzle_name = "Muzzle_" + str(i+1)
-			new_weapon.global_position = $MissileWingsDXArea.get_node(muzzle_name).global_position
-			await get_tree().create_timer(0.3, false).timeout
+			if not missile_wing_dx_destroyed:
+				var new_weapon = wing_weapon_scene.instantiate()
+				get_tree().get_root().add_child(new_weapon)
+				var muzzle_name = "Muzzle_" + str(i+1)
+				new_weapon.global_position = $MissileWingsDXArea.get_node(muzzle_name).global_position
+				await get_tree().create_timer(0.3, false).timeout
+
+		for i in range(4,2,-1):
+			if not missile_wing_dx_destroyed:
+				var new_weapon = wing_weapon_scene.instantiate()
+				get_tree().get_root().add_child(new_weapon)
+				var muzzle_name = "Muzzle_" + str(i+1)
+				new_weapon.global_position = $MissileWingsDXArea.get_node(muzzle_name).global_position
+				await get_tree().create_timer(0.3, false).timeout
 
 
 func _on_missile_wing_sx_animation_finished() -> void:
@@ -224,8 +260,122 @@ func _on_missile_wing_sx_animation_finished() -> void:
 	
 	if missile_wing_sx.animation == "open":
 		for i in range(5):
-			var new_weapon = wing_weapon_scene.instantiate()
-			get_tree().get_root().add_child(new_weapon)
-			var muzzle_name = "Muzzle_" + str(i+1)
-			new_weapon.global_position = $MissileWingsSXArea.get_node(muzzle_name).global_position
+			if not missile_wing_sx_destroyed:
+				var new_weapon = wing_weapon_scene.instantiate()
+				get_tree().get_root().add_child(new_weapon)
+				var muzzle_name = "Muzzle_" + str(i+1)
+				new_weapon.global_position = $MissileWingsSXArea.get_node(muzzle_name).global_position
+				await get_tree().create_timer(0.3, false).timeout
+			
+		for i in range(4,2,-1):
+			if not missile_wing_sx_destroyed:
+				var new_weapon = wing_weapon_scene.instantiate()
+				get_tree().get_root().add_child(new_weapon)
+				var muzzle_name = "Muzzle_" + str(i+1)
+				new_weapon.global_position = $MissileWingsSXArea.get_node(muzzle_name).global_position
+				await get_tree().create_timer(0.3, false).timeout
+
+func manage_damage_dx_horn(area):
+	if horn_dx_invincible and area.is_in_group("proiettili_giocatore"):
+		var hit = SCENA_HIT.instantiate()
+		get_parent().add_child(hit)
+		hit.global_position = area.global_position
+		area.queue_free()
+	elif area.is_in_group("proiettili_giocatore"):
+		horn_laser_dx_health -= SettingsManager.calculate_difficulty(area.current_damage, "add")
+		area.queue_free()
+		if horn_laser_dx_health <= 0:
+			horn_dx_destroyed = true
+			var smoke = SCENA_SMOKE.instantiate()
+			var esplosione = SCENA_ESPLOSIONE.instantiate()
+			get_parent().add_child(esplosione)
+			$SmokeArea/HornDX.add_child(smoke)
+			esplosione.global_position = $HornDX/MuzzleExplosion.global_position
+			deactivate_missile_wing_sx(true)
+		else:
+			horn_dx.modulate = Color(100,100,100,1)
+			grafica_nemico.modulate = Color(100,100,100,1)
+			var hit = SCENA_HIT.instantiate()
+			get_parent().add_child(hit)
+			hit.global_position = area.global_position
+			$HitFlashTimer.start()
+	check_to_explode()
+		
+func manage_damage_sx_horn(area):
+	if horn_sx_invincible and area.is_in_group("proiettili_giocatore"):
+		var hit = SCENA_HIT.instantiate()
+		get_parent().add_child(hit)
+		hit.global_position = area.global_position
+		area.queue_free()
+	elif area.is_in_group("proiettili_giocatore"):
+		horn_laser_sx_health -= SettingsManager.calculate_difficulty(area.current_damage, "add")
+		area.queue_free()
+		if horn_laser_sx_health <= 0:
+			horn_sx_destroyed = true
+			var smoke = SCENA_SMOKE.instantiate()
+			var esplosione = SCENA_ESPLOSIONE.instantiate()
+			get_parent().add_child(esplosione)
+			$SmokeArea/HornSX.add_child(smoke)
+			esplosione.global_position = $HornSX/MuzzleExplosion.global_position
+			deactivate_missile_wing_sx(true)
+		else:
+			horn_sx.modulate = Color(100,100,100,1)
+			grafica_nemico.modulate = Color(100,100,100,1)
+			var hit = SCENA_HIT.instantiate()
+			get_parent().add_child(hit)
+			hit.global_position = area.global_position
+			$HitFlashTimer.start()
+	check_to_explode()
+
+func _on_horn_sx_area_entered(area: Area2D) -> void:
+	manage_damage_sx_horn(area)
+
+func _on_horn_dx_area_entered(area: Area2D) -> void:
+	manage_damage_dx_horn(area)
+
+func laser_shot(side):
+	if not wing_laser_weapon_scene: return
+	
+	if side == "dx":
+		for i in range(4):
+			var laser_weapon = wing_laser_weapon_scene.instantiate()
+			$HornDX/MuzzleLaser.add_child(laser_weapon)
 			await get_tree().create_timer(0.3, false).timeout
+	if side == "sx":
+		for i in range(4):
+			var laser_weapon = wing_laser_weapon_scene.instantiate()
+			$HornSX/MuzzleLaser.add_child(laser_weapon)
+			await get_tree().create_timer(0.3, false).timeout
+
+func _on_horn_laser_dx_animation_finished() -> void:
+	if horn_dx.animation == "open":
+		$HornDX/CollisionDX.set_deferred("disabled", true)
+		$HornDX/CollisionHittableDX.set_deferred("disabled", false)
+		horn_dx_invincible = false
+		if wing_laser_weapon_scene: laser_shot("dx")
+		await get_tree().create_timer(3, false).timeout
+		horn_dx.play("close")
+	elif horn_dx.animation == "close":
+		$HornDX/CollisionDX.set_deferred("disabled", false)
+		$HornDX/CollisionHittableDX.set_deferred("disabled", true)
+		horn_dx_invincible = true
+		if not horn_dx_destroyed:
+			await get_tree().create_timer(2, false).timeout
+			horn_dx.play("open")
+
+
+func _on_horn_laser_sx_animation_finished() -> void:
+	if horn_sx.animation == "open":
+		$HornSX/CollisionSX.set_deferred("disabled", true)
+		$HornSX/CollisionHittableSX.set_deferred("disabled", false)
+		horn_sx_invincible = false
+		if wing_laser_weapon_scene: laser_shot("sx")
+		await get_tree().create_timer(3, false).timeout
+		horn_sx.play("close")
+	elif horn_sx.animation == "close":
+		$HornSX/CollisionSX.set_deferred("disabled", false)
+		$HornSX/CollisionHittableSX.set_deferred("disabled", true)
+		horn_sx_invincible = true
+		if not horn_sx_destroyed:
+			await get_tree().create_timer(2, false).timeout
+			horn_sx.play("open")

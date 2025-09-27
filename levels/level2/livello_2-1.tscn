@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://87s3e6c0dh8x" path="res://levels/level2/images/palude_sea.png" id="6_jrmtn"]
 [ext_resource type="Texture2D" uid="uid://dv8b6j4k0iaw7" path="res://levels/level2/images/palude.png" id="7_jh2oa"]
 [ext_resource type="Texture2D" uid="uid://qgqdji57bbs5" path="res://levels/level2/images/palude_gas.png" id="9_ral0x"]
-[ext_resource type="PackedScene" uid="uid://ct61xmn6vvkwl" path="res://assets/bosses/boss_sharktwo_1.tscn" id="9_vcxbm"]
+[ext_resource type="PackedScene" uid="uid://db07qptrulhkc" path="res://assets/bosses/boss_sharktwo_3.tscn" id="9_vcxbm"]
 [ext_resource type="PackedScene" uid="uid://3uls4o7kyg48" path="res://levels/scenes/boss_entering.tscn" id="9_yqfw3"]
 [ext_resource type="AudioStream" uid="uid://bd1chkikqp6yk" path="res://levels/level2/audio/music_2.ogg" id="11_ral0x"]
 [ext_resource type="PackedScene" uid="uid://b8judt8newgkh" path="res://ui.tscn" id="16_8cm7s"]
