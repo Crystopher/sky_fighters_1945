@@ -52,6 +52,7 @@ signal energy_updated(new_energy, energy_top)
 signal speed_powerup_updated(new_speed, speed_max)
 signal damage_powerup_updated(new_damage, damage_max)
 signal giocatore_morto
+signal player_respawned
 
 func add_supermove(supermove_data: SuperMoveData):
 	if not supermove_data in supermove_enabled:
@@ -74,8 +75,8 @@ func perform_bomb(super_animation: PackedScene):
 		var screen_width = get_viewport().get_visible_rect().size.x
 		animation.position = Vector2(screen_width/2, 300)
 		get_parent().add_child(animation)
-	for n in nemici:
-		n.subire_danno(20) # Danno letale
+	#for n in nemici:
+#		n.subire_danno(20) # Danno letale
 
 	var proiettili_nemici = get_tree().get_nodes_in_group("proiettili_nemici")
 	for p in proiettili_nemici:
@@ -488,6 +489,7 @@ func respawn():
 	current_damage_level = 0
 	emit_signal("speed_powerup_updated", current_speed_level, GameManager.speed_powerup_max)
 	emit_signal("damage_powerup_updated", current_damage_level, GameManager.damage_powerup_max)
+	emit_signal("player_respawned")
 	
 	current_weapon = 0
 	GameManager.current_weapon_selected = 0

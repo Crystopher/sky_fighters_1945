@@ -1,0 +1,121 @@
+[gd_scene load_steps=27 format=3 uid="uid://dydpmy1kvl7y2"]
+
+[ext_resource type="Script" uid="uid://y0sod0wnvt0d" path="res://levels/level2/scripts/spawner_2-2.gd" id="1_c2muj"]
+[ext_resource type="PackedScene" uid="uid://cx71uodgqqh3n" path="res://levels/scenes/mission_start.tscn" id="2_k4r76"]
+[ext_resource type="PackedScene" uid="uid://swhr6w8kahsf" path="res://levels/scenes/mission_complete.tscn" id="3_sqdd2"]
+[ext_resource type="PackedScene" uid="uid://ck671j6p0mf0k" path="res://assets/bosses/boss_sharktwo_2.tscn" id="4_jfb8c"]
+[ext_resource type="PackedScene" uid="uid://dn5eiepdk01y0" path="res://assets/enemies/enemy_cd_spitfire.tscn" id="4_s6d7j"]
+[ext_resource type="PackedScene" uid="uid://c3jjwow6jvfm" path="res://assets/enemies/enemy_cd_follow.tscn" id="5_chw2d"]
+[ext_resource type="PackedScene" uid="uid://b7owavbs087te" path="res://assets/enemies/enemy_cd_turret.tscn" id="6_01kie"]
+[ext_resource type="PackedScene" uid="uid://bt5njctmkut2d" path="res://assets/enemies/enemy_cd_arc_shooter.tscn" id="7_cj73x"]
+[ext_resource type="PackedScene" uid="uid://ddao83t4wnm2i" path="res://assets/enemies/enemy_cd_strafer.tscn" id="8_e1odv"]
+[ext_resource type="PackedScene" uid="uid://3uls4o7kyg48" path="res://levels/scenes/boss_entering.tscn" id="10_vd7dd"]
+[ext_resource type="PackedScene" uid="uid://dkd2heos5bbqe" path="res://assets/characters/powerups/PowerUpD.tscn" id="11_chw2d"]
+[ext_resource type="PackedScene" uid="uid://b8judt8newgkh" path="res://ui.tscn" id="11_ofm2h"]
+[ext_resource type="PackedScene" uid="uid://dmw20jex2ykxy" path="res://assets/characters/powerups/PowerUpE.tscn" id="12_01kie"]
+[ext_resource type="Script" uid="uid://creel5m33sw0q" path="res://levels/level2/scripts/sfondo_scorrimento.gd" id="12_hneik"]
+[ext_resource type="PackedScene" uid="uid://bfaq0tks540w1" path="res://assets/characters/powerups/PowerUpS.tscn" id="13_cj73x"]
+[ext_resource type="Script" uid="uid://dxh5w3l82vuf6" path="res://levels/level2/scripts/scrolling_manager.gd" id="13_y3hen"]
+[ext_resource type="PackedScene" uid="uid://cvmtctn1vwjlh" path="res://assets/characters/powerups/PowerUpW.tscn" id="14_e1odv"]
+[ext_resource type="Texture2D" uid="uid://de4lfg0aab5j5" path="res://levels/level1/images/sea_tile.png" id="17_5iw7g"]
+[ext_resource type="Texture2D" uid="uid://dcndclql0m84e" path="res://levels/level2/images/desert_01.png" id="18_chw2d"]
+[ext_resource type="Texture2D" uid="uid://dk8bdq16ejmka" path="res://levels/level2/images/deseert_02.png" id="19_01kie"]
+[ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="19_g2nyl"]
+[ext_resource type="AudioStream" uid="uid://bd1chkikqp6yk" path="res://levels/level2/audio/music_2.ogg" id="20_bnj57"]
+[ext_resource type="AudioStream" uid="uid://lad8h1drrxn5" path="res://levels/level1/audio/eagleone_boss.ogg" id="21_647de"]
+[ext_resource type="Texture2D" uid="uid://bf63p5y2jh8c0" path="res://levels/level2/images/sea_and_desert.png" id="21_cj73x"]
+[ext_resource type="Texture2D" uid="uid://chjpqovdcamvf" path="res://levels/level2/images/cloud_tile_22.png" id="23_01kie"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwq56"]
+shader = ExtResource("19_g2nyl")
+shader_parameter/line_density = 4.0
+shader_parameter/line_darkness = 0.6
+
+[node name="Livello2-2" type="Node2D"]
+
+[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("level_music", "boss_music")]
+script = ExtResource("1_c2muj")
+start_level_scene = ExtResource("2_k4r76")
+level_completed_scene = ExtResource("3_sqdd2")
+chopter_dspitfire_scene = ExtResource("4_s6d7j")
+chopter_dfollow_scene = ExtResource("5_chw2d")
+turret_enemy_scene = ExtResource("6_01kie")
+chopter_darc_shooter_scene = ExtResource("7_cj73x")
+chopter_strafer_scene = ExtResource("8_e1odv")
+boss_enemy_scene = ExtResource("4_jfb8c")
+boss_entering_scene = ExtResource("10_vd7dd")
+powerup_scenes = Array[PackedScene]([ExtResource("11_chw2d"), ExtResource("12_01kie"), ExtResource("13_cj73x"), ExtResource("14_e1odv")])
+level_music = NodePath("../MusicaLivello")
+boss_music = NodePath("../MusicaBoss")
+level_tag = "2.2"
+
+[node name="Timer" type="Timer" parent="WaveManager"]
+wait_time = 1.5
+autostart = true
+ignore_time_scale = true
+
+[node name="UI" parent="." instance=ExtResource("11_ofm2h")]
+
+[node name="SfondoScorrimento" type="ParallaxBackground" parent="." groups=["sfondo"]]
+script = ExtResource("12_hneik")
+
+[node name="GroundManager" type="Node2D" parent="SfondoScorrimento"]
+z_index = -100
+script = ExtResource("13_y3hen")
+textures = Array[Texture2D]([ExtResource("18_chw2d"), ExtResource("18_chw2d"), ExtResource("18_chw2d"), ExtResource("19_01kie"), ExtResource("19_01kie"), ExtResource("19_01kie"), ExtResource("19_01kie"), ExtResource("19_01kie")])
+
+[node name="SegmentoA" type="TextureRect" parent="SfondoScorrimento/GroundManager"]
+offset_right = 2048.0
+offset_bottom = 2048.0
+texture = ExtResource("17_5iw7g")
+stretch_mode = 1
+
+[node name="SegmentoB" type="TextureRect" parent="SfondoScorrimento/GroundManager"]
+offset_right = 2048.0
+offset_bottom = 1024.0
+texture = ExtResource("21_cj73x")
+stretch_mode = 1
+
+[node name="SegmentoD" type="TextureRect" parent="SfondoScorrimento/GroundManager"]
+offset_right = 2048.0
+offset_bottom = 1024.0
+texture = ExtResource("18_chw2d")
+stretch_mode = 1
+
+[node name="StratoNuvole" type="ParallaxLayer" parent="SfondoScorrimento" groups=["strato_nuvole"]]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(0, 2048)
+
+[node name="TextureRect" type="TextureRect" parent="SfondoScorrimento/StratoNuvole"]
+modulate = Color(1, 1, 1, 0.694118)
+offset_right = 2048.0
+offset_bottom = 4096.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("23_01kie")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="EffettiPostProcessing" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="ColorRect" type="ColorRect" parent="EffettiPostProcessing"]
+material = SubResource("ShaderMaterial_vwq56")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MusicaLivello" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_bnj57")
+volume_db = 7.0
+bus = &"Music"
+parameters/looping = true
+
+[node name="MusicaBoss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_647de")
+bus = &"Music"
+parameters/looping = true
+
+[connection signal="timeout" from="WaveManager/Timer" to="WaveManager" method="_on_timer_timeout"]

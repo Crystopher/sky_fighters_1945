@@ -50,11 +50,19 @@ func _ready():
 	start_position.y = screen_size.y - 300
 	nuovo_giocatore.position = start_position
 	nuovo_giocatore.giocatore_morto.connect(_on_giocatore_morto)
+	nuovo_giocatore.player_respawned.connect(_on_player_respawn)
 
 	get_parent().call_deferred("add_child", nuovo_giocatore)
 	
 	start_next_wave()
 	level_music.play()
+
+func _on_player_respawn():
+	spawn_powerup()
+	await get_tree().create_timer(0.3, false).timeout
+	spawn_powerup()
+	await get_tree().create_timer(0.3, false).timeout
+	spawn_powerup()
 
 func _on_giocatore_morto():
 	GameManager.reset_level()

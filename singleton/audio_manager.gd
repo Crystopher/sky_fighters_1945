@@ -20,6 +20,11 @@ func enemy_chopter_missile():
 		$ChopterMissile.stop()
 	$ChopterMissile.play()
 
+func enemy_chopter_laser_ray():
+	if $LaserRay.playing:
+		$LaserRay.stop()
+	$LaserRay.play()
+
 func enemy_turret_fire():
 	if $TurretShot.playing:
 		$TurretShot.stop()

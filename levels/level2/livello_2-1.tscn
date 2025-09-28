@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c18vwxd78hcls"]
+[gd_scene load_steps=27 format=3 uid="uid://c18vwxd78hcls"]
 
 [ext_resource type="Script" uid="uid://dxjg0ry8twf1j" path="res://levels/level2/scripts/spawner_2-1.gd" id="1_3f7h3"]
 [ext_resource type="PackedScene" uid="uid://cx71uodgqqh3n" path="res://levels/scenes/mission_start.tscn" id="2_c4bar"]
@@ -11,14 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://bt5njctmkut2d" path="res://assets/enemies/enemy_cd_arc_shooter.tscn" id="5_8g4u8"]
 [ext_resource type="Texture2D" uid="uid://cfebvicabcflv" path="res://levels/level2/images/sea_tile.png" id="5_ral0x"]
 [ext_resource type="PackedScene" uid="uid://ddao83t4wnm2i" path="res://assets/enemies/enemy_cd_strafer.tscn" id="6_7v7je"]
-[ext_resource type="Texture2D" uid="uid://87s3e6c0dh8x" path="res://levels/level2/images/palude_sea.png" id="6_jrmtn"]
-[ext_resource type="Texture2D" uid="uid://dv8b6j4k0iaw7" path="res://levels/level2/images/palude.png" id="7_jh2oa"]
-[ext_resource type="Texture2D" uid="uid://qgqdji57bbs5" path="res://levels/level2/images/palude_gas.png" id="9_ral0x"]
-[ext_resource type="PackedScene" uid="uid://db07qptrulhkc" path="res://assets/bosses/boss_sharktwo_3.tscn" id="9_vcxbm"]
+[ext_resource type="PackedScene" uid="uid://ct61xmn6vvkwl" path="res://assets/bosses/boss_sharktwo_1.tscn" id="9_vcxbm"]
 [ext_resource type="PackedScene" uid="uid://3uls4o7kyg48" path="res://levels/scenes/boss_entering.tscn" id="9_yqfw3"]
 [ext_resource type="AudioStream" uid="uid://bd1chkikqp6yk" path="res://levels/level2/audio/music_2.ogg" id="11_ral0x"]
+[ext_resource type="PackedScene" uid="uid://dkd2heos5bbqe" path="res://assets/characters/powerups/PowerUpD.tscn" id="11_td4ya"]
+[ext_resource type="PackedScene" uid="uid://dmw20jex2ykxy" path="res://assets/characters/powerups/PowerUpE.tscn" id="12_imuum"]
+[ext_resource type="PackedScene" uid="uid://bfaq0tks540w1" path="res://assets/characters/powerups/PowerUpS.tscn" id="13_bnjsg"]
+[ext_resource type="PackedScene" uid="uid://cvmtctn1vwjlh" path="res://assets/characters/powerups/PowerUpW.tscn" id="14_sny2p"]
 [ext_resource type="PackedScene" uid="uid://b8judt8newgkh" path="res://ui.tscn" id="16_8cm7s"]
 [ext_resource type="Texture2D" uid="uid://de4lfg0aab5j5" path="res://levels/level1/images/sea_tile.png" id="19_bi2e6"]
+[ext_resource type="Texture2D" uid="uid://bf63p5y2jh8c0" path="res://levels/level2/images/sea_and_desert.png" id="19_td4ya"]
+[ext_resource type="Texture2D" uid="uid://dcndclql0m84e" path="res://levels/level2/images/desert_01.png" id="20_imuum"]
+[ext_resource type="Texture2D" uid="uid://chjpqovdcamvf" path="res://levels/level2/images/cloud_tile_22.png" id="22_td4ya"]
 [ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="23_fqpmd"]
 [ext_resource type="AudioStream" uid="uid://lad8h1drrxn5" path="res://levels/level1/audio/eagleone_boss.ogg" id="25_7hub5"]
 
@@ -40,6 +44,7 @@ chopter_darc_shooter_scene = ExtResource("5_8g4u8")
 chopter_strafer_scene = ExtResource("6_7v7je")
 boss_enemy_scene = ExtResource("9_vcxbm")
 boss_entering_scene = ExtResource("9_yqfw3")
+powerup_scenes = Array[PackedScene]([ExtResource("11_td4ya"), ExtResource("12_imuum"), ExtResource("13_bnjsg"), ExtResource("14_sny2p")])
 level_music = NodePath("../MusicaLivello")
 boss_music = NodePath("../MusicaBoss")
 level_tag = "2.1"
@@ -57,7 +62,7 @@ script = ExtResource("3_3f7h3")
 [node name="GroundManager" type="Node2D" parent="SfondoScorrimento"]
 z_index = -100
 script = ExtResource("4_ral0x")
-textures = Array[Texture2D]([ExtResource("5_ral0x"), ExtResource("5_ral0x"), ExtResource("5_ral0x"), ExtResource("5_ral0x"), ExtResource("6_jrmtn"), ExtResource("7_jh2oa"), ExtResource("7_jh2oa"), ExtResource("7_jh2oa")])
+textures = Array[Texture2D]([ExtResource("5_ral0x"), ExtResource("5_ral0x"), ExtResource("5_ral0x"), ExtResource("5_ral0x"), ExtResource("19_td4ya"), ExtResource("20_imuum"), ExtResource("20_imuum"), ExtResource("20_imuum")])
 
 [node name="SegmentoA" type="TextureRect" parent="SfondoScorrimento/GroundManager"]
 offset_right = 2048.0
@@ -68,13 +73,13 @@ stretch_mode = 1
 [node name="SegmentoB" type="TextureRect" parent="SfondoScorrimento/GroundManager"]
 offset_right = 2048.0
 offset_bottom = 1024.0
-texture = ExtResource("6_jrmtn")
+texture = ExtResource("19_td4ya")
 stretch_mode = 1
 
 [node name="SegmentoD" type="TextureRect" parent="SfondoScorrimento/GroundManager"]
 offset_right = 2048.0
 offset_bottom = 1024.0
-texture = ExtResource("7_jh2oa")
+texture = ExtResource("20_imuum")
 stretch_mode = 1
 
 [node name="StratoNuvole" type="ParallaxLayer" parent="SfondoScorrimento" groups=["strato_nuvole"]]
@@ -82,11 +87,11 @@ motion_scale = Vector2(0.7, 0.7)
 motion_mirroring = Vector2(0, 2048)
 
 [node name="TextureRect" type="TextureRect" parent="SfondoScorrimento/StratoNuvole"]
-modulate = Color(1, 1, 1, 0.243137)
+modulate = Color(1, 1, 1, 0.670588)
 offset_right = 2048.0
 offset_bottom = 4096.0
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_ral0x")
+texture = ExtResource("22_td4ya")
 expand_mode = 1
 stretch_mode = 1
 
@@ -106,6 +111,7 @@ mouse_filter = 2
 stream = ExtResource("11_ral0x")
 volume_db = 7.0
 bus = &"Music"
+parameters/looping = true
 
 [node name="MusicaBoss" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_7hub5")

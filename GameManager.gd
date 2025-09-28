@@ -28,6 +28,15 @@ var ultimo_aereo = "verde"
 
 signal vite_aggiornate(nuove_vite)
 
+var PLAYING_LEVEL_SCHEMA = {
+	"level": "1.0",
+	"schema": {
+		"next_level": "1.1",
+		"level_scene": "res://levels/level1/scenes/intro01.tscn",
+		"supermoves": []
+	}
+}
+
 const LEVELS_SCHEMA = [
 	{
 		"level": "1.1",
@@ -53,6 +62,30 @@ const LEVELS_SCHEMA = [
 	},
 	{
 		"level": "1.3",
+		"schema": {
+			"next_level": "2.1",
+			"level_scene": "res://levels/level2/livello_2-1.tscn",
+			"supermoves": [
+				"res://assets/characters/super_powerups/resources/super_shield.tres",
+				"res://assets/characters/super_powerups/resources/super_overcharge.tres",
+				"res://assets/characters/super_powerups/resources/super_bomb.tres"
+			]
+		}
+	},
+	{
+		"level": "2.1",
+		"schema": {
+			"next_level": "2.2",
+			"level_scene": "res://levels/level2/livello_2-2.tscn",
+			"supermoves": [
+				"res://assets/characters/super_powerups/resources/super_shield.tres",
+				"res://assets/characters/super_powerups/resources/super_overcharge.tres",
+				"res://assets/characters/super_powerups/resources/super_bomb.tres"
+			]
+		}
+	},
+	{
+		"level": "2.3",
 		"schema": {
 			"next_level": "end_game"
 		}
@@ -107,12 +140,13 @@ func next_level(current_finished):
 	var found_levels = LEVELS_SCHEMA.filter(func(item): return item.level == current_finished)
 	if not found_levels.is_empty():
 		var level_data = found_levels[0]
+		PLAYING_LEVEL_SCHEMA = level_data
 		if level_data.schema["next_level"] == "end_game":
 			await get_tree().create_timer(2.0, false).timeout
 			GameManager.end_game(false)
 		else:
 			GameManager.current_wave = 0
-			TransitionManager.change_scene(level_data.schema["level_scene"])
+			TransitionManager.change_scene("res://levels/scenes/starting_level.tscn")
 			supermoves_activated = level_data.schema["supermoves"]
 	else: # Nessun livello trovato con quell'ID.
 		pass

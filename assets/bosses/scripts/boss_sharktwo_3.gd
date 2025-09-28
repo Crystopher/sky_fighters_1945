@@ -29,6 +29,7 @@ var current_state: BossState = BossState.IDLE_POSITIONING
 @export var frontal_weapon_scene: PackedScene
 @export var wing_weapon_scene: PackedScene
 @export var wing_laser_weapon_scene: PackedScene
+@export var drone_weapon_scene: PackedScene
 
 var invincible = true
 var horn_dx_invincible = true
@@ -52,7 +53,6 @@ var waypoint_timer: Timer
 @export var retreat_speed: float = 250.0
 @export var target_idle_position: Vector2 = Vector2(0, 100) # Posizione di attesa
 @export var charge_duration: float = 2.0 # Quanto dura una carica
-@export var minion_scene: PackedScene # Scena dei minion da spawnare
 
 var target_position: Vector2 = Vector2.ZERO # Posizione di carica o di attesa
 var charge_timer: Timer
@@ -133,6 +133,11 @@ func _process(delta):
 
 			BossState.ATTACKING_MINIONS:
 				move_towards_target(target_idle_position + Vector2(sin(_time_elapsed*0.5)*50, 0), delta, velocita * 0.7)
+				if drone_weapon_scene:
+					var drone_sx = drone_weapon_scene.instantiate()
+					var drone_dx = drone_weapon_scene.instantiate()
+					$Drone_DX.add_child(drone_dx)
+					$Drone_SX.add_child(drone_sx)
 				choose_next_attack()
 
 func choose_next_attack():
@@ -150,9 +155,7 @@ func change_state(new_state: BossState):
 		BossState.CHARGING:
 			target_position = GameManager.get_player_node().global_position # Carica verso il giocatore
 			charge_timer.start(charge_duration)
-			# Puoi anche aggiungere un random_charge_position per varianza
 		BossState.RETREATING:
-			# Imposta una safe zone per ritirarsi
 			target_position = target_idle_position
 		BossState.ATTACKING_MINIONS:
 			pass # Inizia a spawnare minion

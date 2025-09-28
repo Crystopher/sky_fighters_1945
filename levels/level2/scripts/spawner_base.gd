@@ -50,11 +50,19 @@ func _ready():
 	start_position.y = screen_size.y - 300
 	nuovo_giocatore.position = start_position
 	nuovo_giocatore.giocatore_morto.connect(_on_giocatore_morto)
+	nuovo_giocatore.player_respawned.connect(_on_player_respawn)
 
 	get_parent().call_deferred("add_child", nuovo_giocatore)
 	
 	start_next_wave()
 	level_music.play()
+
+func _on_player_respawn():
+	spawn_powerup()
+	await get_tree().create_timer(0.3, false).timeout
+	spawn_powerup()
+	await get_tree().create_timer(0.3, false).timeout
+	spawn_powerup()
 
 func _on_giocatore_morto():
 	GameManager.reset_level()
@@ -181,6 +189,7 @@ func turret_spawn(scene_to_spawn, screen_section):
 	elif screen_section == 2:
 		position = Vector2(middle_x, static_y)
 	var turret_instance = scene_to_spawn.instantiate()
+	turret_instance.enemy_destroyed.connect(on_nemico_destroy)
 	turret_instance.position = position
 	var sfondo = get_tree().get_first_node_in_group("sfondo")
 	sfondo.add_child(turret_instance)

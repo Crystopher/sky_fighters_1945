@@ -31,7 +31,7 @@ shader = ExtResource("9_wsj16")
 shader_parameter/line_density = 4.0
 shader_parameter/line_darkness = 0.6
 
-[node name="Livello1-1" type="Node2D"]
+[node name="Livello1-2" type="Node2D"]
 
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("level_music", "boss_music")]
 script = ExtResource("1_6c6q4")
@@ -113,6 +113,7 @@ mouse_filter = 2
 stream = ExtResource("10_vwq56")
 volume_db = 7.0
 bus = &"Music"
+parameters/looping = true
 
 [node name="MusicaBoss" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_4pmea")

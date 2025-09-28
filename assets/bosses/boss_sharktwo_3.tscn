@@ -1,10 +1,11 @@
-[gd_scene load_steps=87 format=3 uid="uid://db07qptrulhkc"]
+[gd_scene load_steps=88 format=3 uid="uid://db07qptrulhkc"]
 
 [ext_resource type="Script" uid="uid://cj06ibulmnv26" path="res://assets/bosses/scripts/boss_sharktwo_3.gd" id="1_0kqc0"]
 [ext_resource type="PackedScene" uid="uid://b6la0gudsb1dt" path="res://assets/bosses/weapons/railgun_chopter.tscn" id="2_ren0b"]
 [ext_resource type="PackedScene" uid="uid://drudkoit2rros" path="res://assets/bosses/weapons/chopter_missile.tscn" id="3_1w7gh"]
 [ext_resource type="PackedScene" uid="uid://cy7c6v4r3sjyb" path="res://assets/bosses/weapons/chopter_laser.tscn" id="4_64v6m"]
 [ext_resource type="Texture2D" uid="uid://c4pkd84dig4ac" path="res://assets/enemies/images/orbital_reactor_anim_spritesheet.png" id="5_0jcvs"]
+[ext_resource type="PackedScene" uid="uid://bxwoqur282cg8" path="res://assets/bosses/weapons/chopter_drone_s.tscn" id="5_r165o"]
 [ext_resource type="Texture2D" uid="uid://df1m27b4d2fb2" path="res://assets/bosses/images/sharktwo_boss.png" id="6_h8cl7"]
 [ext_resource type="Texture2D" uid="uid://chkroblyuheow" path="res://assets/bosses/images/spritesheets/sharktwo/phase1/sharktwo_boss_fan_01.png" id="7_spdqn"]
 [ext_resource type="Texture2D" uid="uid://d1k4n0fdq2of3" path="res://assets/bosses/images/spritesheets/sharktwo/phase1/sharktwo_boss_fan_02.png" id="8_r165o"]
@@ -523,9 +524,14 @@ size = Vector2(183, 74)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_0kqc0")
+missile_wing_dx_health = 70
+missile_wing_sx_health = 70
+horn_laser_dx_health = 60
+horn_laser_sx_health = 60
 frontal_weapon_scene = ExtResource("2_ren0b")
 wing_weapon_scene = ExtResource("3_1w7gh")
 wing_laser_weapon_scene = ExtResource("4_64v6m")
+drone_weapon_scene = ExtResource("5_r165o")
 punti_nemico = 2000
 punti_impatto = 30
 max_health = 150
@@ -668,6 +674,20 @@ position = Vector2(0.28397, -72.5)
 scale = Vector2(0.496506, 0.484746)
 texture = ExtResource("45_0kqc0")
 
+[node name="SmokeArea" type="CanvasGroup" parent="."]
+
+[node name="WingSX" type="Node2D" parent="SmokeArea"]
+position = Vector2(-46, -53)
+
+[node name="WingDX" type="Node2D" parent="SmokeArea"]
+position = Vector2(48, -104)
+
+[node name="HornSX" type="Node2D" parent="SmokeArea"]
+position = Vector2(-48, 40)
+
+[node name="HornDX" type="Node2D" parent="SmokeArea"]
+position = Vector2(56, 16)
+
 [node name="Lights" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -75)
 scale = Vector2(0.497, 0.497)
@@ -768,19 +788,11 @@ position = Vector2(-31, 138)
 [node name="MuzzleDX" type="Node2D" parent="."]
 position = Vector2(35, 138)
 
-[node name="SmokeArea" type="CanvasGroup" parent="."]
+[node name="Drone_DX" type="Node2D" parent="."]
+position = Vector2(64, -112)
 
-[node name="WingSX" type="Node2D" parent="SmokeArea"]
-position = Vector2(-46, -53)
-
-[node name="WingDX" type="Node2D" parent="SmokeArea"]
-position = Vector2(48, -104)
-
-[node name="HornSX" type="Node2D" parent="SmokeArea"]
-position = Vector2(-48, 40)
-
-[node name="HornDX" type="Node2D" parent="SmokeArea"]
-position = Vector2(56, 16)
+[node name="Drone_SX" type="Node2D" parent="."]
+position = Vector2(-56, -112)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]

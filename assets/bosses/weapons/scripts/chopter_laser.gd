@@ -8,7 +8,7 @@ var direzione
 var global_x = 0
 
 func _ready() -> void:
-	AudioManager.enemy_chopter_missile()
+	AudioManager.enemy_chopter_laser_ray()
 	global_x = global_position.x
 	
 func _process(delta):

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://87s3e6c0dh8x"
-path="res://.godot/imported/palude_sea.png-ed0dd0c05da2688f797dd1ecc709f9b5.ctex"
+uid="uid://bpq2i0814ehgj"
+path="res://.godot/imported/sharktwo_boss_back_drone_09.png-3ead859bef03953b80938bc6103d3544.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/level2/images/palude_sea.png"
-dest_files=["res://.godot/imported/palude_sea.png-ed0dd0c05da2688f797dd1ecc709f9b5.ctex"]
+source_file="res://assets/bosses/weapons/images/spritesheets/drone/sharktwo_boss_back_drone_09.png"
+dest_files=["res://.godot/imported/sharktwo_boss_back_drone_09.png-3ead859bef03953b80938bc6103d3544.ctex"]
 
 [params]
 

@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://d24chkc8m3kdt"]
+
+[ext_resource type="Script" uid="uid://dvfng0knxujrp" path="res://levels/scenes/scripts/starting_level.gd" id="1_5gg8u"]
+[ext_resource type="FontFile" uid="uid://yj0forao1opc" path="res://fonts/pngkey.com-unity-png-4427020_2.png" id="1_xa2pv"]
+[ext_resource type="Shader" uid="uid://ljvo33uh1a5y" path="res://scanlines.gdshader" id="3_b5cu5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_va8xu"]
+shader = ExtResource("3_b5cu5")
+shader_parameter/line_density = 4.0
+shader_parameter/line_darkness = 0.6
+
+[node name="StartingLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5gg8u")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -89.0
+offset_right = 200.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_xa2pv")
+theme_override_font_sizes/font_size = 50
+text = "STARTING"
+
+[node name="Level" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -17.0
+offset_right = 150.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_xa2pv")
+theme_override_font_sizes/font_size = 50
+text = "LEVEL"
+
+[node name="LoadLevel" type="Timer" parent="."]
+process_mode = 1
+wait_time = 1.8
+one_shot = true
+autostart = true
+ignore_time_scale = true
+
+[node name="EffettiPostProcessing" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="ColorRect" type="ColorRect" parent="EffettiPostProcessing"]
+material = SubResource("ShaderMaterial_va8xu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="timeout" from="LoadLevel" to="." method="_on_load_level_timeout"]

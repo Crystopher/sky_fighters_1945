@@ -54,8 +54,8 @@ animations = [{
 }]
 
 [node name="Smoke" type="AnimatedSprite2D"]
-modulate = Color(1, 1, 1, 0.596078)
-scale = Vector2(0.2, 0.2)
+modulate = Color(1, 1, 1, 0.678431)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_birys")
 animation = &"play"
 frame = 4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cu312wnpmmo8h"]
+[gd_scene load_steps=11 format=3 uid="uid://cu312wnpmmo8h"]
 
 [ext_resource type="Script" uid="uid://rflsc6612a78" path="res://singleton/audio_manager.gd" id="1_xv1y8"]
 [ext_resource type="AudioStream" uid="uid://ba6hcdic6iaev" path="res://audio/effects/explosion.wav" id="2_m6ohh"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bvabdpmyt4snu" path="res://audio/effects/thunder.ogg" id="7_62yln"]
 [ext_resource type="AudioStream" uid="uid://bx158d4n2c7aa" path="res://audio/effects/turret_shot.ogg" id="8_wshm8"]
 [ext_resource type="AudioStream" uid="uid://orfehh06257i" path="res://audio/effects/chopter_missile.ogg" id="9_r6ysb"]
+[ext_resource type="AudioStream" uid="uid://c1cl74xgtqlfp" path="res://audio/effects/laser_ray.ogg" id="10_habyq"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_xv1y8")
@@ -44,4 +45,8 @@ bus = &"SFX"
 
 [node name="ChopterMissile" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_r6ysb")
+bus = &"SFX"
+
+[node name="LaserRay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_habyq")
 bus = &"SFX"

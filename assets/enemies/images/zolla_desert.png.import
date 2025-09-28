@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv8b6j4k0iaw7"
-path="res://.godot/imported/palude.png-a32e79f10e9b1fc464c23623dec1bf03.ctex"
+uid="uid://8xkpf1gn0mkg"
+path="res://.godot/imported/zolla_desert.png-8884ea6dfaebfa0f10f7b9c076dfff98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/level2/images/palude.png"
-dest_files=["res://.godot/imported/palude.png-a32e79f10e9b1fc464c23623dec1bf03.ctex"]
+source_file="res://assets/enemies/images/zolla_desert.png"
+dest_files=["res://.godot/imported/zolla_desert.png-8884ea6dfaebfa0f10f7b9c076dfff98.ctex"]
 
 [params]
 
