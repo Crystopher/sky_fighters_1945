@@ -1,0 +1,272 @@
+[gd_scene load_steps=21 format=3 uid="uid://ul0tavgvmcbx"]
+
+[ext_resource type="Script" uid="uid://bm5tw2keq2slx" path="res://assets/bosses/scripts/boss_spiderthree_1.gd" id="1_pvhxg"]
+[ext_resource type="Texture2D" uid="uid://d06bftec4oo2f" path="res://assets/bosses/images/spider/SpiderBoss_F_body_01.png" id="2_mh0nd"]
+[ext_resource type="Texture2D" uid="uid://djbmr51y8ot6g" path="res://assets/bosses/images/spider/SpiderBoss_F_03_01.png" id="3_6vfhb"]
+[ext_resource type="Texture2D" uid="uid://cmx3h27t0lvbc" path="res://assets/bosses/images/spider/SpiderBoss_F_01_01.png" id="3_ardhc"]
+[ext_resource type="Texture2D" uid="uid://x1bptuy5yil8" path="res://assets/bosses/images/spider/SpiderBoss_F_02_05.png" id="3_rsaiu"]
+[ext_resource type="Texture2D" uid="uid://2udqvnkdlw4r" path="res://assets/bosses/images/spider/SpiderBoss_F_03_02.png" id="4_4xk1t"]
+[ext_resource type="Texture2D" uid="uid://kddurxtm5q1a" path="res://assets/bosses/images/spider/SpiderBoss_F_01_02.png" id="4_thbdg"]
+[ext_resource type="Texture2D" uid="uid://dhm5ygbfy816f" path="res://assets/bosses/images/spider/SpiderBoss_F_02_04.png" id="4_uowc0"]
+[ext_resource type="Texture2D" uid="uid://c5wl3bv0oj7yo" path="res://assets/bosses/images/spider/SpiderBoss_F_03_03.png" id="5_hl8ck"]
+[ext_resource type="Texture2D" uid="uid://d4flfbfipf8jv" path="res://assets/bosses/images/spider/SpiderBoss_F_01_03.png" id="5_mibmk"]
+[ext_resource type="Texture2D" uid="uid://c1j66wraorxom" path="res://assets/bosses/images/spider/SpiderBoss_F_02_03.png" id="5_umlla"]
+[ext_resource type="Texture2D" uid="uid://bgm3c41hlh2ay" path="res://assets/bosses/images/spider/SpiderBoss_F_01_04.png" id="6_d6vql"]
+[ext_resource type="Texture2D" uid="uid://fs1hddcwnc34" path="res://assets/bosses/images/spider/SpiderBoss_F_02_02.png" id="6_iqh70"]
+[ext_resource type="Texture2D" uid="uid://bkg2fy7j700o" path="res://assets/bosses/images/spider/SpiderBoss_F_03_04.png" id="6_la03n"]
+[ext_resource type="Texture2D" uid="uid://bmld08jpgp02o" path="res://assets/bosses/images/spider/SpiderBoss_F_02_01.png" id="7_05dak"]
+[ext_resource type="Texture2D" uid="uid://cll5s70dfurj7" path="res://assets/bosses/images/spider/SpiderBoss_F_03_05.png" id="7_rjkwv"]
+[ext_resource type="Texture2D" uid="uid://bqg3mvoayjmhw" path="res://assets/bosses/images/spider/SpiderBoss_F_01_05.png" id="7_v6u6b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fg4yj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6vfhb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4xk1t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hl8ck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_la03n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rjkwv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_la03n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hl8ck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4xk1t")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6vfhb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_05dak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_iqh70")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_umlla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uowc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rsaiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uowc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_umlla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_iqh70")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rsaiu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ardhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_thbdg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mibmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_d6vql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_v6u6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_d6vql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mibmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_thbdg")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 10.0
+}]
+
+[node name="BossSpiderThree" type="Area2D" groups=["nemici"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_pvhxg")
+
+[node name="HitFlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+ignore_time_scale = true
+
+[node name="OmbraNemico" type="CanvasGroup" parent="."]
+z_index = -1
+
+[node name="OmbraNemico" type="Sprite2D" parent="OmbraNemico"]
+modulate = Color(0, 0, 0, 0.396078)
+position = Vector2(47, -19)
+scale = Vector2(0.422, 0.422)
+texture = ExtResource("2_mh0nd")
+
+[node name="BackLegDX" type="AnimatedSprite2D" parent="OmbraNemico"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.615686)
+position = Vector2(23, -17)
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_fg4yj")
+animation = &"forward"
+autoplay = "forward"
+frame = 3
+
+[node name="BackLegSX" type="AnimatedSprite2D" parent="OmbraNemico"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.615686)
+position = Vector2(23, -17)
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_fg4yj")
+animation = &"forward"
+autoplay = "forward"
+frame = 7
+frame_progress = 0.978718
+flip_h = true
+
+[node name="MiddleLegDX" type="AnimatedSprite2D" parent="OmbraNemico"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.615686)
+position = Vector2(22, -26)
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_6vfhb")
+animation = &"forward"
+autoplay = "forward"
+frame = 3
+
+[node name="MiddleLegSX" type="AnimatedSprite2D" parent="OmbraNemico"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.615686)
+position = Vector2(22, -26)
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_6vfhb")
+animation = &"forward"
+autoplay = "forward"
+frame = 1
+flip_h = true
+
+[node name="FrontLegDX" type="AnimatedSprite2D" parent="OmbraNemico"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.615686)
+position = Vector2(25, -23)
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_rsaiu")
+animation = &"forward"
+autoplay = "forward"
+
+[node name="FrontLegSX" type="AnimatedSprite2D" parent="OmbraNemico"]
+modulate = Color(0, 0, 0, 0.396078)
+self_modulate = Color(1, 1, 1, 0.615686)
+position = Vector2(25, -23)
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_rsaiu")
+animation = &"forward"
+autoplay = "forward"
+frame = 4
+flip_h = true
+
+[node name="BodyCollision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-65, -112, -81, -136, -98, -171, -105, -201, -106, -229, -101, -252, -93, -273, -80, -292, -52, -322, -39, -330, -19, -337, 28, -336, 47, -330, 63, -320, 85, -298, 105, -261, 113, -227, 112, -203, 99, -156, 88, -131, 69, -103, 59, -93, 74, -88, 88, -91, 117, -60, 100, -41, 103, -18, 95, 5, 93, 19, 115, 32, 82, 41, 82, 75, 65, 70, 72, 83, 79, 101, 81, 114, 81, 126, 76, 138, 65, 153, 54, 162, 45, 162, 41, 155, 50, 136, 53, 122, 53, 112, 49, 95, 44, 95, 37, 115, 26, 124, 17, 128, 10, 128, 9, 120, 11, 115, 11, 104, 9, 96, -1, 96, -4, 103, -4, 114, -1, 120, -3, 128, -10, 128, -17, 124, -25, 117, -30, 109, -33, 102, -33, 95, -42, 96, -46, 110, -46, 122, -41, 138, -33, 152, -35, 161, -44, 162, -55, 153, -67, 139, -73, 126, -74, 111, -67, 94, -63, 82, -59, 69, -75, 79, -81, 46, -108, 36, -97, 24, -86, 19, -83, 1, -96, -11, -97, -41, -108, -63, -79, -93, -61, -88, -50, -94)
+
+[node name="GraficaNemico" type="Sprite2D" parent="."]
+position = Vector2(3.96638, -4.9664)
+scale = Vector2(0.421908, 0.421908)
+texture = ExtResource("2_mh0nd")
+
+[node name="ExplosionPoint_1" type="Node2D" parent="."]
+position = Vector2(-12, -212)
+
+[node name="ExplosionPoint_2" type="Node2D" parent="."]
+position = Vector2(-52, -74)
+
+[node name="ExplosionPoint_3" type="Node2D" parent="."]
+position = Vector2(110, -41)
+
+[node name="ExplosionPoint_4" type="Node2D" parent="."]
+position = Vector2(1, 10)
+
+[node name="BackLegDX" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_fg4yj")
+animation = &"forward"
+autoplay = "forward"
+frame = 3
+
+[node name="BackLegSX" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_fg4yj")
+animation = &"forward"
+autoplay = "forward"
+frame = 7
+frame_progress = 0.978718
+flip_h = true
+
+[node name="MiddleLegDX" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -9)
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_6vfhb")
+animation = &"forward"
+autoplay = "forward"
+frame = 3
+
+[node name="MiddleLegSX" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -9)
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_6vfhb")
+animation = &"forward"
+autoplay = "forward"
+frame = 1
+flip_h = true
+
+[node name="FrontLegDX" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -6)
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_rsaiu")
+animation = &"forward"
+autoplay = "forward"
+
+[node name="FrontLegSX" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -6)
+scale = Vector2(0.422, 0.422)
+sprite_frames = SubResource("SpriteFrames_rsaiu")
+animation = &"forward"
+autoplay = "forward"
+frame = 4
+flip_h = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="HitFlashTimer" to="." method="_on_hit_flash_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

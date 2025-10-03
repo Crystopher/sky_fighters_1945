@@ -13,7 +13,6 @@
 z_index = -1
 script = ExtResource("1_bm2tl")
 punti_nemico = 70
-salute_attuale = 7
 proiettile_nemico_scene = ExtResource("2_bq1kj")
 
 [node name="Base3" type="Sprite2D" parent="."]

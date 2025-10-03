@@ -5,7 +5,8 @@ class_name TorrettaTerrestre
 var already_destroyed = false
 signal enemy_destroyed()
 @export var punti_nemico = 50
-@export var salute_attuale: int = 50
+@export var salute_massima = 7
+var salute_attuale
 @export var proiettile_nemico_scene: PackedScene # Scena del proiettile che spara la torretta
 @export var velocita_proiettile: float = 300.0
 @export var fire_rate: float = 1.0: # Tempo tra uno sparo e l'altro
@@ -27,6 +28,7 @@ var is_dead = false # Flag per evitare decrementi multipli
 var player_node: Node2D = null # Riferimento al giocatore
 
 func _ready():
+	salute_attuale = salute_massima
 	# Cerca il giocatore nel gruppo "giocatore"
 	player_node = GameManager.get_player_node()
 	if not player_node:
@@ -72,11 +74,11 @@ func spawn_proiettile():
 	var fire_direction = Vector2(1, 0).rotated(canna.global_rotation) # Usa global_rotation per ottenere la direzione assoluta
 	proiettile_instance.linear_velocity = fire_direction * velocita_proiettile
 
-func subire_danno(danno_ricevuto: int):
+func subire_danno(danno_ricevuto):
 	if is_dead: return
 
 	canna.modulate = Color(100,100,100,1)
-	salute_attuale -= danno_ricevuto
+	salute_attuale -= SettingsManager.calculate_difficulty(danno_ricevuto, "add")
 	if salute_attuale <= 0:
 		morire()
 	else:
